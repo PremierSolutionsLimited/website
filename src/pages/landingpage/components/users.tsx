@@ -24,14 +24,14 @@ const UsersComponent = () => {
                   <div className="aspect-w-3 relative aspect-h-2">
                     <img
                       className="object-cover shadow-lg rounded-lg"
-                      src="https://images.unsplash.com/photo-1604261155087-6872de077de9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG11c2ljaWFufGVufDB8MnwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+                      src="https://images.pexels.com/photos/7692312/pexels-photo-7692312.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                       alt=""
                     />
                   </div>
 
                   <div className="space-y-2">
                     <div className="text-lg leading-6 text-amber-900 font-medium space-y-1">
-                      <h3>Musicians</h3>
+                      <h3>Car Owners</h3>
                     </div>
                   </div>
                 </div>

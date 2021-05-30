@@ -56,7 +56,7 @@ export default function GetStartedComponent() {
                       className="text-4xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4"
                       data-aos="zoom-y-out"
                     >
-                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-900 to-amber-800">
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-900 to-pink-800">
                         is valued
                       </span>
                     </h1>
@@ -73,7 +73,7 @@ export default function GetStartedComponent() {
                       </p>
                       <div className={"block sm:block md:hidden"}>
                         <Link to="/signup">
-                          <div className="flex items-center justify-center text-white py-5 px-8 rounded-full bg-amber-900 hover:bg-amber-800 w-full mb-4 sm:w-auto sm:mb-0">
+                          <div className="flex items-center justify-center text-white py-5 px-8 rounded-full bg-pink-900 hover:bg-pink-800 w-full mb-4 sm:w-auto sm:mb-0">
                             Start my page
                           </div>
                         </Link>
@@ -89,7 +89,7 @@ export default function GetStartedComponent() {
                         data-aos-delay="300"
                       >
                         <Link to="/signup">
-                          <a className="btn text-white py-5 px-8 rounded-full bg-amber-900 hover:bg-amber-800 hover:text-white w-full mb-4 sm:w-auto sm:mb-0">
+                          <a className="btn text-white py-5 px-8 rounded-full bg-pink-900 hover:bg-pink-800 hover:text-white w-full mb-4 sm:w-auto sm:mb-0">
                             Start my page
                           </a>
                         </Link>
@@ -105,7 +105,7 @@ export default function GetStartedComponent() {
               </div>
             </section>
             <div className="hidden sm:hidden md:block aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-              <DriverSvg className="h-64 w-64" />
+              <DriverSvg className="h-full w-full" />
             </div>
           </div>
         </div>
