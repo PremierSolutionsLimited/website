@@ -57,7 +57,7 @@ const UsersComponent = () => {
                   <div className="aspect-w-3 aspect-h-2">
                     <img
                       className="object-cover shadow-lg rounded-lg"
-                      src="https://images.unsplash.com/photo-1543347150-cc060bd84845?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHBob3RvZ3JhcGhlcnN8ZW58MHwyfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+                      src="https://images.pexels.com/photos/3119215/pexels-photo-3119215.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                       alt=""
                     />
                   </div>

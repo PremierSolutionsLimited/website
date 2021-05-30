@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -131,6 +132,16 @@ const Login = () => {
                       </button>
                     </div>
                   </form>
+                  <div className="flex flex-row items-center justify-center mt-10 font-light">
+                    <div>Don't have an account? </div>
+                    <Link
+                      to="/signup"
+                      type="button"
+                      className="underline text-pink-900 font-bold ml-1 focus:outline-none"
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

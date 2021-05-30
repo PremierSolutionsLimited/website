@@ -50,14 +50,14 @@ export default function GetStartedComponent() {
                       className="text-4xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4"
                       data-aos="zoom-y-out"
                     >
-                      Change the way art
+                      Let a Professional
                     </h1>
                     <h1
                       className="text-4xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4"
                       data-aos="zoom-y-out"
                     >
                       <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-900 to-pink-800">
-                        is valued
+                        take the wheel
                       </span>
                     </h1>
                     <div className="max-w-3xl mx-auto">
@@ -66,36 +66,37 @@ export default function GetStartedComponent() {
                         data-aos="zoom-y-out"
                         data-aos-delay="150"
                       >
-                        The free, friendly way to accept donations,
-                        subscriptions and sales directly from fans. The free,
-                        friendly way to accept donations, subscriptions and
-                        sales directly from fans.
+                        To drive you and your family, you will need a private
+                        car driver with excellent chauffeuring capabilities.
+                        Hire the best auto drivers in your area that are
+                        professional and qualified to obey all safety
+                        regulations.
                       </p>
                       <div className={"block sm:block md:hidden"}>
                         <Link to="/signup">
                           <div className="flex items-center justify-center text-white py-5 px-8 rounded-full bg-pink-900 hover:bg-pink-800 w-full mb-4 sm:w-auto sm:mb-0">
-                            Start my page
+                            Become a driver
                           </div>
                         </Link>
                         <Link to="/signup">
                           <div className="flex items-center justify-center text-white py-5 px-8  rounded-full bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4">
-                            Learn more
+                            Book a driver now
                           </div>
                         </Link>
                       </div>
                       <div
-                        className="hidden sm:hidden max-w-xs mx-auto sm:max-w-none md:flex"
+                        className="hidden mt-14 sm:hidden max-w-xs mx-auto sm:max-w-none md:flex"
                         data-aos="zoom-y-out"
                         data-aos-delay="300"
                       >
                         <Link to="/signup">
                           <a className="btn text-white py-5 px-8 rounded-full bg-pink-900 hover:bg-pink-800 hover:text-white w-full mb-4 sm:w-auto sm:mb-0">
-                            Start my page
+                            Become a driver
                           </a>
                         </Link>
                         <Link to="/signup">
                           <a className="btn text-white py-5 px-8  rounded-full bg-black hover:bg-gray-800 hover:text-white w-full sm:w-auto sm:ml-4">
-                            Learn more
+                            Book a driver now
                           </a>
                         </Link>
                       </div>

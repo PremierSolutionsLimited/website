@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -32,10 +33,10 @@ const Signup = () => {
               </div>
               <div className={"mt-10"}>
                 <h2 className=" text-4xl font-extrabold text-pink-600">
-                  Welcome Back!
+                  Good to see you!
                 </h2>
                 <p className="mt-2 text-sm font-light text-gray-600">
-                  Please login into your account
+                  Join us now
                 </p>
               </div>
 
@@ -106,7 +107,7 @@ const Signup = () => {
                         htmlFor="password"
                         className={`block text-sm font-light text-gray-400`}
                       >
-                        Password
+                        Confirm Password
                       </label>
                       <div className="mt-1">
                         <input
@@ -157,6 +158,16 @@ const Signup = () => {
                       </button>
                     </div>
                   </form>
+                  <div className="flex flex-row items-center justify-center mt-10 font-light">
+                    <div>Already have an account? </div>
+                    <Link
+                      to="/login"
+                      type="button"
+                      className="underline text-pink-900 font-bold ml-1 focus:outline-none"
+                    >
+                      Log In
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

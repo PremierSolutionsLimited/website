@@ -44,27 +44,28 @@ const FeaturesComponent = () => {
               Enjoy these features
             </h2>
             <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
-              Fan base allows fans around the world to connect at on point to
-              show or share their love to their favourite creative or celebrity{" "}
+              It's never been easier to find a designated driver! We have a wide
+              variety of features for you
             </p>
           </div>
 
           <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div className="relative">
               <h3 className="text-2xl font-bold text-gray-900 tracking-tight sm:text-3xl">
-                Expand your reach
+                Catch a drive real quick
               </h3>
               <p className="mt-3 text-lg text-gray-500">
-                Increasing your exposure on social media is one important thing
-                for you. Fanbase provides you with many exciting features to
-                help you stay connected and focused on growing your
-                followership.
+                Why wait until the weekend to take a peaceful trip to your
+                favorite vacation spot? Allow our friendly chauffeur to handle
+                the stress of long distance driving, safety, and route
+                maintenance. Allow your getaway to begin while you're on the
+                road, rather than when you arrive at your destination.
               </p>
 
               <dl className="mt-10 space-y-10">
                 <div className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-amber-900 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
                       <svg
                         className="h-6 w-6"
                         xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +97,7 @@ const FeaturesComponent = () => {
 
                 <div className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-amber-900 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
                       <svg
                         className="h-6 w-6"
                         xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +128,7 @@ const FeaturesComponent = () => {
 
                 <div className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-amber-900 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
                       <svg
                         className="h-6 w-6"
                         xmlns="http://www.w3.org/2000/svg"
@@ -245,7 +246,7 @@ const FeaturesComponent = () => {
                 <dl className="mt-10 space-y-10">
                   <div className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-amber-900 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
                         <svg
                           className="h-6 w-6"
                           xmlns="http://www.w3.org/2000/svg"
@@ -275,7 +276,7 @@ const FeaturesComponent = () => {
 
                   <div className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-amber-900 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
                         <svg
                           className="h-6 w-6"
                           xmlns="http://www.w3.org/2000/svg"
@@ -303,7 +304,7 @@ const FeaturesComponent = () => {
                   </div>
                   <div className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-amber-900 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
                         <svg
                           className="h-6 w-6"
                           xmlns="http://www.w3.org/2000/svg"
