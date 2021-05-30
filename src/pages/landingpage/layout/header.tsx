@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Fragment, useState, useRef, useEffect, useLayoutEffect } from "react";
+import { Fragment, useState, useRef, useLayoutEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useOutsideListener } from "../../../components/hooks";
 import { Link } from "react-router-dom";
@@ -40,20 +40,7 @@ const MainHeader = () => {
   }, []);
 
   //for theming
-  const [themeVariable, setThemeVariable] = useState<"dark" | "light">("dark");
-  useEffect(() => {
-    if (
-      localStorage.getItem("shs-masterclass-theme") === "dark" ||
-      (!localStorage.getItem("shs-masterclass-theme") &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.querySelector("html").classList.add("dark");
-      setThemeVariable("dark");
-    } else {
-      document.querySelector("html").classList.remove("dark");
-      setThemeVariable("light");
-    }
-  }, []);
+
   return (
     <Fragment>
       <div
@@ -73,82 +60,7 @@ const MainHeader = () => {
                 />
               </a>
             </Link>
-            <div className="-mr-2 -my-2 md:hidden">
-              {themeVariable === "dark" ? (
-                <Fragment>
-                  <button
-                    onClick={() => {
-                      document.querySelector("html").classList.remove("dark");
-                      localStorage.setItem("shs-masterclass-theme", "light");
-                      setThemeVariable("light");
-                    }}
-                    className="text-base font-medium focus:outline-none text-white hover:text-gray-900"
-                  >
-                    <svg
-                      className={"h-7 w-7"}
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                      />
-                    </svg>
-                  </button>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <button
-                    onClick={() => {
-                      document.querySelector("html").classList.add("dark");
-                      localStorage.setItem("shs-masterclass-theme", "dark");
-                      setThemeVariable("dark");
-                    }}
-                    className="text-base font-medium focus:outline-none text-gray-500 dark:text-white hover:text-gray-900"
-                  >
-                    <svg
-                      className={"h-7 w-7"}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </Fragment>
-              )}
-              <button
-                onClick={() => setShowMobileDropdown(true)}
-                type="button"
-                className=" rounded-md p-2 ml-3 inline-flex items-center justify-center text-black hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-900"
-              >
-                <span className="sr-only">Open menu</span>
-                {/* <!-- Heroicon name: menu --> */}
-                <svg
-                  className="h-7 w-7"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-            </div>
+
             <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
               <nav className="flex space-x-10">
                 <a
