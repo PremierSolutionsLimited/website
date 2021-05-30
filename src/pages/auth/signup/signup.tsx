@@ -6,7 +6,7 @@ const bgImage =
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = "Signup | Hire A Driver";
