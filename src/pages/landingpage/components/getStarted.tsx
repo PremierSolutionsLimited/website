@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import DriverSvg from "../../../components/svgs/driver";
+import CardPng from "../../../assets/car.png";
 
 export default function GetStartedComponent() {
   return (
@@ -9,7 +9,7 @@ export default function GetStartedComponent() {
       <div className="bg-gray-100 relative">
         <div className="max-w-7xl mx-auto pt-12 pb-0 px-4 sm:px-6 lg:px-8">
           <div
-            className="hidden sm:hidden md:block absolute left-1/2  transform -translate-x-1/2 bottom-0 pointer-events-none"
+            className="hidden sm:hidden md:block absolute left-1/2  transform -translate-x-1/2 bottom-10 pointer-events-none"
             aria-hidden="true"
           >
             <svg
@@ -106,7 +106,7 @@ export default function GetStartedComponent() {
               </div>
             </section>
             <div className="hidden sm:hidden md:block aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-              <DriverSvg className="h-full w-full" />
+              <img src={CardPng} alt="car" className="h-auto w-full" />
             </div>
           </div>
         </div>

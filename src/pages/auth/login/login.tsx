@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -7,7 +8,6 @@ const bgImage =
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = "Login | Hire A Driver";
@@ -15,15 +15,34 @@ const Login = () => {
 
   return (
     <Fragment>
-      <div className="min-h-screen bg-white flex w-full">
-        <div
-          className={
-            "w-full sm:w-full md:w-6/12 lg:w-5/12 flex items-start justify-between flex-col px-4 sm:px-6 py-10 lg:flex-none lg:px-20"
-          }
+      <div className="min-h-screen bg-white flex">
+        <button
+          type="button"
+          className="hidden sm:hidden md:flex lg:block relative w-0 flex-1 focus:outline-none"
         >
-          <div />
-          <div className="w-full flex flex-col justify-center items-start ">
-            <div className="mx-auto w-full max-w-sm ">
+          <div className="flex flex-col ">
+            <img
+              className="absolute inset-0 h-full w-full object-cover"
+              src={bgImage}
+              alt=""
+            />
+            <div
+              className={"absolute top-0 bg-black bg-opacity-10 h-full w-full"}
+            >
+              {/* <div className="relative">
+                <img
+                  src={LogoFanbaseSmall}
+                  className=" h-auto absolute -top-48 w-auto"
+                  alt="logo"
+                />
+              </div> */}
+            </div>
+          </div>
+        </button>
+
+        <div className="flex-1  flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:mx-36 xl:mx-36">
+          <div className="w-full">
+            <div>
               <div className={""}>
                 <img
                   className="h-12 w-auto"
@@ -31,118 +50,108 @@ const Login = () => {
                   alt="Workflow"
                 />
               </div>
-              <div className={"mt-10"}>
-                <h2 className=" text-4xl font-extrabold text-pink-600">
-                  Welcome Back!
-                </h2>
-                <p className="mt-2 text-sm font-light text-gray-600">
-                  Please login into your account
-                </p>
-              </div>
+              <h2 className="mt-6 text-3xl font-bold text-pink-600">
+                Welcome Back!
+              </h2>
+            </div>
 
-              <div className="mt-8">
-                <div className="mt-6">
-                  <form action="#" method="POST" className="space-y-6">
-                    <div
-                      className={`border w-full ${
-                        active === "email"
-                          ? "border-pink-400"
-                          : "border-transaparent"
-                      }  p-3 rounded-md`}
+            <div className="mt-8">
+              <div className="mt-6">
+                <form>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium pb-2 text-gray-700"
                     >
-                      <label
-                        htmlFor="email"
-                        className={`block text-sm font-light text-gray-400`}
-                      >
-                        Email address
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="email"
-                          required
-                          value={email}
-                          onChange={(e) => setEmail(e?.target?.value)}
-                          onFocus={() => setActive("email")}
-                          onBlur={() => setActive(null)}
-                          placeholder={"eg. johndoe@something.com"}
-                          className="appearance-none block p-0 w-full border-none rounded-md placeholder-gray-500 focus:outline-none  focus:ring-gree-500 focus:border-gree-500 sm:text-sm"
-                        />
-                      </div>
+                      Email address
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        placeholder="Eg. johndoe@something.com"
+                        required
+                        value={email}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          setEmail(e.target.value)
+                        }
+                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-800 focus:border-pink-800 sm:text-sm"
+                      />
                     </div>
-
-                    <div
-                      className={`border ${
-                        active === "password"
-                          ? "border-pink-400"
-                          : "border-transaparent"
-                      }  p-3 rounded-md`}
-                    >
-                      <label
-                        htmlFor="password"
-                        className={`block text-sm font-light text-gray-400`}
-                      >
-                        Password
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="password"
-                          required
-                          onFocus={() => setActive("password")}
-                          onBlur={() => setActive(null)}
-                          value={password}
-                          onChange={(e) => setPassword(e?.target?.value)}
-                          placeholder={"eg. * * * * *"}
-                          className="appearance-none p-0 block w-full focus:ring-0 border-none rounded-md placeholder-gray-500 focus:outline-none  focus:ring-gree-500 focus:border-gree-500 sm:text-sm"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <input
-                          id="remember_me"
-                          name="remember_me"
-                          type="checkbox"
-                          className="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded"
-                        />
-                        <label
-                          htmlFor="remember_me"
-                          className="ml-2 block text-sm text-gray-900"
-                        >
-                          Remember me
-                        </label>
-                      </div>
-
-                      <div className="text-sm">
-                        <a
-                          href="/login"
-                          className="font-light text-red-600 hover:text-red-500 hover:underline"
-                        >
-                          Forgot your password?
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className={"flex justify-end"}>
-                      <button
-                        type="submit"
-                        className=" flex justify-center py-3  px-20 border border-transparent rounded-md shadow-lg text-sm font-light text-white bg-pink-900 hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                      >
-                        Login
-                      </button>
-                    </div>
-                  </form>
-                  <div className="flex flex-row items-center justify-center mt-10 font-light">
-                    <div>Don't have an account? </div>
-                    <Link
-                      to="/signup"
-                      type="button"
-                      className="underline text-pink-900 font-bold ml-1 focus:outline-none"
-                    >
-                      Sign Up
-                    </Link>
                   </div>
-                </div>
+
+                  <div className="space-y-1 mt-2">
+                    <label
+                      htmlFor="password"
+                      className="block text-sm font-medium py-2 text-gray-700"
+                    >
+                      Password
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        autoComplete="current-password"
+                        placeholder="**************"
+                        required
+                        value={password}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          setPassword(e.target.value)
+                        }
+                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-800 focus:border-pink-800 sm:text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between my-6">
+                    <div className="flex items-center">
+                      <input
+                        id="remember_me"
+                        name="remember_me"
+                        type="checkbox"
+                        className="h-4 w-4 text-pink-900 focus:ring-pink-800 border-gray-300 rounded"
+                      />
+                      <label
+                        htmlFor="remember_me"
+                        className="ml-2 block text-sm text-gray-900"
+                      >
+                        Remember me
+                      </label>
+                    </div>
+
+                    <div className="text-sm">
+                      <a
+                        href="#"
+                        className="font-medium text-pink-900 hover:text-pink-800"
+                      >
+                        Forgot your password?
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* <Link href="/finish-profile"> */}
+                  <button
+                    type="submit"
+                    className="w-full flex justify-center h-12 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-900 hover:bg-pink-800 focus:outline-none  focus:ring-offset-2 focus:ring-pink-800"
+                  >
+                    Log In
+                  </button>
+                  {/* </Link> */}
+                </form>
+              </div>
+              <div className="flex flex-row items-center justify-center mt-3 font-light">
+                <div>Don't have an account? </div>
+                <Link to="/signup">
+                  <button
+                    type="button"
+                    className="underline text-pink-900 ml-1 focus:outline-none"
+                  >
+                    Sign up
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -154,14 +163,6 @@ const Login = () => {
               Copyright 2021. All Rights Reserved
             </span>
           </div>
-        </div>
-        <div className="hidden lg:block relative w-6/12 flex-1">
-          <img
-            className="absolute inset-0 h-full w-full object-cover"
-            src={bgImage}
-            // src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
-            alt=""
-          />
         </div>
       </div>
     </Fragment>
