@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { PersonalComponentProp } from "./types";
 
 const user = {
   name: "Debbie Lewis",
@@ -8,14 +9,10 @@ const user = {
     "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80",
 };
 
-const PersonalComponent = () => {
+const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
   return (
     <Fragment>
-      <form
-        className="divide-y divide-gray-200 lg:col-span-9"
-        action="#"
-        method="POST"
-      >
+      <form className="divide-y divide-gray-200 lg:col-span-9">
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
           <div>
@@ -176,7 +173,8 @@ const PersonalComponent = () => {
               Cancel
             </button> */}
             <button
-              type="submit"
+              type="button"
+              onClick={() => setTab("experience")}
               className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
             >
               Next

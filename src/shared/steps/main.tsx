@@ -9,14 +9,14 @@ const StepsComponent = ({ tab }: Props) => {
   return (
     <Fragment>
       <nav>
-        <ul className="overflow-hidden ">
+        <ul className="overflow-hidden">
           <li className="relative pb-10">
             {/*Complete Step*/}
             <div
               className={`-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full ${
                 tab === "experience" ||
                 tab === "license" ||
-                tab === "availability"
+                tab === "avaiabliity"
                   ? "bg-pink-600"
                   : "bg-gray-300"
               }`}
@@ -30,7 +30,7 @@ const StepsComponent = ({ tab }: Props) => {
                   </span>
                 ) : (
                   <Fragment>
-                    <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-600 group-focus:bg-pink-600 transition ease-in-out duration-150">
+                    <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-red-800 group-focus:bg-red-800 transition ease-in-out duration-150">
                       <svg
                         className="w-5 h-5 text-white"
                         viewBox="0 0 20 20"
@@ -51,7 +51,7 @@ const StepsComponent = ({ tab }: Props) => {
                   className={`text-xs leading-4 font-medium ${
                     tab === "experience" ||
                     tab === "license" ||
-                    tab === "availability"
+                    tab === "avaiabliity"
                       ? "text-gray-600"
                       : "text-pink-600"
                   } uppercase tracking-wide`}
@@ -70,7 +70,7 @@ const StepsComponent = ({ tab }: Props) => {
             {/*personal Step*/}
             <div
               className={`-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full ${
-                tab === "license" || tab === "availability"
+                tab === "license" || tab === "avaiabliity"
                   ? "bg-pink-600"
                   : "bg-gray-300"
               }`}
@@ -84,11 +84,11 @@ const StepsComponent = ({ tab }: Props) => {
                 ) : (
                   <Fragment>
                     {tab === "experience" ? (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center  border-2 bg-pink-600 rounded-full">
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-pink-600 rounded-full">
                         <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
                       </span>
                     ) : (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-600 group-focus:bg-pink-600 transition ease-in-out duration-150">
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-red-800 group-focus:bg-red-800 transition ease-in-out duration-150">
                         <svg
                           className="w-5 h-5 text-white"
                           viewBox="0 0 20 20"
@@ -128,7 +128,7 @@ const StepsComponent = ({ tab }: Props) => {
             {/*license Step*/}
             <div
               className={`-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full ${
-                tab === "availability" ? "bg-pink-600" : "bg-gray-300"
+                tab === "avaiabliity" ? "bg-pink-600" : "bg-gray-300"
               }`}
             ></div>
 
@@ -140,12 +140,12 @@ const StepsComponent = ({ tab }: Props) => {
                   </span>
                 ) : (
                   <Fragment>
-                    {tab === "asset" ? (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center  border-2 bg-pink-600 rounded-full">
+                    {tab === "license" ? (
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-pink-600 rounded-full">
                         <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
                       </span>
                     ) : (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-600 group-focus:bg-pink-600 transition ease-in-out duration-150">
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-red-800 group-focus:bg-red-800 transition ease-in-out duration-150">
                         <svg
                           className="w-5 h-5 text-white"
                           viewBox="0 0 20 20"
@@ -169,7 +169,7 @@ const StepsComponent = ({ tab }: Props) => {
               <div className="min-w-0">
                 <h3
                   className={`text-xs leading-4 font-medium uppercase tracking-wide ${
-                    tab === "asset" ? "text-pink-600" : "text-gray-500"
+                    tab === "license" ? "text-pink-600" : "text-gray-500"
                   } `}
                 >
                   License
@@ -188,15 +188,15 @@ const StepsComponent = ({ tab }: Props) => {
             <div className="relative flex items-start space-x-4 group focus:outline-none">
               <div className="h-9 flex items-center">
                 {tab === "personal" ||
-                tab === "asset" ||
+                tab === "license" ||
                 tab === "experience" ? (
                   <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-gray-300 rounded-full group-hover:border-gray-400 group-focus:border-gray-400 transition ease-in-out duration-150">
                     <span className="h-2.5 w-2.5 bg-transparent rounded-full group-hover:bg-gray-300 group-focus:bg-gray-300 transition ease-in-out duration-150"></span>
                   </span>
                 ) : (
                   <Fragment>
-                    {tab === "availability" ? (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-600 group-focus:bg-pink-600 transition ease-in-out duration-150">
+                    {tab === "avaiabliity" ? (
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-red-800 group-focus:bg-red-800 transition ease-in-out duration-150">
                         <svg
                           className="w-5 h-5 text-white"
                           viewBox="0 0 20 20"
@@ -210,7 +210,7 @@ const StepsComponent = ({ tab }: Props) => {
                         </svg>
                       </span>
                     ) : (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center  border-2 bg-pink-600 rounded-full">
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-pink-600 rounded-full">
                         <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
                       </span>
                     )}
@@ -223,13 +223,14 @@ const StepsComponent = ({ tab }: Props) => {
               <div className="min-w-0">
                 <h3
                   className={`text-xs leading-4 font-medium uppercase tracking-wide ${
-                    tab === "availability" ? "text-red-600" : "text-gray-500"
+                    tab === "avaiabliity" ? "text-pink-600" : "text-gray-500"
                   } `}
                 >
-                  Availabilty
+                  Availability
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+                  nostrum voluptate, sed officia blanditiis vero dolore, alias
                 </p>
               </div>
             </div>

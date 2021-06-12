@@ -3,9 +3,11 @@ import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/steps";
 
 import PersonalComponent from "../components/personal";
+import ExperienceComponent from "../components/experience";
+import LicenceComponent from "../components/license";
 
 const MainComponent = () => {
-  const [tab] = useState<string>("personal");
+  const [tab, setTab] = useState<string>("personal");
   return (
     <Fragment>
       <Header />
@@ -21,7 +23,17 @@ const MainComponent = () => {
             <div className="sm:col-span-3 ml-10 ">
               {tab === "personal" && (
                 <Fragment>
-                  <PersonalComponent />
+                  <PersonalComponent setTab={setTab} />
+                </Fragment>
+              )}
+              {tab === "experience" && (
+                <Fragment>
+                  <ExperienceComponent setTab={setTab} />
+                </Fragment>
+              )}
+              {tab === "license" && (
+                <Fragment>
+                  <LicenceComponent setTab={setTab} />
                 </Fragment>
               )}
             </div>
