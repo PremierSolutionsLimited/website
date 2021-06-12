@@ -3,6 +3,7 @@ import { Fragment, useState, useRef, useLayoutEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useOutsideListener } from "../../../components/hooks";
 import { Link } from "react-router-dom";
+import AuthDropdown from "./bones/authDropdown";
 
 const MainHeader = () => {
   //for showiung courses dropdown
@@ -44,11 +45,11 @@ const MainHeader = () => {
   return (
     <Fragment>
       <div
-        className={`border-b sticky top-0 z-10 border-gray-100 dark:border-transparent  dark:bg-black ${
+        className={`border-b sticky top-0 z-40 border-gray-100 dark:border-transparent  dark:bg-black ${
           initialScrollPositionMoved ? " shadow-none bg-white " : "bg-gray-100"
         }`}
       >
-        <div className="relative max-w-8xl mx-auto ">
+        <div className="relative max-w-7xl mx-auto ">
           <div className="flex justify-between items-center px-4 py-3 sm:px-6 md:justify-start md:space-x-10 ">
             <Link to="/">
               <a href="#" className="flex">
@@ -406,7 +407,7 @@ const MainHeader = () => {
                   </Fragment>
                 )} */}
 
-                <div className="relative text-gray-600">
+                {/* <div className="relative text-gray-600">
                   <input
                     type="search"
                     name="serch"
@@ -434,22 +435,24 @@ const MainHeader = () => {
                       />
                     </svg>
                   </button>
-                </div>
+                </div> */}
 
                 <Link to="/login">
-                  <a className="ml-5 text-base font-medium text-black dark:text-gray-100 hover:text-black">
+                  <a className="ml-5 mr-4 text-base font-medium text-black dark:text-gray-100 hover:text-black">
                     Log in
                   </a>
                 </Link>
 
-                <Link to="/signup">
+                <AuthDropdown />
+
+                {/* <Link to="/signup">
                   <a
                     href="#"
                     className="ml-8 inline-flex rounded-3xl items-center justify-center px-4 py-2 border border-pink-900 dark:border-transparent shadow-sm text-base font-medium text-white dark:text-white dark:bg-gray-800 dark:hover:bg-gray-900 hover:text-white bg-pink-900 hover:bg-pink-800"
                   >
                     Sign up
                   </a>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

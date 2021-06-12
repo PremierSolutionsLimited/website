@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import CardPng from "../../../assets/car.png";
+import CardPng from "../../../assets/car2.png";
 
 export default function GetStartedComponent() {
   return (
@@ -105,7 +105,7 @@ export default function GetStartedComponent() {
                 </div>
               </div>
             </section>
-            <div className="hidden sm:hidden md:block aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+            <div className="hidden sm:hidden z-30 md:block aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
               <img src={CardPng} alt="car" className="h-auto w-full" />
             </div>
           </div>
