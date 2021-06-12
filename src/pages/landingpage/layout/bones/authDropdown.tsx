@@ -8,11 +8,13 @@ const publishingOptions = [
     title: "Sign up as Driver",
     description: " Lorem ipsum, dolor sit amet consectetur ",
     current: true,
+    to: "driver-signup",
   },
   {
     title: "Sign up as Client",
     description: " Lorem ipsum, dolor sit amet consectetur ",
     current: false,
+    to: "",
   },
 ];
 

@@ -17,6 +17,12 @@ import Auth from "../adapters/cookie.config";
 
 const LoginComponent = lazy(() => import("../../pages/auth/login"));
 const SignupComponent = lazy(() => import("../../pages/auth/signup"));
+const DriverSignupComponent = lazy(
+  () => import("../../pages/auth/driver-signup")
+);
+const DriverRegistationComponent = lazy(
+  () => import("../../pages/driver-registration")
+);
 const LandingPageComponent = lazy(() => import("../../pages/landingpage"));
 
 const AuthContext = createContext(
@@ -58,6 +64,16 @@ const SettingsConfig = () => {
           <Switch>
             <Route component={LoginComponent} path={"/login"} exact={true} />
             <Route component={SignupComponent} path={"/signup"} exact={true} />
+            <Route
+              component={DriverSignupComponent}
+              path={"/driver-signup"}
+              exact={true}
+            />
+            <Route
+              component={DriverRegistationComponent}
+              path={"/driver-registration"}
+              exact={true}
+            />
             <Route component={LandingPageComponent} path={"/"} />
           </Switch>
         </Suspense>

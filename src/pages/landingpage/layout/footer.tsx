@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <Fragment>
       <FooterSvg />
-      <footer className="bg-black -mt-16" aria-labelledby="footerHeading">
+      <footer className="bg-gray-100 -mt-16" aria-labelledby="footerHeading">
         <h2 id="footerHeading" className="sr-only">
           Footer
         </h2>
