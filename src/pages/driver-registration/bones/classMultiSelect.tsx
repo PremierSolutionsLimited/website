@@ -2,14 +2,29 @@ import { FC, Fragment, useState, useCallback, useRef } from "react";
 import { ListLoader } from "../../../shared/loaders";
 import { useOutsideListener } from "../../../components/hooks";
 import { SelectClassComponentProp, IClassSelectList } from "./types";
+// import { reduceString } from "../../../components/utils/truncate";
 import Transition from "../../../components/transitions";
-import _ from "lodash";
 
-// used to truncate texts taht us overflowing
-const reduceString = (description: string): string =>
-  _.truncate(description, {
-    length: 80,
-  });
+const data: IClassSelectList[] = [
+  {
+    name: "License Class A",
+  },
+  {
+    name: "License Class B",
+  },
+  {
+    name: "License Class C",
+  },
+  {
+    name: "License Class D",
+  },
+  {
+    name: "License Class E",
+  },
+  {
+    name: "License Class F",
+  },
+];
 
 const SelectClassComponent: FC<SelectClassComponentProp> = ({
   classSelect,
@@ -29,7 +44,6 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
   );
 
   let isLoading;
-  let data: any;
 
   //listen on keyboard
   // const listenOnKeyboard = useCallback(
@@ -54,15 +68,16 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
     <Fragment>
       <div ref={wrapperRef} className={"relative w-full"}>
         <div
+          onClick={() => setShowDropDown(true)}
           className={
-            "bg-gray-100 rounded-sm p-2 flex flex-row items-center flex-wrap"
+            "bg-gray-100 rounded-sm px-2 h-9 flex flex-row items-center flex-wrap"
           }
         >
           {classSelect?.map((list: IClassSelectList, i: number) => (
             <Fragment key={i}>
               <div
                 className={
-                  "flex flex-row items-center m-1 p-1 bg-gray-200 rounded-full"
+                  "flex flex-row items-center p-1  bg-white rounded-full mr-1.5"
                 }
               >
                 <div className={"pl-2 pr-1 text-xs font-light"}>
@@ -76,7 +91,7 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-3 w-3 text-white"
+                    className="h-3 w-3 text-pink-600"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -90,6 +105,15 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
               </div>
             </Fragment>
           ))}
+
+          {/* {classSelect?.length === 0 && (
+            <Fragment>
+              <div className="text-sm text-gray-400 font-light pl-1">
+                Please select a class
+              </div>
+            </Fragment>
+          )} */}
+
           {/* <input
              ref={inputRef}
              type={"text"}
@@ -101,13 +125,13 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
              className="focus:ring-0 block font-light sm:text-sm w-36 border focus:outline-none focus:border-amber-900 rounded-sm py-1 px-3 "
              placeholder="Search list"
            /> */}
-          <button
+          {/* <button
             type="button"
             onClick={() => setShowDropDown(true)}
             className="bg-white h-6 px-4 py-2 text-xs font-light focus:outline-none rounded-full items-center justify-center flex flex-col"
           >
             Add list
-          </button>
+          </button> */}
         </div>
         <Transition
           show={showDropDown}
@@ -119,7 +143,7 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
           leaveTo="opacity-0"
         >
           <div
-            style={{ maxHeight: "30vh" }}
+            style={{ maxHeight: "24vh" }}
             className={
               "absolute w-full z-20 mt-1 overflow-auto scrollContainer border bg-white shadow-lg"
             }
@@ -143,20 +167,20 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
                     ) : (
                       <Fragment>
                         {data?.map(
-                          (singleBenefit: IClassSelectList, i: number) => {
+                          (singleClass: IClassSelectList, i: number) => {
                             let isIn = classSelect.find(
                               (single: IClassSelectList) =>
-                                single === singleBenefit
+                                single === singleClass
                             );
                             return (
                               <Fragment key={i}>
                                 <div
                                   onClick={() => {
-                                    if (isIn) removeFromArray(singleBenefit);
+                                    if (isIn) removeFromArray(singleClass);
                                     else
                                       setClassSelect([
                                         ...classSelect,
-                                        singleBenefit,
+                                        singleClass,
                                       ]);
                                     setSearch("");
                                   }}
@@ -169,29 +193,30 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
                                       <div>
                                         <span
                                           className={
-                                            "font-medium items-start flex text-sm"
+                                            "font-light items-start flex text-sm"
                                           }
                                         >
-                                          {singleBenefit?.name}
+                                          {singleClass?.name}
                                         </span>{" "}
                                       </div>
-                                      <div>
+                                      {/* <div>
                                         <span
                                           className={
                                             "text-gray-600 font-light text-xs"
                                           }
                                         >
                                           {reduceString(
-                                            singleBenefit?.description
+                                            singleClass?.description,
+                                            80
                                           )}
                                         </span>
-                                      </div>
+                                      </div> */}
                                     </div>
                                     {isIn && (
                                       <div>
                                         <svg
                                           xmlns="http://www.w3.org/2000/svg"
-                                          className="h-5 w-5 text-amber-900"
+                                          className="h-5 w-5 text-pink-600"
                                           fill="none"
                                           viewBox="0 0 24 24"
                                           stroke="currentColor"

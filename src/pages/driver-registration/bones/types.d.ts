@@ -7,5 +7,5 @@ export interface SelectClassComponentProp {
 
 export interface IClassSelectList {
   name: string;
-  description: string;
+  description?: string;
 }
