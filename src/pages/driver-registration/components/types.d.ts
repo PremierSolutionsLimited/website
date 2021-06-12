@@ -11,3 +11,7 @@ export interface ExperienceComponentProp {
 export interface LicenseComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface AvailabiltyComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+}

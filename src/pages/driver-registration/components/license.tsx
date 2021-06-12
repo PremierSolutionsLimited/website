@@ -9,7 +9,7 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
           <div className="mt-6 grid grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-12 sm:col-span-12 md:col-span-6">
               <label
                 htmlFor="url"
                 className="block text-sm font-medium text-gray-700"
@@ -42,7 +42,7 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
                 </label>
               </div>
             </div>
-            <div className="col-span-6">
+            <div className="col-span-12 sm:col-span-12 md:col-span-6">
               <label
                 htmlFor="url"
                 className="block text-sm font-medium text-gray-700"
@@ -93,7 +93,6 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
           </div>
         </div>
 
-        {/* Privacy section */}
         <div className="pt-6 divide-y divide-gray-200">
           <div className="mt-4 py-4 px-4 flex justify-end sm:px-6">
             <button

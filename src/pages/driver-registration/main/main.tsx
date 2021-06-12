@@ -5,6 +5,7 @@ import StepComponent from "../../../shared/steps";
 import PersonalComponent from "../components/personal";
 import ExperienceComponent from "../components/experience";
 import LicenceComponent from "../components/license";
+import AvailabiltyComponent from "../components/availabilty";
 
 const MainComponent = () => {
   const [tab, setTab] = useState<string>("personal");
@@ -34,6 +35,11 @@ const MainComponent = () => {
               {tab === "license" && (
                 <Fragment>
                   <LicenceComponent setTab={setTab} />
+                </Fragment>
+              )}
+              {tab === "avaiabliity" && (
+                <Fragment>
+                  <AvailabiltyComponent setTab={setTab} />
                 </Fragment>
               )}
             </div>
