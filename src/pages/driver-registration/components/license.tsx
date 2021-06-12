@@ -1,5 +1,6 @@
 import React from "react";
 import { LicenseComponentProp } from "./types";
+import { CameraIcon } from "@heroicons/react/outline";
 
 export default function LicenseComponent({ setTab }: LicenseComponentProp) {
   return (
@@ -8,27 +9,78 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
           <div className="mt-6 grid grid-cols-12 gap-6">
-            <div className="col-span-12">
+            <div className="col-span-6">
               <label
                 htmlFor="url"
                 className="block text-sm font-medium text-gray-700"
               >
-                Place of Residence
+                Driver's License (Front)
               </label>
-              <input
-                type="text"
-                name="url"
-                id="url"
-                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
-              />
-            </div>
+              <div className="relative pt-3">
+                <div className="h-28 w-full object-cover lg:h-44 border border-dashed rounded-lg border-gray-500"></div>
+                <label
+                  htmlFor="user-photo"
+                  className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                >
+                  <div className="">
+                    <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
+                      <CameraIcon
+                        className=" flex-shrink-0 h-6 w-6 text-gray-500"
+                        aria-hidden="true"
+                      />
 
+                      {/* <span className="sr-only"> user photo</span> */}
+                      <input
+                        type="file"
+                        id="user-photo"
+                        name="user-photo"
+                        accept={"image/*"}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                      />
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div className="col-span-6">
+              <label
+                htmlFor="url"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Driver's License (Back)
+              </label>
+              <div className="relative pt-3">
+                <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
+                <label
+                  htmlFor="user-photo"
+                  className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                >
+                  <div className="">
+                    <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
+                      <CameraIcon
+                        className=" flex-shrink-0 h-6 w-6 text-gray-500"
+                        aria-hidden="true"
+                      />
+
+                      {/* <span className="sr-only"> user photo</span> */}
+                      <input
+                        type="file"
+                        id="user-photo"
+                        name="user-photo"
+                        accept={"image/*"}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                      />
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
                 className="block text-sm font-medium text-gray-700"
               >
-                Age
+                License Expiry Date
               </label>
               <input
                 type="text"
