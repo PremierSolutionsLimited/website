@@ -1,9 +1,11 @@
 import { Fragment, useState } from "react";
-import Header from "../../shared/layout";
-import StepComponent from "../../shared/steps";
+import Header from "../../../shared/layout";
+import StepComponent from "../../../shared/steps";
+
+import PersonalComponent from "../components/personal";
 
 const MainComponent = () => {
-  const [tab, setTab] = useState<string>("personal");
+  const [tab] = useState<string>("personal");
   return (
     <Fragment>
       <Header />
@@ -16,7 +18,13 @@ const MainComponent = () => {
               </div>
             </div>
 
-            <div className="sm:col-span-3 ml-10 ">hey thre</div>
+            <div className="sm:col-span-3 ml-10 ">
+              {tab === "personal" && (
+                <Fragment>
+                  <PersonalComponent />
+                </Fragment>
+              )}
+            </div>
           </div>
         </div>
       </div>

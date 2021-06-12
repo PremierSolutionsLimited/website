@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
@@ -31,7 +32,9 @@ export default function Header() {
                 </Popover.Button>
               </div>
               <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
-                <div>Hi Fiifi</div>
+                <div className="text-gray-700 font-medium text-lg">
+                  Hi Fiifi, complete your registration
+                </div>
                 <div className="flex items-center md:ml-12">
                   <a
                     href="#"
@@ -43,7 +46,7 @@ export default function Header() {
                     href="#"
                     className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-pink-600 hover:bg-pink-700"
                   >
-                    Sign up
+                    Home page
                   </a>
                 </div>
               </div>
@@ -111,7 +114,7 @@ export default function Header() {
                       href="#"
                       className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                     >
-                      Sign up
+                      Home page
                     </a>
                     <p className="mt-6 text-center text-base font-medium text-gray-500">
                       Existing customer?{" "}
