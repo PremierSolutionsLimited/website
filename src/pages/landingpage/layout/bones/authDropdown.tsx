@@ -34,13 +34,13 @@ export default function Example() {
             Change published status
           </Listbox.Label>
           <div className="relative">
-            <div className="inline-flex shadow-sm rounded-md divide-x divide-pink-900">
+            <div className="inline-flex shadow-sm rounded-md divide-x divide-pink-600">
               <div className="relative z-0 inline-flex shadow-sm rounded-md ">
-                <div className="relative inline-flex items-center bg-pink-800 py-3 pl-3 pr-4 border border-transparent rounded-l-full shadow-sm text-white">
+                <div className="relative inline-flex items-center bg-pink-700 py-3 pl-3 pr-4 border border-transparent rounded-l-full shadow-sm text-white">
                   {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
                   <p className="ml-2.5 text-sm font-medium">{selected.title}</p>
                 </div>
-                <Listbox.Button className="relative inline-flex items-center bg-pink-800 p-2 rounded-l-none rounded-r-full text-sm font-medium text-white hover:bg-pink-900 focus:outline-none focus:z-10  focus:ring-offset-gray-50 focus:ring-pink-800">
+                <Listbox.Button className="relative inline-flex items-center bg-pink-700 p-2 rounded-l-none rounded-r-full text-sm font-medium text-white hover:bg-pink-600 focus:outline-none focus:z-10  focus:ring-offset-gray-50 focus:ring-pink-700">
                   <span className="sr-only">Change published status</span>
                   <ChevronDownIcon
                     className="h-5 w-5 text-white"
@@ -66,7 +66,7 @@ export default function Example() {
                     key={option.title}
                     className={({ active }) =>
                       classNames(
-                        active ? "text-white bg-pink-800" : "text-gray-900",
+                        active ? "text-white bg-pink-700" : "text-gray-900",
                         "cursor-default select-none relative p-4 text-sm"
                       )
                     }
@@ -86,7 +86,7 @@ export default function Example() {
                             {selected ? (
                               <span
                                 className={
-                                  active ? "text-white" : "text-pink-800"
+                                  active ? "text-white" : "text-pink-700"
                                 }
                               >
                                 <CheckIcon

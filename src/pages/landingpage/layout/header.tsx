@@ -55,9 +55,9 @@ const MainHeader = () => {
               <a href="#" className="flex">
                 <span className="sr-only">Logo</span>
                 <img
-                  className="h-16 w-auto sm:h-12"
-                  src="/images/fanbase.png"
-                  alt=""
+                  className="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                  alt="Workflow"
                 />
               </a>
             </Link>
@@ -473,8 +473,8 @@ const MainHeader = () => {
                     <div>
                       <img
                         className="h-8 w-auto"
-                        src="/images/fanbase.png"
-                        alt="logo"
+                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                        alt="Workflow"
                       />
                     </div>
                     <div className="-mr-2">
