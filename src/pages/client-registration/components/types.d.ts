@@ -7,3 +7,7 @@ export interface PersonalComponentProp {
 export interface CarInfoComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface CarImagesComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+}
