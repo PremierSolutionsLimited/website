@@ -77,7 +77,7 @@ const DriverLogin = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setEmail(e.target.value)
                         }
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-800 focus:border-pink-800 sm:text-sm"
+                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -101,7 +101,7 @@ const DriverLogin = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setPassword(e.target.value)
                         }
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-800 focus:border-pink-800 sm:text-sm"
+                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
                       />
                     </div>
                   </div>
@@ -112,7 +112,7 @@ const DriverLogin = () => {
                         id="remember_me"
                         name="remember_me"
                         type="checkbox"
-                        className="h-4 w-4 text-pink-900 focus:ring-pink-800 border-gray-300 rounded"
+                        className="h-4 w-4 text-pink-600 focus:ring-pink-700 border-gray-300 rounded"
                       />
                       <label
                         htmlFor="remember_me"
@@ -125,7 +125,7 @@ const DriverLogin = () => {
                     <div className="text-sm">
                       <a
                         href="#"
-                        className="font-medium text-pink-900 hover:text-pink-800"
+                        className="font-medium text-pink-600 hover:text-pink-700"
                       >
                         Forgot your password?
                       </a>
@@ -135,7 +135,7 @@ const DriverLogin = () => {
                   {/* <Link href="/finish-profile"> */}
                   <button
                     type="submit"
-                    className="w-full flex justify-center h-12 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-900 hover:bg-pink-800 focus:outline-none  focus:ring-offset-2 focus:ring-pink-800"
+                    className="w-full flex justify-center h-12 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
                     Log In
                   </button>
@@ -144,10 +144,10 @@ const DriverLogin = () => {
               </div>
               <div className="flex flex-row items-center justify-center mt-3 font-light">
                 <div>Don't have an account? </div>
-                <Link to="/signup">
+                <Link to="/driver-signup">
                   <button
                     type="button"
-                    className="underline text-pink-900 ml-1 focus:outline-none"
+                    className="underline text-pink-600 ml-1 focus:outline-none"
                   >
                     Sign up
                   </button>

@@ -53,7 +53,7 @@ const DriverSignup = () => {
                 Or{" "}
                 <a
                   href="#"
-                  className="font-medium text-pink-900 hover:text-pink-800"
+                  className="font-medium text-pink-600 hover:text-pink-700"
                 >
                   No card required
                 </a>
@@ -164,12 +164,17 @@ const DriverSignup = () => {
                       />
                     </div>
                   </div>{" "}
-                  <button
+                  {/* <button
                     type="submit"
-                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-900 hover:bg-pink-800 focus:outline-none  focus:ring-offset-2 focus:ring-pink-800"
+                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
                     Get Started
-                  </button>
+                  </button> */}
+                  <Link to="/driver-registration">
+                    <div className="w-full flex justify-center mt-8 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700">
+                      Get Started
+                    </div>
+                  </Link>
                 </form>
               </div>
               <div className="text-center font-light mt-3  text-gray-900 text-sm">
@@ -182,10 +187,10 @@ const DriverSignup = () => {
           </div>
           <div className="flex flex-row items-center justify-center mt-10 font-light">
             <div>Already have an account? </div>
-            <Link to="/login">
+            <Link to="/driver-login">
               <button
                 type="button"
-                className="underline text-pink-900 ml-1 focus:outline-none"
+                className="underline text-pink-600 ml-1 focus:outline-none"
               >
                 Log In
               </button>
