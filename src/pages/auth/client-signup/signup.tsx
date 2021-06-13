@@ -1,6 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { DatePicker } from "antd";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -10,7 +9,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    document.title = "Signup | Hire A Driver";
+    document.title = "Client Signup | Hire A Driver";
   }, []);
 
   return (
@@ -49,13 +48,13 @@ const Signup = () => {
                 alt="Workflow"
               />
               <h2 className="mt-6 text-3xl font-bold text-pink-600">
-                Good to see you!
+                Client Registration
               </h2>
               {/* <p className="mt-2 text-sm text-gray-600 max-w">
                 Or{" "}
                 <a
                   href="#"
-                  className="font-medium text-pink-900 hover:text-pink-800"
+                  className="font-medium text-pink-600 hover:text-pink-700"
                 >
                   No card required
                 </a>
@@ -81,7 +80,7 @@ const Signup = () => {
                             type="text"
                             placeholder="Eg. John "
                             required
-                            className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-800 focus:border-pink-800 sm:text-sm"
+                            className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
                           />
                         </div>
                       </div>
@@ -102,24 +101,10 @@ const Signup = () => {
                             type="text"
                             placeholder="Eg. Doe"
                             required
-                            className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-800 focus:border-pink-800 sm:text-sm"
+                            className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
                           />
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Date of Birth
-                    </label>
-                    <div className="mt-1">
-                      <DatePicker
-                        className={"w-full h-10 font-light"}
-                        onChange={(value, dateString) => {}}
-                      />
                     </div>
                   </div>
                   <div className="space-y-1">
@@ -141,7 +126,7 @@ const Signup = () => {
                           setEmail(e.target.value)
                         }
                         required
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-800 focus:border-pink-800 sm:text-sm"
+                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
                       />
                     </div>
                   </div>{" "}
@@ -164,13 +149,13 @@ const Signup = () => {
                           setPassword(e.target.value)
                         }
                         required
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-800 focus:border-pink-800 sm:text-sm"
+                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
                       />
                     </div>
                   </div>
                   <button
                     type="submit"
-                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-900 hover:bg-pink-800 focus:outline-none  focus:ring-offset-2 focus:ring-pink-800"
+                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
                     Sign Up
                   </button>
@@ -186,10 +171,10 @@ const Signup = () => {
           </div>
           <div className="flex flex-row items-center justify-center mt-10 font-light">
             <div>Already have an account? </div>
-            <Link to="/login">
+            <Link to="/client-login">
               <button
                 type="button"
-                className="underline text-pink-900 ml-1 focus:outline-none"
+                className="underline text-pink-600 ml-1 focus:outline-none"
               >
                 Log In
               </button>

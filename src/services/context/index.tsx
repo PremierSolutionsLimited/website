@@ -15,8 +15,12 @@ import { IContext, IContextControllerProps } from "./types";
 import { ClientApollo } from "../adapters";
 import Auth from "../adapters/cookie.config";
 
-const LoginComponent = lazy(() => import("../../pages/auth/login"));
-const SignupComponent = lazy(() => import("../../pages/auth/signup"));
+const ClientLoginComponent = lazy(
+  () => import("../../pages/auth/client-login")
+);
+const ClientSignupComponent = lazy(
+  () => import("../../pages/auth/client-signup")
+);
 const DriverSignupComponent = lazy(
   () => import("../../pages/auth/driver-signup")
 );
@@ -65,8 +69,16 @@ const SettingsConfig = () => {
       <BrowserRouter>
         <Suspense fallback={ContextLoader()}>
           <Switch>
-            <Route component={LoginComponent} path={"/login"} exact={true} />
-            <Route component={SignupComponent} path={"/signup"} exact={true} />
+            <Route
+              component={ClientLoginComponent}
+              path={"/client-login"}
+              exact={true}
+            />
+            <Route
+              component={ClientSignupComponent}
+              path={"/client-signup"}
+              exact={true}
+            />
             <Route
               component={DriverSignupComponent}
               path={"/driver-signup"}

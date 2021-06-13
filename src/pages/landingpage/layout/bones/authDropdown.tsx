@@ -15,7 +15,7 @@ const publishingOptions = [
     title: "Sign up as Client",
     description: " Lorem ipsum, dolor sit amet consectetur ",
     current: false,
-    to: "",
+    to: "client-signup",
   },
 ];
 
