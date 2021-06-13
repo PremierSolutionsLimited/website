@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <Fragment>
       <FooterSvg />
-      <footer className="bg-black -mt-16" aria-labelledby="footerHeading">
+      <footer className="bg-gray-100 -mt-16" aria-labelledby="footerHeading">
         <h2 id="footerHeading" className="sr-only">
           Footer
         </h2>
@@ -16,9 +16,9 @@ const Footer = () => {
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-8 xl:col-span-1">
               <img
-                className="h-24"
-                src="/images/fanbase-w.png"
-                alt="Company name"
+                className="h-8 w-auto"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                alt="Workflow"
               />
               <p className="text-gray-500 text-base">
                 Making the world a better place through constructing elegant
