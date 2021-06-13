@@ -2,6 +2,8 @@ import { Fragment, useState } from "react";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/client-steps";
 
+import PersonalComponent from "../components/personal";
+
 const MainComponent = () => {
   const [tab, setTab] = useState<string>("personal");
   return (
@@ -16,13 +18,13 @@ const MainComponent = () => {
               </div>
             </div>
 
-            {/* <div className="sm:col-span-3 ml-10 ">
+            <div className="sm:col-span-3 ml-10 ">
               {tab === "personal" && (
                 <Fragment>
                   <PersonalComponent setTab={setTab} />
                 </Fragment>
               )}
-              {tab === "experience" && (
+              {/* {tab === "experience" && (
                 <Fragment>
                   <ExperienceComponent setTab={setTab} />
                 </Fragment>
@@ -37,7 +39,8 @@ const MainComponent = () => {
                   <AvailabiltyComponent setTab={setTab} />
                 </Fragment>
               )}
-            </div> */}
+              */}
+            </div>
           </div>
         </div>
       </div>
