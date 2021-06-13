@@ -3,6 +3,7 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -36,18 +37,18 @@ export default function Header() {
                   Hi Fiifi, complete your registration
                 </div>
                 <div className="flex items-center md:ml-12">
-                  <a
-                    href="#"
+                  <Link
+                    to="/driver-login"
                     className="text-base font-medium text-gray-500 hover:text-gray-900"
                   >
                     Sign in
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    to="/"
                     className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-pink-600 hover:bg-pink-700"
                   >
                     Home page
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -110,17 +111,20 @@ export default function Header() {
                     </a>
                   </div>
                   <div className="mt-6">
-                    <a
-                      href="#"
+                    <Link
+                      to="/"
                       className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                     >
                       Home page
-                    </a>
+                    </Link>
                     <p className="mt-6 text-center text-base font-medium text-gray-500">
                       Existing customer?{" "}
-                      <a href="#" className="text-pink-600 hover:text-pink-500">
+                      <Link
+                        to="/driver-login"
+                        className="text-pink-600 hover:text-pink-500"
+                      >
                         Sign in
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 </div>
