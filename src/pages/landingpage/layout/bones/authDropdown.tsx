@@ -2,6 +2,7 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
+import { Link } from "react-router-dom";
 
 const publishingOptions = [
   {
@@ -72,37 +73,39 @@ export default function Example() {
                     value={option}
                   >
                     {({ selected, active }) => (
-                      <div className="flex flex-col">
-                        <div className="flex justify-between">
-                          <p
-                            className={
-                              selected ? "font-semibold" : "font-normal"
-                            }
-                          >
-                            {option.title}
-                          </p>
-                          {selected ? (
-                            <span
+                      <Link to={option?.to}>
+                        <div className="flex flex-col">
+                          <div className="flex justify-between">
+                            <p
                               className={
-                                active ? "text-white" : "text-pink-800"
+                                selected ? "font-semibold" : "font-normal"
                               }
                             >
-                              <CheckIcon
-                                className="h-5 w-5"
-                                aria-hidden="true"
-                              />
-                            </span>
-                          ) : null}
+                              {option.title}
+                            </p>
+                            {selected ? (
+                              <span
+                                className={
+                                  active ? "text-white" : "text-pink-800"
+                                }
+                              >
+                                <CheckIcon
+                                  className="h-5 w-5"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            ) : null}
+                          </div>
+                          <p
+                            className={classNames(
+                              active ? "text-indigo-200" : "text-gray-500",
+                              "mt-2"
+                            )}
+                          >
+                            {option.description}
+                          </p>
                         </div>
-                        <p
-                          className={classNames(
-                            active ? "text-indigo-200" : "text-gray-500",
-                            "mt-2"
-                          )}
-                        >
-                          {option.description}
-                        </p>
-                      </div>
+                      </Link>
                     )}
                   </Listbox.Option>
                 ))}
