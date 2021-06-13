@@ -3,6 +3,7 @@ import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/client-steps";
 
 import PersonalComponent from "../components/personal";
+import CarInfoComponent from "../components/carInfo";
 
 const MainComponent = () => {
   const [tab, setTab] = useState<string>("personal");
@@ -24,12 +25,12 @@ const MainComponent = () => {
                   <PersonalComponent setTab={setTab} />
                 </Fragment>
               )}
-              {/* {tab === "experience" && (
+              {tab === "carInfo" && (
                 <Fragment>
-                  <ExperienceComponent setTab={setTab} />
+                  <CarInfoComponent setTab={setTab} />
                 </Fragment>
               )}
-              {tab === "license" && (
+              {/* {tab === "license" && (
                 <Fragment>
                   <LicenceComponent setTab={setTab} />
                 </Fragment>
