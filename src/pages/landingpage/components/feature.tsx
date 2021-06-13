@@ -65,7 +65,7 @@ const FeaturesComponent = () => {
               <dl className="mt-10 space-y-10">
                 <div className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                       <svg
                         className="h-6 w-6"
                         xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@ const FeaturesComponent = () => {
 
                 <div className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                       <svg
                         className="h-6 w-6"
                         xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +128,7 @@ const FeaturesComponent = () => {
 
                 <div className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                       <svg
                         className="h-6 w-6"
                         xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +246,7 @@ const FeaturesComponent = () => {
                 <dl className="mt-10 space-y-10">
                   <div className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                         <svg
                           className="h-6 w-6"
                           xmlns="http://www.w3.org/2000/svg"
@@ -276,7 +276,7 @@ const FeaturesComponent = () => {
 
                   <div className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                         <svg
                           className="h-6 w-6"
                           xmlns="http://www.w3.org/2000/svg"
@@ -304,7 +304,7 @@ const FeaturesComponent = () => {
                   </div>
                   <div className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-900 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                         <svg
                           className="h-6 w-6"
                           xmlns="http://www.w3.org/2000/svg"
