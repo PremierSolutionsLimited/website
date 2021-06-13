@@ -21,6 +21,9 @@ const ClientLoginComponent = lazy(
 const ClientSignupComponent = lazy(
   () => import("../../pages/auth/client-signup")
 );
+const ClientRegistrationComponent = lazy(
+  () => import("../../pages/client-registration")
+);
 const DriverSignupComponent = lazy(
   () => import("../../pages/auth/driver-signup")
 );
@@ -92,6 +95,11 @@ const SettingsConfig = () => {
             <Route
               component={DriverRegistationComponent}
               path={"/driver-registration"}
+              exact={true}
+            />
+            <Route
+              component={ClientRegistrationComponent}
+              path={"/client-registration"}
               exact={true}
             />
             <Route component={LandingPageComponent} path={"/"} />

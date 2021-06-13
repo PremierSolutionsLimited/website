@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -7,6 +7,8 @@ const bgImage =
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { push } = useHistory();
 
   useEffect(() => {
     document.title = "Client Signup | Hire A Driver";
@@ -154,7 +156,8 @@ const Signup = () => {
                     </div>
                   </div>
                   <button
-                    type="submit"
+                    type="button"
+                    onClick={() => push("/client-registration")}
                     className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
                     Sign Up
