@@ -78,7 +78,7 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium pb-2 text-gray-700"
               >
                 License Expiry Date
               </label>

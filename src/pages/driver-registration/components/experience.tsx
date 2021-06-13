@@ -1,10 +1,12 @@
 import { Fragment, useState } from "react";
 import { ExperienceComponentProp } from "./types";
-import { IClassSelectList } from "../bones/types";
+import { IClassSelectList, IType } from "../bones/types";
 import SelectClassOfCars from "../bones/classMultiSelect";
+import SelectTypeOfCars from "../bones/typeMultiSelect";
 
 const ExperienceComponent: React.FC<ExperienceComponentProp> = ({ setTab }) => {
   const [classOfCars, setClassOfCars] = useState<IClassSelectList[]>([]);
+  const [typesOfCars, setTypeOfCars] = useState<IType[]>([]);
   return (
     <Fragment>
       <form className="divide-y divide-gray-200 lg:col-span-9">
@@ -13,9 +15,9 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({ setTab }) => {
             <div className="col-span-12">
               <label
                 htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium pb-2 text-gray-700"
               >
-                Class of cars allowed to driver
+                Class of cars allowed to drive
               </label>
               <SelectClassOfCars
                 classSelect={classOfCars}
@@ -25,24 +27,19 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({ setTab }) => {
             <div className="col-span-12">
               <label
                 htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium pb-2 text-gray-700"
               >
-                Type of Cars
+                Type of Cars (Manual or Automatic)
               </label>
-              <input
-                type="text"
-                name="url"
-                id="url"
-                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
-              />
+              <SelectTypeOfCars type={typesOfCars} setType={setTypeOfCars} />
             </div>
 
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm pb-2 font-medium text-gray-700"
               >
-                Years of Experience
+                Years of Driving Experience
               </label>
               <input
                 type="text"
