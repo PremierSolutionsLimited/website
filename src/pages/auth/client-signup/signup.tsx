@@ -19,6 +19,7 @@ const Signup = () => {
       <div className="min-h-screen bg-white flex">
         <button
           type="button"
+          onClick={() => push("/")}
           className="hidden sm:hidden md:flex lg:block relative w-0 flex-1 focus:outline-none"
         >
           <div className="flex flex-col ">
