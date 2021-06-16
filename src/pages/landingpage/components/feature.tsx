@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import DriverSvg from "../../../components/svgs/driver";
 
 const FeaturesComponent = () => {
   return (
@@ -368,13 +369,14 @@ const FeaturesComponent = () => {
                   />
                 </svg>
 
-                <img
+                <DriverSvg className="h-80  w-full" />
+                {/* <img
                   className="relative mx-auto"
                   width="490"
                   src="https://images.macrumors.com/t/L0TJ7AxxiLnOZvwG73ibpeF3GOU=/1600x0/article-new/2018/02/appstorescreenshots.jpg"
-                  // src="https://techcrunch.com/wp-content/uploads/2019/01/shine-app-android-screenshot.png"
+
                   alt=""
-                />
+                /> */}
               </div>
             </div>
           </div>

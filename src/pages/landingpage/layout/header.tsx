@@ -3,7 +3,8 @@ import { Fragment, useState, useRef, useLayoutEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useOutsideListener } from "../../../components/hooks";
 import { Link } from "react-router-dom";
-import AuthDropdown from "./bones/authDropdown";
+import LoginDropDown from "./bones/loginDropdown";
+import SignupDropDown from "./bones/signupDropdown";
 
 const MainHeader = () => {
   //for showiung courses dropdown
@@ -437,13 +438,9 @@ const MainHeader = () => {
                   </button>
                 </div> */}
 
-                <Link to="/login">
-                  <a className="ml-5 mr-4 text-base font-medium text-black dark:text-gray-100 hover:text-black">
-                    Log in
-                  </a>
-                </Link>
+                <LoginDropDown />
 
-                <AuthDropdown />
+                <SignupDropDown />
 
                 {/* <Link to="/signup">
                   <a
