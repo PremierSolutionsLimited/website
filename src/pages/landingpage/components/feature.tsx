@@ -84,15 +84,12 @@ const FeaturesComponent = () => {
                       </svg>
                     </div>
                     <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
-                      Live interactions
+                      In-App Navigation
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Interact with your die-hard fans and all who support your
-                    brand by live video sessions, live album listens,
-                    interactive polls, exciting quizzes to get to know who
-                    really follows you closely and share new and exciting short
-                    videos.
+                    In-built access to Google Maps lets your track the the
+                    driver.
                   </dd>
                 </div>
 
