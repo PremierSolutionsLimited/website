@@ -19,6 +19,7 @@ const Signup = () => {
       <div className="min-h-screen bg-white flex">
         <button
           type="button"
+          onClick={() => push("/")}
           className="hidden sm:hidden md:flex lg:block relative w-0 flex-1 focus:outline-none"
         >
           <div className="flex flex-col ">
@@ -82,7 +83,7 @@ const Signup = () => {
                             type="text"
                             placeholder="Eg. John "
                             required
-                            className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
+                            className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                           />
                         </div>
                       </div>
@@ -103,7 +104,7 @@ const Signup = () => {
                             type="text"
                             placeholder="Eg. Doe"
                             required
-                            className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
+                            className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                           />
                         </div>
                       </div>
@@ -128,7 +129,7 @@ const Signup = () => {
                           setEmail(e.target.value)
                         }
                         required
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
+                        className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                       />
                     </div>
                   </div>{" "}
@@ -151,7 +152,7 @@ const Signup = () => {
                           setPassword(e.target.value)
                         }
                         required
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
+                        className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                       />
                     </div>
                   </div>

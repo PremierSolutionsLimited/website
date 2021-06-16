@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -8,6 +8,8 @@ const bgImage =
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { push } = useHistory();
 
   useEffect(() => {
     document.title = "Client Login | Hire A Driver";
@@ -18,6 +20,7 @@ const Login = () => {
       <div className="min-h-screen bg-white flex">
         <button
           type="button"
+          onClick={() => push("/")}
           className="hidden sm:hidden md:flex lg:block relative w-0 flex-1 focus:outline-none"
         >
           <div className="flex flex-col ">
@@ -77,7 +80,7 @@ const Login = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setEmail(e.target.value)
                         }
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
+                        className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                       />
                     </div>
                   </div>
@@ -101,7 +104,7 @@ const Login = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setPassword(e.target.value)
                         }
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
+                        className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                       />
                     </div>
                   </div>
