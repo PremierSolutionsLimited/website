@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-function classNames(...classes) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -13,7 +13,7 @@ export default function SignupDropdown() {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+            <Menu.Button className="relative inline-flex items-center bg-pink-700 px-4 py-3 rounded-l-full rounded-r-full text-sm font-medium text-white hover:bg-pink-600 focus:outline-none focus:z-10  focus:ring-offset-gray-50 focus:ring-pink-700">
               Sign Up Options
               <ChevronDownIcon
                 className="-mr-1 ml-2 h-5 w-5"
