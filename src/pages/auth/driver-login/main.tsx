@@ -77,7 +77,7 @@ const DriverLogin = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setEmail(e.target.value)
                         }
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
+                        className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                       />
                     </div>
                   </div>
@@ -101,7 +101,7 @@ const DriverLogin = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setPassword(e.target.value)
                         }
-                        className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-700 focus:border-pink-700 sm:text-sm"
+                        className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                       />
                     </div>
                   </div>
