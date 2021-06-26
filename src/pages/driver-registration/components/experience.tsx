@@ -1,30 +1,170 @@
 import { Fragment, useState } from "react";
 import { ExperienceComponentProp } from "./types";
-import { IClassSelectList, IType } from "../bones/types";
+import { IClassSelectList } from "../bones/types";
 import SelectClassOfCars from "../bones/classMultiSelect";
-import SelectTypeOfCars from "../bones/typeMultiSelect";
 
 const ExperienceComponent: React.FC<ExperienceComponentProp> = ({ setTab }) => {
   const [classOfCars, setClassOfCars] = useState<IClassSelectList[]>([]);
-  const [typesOfCars, setTypeOfCars] = useState<IType[]>([]);
+
   return (
     <Fragment>
       <form className="divide-y divide-gray-200 lg:col-span-9">
-        <div className="py-6 px-4 sm:p-6 lg:pb-8">
-          <div className="mt-6 grid grid-cols-12 gap-6">
-            <div className="col-span-12">
+        <div className="py-6 px-4 sm:p-4 lg:pb-8">
+          <div className="mt-0 grid grid-cols-12 gap-6">
+            <div className="col-span-12 sm:col-span-6">
               <label
-                htmlFor="url"
+                htmlFor="company"
                 className="block text-sm font-medium pb-2 text-gray-700"
               >
-                Class of cars allowed to drive
+                Have you had any accidents in the last 5 years?
               </label>
-              <SelectClassOfCars
-                classSelect={classOfCars}
-                setClassSelect={setClassOfCars}
+              <select
+                id="location"
+                name="location"
+                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                defaultValue="Canada"
+              >
+                <option>Please Choose</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium pb-2 text-gray-700"
+              >
+                Have you ever been arrested before?
+              </label>
+              <select
+                id="location"
+                name="location"
+                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                defaultValue="Canada"
+              >
+                <option>Please Choose</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Previous Employer Name
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
-            <div className="col-span-12">
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Position Held
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Start Date
+              </label>
+              <input
+                required
+                type={"date"}
+                id={"dob"}
+                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                End Date
+              </label>
+              <input
+                required
+                type={"date"}
+                id={"dob"}
+                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-12">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Reason for leaving
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Current Employer Name
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Start Date
+              </label>
+              <input
+                required
+                type={"date"}
+                id={"dob"}
+                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Position Held
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            {/* <div className="col-span-12">
               <label
                 htmlFor="url"
                 className="block text-sm font-medium pb-2 text-gray-700"
@@ -32,7 +172,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({ setTab }) => {
                 Type of Cars (Manual or Automatic)
               </label>
               <SelectTypeOfCars type={typesOfCars} setType={setTypeOfCars} />
-            </div>
+            </div> */}
 
             <div className="col-span-12 sm:col-span-6">
               <label

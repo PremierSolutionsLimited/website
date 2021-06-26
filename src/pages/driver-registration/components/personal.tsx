@@ -15,7 +15,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
       <form className="divide-y divide-gray-200 lg:col-span-9">
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
-          <div>
+          {/* <div>
             <h2 className="text-lg leading-6 font-medium text-gray-900">
               Profile
             </h2>
@@ -23,16 +23,16 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
               This information will be displayed publicly so be careful what you
               share.
             </p>
-          </div>
+          </div> */}
 
-          <div className="mt-6 flex flex-col lg:flex-row">
+          <div className="mt-0 flex flex-col lg:flex-row">
             <div className="flex-grow space-y-6">
               <div>
                 <label
                   htmlFor="username"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Full Name
+                  Current Address
                 </label>
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
@@ -50,20 +50,17 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                   htmlFor="about"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  About
+                  Region
                 </label>
                 <div className="mt-1">
-                  <textarea
-                    id="about"
-                    name="about"
-                    rows={3}
-                    className="shadow-sm focus:ring-white focus:border-white mt-1 block w-full sm:text-sm border-none rounded-none bg-gray-100"
-                    defaultValue={""}
+                  <input
+                    type="text"
+                    name="last_name"
+                    id="last_name"
+                    autoComplete="family-name"
+                    className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
                 </div>
-                <p className="mt-2 text-sm text-gray-500">
-                  Brief description for your profile.
-                </p>
               </div>
             </div>
 
@@ -130,12 +127,26 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
           </div>
 
           <div className="mt-6 grid grid-cols-12 gap-6">
-            <div className="col-span-12">
+            <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="url"
                 className="block text-sm font-medium text-gray-700"
               >
-                Place of Residence
+                City
+              </label>
+              <input
+                type="text"
+                name="url"
+                id="url"
+                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="url"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Age
               </label>
               <input
                 type="text"
@@ -150,7 +161,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 htmlFor="company"
                 className="block text-sm font-medium text-gray-700"
               >
-                Age
+                Telephone
               </label>
               <input
                 type="text"
@@ -159,6 +170,119 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 autoComplete="organization"
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Marital Status
+              </label>
+              <select
+                id="location"
+                name="location"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                defaultValue="Canada"
+              >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium text-gray-700"
+              >
+                How many children?
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Highest Level of Education
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Name of School Completed
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="url"
+                className="block text-sm font-medium text-gray-700"
+              >
+                When did you graduate?
+              </label>
+              <input
+                type="text"
+                name="url"
+                id="url"
+                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Do you own a smart phone?
+              </label>
+              <select
+                id="location"
+                name="location"
+                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                defaultValue="Canada"
+              >
+                <option>Please Choose</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Can you use a phone map ?
+              </label>
+              <select
+                id="location"
+                name="location"
+                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                defaultValue="Canada"
+              >
+                <option>Please Choose</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
             </div>
           </div>
         </div>
