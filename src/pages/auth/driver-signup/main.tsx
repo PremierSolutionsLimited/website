@@ -1,17 +1,48 @@
-import { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { StageSpinner } from "react-spinners-kit";
+import { useAuthProvider } from "../../../services/context";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
 
 const DriverSignup = () => {
-  const [email, setEmail] = useState("");
-
-  const { push } = useHistory();
-
   useEffect(() => {
     document.title = "Driver Signup | Hire A Driver";
   }, []);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("");
+  const [dob, setDob] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const { push } = useHistory();
+  const [{ signIn }] = useAuthProvider();
+
+  // wait function
+  function wait(timeout: number) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, timeout);
+    });
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    let data = {
+      firstName,
+      lastName,
+      dob: new Date(dob),
+      email,
+      gender,
+    };
+    setLoading(true);
+    wait(2000).then(async () => {
+      setLoading(false);
+      await signIn(data);
+      push("/driver-registration");
+    });
+  };
 
   return (
     <Fragment>
@@ -65,7 +96,7 @@ const DriverSignup = () => {
 
             <div className="mt-8">
               <div className="mt-6">
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="flex flex-wrap -mx-2 overflow-hidden">
                     <div className="my-2 px-2 w-1/2 overflow-hidden">
                       <div>
@@ -82,6 +113,10 @@ const DriverSignup = () => {
                             type="text"
                             placeholder="Eg. John "
                             required
+                            value={firstName}
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) => setFirstName(e.target.value)}
                             className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                           />
                         </div>
@@ -103,6 +138,10 @@ const DriverSignup = () => {
                             type="text"
                             placeholder="Eg. Doe"
                             required
+                            value={lastName}
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) => setLastName(e.target.value)}
                             className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                           />
                         </div>
@@ -120,12 +159,15 @@ const DriverSignup = () => {
                       id="country"
                       name="country"
                       autoComplete="country"
+                      value={gender}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                        setGender(e.target.value)
+                      }
                       className="block w-full text-sm py-3 px-3 form-select bg-gray-100 p-2 border-none rounded-none shadow-sm placeholder-gray-200 focus:outline-none focus:ring-white focus:border-white"
                     >
                       <option>Please Choose</option>
-                      <option>Male</option>
-                      <option>Female</option>
-                      <option>other</option>
+                      <option value="MALE">Male</option>
+                      <option value="FEMALE">Female</option>
                     </select>
                   </div>
                   <div className="space-y-1">
@@ -140,6 +182,10 @@ const DriverSignup = () => {
                         required
                         type={"date"}
                         id={"dob"}
+                        value={dob}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          setDob(e.target.value)
+                        }
                         className="mt-1 block w-full pl-1 pr-1 py-1 text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
                       />
                     </div>
@@ -167,17 +213,18 @@ const DriverSignup = () => {
                       />
                     </div>
                   </div>{" "}
-                  {/* <button
+                  <button
                     type="submit"
                     className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
-                    Get Started
-                  </button> */}
-                  <Link to="/driver-registration">
-                    <div className="w-full flex justify-center mt-8 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700">
-                      Get Started
-                    </div>
-                  </Link>
+                    {loading ? (
+                      <Fragment>
+                        <StageSpinner color="#fff" loading size={20} />
+                      </Fragment>
+                    ) : (
+                      <Fragment>Get Started</Fragment>
+                    )}
+                  </button>
                 </form>
               </div>
               <div className="text-center font-light mt-3  text-gray-900 text-sm">

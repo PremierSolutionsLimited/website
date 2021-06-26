@@ -3,11 +3,15 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useAuthProvider } from "../../services/context";
 
 export default function Header() {
+  const [{ signOut }, state] = useAuthProvider();
+  const { push } = useHistory();
+
   return (
-    <Popover className=" bg-white top-0 sticky overflow-y-none">
+    <Popover className=" bg-white z-40 top-0 sticky overflow-y-none">
       {({ open }) => (
         <>
           <div
@@ -34,21 +38,29 @@ export default function Header() {
               </div>
               <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
                 <div className="text-gray-700 font-medium text-lg">
-                  Hi Fiifi, complete your registration
+                  Hi {state?.userToken?.firstName}, complete your registration
                 </div>
                 <div className="flex items-center md:ml-12">
-                  <Link
-                    to="/driver-login"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      signOut();
+                      push("/driver-login");
+                    }}
                     className="text-base font-medium text-gray-500 hover:text-gray-900"
                   >
                     Sign in
-                  </Link>
-                  <Link
-                    to="/"
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      signOut();
+                      push("/");
+                    }}
                     className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-pink-600 hover:bg-pink-700"
                   >
                     Home page
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -86,45 +98,37 @@ export default function Header() {
                       </Popover.Button>
                     </div>
                   </div>
-                  <div className="mt-6 sm:mt-8">
-                    <nav>
-                      <div className="mt-8 text-base">
-                        <a
-                          href="#"
-                          className="font-medium text-pink-600 hover:text-pink-500"
-                        >
-                          {" "}
-                          View all products{" "}
-                          <span aria-hidden="true">&rarr;</span>
-                        </a>
-                      </div>
-                    </nav>
-                  </div>
                 </div>
-                <div className="py-6 px-5">
-                  <div className="grid grid-cols-2 gap-4">
-                    <a
-                      href="#"
-                      className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
-                    >
-                      Hi Fiifi
-                    </a>
+                <div className="py-6 px-5 ">
+                  <div className="grid grid-cols-2 gap-4 ">
+                    <div className="rounded-md col-span-2  text-base font-medium text-gray-900 hover:text-gray-700">
+                      Hi {state?.userToken?.firstName}, complete your
+                      registration
+                    </div>
                   </div>
                   <div className="mt-6">
-                    <Link
-                      to="/"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        signOut();
+                        push("/");
+                      }}
                       className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                     >
                       Home page
-                    </Link>
+                    </button>
                     <p className="mt-6 text-center text-base font-medium text-gray-500">
                       Existing customer?{" "}
-                      <Link
-                        to="/driver-login"
+                      <button
+                        type="button"
+                        onClick={() => {
+                          signOut();
+                          push("/driver-login");
+                        }}
                         className="text-pink-600 hover:text-pink-500"
                       >
                         Sign in
-                      </Link>
+                      </button>
                     </p>
                   </div>
                 </div>
