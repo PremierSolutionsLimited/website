@@ -14,6 +14,7 @@ import { ToastProvider } from "react-toast-notifications";
 import { IContext, IContextControllerProps } from "./types";
 import { ClientApollo } from "../adapters";
 import Auth from "../adapters/cookie.config";
+import ProtectedRoutes from "../adapters/protectedRoutes";
 
 const ClientLoginComponent = lazy(
   () => import("../../pages/auth/client-login")
@@ -92,12 +93,12 @@ const SettingsConfig = () => {
               path={"/driver-login"}
               exact={true}
             />
-            <Route
+            <ProtectedRoutes
               component={DriverRegistationComponent}
               path={"/driver-registration"}
               exact={true}
             />
-            <Route
+            <ProtectedRoutes
               component={ClientRegistrationComponent}
               path={"/client-registration"}
               exact={true}

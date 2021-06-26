@@ -1,14 +1,106 @@
 import React from "react";
 import { LicenseComponentProp } from "./types";
 import { CameraIcon } from "@heroicons/react/outline";
+import { IType } from "../bones/types";
+import SelectTypeOfCars from "../bones/typeMultiSelect";
 
 export default function LicenseComponent({ setTab }: LicenseComponentProp) {
+  const [typesOfCars, setTypeOfCars] = React.useState<IType[]>([]);
   return (
     <div>
       <form className="divide-y divide-gray-200 lg:col-span-9">
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
-          <div className="mt-6 grid grid-cols-12 gap-6">
+          <div className="mt-0 grid grid-cols-12 gap-6">
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium pb-2 text-gray-700"
+              >
+                Do you have a license?
+              </label>
+              <select
+                id="location"
+                name="location"
+                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                defaultValue="Canada"
+              >
+                <option>Please Choose</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm font-medium pb-2 text-gray-700"
+              >
+                Driver's license type
+              </label>
+              <select
+                id="location"
+                name="location"
+                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                defaultValue="Canada"
+              >
+                <option>Please Choose</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                License Expiry Date
+              </label>
+              <input
+                required
+                type={"date"}
+                id={"dob"}
+                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Driver's License Number
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                How many years have you been driving ?
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="url"
+                className="block text-sm font-medium pb-2 text-gray-700"
+              >
+                What type of vehicle can you drive?
+              </label>
+              <SelectTypeOfCars type={typesOfCars} setType={setTypeOfCars} />
+            </div>
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
               <label
                 htmlFor="url"
@@ -74,21 +166,6 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
                   </div>
                 </label>
               </div>
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm font-medium pb-2 text-gray-700"
-              >
-                License Expiry Date
-              </label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
             </div>
           </div>
         </div>
