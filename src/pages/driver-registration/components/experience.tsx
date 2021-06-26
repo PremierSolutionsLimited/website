@@ -1,11 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { ExperienceComponentProp } from "./types";
-import { IClassSelectList } from "../bones/types";
-import SelectClassOfCars from "../bones/classMultiSelect";
 
 const ExperienceComponent: React.FC<ExperienceComponentProp> = ({ setTab }) => {
-  const [classOfCars, setClassOfCars] = useState<IClassSelectList[]>([]);
-
   return (
     <Fragment>
       <form className="divide-y divide-gray-200 lg:col-span-9">
@@ -164,15 +160,6 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({ setTab }) => {
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
-            {/* <div className="col-span-12">
-              <label
-                htmlFor="url"
-                className="block text-sm font-medium pb-2 text-gray-700"
-              >
-                Type of Cars (Manual or Automatic)
-              </label>
-              <SelectTypeOfCars type={typesOfCars} setType={setTypeOfCars} />
-            </div> */}
 
             <div className="col-span-12 sm:col-span-6">
               <label
