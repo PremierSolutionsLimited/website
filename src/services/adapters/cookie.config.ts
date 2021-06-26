@@ -1,8 +1,6 @@
 import Cookies from "js-cookie";
 
-export const BASE_URL =
-  process.env.REACT_APP_SERVER_URL ||
-  "https://fibonacci-mlm-engine.herokuapp.com/graphql";
+export const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 class Auth {
   getCipher(): string | null {
