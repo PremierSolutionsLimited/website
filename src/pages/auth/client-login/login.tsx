@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, lazy, Suspense } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { ContextLoader } from "../../../shared/loaders";
+
+const ForgotPasswordComponent = lazy(() => import("../../fogotpassword"));
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -8,6 +11,7 @@ const bgImage =
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showForgotPassword, setShowForgotPassword] = useState<boolean>(false);
 
   const { push } = useHistory();
 
@@ -126,12 +130,15 @@ const Login = () => {
                     </div>
 
                     <div className="text-sm">
-                      <a
-                        href="#"
-                        className="font-medium text-pink-600 hover:text-pink-700"
+                      <button
+                        type={"button"}
+                        onClick={() =>
+                          setShowForgotPassword(!showForgotPassword)
+                        }
+                        className="font-medium text-pink-600 hover:text-pink-700 focus:outline-none"
                       >
                         Forgot your password?
-                      </a>
+                      </button>
                     </div>
                   </div>
 
@@ -168,6 +175,12 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <Suspense fallback={ContextLoader()}>
+        <ForgotPasswordComponent
+          show={showForgotPassword}
+          setShow={setShowForgotPassword}
+        />
+      </Suspense>
     </Fragment>
   );
 };
