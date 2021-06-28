@@ -73,12 +73,12 @@ export default function GetStartedComponent() {
                         regulations.
                       </p>
                       <div className={"block sm:block md:hidden"}>
-                        <Link to="/signup">
+                        <Link to="/driver-signup">
                           <div className="flex items-center justify-center text-white py-5 px-8 rounded-full bg-pink-600 hover:bg-pink-700 w-full mb-4 sm:w-auto sm:mb-0">
                             Become a driver
                           </div>
                         </Link>
-                        <Link to="/signup">
+                        <Link to="/client-signup">
                           <div className="flex items-center justify-center text-white py-5 px-8  rounded-full bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4">
                             Book a driver now
                           </div>
@@ -89,12 +89,12 @@ export default function GetStartedComponent() {
                         data-aos="zoom-y-out"
                         data-aos-delay="300"
                       >
-                        <Link to="/signup">
+                        <Link to="/driver-signup">
                           <a className="btn text-white py-5 px-8 rounded-full bg-pink-600 hover:bg-pink-700 hover:text-white w-full mb-4 sm:w-auto sm:mb-0">
                             Become a driver
                           </a>
                         </Link>
-                        <Link to="/signup">
+                        <Link to="/client-signup">
                           <a className="btn text-white py-5 px-8  rounded-full bg-black hover:bg-gray-800 hover:text-white w-full sm:w-auto sm:ml-4">
                             Book a driver now
                           </a>
