@@ -11,7 +11,7 @@ const MainComponent = () => {
   // for tabs
   const [tab, setTab] = useState<string>("personal");
 
-  // for driver's personal information
+  // states for driver's personal information
   const [currentAddress, setCurrentAddress] = useState<string>("");
   const [region, setRegion] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -30,6 +30,21 @@ const MainComponent = () => {
   const [file, setFile] = useState<any>(null);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [uploading, setUploading] = useState<boolean>(false);
+
+  // states for driver's personal experience
+  const [hadAccidents, setHadAccidents] = useState<string>("");
+  const [hasBeenArrested, setHasBeenArrested] = useState<string>("");
+  const [previousEmployerName, setPreviousEmployerName] = useState<string>("");
+  const [previousPositionHeld, setPreviousPositionHeld] = useState<string>("");
+  const [postionStartDate, setPositionStartDate] = useState<string>("");
+  const [positionEndDate, setPositionEndDate] = useState<string>("");
+  const [reasonForLeaving, setReasonForLeaving] = useState<string>("");
+  const [currentEmployerName, setCurrentEmployerName] = useState<string>("");
+  const [currentPositionStartDate, setCurrentPostionStartDate] =
+    useState<string>("");
+  const [currentPositionHeld, setCurrentPositionHeld] = useState<string>("");
+  const [yearsOfDrivingExperience, setYearsOfDrivingExperience] =
+    useState<string>("");
 
   // function to handle image upload from user's pc
   const handleImageUpload = (e: any) => {
@@ -89,7 +104,31 @@ const MainComponent = () => {
               )}
               {tab === "experience" && (
                 <Fragment>
-                  <ExperienceComponent setTab={setTab} />
+                  <ExperienceComponent
+                    setTab={setTab}
+                    hadAccidents={hadAccidents}
+                    setHadAccidents={setHadAccidents}
+                    hasBeenArrested={hasBeenArrested}
+                    setHasBeenArrested={setHasBeenArrested}
+                    previousEmployerName={previousEmployerName}
+                    setPreviousEmployerName={setPreviousEmployerName}
+                    previousPositionHeld={previousPositionHeld}
+                    setPreviousPositionHeld={setPreviousPositionHeld}
+                    postionStartDate={postionStartDate}
+                    setPositionStartDate={setPositionStartDate}
+                    positionEndDate={positionEndDate}
+                    setPositionEndDate={setPositionEndDate}
+                    reasonForLeaving={reasonForLeaving}
+                    setReasonForLeaving={setReasonForLeaving}
+                    currentEmployerName={currentEmployerName}
+                    setCurrentEmployerName={setCurrentEmployerName}
+                    currentPositionStartDate={currentPositionStartDate}
+                    setCurrentPostionStartDate={setCurrentPostionStartDate}
+                    currentPositionHeld={currentPositionHeld}
+                    setCurrentPositionHeld={setCurrentPositionHeld}
+                    yearsOfDrivingExperience={yearsOfDrivingExperience}
+                    setYearsOfDrivingExperience={setYearsOfDrivingExperience}
+                  />
                 </Fragment>
               )}
               {tab === "license" && (
