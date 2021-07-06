@@ -22,10 +22,10 @@ export interface PersonalComponentProp {
   setNameOfSchoolCompleted: React.Dispatch<React.SetStateAction<string>>;
   yearOfGraduation: string;
   setYearOfGraduation: React.Dispatch<React.SetStateAction<string>>;
-  hasSmartPhone?: boolean;
-  setHasSmartPhone?: React.Dispatch<React.SetStateAction<boolean | undefined>>;
-  canUseMap?: boolean;
-  setCanUseMap?: React.Dispatch<React.SetStateAction<boolean | undefined>>;
+  hasSmartPhone: string;
+  setHasSmartPhone: React.Dispatch<React.SetStateAction<string>>;
+  canUseMap: string;
+  setCanUseMap: React.Dispatch<React.SetStateAction<string>>;
   handleImageUpload: (e: any) => void;
 }
 

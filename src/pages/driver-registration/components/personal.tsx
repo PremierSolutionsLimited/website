@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { PersonalComponentProp } from "./types";
 
 const user = {
@@ -14,6 +14,28 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   handleImageUpload,
   currentAddress,
   setCurrentAddress,
+  region,
+  setRegion,
+  city,
+  setCity,
+  age,
+  setAge,
+  telephone,
+  setTelephone,
+  maritalStatus,
+  setMaritalStatus,
+  numberOfChildren,
+  setNumberOfChildren,
+  highestLevelOfEducation,
+  setHighestLevelOfEducation,
+  nameOfSchoolCompleted,
+  setNameOfSchoolCompleted,
+  yearOfGraduation,
+  setYearOfGraduation,
+  hasSmartPhone,
+  setHasSmartPhone,
+  canUseMap,
+  setCanUseMap,
 }) => {
   return (
     <Fragment>
@@ -34,6 +56,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     type="text"
                     name="last_name"
                     id="last_name"
+                    value={currentAddress}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setCurrentAddress(e.target.value)
+                    }
                     autoComplete="family-name"
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
@@ -52,6 +78,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     type="text"
                     name="last_name"
                     id="last_name"
+                    value={region}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setRegion(e.target.value)
+                    }
                     autoComplete="family-name"
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
@@ -137,6 +167,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
+                value={city}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setCity(e.target.value)
+                }
                 className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
@@ -151,6 +185,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
+                value={age}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setAge(e.target.value)
+                }
                 className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
@@ -166,6 +204,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                value={telephone}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setTelephone(e.target.value)
+                }
                 autoComplete="organization"
                 className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
@@ -180,12 +222,18 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               <select
                 id="location"
                 name="location"
+                value={maritalStatus}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setMaritalStatus(e.target.value)
+                }
                 className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 defaultValue="Canada"
               >
                 <option></option>
-                <option>Yes</option>
-                <option>No</option>
+                <option value={"SINGLE"}>Single</option>
+                <option value={"MARRIED"}>Married</option>
+                <option value={"WIDOWED"}>Widowed</option>
+                <option value={"DIVORCED"}>Divored</option>
               </select>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -199,6 +247,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                value={numberOfChildren}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setNumberOfChildren(e.target.value)
+                }
                 autoComplete="organization"
                 className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
@@ -214,6 +266,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                value={highestLevelOfEducation}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setHighestLevelOfEducation(e.target.value)
+                }
                 autoComplete="organization"
                 className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
@@ -229,6 +285,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                value={nameOfSchoolCompleted}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setNameOfSchoolCompleted(e.target.value)
+                }
                 autoComplete="organization"
                 className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
@@ -244,6 +304,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
+                value={yearOfGraduation}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setYearOfGraduation(e.target.value)
+                }
                 className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
@@ -257,12 +321,16 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               <select
                 id="location"
                 name="location"
+                value={hasSmartPhone}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setHasSmartPhone(e.target.value)
+                }
                 className="mt-1.5 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 defaultValue="Canada"
               >
                 <option>Please Choose</option>
-                <option>Yes</option>
-                <option>No</option>
+                <option value={"yes"}>Yes</option>
+                <option value={"no"}>No</option>
               </select>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -275,12 +343,16 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               <select
                 id="location"
                 name="location"
+                value={canUseMap}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setCanUseMap(e.target.value)
+                }
                 className="mt-1.5 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 defaultValue="Canada"
               >
                 <option>Please Choose</option>
-                <option>Yes</option>
-                <option>No</option>
+                <option value={"yes"}>Yes</option>
+                <option value={"no"}>No</option>
               </select>
             </div>
           </div>

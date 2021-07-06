@@ -24,8 +24,8 @@ const MainComponent = () => {
   const [nameOfSchoolCompleted, setNameOfSchoolCompleted] =
     useState<string>("");
   const [yearOfGraduation, setYearOfGraduation] = useState<string>("");
-  const [hasSmartPhone, setHasSmartPhone] = useState<boolean | undefined>();
-  const [canUseMap, setCanUseMap] = useState<boolean>();
+  const [hasSmartPhone, setHasSmartPhone] = useState<string>("");
+  const [canUseMap, setCanUseMap] = useState<string>("");
   // for driver's image
   const [file, setFile] = useState<any>(null);
   const [imageUrl, setImageUrl] = useState<string>("");
