@@ -9,22 +9,17 @@ const user = {
     "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80",
 };
 
-const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
+const PersonalComponent: React.FC<PersonalComponentProp> = ({
+  setTab,
+  handleImageUpload,
+  currentAddress,
+  setCurrentAddress,
+}) => {
   return (
     <Fragment>
       <form className="divide-y divide-gray-200 lg:col-span-9">
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
-          {/* <div>
-            <h2 className="text-lg leading-6 font-medium text-gray-900">
-              Profile
-            </h2>
-            <p className="mt-1 text-sm text-gray-500">
-              This information will be displayed publicly so be careful what you
-              share.
-            </p>
-          </div> */}
-
           <div className="mt-0 flex flex-col lg:flex-row">
             <div className="flex-grow space-y-6">
               <div>
@@ -34,7 +29,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 >
                   Current Address
                 </label>
-                <div className="mt-1 rounded-md shadow-sm flex">
+                <div className="mt-1.5 rounded-md shadow-sm flex">
                   <input
                     type="text"
                     name="last_name"
@@ -52,7 +47,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 >
                   Region
                 </label>
-                <div className="mt-1">
+                <div className="mt-1.5">
                   <input
                     type="text"
                     name="last_name"
@@ -96,6 +91,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                         id="user_photo"
                         name="user_photo"
                         type="file"
+                        accept={"image/*"}
+                        onChange={handleImageUpload}
                         className="absolute w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
                       />
                     </div>
@@ -116,7 +113,9 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                   <span>Change</span>
                   <span className="sr-only"> user photo</span>
                   <input
-                    type="file"
+                    type={"file"}
+                    accept={"image/*"}
+                    onChange={handleImageUpload}
                     id="user-photo"
                     name="user-photo"
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
@@ -138,7 +137,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 type="text"
                 name="url"
                 id="url"
-                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+                className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -152,7 +151,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 type="text"
                 name="url"
                 id="url"
-                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+                className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
 
@@ -168,7 +167,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 name="company"
                 id="company"
                 autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -181,7 +180,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
               <select
                 id="location"
                 name="location"
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 defaultValue="Canada"
               >
                 <option></option>
@@ -201,7 +200,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 name="company"
                 id="company"
                 autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -216,7 +215,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 name="company"
                 id="company"
                 autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -231,7 +230,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 name="company"
                 id="company"
                 autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -245,7 +244,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 type="text"
                 name="url"
                 id="url"
-                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+                className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -258,7 +257,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
               <select
                 id="location"
                 name="location"
-                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                className="mt-1.5 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 defaultValue="Canada"
               >
                 <option>Please Choose</option>
@@ -276,7 +275,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
               <select
                 id="location"
                 name="location"
-                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                className="mt-1.5 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 defaultValue="Canada"
               >
                 <option>Please Choose</option>
@@ -288,8 +287,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
         </div>
 
         {/* Privacy section */}
-        <div className="pt-6 divide-y divide-gray-200">
-          <div className="mt-4 py-4 px-4 flex justify-end sm:px-6">
+        <div className="pt-3 divide-y divide-gray-200">
+          <div className="mt-2 py-4 px-4 flex justify-end sm:px-6">
             {/* <button
               type="button"
               className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
