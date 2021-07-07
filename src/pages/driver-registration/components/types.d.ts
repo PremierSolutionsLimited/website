@@ -57,6 +57,18 @@ export interface ExperienceComponentProp {
 
 export interface LicenseComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
+  hasALicense: string;
+  setHasALicense: React.Dispatch<React.SetStateAction<string>>;
+  licenseType: string;
+  setLicenseType: React.Dispatch<React.SetStateAction<string>>;
+  licenseExpiryDate: string;
+  setLicenseExpiryDate: React.Dispatch<React.SetStateAction<string>>;
+  licenseNumber: string;
+  setLicenseNumber: React.Dispatch<React.SetStateAction<string>>;
+  yearsOfExperienceOnLicense: string;
+  setYearsOfExperienceOnLicense: React.Dispatch<React.SetStateAction<string>>;
+  typeOfVehicle: string;
+  setTypeOfVehicle: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface AvailabiltyComponentProp {

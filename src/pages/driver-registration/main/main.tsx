@@ -46,6 +46,15 @@ const MainComponent = () => {
   const [yearsOfDrivingExperience, setYearsOfDrivingExperience] =
     useState<string>("");
 
+  // states for driver's license information
+  const [hasALicense, setHasALicense] = useState<string>("");
+  const [licenseType, setLicenseType] = useState<string>("");
+  const [licenseExpiryDate, setLicenseExpiryDate] = useState<string>("");
+  const [licenseNumber, setLicenseNumber] = useState<string>("");
+  const [yearsOfExperienceOnLicense, setYearsOfExperienceOnLicense] =
+    useState<string>("");
+  const [typeOfVehicle, setTypeOfVehicle] = useState<string>("");
+
   // function to handle image upload from user's pc
   const handleImageUpload = (e: any) => {
     if (e.target.files[0] !== undefined) {
@@ -133,7 +142,23 @@ const MainComponent = () => {
               )}
               {tab === "license" && (
                 <Fragment>
-                  <LicenceComponent setTab={setTab} />
+                  <LicenceComponent
+                    setTab={setTab}
+                    hasALicense={hasALicense}
+                    setHasALicense={setHasALicense}
+                    licenseType={licenseType}
+                    setLicenseType={setLicenseType}
+                    licenseExpiryDate={licenseExpiryDate}
+                    setLicenseExpiryDate={setLicenseExpiryDate}
+                    licenseNumber={licenseNumber}
+                    setLicenseNumber={setLicenseNumber}
+                    yearsOfExperienceOnLicense={yearsOfExperienceOnLicense}
+                    setYearsOfExperienceOnLicense={
+                      setYearsOfExperienceOnLicense
+                    }
+                    typeOfVehicle={typeOfVehicle}
+                    setTypeOfVehicle={setTypeOfVehicle}
+                  />
                 </Fragment>
               )}
               {tab === "avaiabliity" && (

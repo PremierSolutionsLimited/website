@@ -82,7 +82,7 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                How many years have you been driving ?
+                Years of driving experience on license ?
               </label>
               <input
                 type="text"
