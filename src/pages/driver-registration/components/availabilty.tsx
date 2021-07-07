@@ -9,13 +9,14 @@ function classNames(...classes: any) {
 const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
   setTab,
 }) => {
-  const [mondayActive, setMondayActive] = useState(true);
+  const [mondayActive, setMondayActive] = useState(false);
   const [tuesdayActive, setTuesdayActive] = useState(false);
-  const [wednesdayActive, setWednesdayActive] = useState(true);
-  const [thursdayActive, setThursdayActive] = useState(true);
+  const [wednesdayActive, setWednesdayActive] = useState(false);
+  const [thursdayActive, setThursdayActive] = useState(false);
   const [fridayActive, setFridayActive] = useState(false);
   const [saturdayActive, setSaturdayActive] = useState(false);
   const [sundayActive, setSundayActive] = useState(false);
+
   return (
     <Fragment>
       <form className="divide-y divide-gray-200 lg:col-span-9">
@@ -34,10 +35,6 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
                   >
                     Monday
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
-                    Nulla amet tempus sit accumsan. Aliquet turpis sed sit
-                    lacinia.
-                  </Switch.Description>
                 </div>
                 <Switch
                   checked={mondayActive}
@@ -69,10 +66,6 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
                   >
                     Tuesday
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
-                    Pharetra morbi dui mi mattis tellus sollicitudin cursus
-                    pharetra.
-                  </Switch.Description>
                 </div>
                 <Switch
                   checked={tuesdayActive}
@@ -104,9 +97,6 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
                   >
                     Wednesday
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
-                    Integer amet, nunc hendrerit adipiscing nam. Elementum ame
-                  </Switch.Description>
                 </div>
                 <Switch
                   checked={wednesdayActive}
@@ -138,9 +128,6 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
                   >
                     Thursday
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
-                    Adipiscing est venenatis enim molestie commodo eu gravid
-                  </Switch.Description>
                 </div>
                 <Switch
                   checked={thursdayActive}
@@ -172,9 +159,6 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
                   >
                     Friday
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
-                    Adipiscing est venenatis enim molestie commodo eu gravid
-                  </Switch.Description>
                 </div>
                 <Switch
                   checked={fridayActive}
@@ -206,9 +190,6 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
                   >
                     Saturday
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
-                    Adipiscing est venenatis enim molestie commodo eu gravid
-                  </Switch.Description>
                 </div>
                 <Switch
                   checked={saturdayActive}
@@ -240,9 +221,6 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
                   >
                     Sunday
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
-                    Adipiscing est venenatis enim molestie commodo eu gravid
-                  </Switch.Description>
                 </div>
                 <Switch
                   checked={sundayActive}

@@ -1,4 +1,10 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
+import { ApolloError, useMutation, useQuery } from "@apollo/client";
+import { CREATE_DRIVER_APPLICATION } from "../../../services/graphql";
+import {
+  CreateApplicationInputProp,
+  CreateApplicationOuputProp,
+} from "./types";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/steps";
 
@@ -65,6 +71,25 @@ const MainComponent = () => {
       setFile(file);
     }
   };
+
+  const [createApplication, { loading }] = useMutation<
+    CreateApplicationOuputProp,
+    CreateApplicationInputProp
+  >(CREATE_DRIVER_APPLICATION);
+
+  // const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault()
+  //   createApplication({
+  //     variables:{
+
+  //     }
+  //   }).then(() => {
+
+  //   }).catch((e: ApolloError) => {
+
+  //   })
+
+  // }
 
   return (
     <Fragment>

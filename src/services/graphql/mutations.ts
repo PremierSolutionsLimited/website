@@ -30,6 +30,21 @@ export const createDriverApplication = gql`
     $hasSmartPhone: Boolean
     $canUseMap: Boolean
     $availablity: [Day!]!
+    $nameOfSchool: String!
+    $schoolStartDate: Date
+    $schoolEndDate: Date
+    $qualification: String
+    $certificateImage: String
+    $currentEmploymerName: String
+    $currentEmploymentStartDate: Date
+    $currentEmploymentEndDate: Date
+    $currentEmploymentPositionHeld: String
+    $reasonForLeavingCurrentWork: String
+    $previousEmploymerName: String
+    $previousEmploymentStartDate: Date
+    $previousEmploymentEndDate: Date
+    $previousPositionHeld: String
+    $previousReasonForLeaving: String
   ) {
     createDriverApplication(
       input: {
@@ -61,6 +76,27 @@ export const createDriverApplication = gql`
         hasSmartPhone: $hasSmartPhone
         canUseMap: $canUseMap
         availablity: $availablity
+        educationalHistory: {
+          nameOfSchool: $nameOfSchool
+          startDate: $schoolStartDate
+          endDate: $schoolEndDate
+          qualification: $qualification
+          certificateImage: $certificateImage
+        }
+        currentEmployment: {
+          currentEmployerName: $currentEmploymerName
+          startDate: $currentEmploymentStartDate
+          endDate: $currentEmploymentEndDate
+          positionHeld: $currentEmploymentPositionHeld
+          reasonForLeaving: $reasonForLeavingCurrentWork
+        }
+        previousEmployment: {
+          currentEmployerName: $previousEmploymerName
+          startDate: $previousEmploymentStartDate
+          endDate: $previousEmploymentEndDate
+          positionHeld: $previousPositionHeld
+          reasonForLeaving: $previousReasonForLeaving
+        }
       }
     ) {
       _id
