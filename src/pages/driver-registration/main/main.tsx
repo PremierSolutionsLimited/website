@@ -6,6 +6,7 @@ import {
   CreateApplicationInputProp,
   CreateApplicationOuputProp,
 } from "./types";
+import { getAvailableDays } from "../util/availability";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/steps";
 
@@ -81,6 +82,19 @@ const MainComponent = () => {
       setFile(file);
     }
   };
+
+  console.log(
+    "days",
+    getAvailableDays(
+      mondayActive,
+      tuesdayActive,
+      wednesdayActive,
+      thursdayActive,
+      fridayActive,
+      saturdayActive,
+      sundayActive
+    )
+  );
 
   const [createApplication, { loading }] = useMutation<
     CreateApplicationOuputProp,
