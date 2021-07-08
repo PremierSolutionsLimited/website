@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Switch } from "@headlessui/react";
 import { AvailabiltyComponentProp } from "./types";
 
@@ -8,15 +8,21 @@ function classNames(...classes: any) {
 
 const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
   setTab,
+  mondayActive,
+  setMondayActive,
+  tuesdayActive,
+  setTuesdayActive,
+  wednesdayActive,
+  setWednesdayActive,
+  thursdayActive,
+  setThursdayActive,
+  fridayActive,
+  setFridayActive,
+  saturdayActive,
+  setSaturdayActive,
+  sundayActive,
+  setSundayActive,
 }) => {
-  const [mondayActive, setMondayActive] = useState(false);
-  const [tuesdayActive, setTuesdayActive] = useState(false);
-  const [wednesdayActive, setWednesdayActive] = useState(false);
-  const [thursdayActive, setThursdayActive] = useState(false);
-  const [fridayActive, setFridayActive] = useState(false);
-  const [saturdayActive, setSaturdayActive] = useState(false);
-  const [sundayActive, setSundayActive] = useState(false);
-
   return (
     <Fragment>
       <form className="divide-y divide-gray-200 lg:col-span-9">

@@ -61,6 +61,15 @@ const MainComponent = () => {
     useState<string>("");
   const [typeOfVehicle, setTypeOfVehicle] = useState<string>("");
 
+  // state's for driver availability
+  const [mondayActive, setMondayActive] = useState<boolean>(false);
+  const [tuesdayActive, setTuesdayActive] = useState<boolean>(false);
+  const [wednesdayActive, setWednesdayActive] = useState<boolean>(false);
+  const [thursdayActive, setThursdayActive] = useState<boolean>(false);
+  const [fridayActive, setFridayActive] = useState<boolean>(false);
+  const [saturdayActive, setSaturdayActive] = useState<boolean>(false);
+  const [sundayActive, setSundayActive] = useState<boolean>(false);
+
   // function to handle image upload from user's pc
   const handleImageUpload = (e: any) => {
     if (e.target.files[0] !== undefined) {
@@ -188,7 +197,23 @@ const MainComponent = () => {
               )}
               {tab === "avaiabliity" && (
                 <Fragment>
-                  <AvailabiltyComponent setTab={setTab} />
+                  <AvailabiltyComponent
+                    setTab={setTab}
+                    mondayActive={mondayActive}
+                    setMondayActive={setMondayActive}
+                    tuesdayActive={tuesdayActive}
+                    setTuesdayActive={setTuesdayActive}
+                    wednesdayActive={wednesdayActive}
+                    setWednesdayActive={setWednesdayActive}
+                    thursdayActive={thursdayActive}
+                    setThursdayActive={setThursdayActive}
+                    fridayActive={fridayActive}
+                    setFridayActive={setFridayActive}
+                    saturdayActive={saturdayActive}
+                    setSaturdayActive={setSaturdayActive}
+                    sundayActive={sundayActive}
+                    setSundayActive={setSundayActive}
+                  />
                 </Fragment>
               )}
             </div>

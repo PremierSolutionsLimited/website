@@ -73,4 +73,18 @@ export interface LicenseComponentProp {
 
 export interface AvailabiltyComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
+  mondayActive: boolean;
+  setMondayActive: React.Dispatch<React.SetStateAction<boolean>>;
+  tuesdayActive: boolean;
+  setTuesdayActive: React.Dispatch<React.SetStateAction<boolean>>;
+  wednesdayActive: boolean;
+  setWednesdayActive: React.Dispatch<React.SetStateAction<boolean>>;
+  thursdayActive: boolean;
+  setThursdayActive: React.Dispatch<React.SetStateAction<boolean>>;
+  fridayActive: boolean;
+  setFridayActive: React.Dispatch<React.SetStateAction<boolean>>;
+  saturdayActive: boolean;
+  setSaturdayActive: React.Dispatch<React.SetStateAction<boolean>>;
+  sundayActive: boolean;
+  setSundayActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
