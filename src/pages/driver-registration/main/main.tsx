@@ -1,6 +1,7 @@
-import React, { Fragment, useState } from "react";
-import { ApolloError, useMutation, useQuery } from "@apollo/client";
+import React, { Fragment, useState, lazy, Suspense } from "react";
+import { ApolloError, useMutation } from "@apollo/client";
 import { CREATE_DRIVER_APPLICATION } from "../../../services/graphql";
+import { ContextLoader } from "../../../shared/loaders";
 import {
   CreateApplicationInputProp,
   CreateApplicationOuputProp,
@@ -8,10 +9,10 @@ import {
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/steps";
 
-import PersonalComponent from "../components/personal";
-import ExperienceComponent from "../components/experience";
-import LicenceComponent from "../components/license";
-import AvailabiltyComponent from "../components/availabilty";
+const PersonalComponent = lazy(() => import("../components/personal"));
+const ExperienceComponent = lazy(() => import("../components/experience"));
+const LicenceComponent = lazy(() => import("../components/license"));
+const AvailabiltyComponent = lazy(() => import("../components/availabilty"));
 
 const MainComponent = () => {
   // for tabs
@@ -111,112 +112,113 @@ const MainComponent = () => {
                 <StepComponent tab={tab} />
               </div>
             </div>
-
-            <div className="sm:col-span-3 ml-10 ">
-              {tab === "personal" && (
-                <Fragment>
-                  <PersonalComponent
-                    setTab={setTab}
-                    currentAddress={currentAddress}
-                    setCurrentAddress={setCurrentAddress}
-                    region={region}
-                    setRegion={setRegion}
-                    city={city}
-                    setCity={setCity}
-                    age={age}
-                    setAge={setAge}
-                    telephone={telephone}
-                    setTelephone={setTelephone}
-                    maritalStatus={maritalStatus}
-                    setMaritalStatus={setMaritalStatus}
-                    numberOfChildren={numberOfChildren}
-                    setNumberOfChildren={setNumberOfChildren}
-                    highestLevelOfEducation={highestLevelOfEducation}
-                    setHighestLevelOfEducation={setHighestLevelOfEducation}
-                    nameOfSchoolCompleted={nameOfSchoolCompleted}
-                    setNameOfSchoolCompleted={setNameOfSchoolCompleted}
-                    yearOfGraduation={yearOfGraduation}
-                    setYearOfGraduation={setYearOfGraduation}
-                    hasSmartPhone={hasSmartPhone}
-                    setHasSmartPhone={setHasSmartPhone}
-                    canUseMap={canUseMap}
-                    setCanUseMap={setCanUseMap}
-                    handleImageUpload={handleImageUpload}
-                  />
-                </Fragment>
-              )}
-              {tab === "experience" && (
-                <Fragment>
-                  <ExperienceComponent
-                    setTab={setTab}
-                    hadAccidents={hadAccidents}
-                    setHadAccidents={setHadAccidents}
-                    hasBeenArrested={hasBeenArrested}
-                    setHasBeenArrested={setHasBeenArrested}
-                    previousEmployerName={previousEmployerName}
-                    setPreviousEmployerName={setPreviousEmployerName}
-                    previousPositionHeld={previousPositionHeld}
-                    setPreviousPositionHeld={setPreviousPositionHeld}
-                    postionStartDate={postionStartDate}
-                    setPositionStartDate={setPositionStartDate}
-                    positionEndDate={positionEndDate}
-                    setPositionEndDate={setPositionEndDate}
-                    reasonForLeaving={reasonForLeaving}
-                    setReasonForLeaving={setReasonForLeaving}
-                    currentEmployerName={currentEmployerName}
-                    setCurrentEmployerName={setCurrentEmployerName}
-                    currentPositionStartDate={currentPositionStartDate}
-                    setCurrentPostionStartDate={setCurrentPostionStartDate}
-                    currentPositionHeld={currentPositionHeld}
-                    setCurrentPositionHeld={setCurrentPositionHeld}
-                    yearsOfDrivingExperience={yearsOfDrivingExperience}
-                    setYearsOfDrivingExperience={setYearsOfDrivingExperience}
-                  />
-                </Fragment>
-              )}
-              {tab === "license" && (
-                <Fragment>
-                  <LicenceComponent
-                    setTab={setTab}
-                    hasALicense={hasALicense}
-                    setHasALicense={setHasALicense}
-                    licenseType={licenseType}
-                    setLicenseType={setLicenseType}
-                    licenseExpiryDate={licenseExpiryDate}
-                    setLicenseExpiryDate={setLicenseExpiryDate}
-                    licenseNumber={licenseNumber}
-                    setLicenseNumber={setLicenseNumber}
-                    yearsOfExperienceOnLicense={yearsOfExperienceOnLicense}
-                    setYearsOfExperienceOnLicense={
-                      setYearsOfExperienceOnLicense
-                    }
-                    typeOfVehicle={typeOfVehicle}
-                    setTypeOfVehicle={setTypeOfVehicle}
-                  />
-                </Fragment>
-              )}
-              {tab === "avaiabliity" && (
-                <Fragment>
-                  <AvailabiltyComponent
-                    setTab={setTab}
-                    mondayActive={mondayActive}
-                    setMondayActive={setMondayActive}
-                    tuesdayActive={tuesdayActive}
-                    setTuesdayActive={setTuesdayActive}
-                    wednesdayActive={wednesdayActive}
-                    setWednesdayActive={setWednesdayActive}
-                    thursdayActive={thursdayActive}
-                    setThursdayActive={setThursdayActive}
-                    fridayActive={fridayActive}
-                    setFridayActive={setFridayActive}
-                    saturdayActive={saturdayActive}
-                    setSaturdayActive={setSaturdayActive}
-                    sundayActive={sundayActive}
-                    setSundayActive={setSundayActive}
-                  />
-                </Fragment>
-              )}
-            </div>
+            <Suspense fallback={ContextLoader()}>
+              <div className="sm:col-span-3 ml-10 ">
+                {tab === "personal" && (
+                  <Fragment>
+                    <PersonalComponent
+                      setTab={setTab}
+                      currentAddress={currentAddress}
+                      setCurrentAddress={setCurrentAddress}
+                      region={region}
+                      setRegion={setRegion}
+                      city={city}
+                      setCity={setCity}
+                      age={age}
+                      setAge={setAge}
+                      telephone={telephone}
+                      setTelephone={setTelephone}
+                      maritalStatus={maritalStatus}
+                      setMaritalStatus={setMaritalStatus}
+                      numberOfChildren={numberOfChildren}
+                      setNumberOfChildren={setNumberOfChildren}
+                      highestLevelOfEducation={highestLevelOfEducation}
+                      setHighestLevelOfEducation={setHighestLevelOfEducation}
+                      nameOfSchoolCompleted={nameOfSchoolCompleted}
+                      setNameOfSchoolCompleted={setNameOfSchoolCompleted}
+                      yearOfGraduation={yearOfGraduation}
+                      setYearOfGraduation={setYearOfGraduation}
+                      hasSmartPhone={hasSmartPhone}
+                      setHasSmartPhone={setHasSmartPhone}
+                      canUseMap={canUseMap}
+                      setCanUseMap={setCanUseMap}
+                      handleImageUpload={handleImageUpload}
+                    />
+                  </Fragment>
+                )}
+                {tab === "experience" && (
+                  <Fragment>
+                    <ExperienceComponent
+                      setTab={setTab}
+                      hadAccidents={hadAccidents}
+                      setHadAccidents={setHadAccidents}
+                      hasBeenArrested={hasBeenArrested}
+                      setHasBeenArrested={setHasBeenArrested}
+                      previousEmployerName={previousEmployerName}
+                      setPreviousEmployerName={setPreviousEmployerName}
+                      previousPositionHeld={previousPositionHeld}
+                      setPreviousPositionHeld={setPreviousPositionHeld}
+                      postionStartDate={postionStartDate}
+                      setPositionStartDate={setPositionStartDate}
+                      positionEndDate={positionEndDate}
+                      setPositionEndDate={setPositionEndDate}
+                      reasonForLeaving={reasonForLeaving}
+                      setReasonForLeaving={setReasonForLeaving}
+                      currentEmployerName={currentEmployerName}
+                      setCurrentEmployerName={setCurrentEmployerName}
+                      currentPositionStartDate={currentPositionStartDate}
+                      setCurrentPostionStartDate={setCurrentPostionStartDate}
+                      currentPositionHeld={currentPositionHeld}
+                      setCurrentPositionHeld={setCurrentPositionHeld}
+                      yearsOfDrivingExperience={yearsOfDrivingExperience}
+                      setYearsOfDrivingExperience={setYearsOfDrivingExperience}
+                    />
+                  </Fragment>
+                )}
+                {tab === "license" && (
+                  <Fragment>
+                    <LicenceComponent
+                      setTab={setTab}
+                      hasALicense={hasALicense}
+                      setHasALicense={setHasALicense}
+                      licenseType={licenseType}
+                      setLicenseType={setLicenseType}
+                      licenseExpiryDate={licenseExpiryDate}
+                      setLicenseExpiryDate={setLicenseExpiryDate}
+                      licenseNumber={licenseNumber}
+                      setLicenseNumber={setLicenseNumber}
+                      yearsOfExperienceOnLicense={yearsOfExperienceOnLicense}
+                      setYearsOfExperienceOnLicense={
+                        setYearsOfExperienceOnLicense
+                      }
+                      typeOfVehicle={typeOfVehicle}
+                      setTypeOfVehicle={setTypeOfVehicle}
+                    />
+                  </Fragment>
+                )}
+                {tab === "avaiabliity" && (
+                  <Fragment>
+                    <AvailabiltyComponent
+                      setTab={setTab}
+                      mondayActive={mondayActive}
+                      setMondayActive={setMondayActive}
+                      tuesdayActive={tuesdayActive}
+                      setTuesdayActive={setTuesdayActive}
+                      wednesdayActive={wednesdayActive}
+                      setWednesdayActive={setWednesdayActive}
+                      thursdayActive={thursdayActive}
+                      setThursdayActive={setThursdayActive}
+                      fridayActive={fridayActive}
+                      setFridayActive={setFridayActive}
+                      saturdayActive={saturdayActive}
+                      setSaturdayActive={setSaturdayActive}
+                      sundayActive={sundayActive}
+                      setSundayActive={setSundayActive}
+                    />
+                  </Fragment>
+                )}
+              </div>
+            </Suspense>
           </div>
         </div>
       </div>
