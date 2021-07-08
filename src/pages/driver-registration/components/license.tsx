@@ -64,21 +64,25 @@ export default function LicenseComponent({
                 htmlFor="company"
                 className="block text-sm font-medium pb-2 text-gray-700"
               >
-                Driver's license type
+                Driver's license class
               </label>
               <select
                 id="location"
                 name="location"
-                value={licenseType}
+                value={licenseClass}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setLicenseType(e.target.value)
+                  setLicenseClass(e.target.value)
                 }
                 className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 required
               >
                 <option>Please Choose</option>
-                <option>Yes</option>
-                <option>No</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
               </select>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -126,7 +130,7 @@ export default function LicenseComponent({
                 Years of driving experience on license ?
               </label>
               <input
-                type="text"
+                type="number"
                 name="company"
                 id="company"
                 autoComplete="organization"

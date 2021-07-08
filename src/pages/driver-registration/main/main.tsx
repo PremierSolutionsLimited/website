@@ -51,8 +51,8 @@ const MainComponent = () => {
   const [currentPositionStartDate, setCurrentPostionStartDate] =
     useState<string>("");
   const [currentPositionHeld, setCurrentPositionHeld] = useState<string>("");
-  const [yearsOfDrivingExperience, setYearsOfDrivingExperience] =
-    useState<string>("");
+  // const [yearsOfDrivingExperience, setYearsOfDrivingExperience] =
+  //   useState<string>("");
 
   // states for driver's license information
   const [hasALicense, setHasALicense] = useState<string>("");
@@ -217,8 +217,8 @@ const MainComponent = () => {
                       setCurrentPostionStartDate={setCurrentPostionStartDate}
                       currentPositionHeld={currentPositionHeld}
                       setCurrentPositionHeld={setCurrentPositionHeld}
-                      yearsOfDrivingExperience={yearsOfDrivingExperience}
-                      setYearsOfDrivingExperience={setYearsOfDrivingExperience}
+                      // yearsOfDrivingExperience={yearsOfDrivingExperience}
+                      // setYearsOfDrivingExperience={setYearsOfDrivingExperience}
                     />
                   </Fragment>
                 )}

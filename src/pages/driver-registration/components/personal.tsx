@@ -186,7 +186,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 Age
               </label>
               <input
-                type="text"
+                type="number"
                 name="url"
                 id="url"
                 required
@@ -206,7 +206,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 Telephone
               </label>
               <input
-                type="text"
+                type="number"
                 name="company"
                 id="company"
                 required
@@ -250,7 +250,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 How many children?
               </label>
               <input
-                type="text"
+                type="number"
                 name="company"
                 id="company"
                 value={numberOfChildren}

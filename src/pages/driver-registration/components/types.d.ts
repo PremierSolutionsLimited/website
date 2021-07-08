@@ -53,8 +53,8 @@ export interface ExperienceComponentProp {
   setCurrentPostionStartDate: React.Dispatch<React.SetStateAction<string>>;
   currentPositionHeld: string;
   setCurrentPositionHeld: React.Dispatch<React.SetStateAction<string>>;
-  yearsOfDrivingExperience: string;
-  setYearsOfDrivingExperience: React.Dispatch<React.SetStateAction<string>>;
+  // yearsOfDrivingExperience: string;
+  // setYearsOfDrivingExperience: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface LicenseComponentProp {

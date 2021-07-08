@@ -23,8 +23,8 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   setCurrentPostionStartDate,
   currentPositionHeld,
   setCurrentPositionHeld,
-  yearsOfDrivingExperience,
-  setYearsOfDrivingExperience,
+  // yearsOfDrivingExperience,
+  // setYearsOfDrivingExperience,
 }) => {
   const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -235,7 +235,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
               />
             </div>
 
-            <div className="col-span-12 sm:col-span-6">
+            {/* <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
@@ -254,7 +254,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 autoComplete="organization"
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="pt-6 divide-y divide-gray-200">
