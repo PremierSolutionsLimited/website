@@ -1,4 +1,5 @@
 import React from "react";
+import { IType } from "../bones/types";
 
 export interface PersonalComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
@@ -58,6 +59,8 @@ export interface ExperienceComponentProp {
 
 export interface LicenseComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
+  typesOfCars: IType[];
+  setTypeOfCars: React.Dispatch<React.SetStateAction<IType[]>>;
   hasALicense: string;
   setHasALicense: React.Dispatch<React.SetStateAction<string>>;
   licenseType: string;
@@ -68,8 +71,8 @@ export interface LicenseComponentProp {
   setLicenseNumber: React.Dispatch<React.SetStateAction<string>>;
   yearsOfExperienceOnLicense: string;
   setYearsOfExperienceOnLicense: React.Dispatch<React.SetStateAction<string>>;
-  typeOfVehicle: string;
-  setTypeOfVehicle: React.Dispatch<React.SetStateAction<string>>;
+  licenseClass: string;
+  setLicenseClass: React.Dispatch<React.SetStateAction<string>>;
   handleLicenseFrontImageUpload: (e: any) => void;
   driverLicenseFrontImageUrl: string;
   handleLicenseBackImageUpload: (e: any) => void;

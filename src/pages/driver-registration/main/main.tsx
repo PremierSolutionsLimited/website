@@ -7,6 +7,7 @@ import {
   CreateApplicationOuputProp,
 } from "./types";
 import { getAvailableDays } from "../util/availability";
+import { IType } from "../bones/types";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/steps";
 
@@ -60,7 +61,7 @@ const MainComponent = () => {
   const [licenseNumber, setLicenseNumber] = useState<string>("");
   const [yearsOfExperienceOnLicense, setYearsOfExperienceOnLicense] =
     useState<string>("");
-  const [typeOfVehicle, setTypeOfVehicle] = useState<string>("");
+  const [licenseClass, setLicenseClass] = useState<string>("");
   const [driverLicenseFrontFile, setDriverLicenseFrontFile] =
     useState<any>(null);
   const [driverLicenseFrontImageUrl, setDriverLicenseFrontImageUrl] =
@@ -68,6 +69,7 @@ const MainComponent = () => {
   const [driverLicenseBackFile, setDriverLicenseBackFile] = useState<any>(null);
   const [driverLicenseBackImageUrl, setDriverLicenseBackImageUrl] =
     useState<string>("");
+  const [typesOfCars, setTypeOfCars] = React.useState<IType[]>([]);
 
   // state's for driver availability
   const [mondayActive, setMondayActive] = useState<boolean>(false);
@@ -227,6 +229,8 @@ const MainComponent = () => {
                       hasALicense={hasALicense}
                       setHasALicense={setHasALicense}
                       licenseType={licenseType}
+                      typesOfCars={typesOfCars}
+                      setTypeOfCars={setTypeOfCars}
                       setLicenseType={setLicenseType}
                       licenseExpiryDate={licenseExpiryDate}
                       setLicenseExpiryDate={setLicenseExpiryDate}
@@ -236,8 +240,8 @@ const MainComponent = () => {
                       setYearsOfExperienceOnLicense={
                         setYearsOfExperienceOnLicense
                       }
-                      typeOfVehicle={typeOfVehicle}
-                      setTypeOfVehicle={setTypeOfVehicle}
+                      licenseClass={licenseClass}
+                      setLicenseClass={setLicenseClass}
                       handleLicenseFrontImageUpload={
                         handleLicenseFrontImageUpload
                       }

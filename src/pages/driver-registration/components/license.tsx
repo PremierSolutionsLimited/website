@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { LicenseComponentProp } from "./types";
 import { CameraIcon } from "@heroicons/react/outline";
-import { IType } from "../bones/types";
 import SelectTypeOfCars from "../bones/typeMultiSelect";
 
 export default function LicenseComponent({
@@ -16,15 +15,15 @@ export default function LicenseComponent({
   setLicenseNumber,
   yearsOfExperienceOnLicense,
   setYearsOfExperienceOnLicense,
-  typeOfVehicle,
-  setTypeOfVehicle,
+  licenseClass,
+  setLicenseClass,
   handleLicenseFrontImageUpload,
   driverLicenseFrontImageUrl,
   handleLicenseBackImageUpload,
   driverLicenseBackImageUrl,
+  setTypeOfCars,
+  typesOfCars,
 }: LicenseComponentProp) {
-  const [typesOfCars, setTypeOfCars] = React.useState<IType[]>([]);
-
   const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     return setTab("avaiabliity");
