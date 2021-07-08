@@ -35,9 +35,8 @@ const MainComponent = () => {
   const [hasSmartPhone, setHasSmartPhone] = useState<string>("");
   const [canUseMap, setCanUseMap] = useState<string>("");
   // for driver's image
-  const [file, setFile] = useState<any>(null);
-  const [imageUrl, setImageUrl] = useState<string>("");
-  const [uploading, setUploading] = useState<boolean>(false);
+  const [driverFile, setDriverFile] = useState<any>(null);
+  const [driverImageUrl, setDriverImageUrl] = useState<string>("");
 
   // states for driver's personal experience
   const [hadAccidents, setHadAccidents] = useState<string>("");
@@ -62,6 +61,13 @@ const MainComponent = () => {
   const [yearsOfExperienceOnLicense, setYearsOfExperienceOnLicense] =
     useState<string>("");
   const [typeOfVehicle, setTypeOfVehicle] = useState<string>("");
+  const [driverLicenseFrontFile, setDriverLicenseFrontFile] =
+    useState<any>(null);
+  const [driverLicenseFrontImageUrl, setDriverLicenseFrontImageUrl] =
+    useState<string>("");
+  const [driverLicenseBackFile, setDriverLicenseBackFile] = useState<any>(null);
+  const [driverLicenseBackImageUrl, setDriverLicenseBackImageUrl] =
+    useState<string>("");
 
   // state's for driver availability
   const [mondayActive, setMondayActive] = useState<boolean>(false);
@@ -75,11 +81,33 @@ const MainComponent = () => {
   // function to handle image upload from user's pc
   const handleImageUpload = (e: any) => {
     if (e.target.files[0] !== undefined) {
-      setImageUrl(URL.createObjectURL(e.target.files[0]));
-      setFile(e.target.files[0]);
+      setDriverImageUrl(URL.createObjectURL(e.target.files[0]));
+      setDriverFile(e.target.files[0]);
     } else {
-      setImageUrl(URL.createObjectURL(file));
-      setFile(file);
+      setDriverImageUrl(URL.createObjectURL(driverFile));
+      setDriverFile(driverFile);
+    }
+  };
+
+  // function to handle licenseFront upload from user's pc
+  const handleLicenseFrontImageUpload = (e: any) => {
+    if (e.target.files[0] !== undefined) {
+      setDriverLicenseFrontImageUrl(URL.createObjectURL(e.target.files[0]));
+      setDriverLicenseFrontFile(e.target.files[0]);
+    } else {
+      setDriverLicenseFrontImageUrl(URL.createObjectURL(driverFile));
+      setDriverLicenseFrontFile(driverFile);
+    }
+  };
+
+  // function to handle licenseBack upload from user's pc
+  const handleLicenseBackImageUpload = (e: any) => {
+    if (e.target.files[0] !== undefined) {
+      setDriverLicenseBackImageUrl(URL.createObjectURL(e.target.files[0]));
+      setDriverLicenseBackFile(e.target.files[0]);
+    } else {
+      setDriverLicenseBackImageUrl(URL.createObjectURL(driverFile));
+      setDriverLicenseBackFile(driverFile);
     }
   };
 
@@ -157,6 +185,7 @@ const MainComponent = () => {
                       canUseMap={canUseMap}
                       setCanUseMap={setCanUseMap}
                       handleImageUpload={handleImageUpload}
+                      driverImageUrl={driverImageUrl}
                     />
                   </Fragment>
                 )}

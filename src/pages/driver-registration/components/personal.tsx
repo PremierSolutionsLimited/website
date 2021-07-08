@@ -1,13 +1,6 @@
 import React, { Fragment } from "react";
 import { PersonalComponentProp } from "./types";
-
-const user = {
-  name: "Debbie Lewis",
-  handle: "deblewis",
-  email: "debbielewis@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80",
-};
+import ProfileImage from "../../../assets/images/male.jpeg";
 
 const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setTab,
@@ -36,6 +29,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setHasSmartPhone,
   canUseMap,
   setCanUseMap,
+  driverImageUrl,
 }) => {
   const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -113,7 +107,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                   >
                     <img
                       className="rounded-full h-full w-full"
-                      src={user.imageUrl}
+                      src={driverImageUrl || ProfileImage}
                       alt=""
                     />
                   </div>
@@ -142,7 +136,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               <div className="hidden relative rounded-full overflow-hidden lg:block">
                 <img
                   className="relative rounded-full w-40 h-40"
-                  src={user.imageUrl}
+                  src={driverImageUrl || ProfileImage}
                   alt=""
                 />
                 <label

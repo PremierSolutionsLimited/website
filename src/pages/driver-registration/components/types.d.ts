@@ -27,6 +27,7 @@ export interface PersonalComponentProp {
   canUseMap: string;
   setCanUseMap: React.Dispatch<React.SetStateAction<string>>;
   handleImageUpload: (e: any) => void;
+  driverImageUrl: string;
 }
 
 export interface ExperienceComponentProp {
