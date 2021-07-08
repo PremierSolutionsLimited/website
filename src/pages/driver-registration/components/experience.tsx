@@ -26,9 +26,16 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   yearsOfDrivingExperience,
   setYearsOfDrivingExperience,
 }) => {
+  const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    return setTab("license");
+  };
   return (
     <Fragment>
-      <form className="divide-y divide-gray-200 lg:col-span-9">
+      <form
+        onSubmit={handleGotoNextPage}
+        className="divide-y divide-gray-200 lg:col-span-9"
+      >
         <div className="py-6 px-4 sm:p-4 lg:pb-8">
           <div className="mt-0 grid grid-cols-12 gap-6">
             <div className="col-span-12 sm:col-span-6">
@@ -81,6 +88,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Previous Employer Name
               </label>
               <input
+                required
                 type="text"
                 name="company"
                 id="company"
@@ -100,6 +108,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Position Held
               </label>
               <input
+                required
                 type="text"
                 name="company"
                 id="company"
@@ -155,6 +164,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Reason for leaving
               </label>
               <input
+                required
                 type="text"
                 name="company"
                 id="company"
@@ -174,6 +184,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Current Employer Name
               </label>
               <input
+                required
                 type="text"
                 name="company"
                 id="company"
@@ -211,6 +222,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Position Held
               </label>
               <input
+                required
                 type="text"
                 name="company"
                 id="company"
@@ -231,6 +243,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Years of Driving Experience
               </label>
               <input
+                required
                 type="text"
                 name="company"
                 id="company"
@@ -254,8 +267,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Back
               </button>
               <button
-                onClick={() => setTab("license")}
-                type="button"
+                type="submit"
                 className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
               >
                 Next

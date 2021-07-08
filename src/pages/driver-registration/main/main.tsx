@@ -83,18 +83,18 @@ const MainComponent = () => {
     }
   };
 
-  console.log(
-    "days",
-    getAvailableDays(
-      mondayActive,
-      tuesdayActive,
-      wednesdayActive,
-      thursdayActive,
-      fridayActive,
-      saturdayActive,
-      sundayActive
-    )
-  );
+  // console.log(
+  //   "days",
+  //   getAvailableDays(
+  //     mondayActive,
+  //     tuesdayActive,
+  //     wednesdayActive,
+  //     thursdayActive,
+  //     fridayActive,
+  //     saturdayActive,
+  //     sundayActive
+  //   )
+  // );
 
   const [createApplication, { loading }] = useMutation<
     CreateApplicationOuputProp,

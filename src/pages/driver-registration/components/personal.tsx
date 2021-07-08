@@ -37,9 +37,16 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   canUseMap,
   setCanUseMap,
 }) => {
+  const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    return setTab("experience");
+  };
   return (
     <Fragment>
-      <form className="divide-y divide-gray-200 lg:col-span-9">
+      <form
+        onSubmit={handleGotoNextPage}
+        className="divide-y divide-gray-200 lg:col-span-9"
+      >
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
           <div className="mt-0 flex flex-col lg:flex-row">
@@ -56,6 +63,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     type="text"
                     name="last_name"
                     id="last_name"
+                    required
                     value={currentAddress}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setCurrentAddress(e.target.value)
@@ -79,6 +87,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     name="last_name"
                     id="last_name"
                     value={region}
+                    required
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setRegion(e.target.value)
                     }
@@ -167,6 +176,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
+                required
                 value={city}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setCity(e.target.value)
@@ -185,6 +195,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
+                required
                 value={age}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setAge(e.target.value)
@@ -204,6 +215,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                required
                 value={telephone}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setTelephone(e.target.value)
@@ -223,13 +235,13 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 id="location"
                 name="location"
                 value={maritalStatus}
+                required
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setMaritalStatus(e.target.value)
                 }
                 className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
-                defaultValue="Canada"
               >
-                <option></option>
+                <option>Please Choose</option>
                 <option value={"SINGLE"}>Single</option>
                 <option value={"MARRIED"}>Married</option>
                 <option value={"WIDOWED"}>Widowed</option>
@@ -251,6 +263,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setNumberOfChildren(e.target.value)
                 }
+                required
                 autoComplete="organization"
                 className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
@@ -266,6 +279,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                required
                 value={highestLevelOfEducation}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setHighestLevelOfEducation(e.target.value)
@@ -285,6 +299,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                required
                 value={nameOfSchoolCompleted}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setNameOfSchoolCompleted(e.target.value)
@@ -304,6 +319,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
+                required
                 value={yearOfGraduation}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setYearOfGraduation(e.target.value)
@@ -326,7 +342,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                   setHasSmartPhone(e.target.value)
                 }
                 className="mt-1.5 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
-                defaultValue="Canada"
+                required
               >
                 <option>Please Choose</option>
                 <option value={"yes"}>Yes</option>
@@ -348,7 +364,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                   setCanUseMap(e.target.value)
                 }
                 className="mt-1.5 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
-                defaultValue="Canada"
+                required
               >
                 <option>Please Choose</option>
                 <option value={"yes"}>Yes</option>
@@ -368,8 +384,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               Cancel
             </button> */}
             <button
-              type="button"
-              onClick={() => setTab("experience")}
+              type="submit"
               className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
             >
               Next

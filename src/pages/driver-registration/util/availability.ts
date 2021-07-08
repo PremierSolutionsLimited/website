@@ -17,7 +17,7 @@ export const getAvailableDays = (
     SUNDAY: SUNDAY,
   };
 
-  let values: any = [];
+  let values: string[] = [];
   for (let val in driverAvailability) {
     if (driverAvailability[val]) {
       values.push(val);
