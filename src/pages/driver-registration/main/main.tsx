@@ -95,8 +95,10 @@ const MainComponent = () => {
       setDriverLicenseFrontImageUrl(URL.createObjectURL(e.target.files[0]));
       setDriverLicenseFrontFile(e.target.files[0]);
     } else {
-      setDriverLicenseFrontImageUrl(URL.createObjectURL(driverFile));
-      setDriverLicenseFrontFile(driverFile);
+      setDriverLicenseFrontImageUrl(
+        URL.createObjectURL(driverLicenseFrontFile)
+      );
+      setDriverLicenseFrontFile(driverLicenseFrontFile);
     }
   };
 
@@ -106,8 +108,8 @@ const MainComponent = () => {
       setDriverLicenseBackImageUrl(URL.createObjectURL(e.target.files[0]));
       setDriverLicenseBackFile(e.target.files[0]);
     } else {
-      setDriverLicenseBackImageUrl(URL.createObjectURL(driverFile));
-      setDriverLicenseBackFile(driverFile);
+      setDriverLicenseBackImageUrl(URL.createObjectURL(driverLicenseBackFile));
+      setDriverLicenseBackFile(driverLicenseBackFile);
     }
   };
 
@@ -236,6 +238,14 @@ const MainComponent = () => {
                       }
                       typeOfVehicle={typeOfVehicle}
                       setTypeOfVehicle={setTypeOfVehicle}
+                      handleLicenseFrontImageUpload={
+                        handleLicenseFrontImageUpload
+                      }
+                      driverLicenseFrontImageUrl={driverLicenseFrontImageUrl}
+                      handleLicenseBackImageUpload={
+                        handleLicenseBackImageUpload
+                      }
+                      driverLicenseBackImageUrl={driverLicenseBackImageUrl}
                     />
                   </Fragment>
                 )}

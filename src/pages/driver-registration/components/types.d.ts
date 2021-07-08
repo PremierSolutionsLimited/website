@@ -70,6 +70,10 @@ export interface LicenseComponentProp {
   setYearsOfExperienceOnLicense: React.Dispatch<React.SetStateAction<string>>;
   typeOfVehicle: string;
   setTypeOfVehicle: React.Dispatch<React.SetStateAction<string>>;
+  handleLicenseFrontImageUpload: (e: any) => void;
+  driverLicenseFrontImageUrl: string;
+  handleLicenseBackImageUpload: (e: any) => void;
+  driverLicenseBackImageUrl: string;
 }
 
 export interface AvailabiltyComponentProp {

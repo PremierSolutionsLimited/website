@@ -1,10 +1,28 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { LicenseComponentProp } from "./types";
 import { CameraIcon } from "@heroicons/react/outline";
 import { IType } from "../bones/types";
 import SelectTypeOfCars from "../bones/typeMultiSelect";
 
-export default function LicenseComponent({ setTab }: LicenseComponentProp) {
+export default function LicenseComponent({
+  setTab,
+  hasALicense,
+  setHasALicense,
+  licenseType,
+  setLicenseType,
+  licenseExpiryDate,
+  setLicenseExpiryDate,
+  licenseNumber,
+  setLicenseNumber,
+  yearsOfExperienceOnLicense,
+  setYearsOfExperienceOnLicense,
+  typeOfVehicle,
+  setTypeOfVehicle,
+  handleLicenseFrontImageUpload,
+  driverLicenseFrontImageUrl,
+  handleLicenseBackImageUpload,
+  driverLicenseBackImageUrl,
+}: LicenseComponentProp) {
   const [typesOfCars, setTypeOfCars] = React.useState<IType[]>([]);
 
   const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,12 +49,15 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
                 id="location"
                 name="location"
                 required
+                value={hasALicense}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setHasALicense(e.target.value)
+                }
                 className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
-                defaultValue="Canada"
               >
                 <option>Please Choose</option>
-                <option>Yes</option>
-                <option>No</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
               </select>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -49,6 +70,10 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
               <select
                 id="location"
                 name="location"
+                value={licenseType}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setLicenseType(e.target.value)
+                }
                 className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 required
               >
@@ -67,7 +92,11 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
               <input
                 required
                 type={"date"}
-                id={"dob"}
+                id={"expiry"}
+                value={licenseExpiryDate}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setLicenseExpiryDate(e.target.value)
+                }
                 className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
               />
             </div>
@@ -83,6 +112,10 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
                 name="company"
                 id="company"
                 required
+                value={licenseNumber}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setLicenseNumber(e.target.value)
+                }
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
@@ -99,6 +132,10 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
                 id="company"
                 autoComplete="organization"
                 required
+                value={yearsOfExperienceOnLicense}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setYearsOfExperienceOnLicense(e.target.value)
+                }
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
@@ -118,31 +155,69 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
               >
                 Driver's License (Front)
               </label>
-              <div className="relative pt-3">
-                <div className="h-28 w-full object-cover lg:h-44 border border-dashed rounded-lg border-gray-500"></div>
-                <label
-                  htmlFor="user-photo"
-                  className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
-                >
-                  <div className="">
-                    <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
-                      <CameraIcon
-                        className=" flex-shrink-0 h-6 w-6 text-gray-500"
-                        aria-hidden="true"
-                      />
+              {driverLicenseFrontImageUrl ? (
+                <Fragment>
+                  <div className="relative pt-3">
+                    <img
+                      className="h-28 w-full object-cover lg:h-44"
+                      src={driverLicenseFrontImageUrl}
+                      alt=""
+                    />
+                    <label
+                      htmlFor="user-photo"
+                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                    >
+                      <div className="">
+                        <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
+                          <CameraIcon
+                            className=" flex-shrink-0 h-6 w-6 text-gray-300"
+                            aria-hidden="true"
+                          />
 
-                      {/* <span className="sr-only"> user photo</span> */}
-                      <input
-                        type="file"
-                        id="user-photo"
-                        name="user-photo"
-                        accept={"image/*"}
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                      />
-                    </div>
+                          {/* <span className="sr-only"> user photo</span> */}
+                          <input
+                            type="file"
+                            id="user-photo"
+                            name="user-photo"
+                            onChange={handleLicenseFrontImageUpload}
+                            accept={"image/*"}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                          />
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <div className="relative pt-3">
+                    <div className="h-28 w-full object-cover lg:h-44 border border-dashed rounded-lg border-gray-500"></div>
+                    <label
+                      htmlFor="user-photo"
+                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                    >
+                      <div className="">
+                        <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
+                          <CameraIcon
+                            className=" flex-shrink-0 h-6 w-6 text-gray-500"
+                            aria-hidden="true"
+                          />
+
+                          {/* <span className="sr-only"> user photo</span> */}
+                          <input
+                            type="file"
+                            id="user-photo"
+                            name="user-photo"
+                            onChange={handleLicenseFrontImageUpload}
+                            accept={"image/*"}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                          />
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </Fragment>
+              )}
             </div>
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
               <label
@@ -151,31 +226,71 @@ export default function LicenseComponent({ setTab }: LicenseComponentProp) {
               >
                 Driver's License (Back)
               </label>
-              <div className="relative pt-3">
-                <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
-                <label
-                  htmlFor="user-photo"
-                  className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
-                >
-                  <div className="">
-                    <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
-                      <CameraIcon
-                        className=" flex-shrink-0 h-6 w-6 text-gray-500"
-                        aria-hidden="true"
-                      />
 
-                      {/* <span className="sr-only"> user photo</span> */}
-                      <input
-                        type="file"
-                        id="user-photo"
-                        name="user-photo"
-                        accept={"image/*"}
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                      />
-                    </div>
+              {driverLicenseBackImageUrl ? (
+                <Fragment>
+                  <div className="relative pt-3">
+                    <img
+                      className="h-28 w-full object-cover lg:h-44"
+                      src={driverLicenseBackImageUrl}
+                      alt=""
+                    />
+
+                    <label
+                      htmlFor="user-photo"
+                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                    >
+                      <div className="">
+                        <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
+                          <CameraIcon
+                            className=" flex-shrink-0 h-6 w-6 text-gray-300"
+                            aria-hidden="true"
+                          />
+
+                          {/* <span className="sr-only"> user photo</span> */}
+                          <input
+                            type="file"
+                            id="user-photo"
+                            name="user-photo"
+                            accept={"image/*"}
+                            onChange={handleLicenseBackImageUpload}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                          />
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <div className="relative pt-3">
+                    <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
+                    <label
+                      htmlFor="user-photo"
+                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                    >
+                      <div className="">
+                        <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
+                          <CameraIcon
+                            className=" flex-shrink-0 h-6 w-6 text-gray-500"
+                            aria-hidden="true"
+                          />
+
+                          {/* <span className="sr-only"> user photo</span> */}
+                          <input
+                            type="file"
+                            id="user-photo"
+                            name="user-photo"
+                            accept={"image/*"}
+                            onChange={handleLicenseBackImageUpload}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                          />
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </Fragment>
+              )}
             </div>
           </div>
         </div>
