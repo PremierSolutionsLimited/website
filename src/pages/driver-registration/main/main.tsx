@@ -15,6 +15,7 @@ import { useMultipleImageUpload } from "../../../components/hooks";
 import { ImageUrlProps } from "../../../components/hooks/useMultipleImageUpload";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/steps";
+import toast from "react-hot-toast";
 
 const PersonalComponent = lazy(() => import("../components/personal"));
 const ExperienceComponent = lazy(() => import("../components/experience"));
@@ -63,9 +64,6 @@ const MainComponent = () => {
   const [currentPositionEndDate, setCurrentPostionEndDate] =
     useState<string>("");
   const [currentPositionHeld, setCurrentPositionHeld] = useState<string>("");
-
-  // const [yearsOfDrivingExperience, setYearsOfDrivingExperience] =
-  //   useState<string>("");
 
   // states for driver's license information
   let licenseId: string;
@@ -206,7 +204,9 @@ const MainComponent = () => {
       },
     })
       .then(() => {})
-      .catch((e: ApolloError) => {});
+      .catch((e: ApolloError) => {
+        return toast.error(e.graphQLErrors[0].message);
+      });
   };
 
   return (
@@ -342,7 +342,7 @@ const MainComponent = () => {
                       setSaturdayActive={setSaturdayActive}
                       sundayActive={sundayActive}
                       setSundayActive={setSundayActive}
-                      load={load as number}
+                      currentImageLoaderPrompt={load as number}
                       loading={loading}
                       handleSubmit={handleSubmit}
                     />
