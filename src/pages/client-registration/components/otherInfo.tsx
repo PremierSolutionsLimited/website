@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { CarInfoComponentProp } from "./types";
 import { IGenderPreference } from "../bones/types";
-import SelectGenderPreference from "../bones/genderPrefered";
+import SelectGenderPreference from "../bones/gender";
 
 const CarInfoComponent: React.FC<CarInfoComponentProp> = ({ setTab }) => {
   const [genderPreference, setGenderPreference] = useState<IGenderPreference[]>(
