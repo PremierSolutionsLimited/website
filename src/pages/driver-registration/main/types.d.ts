@@ -1,10 +1,11 @@
 export interface CreateApplicationInputProp {
+  title: string;
   lastName: string;
   firstName: string;
   otherNames: string;
   gender: string;
   dob: Date;
-  photograph: string;
+  photograph?: string;
   maritalStatus: string;
   numberOfChildren: number;
   hasLicense: Boolean;
@@ -13,15 +14,15 @@ export interface CreateApplicationInputProp {
   region: string;
   city: string;
   residence: string;
-  ghanaPostGps: string;
+  ghanaPostGps?: string;
   licenseId: string;
-  licenseExpiry: Date;
+  licenseExpiryDate: Date;
   licenseImageFront: string;
   licenseImageBack: string;
   licenseClass: string;
   drivingExperience: number;
-  vehicleClasses: string;
-  transmissionTypes: string;
+  vehicleClasses?: string;
+  transmissionTypes: string[];
   hasAccidents: boolean;
   hasCrimeRecords: boolean;
   hasSmartPhone: boolean;
@@ -31,7 +32,7 @@ export interface CreateApplicationInputProp {
   schoolStartDate: Date;
   schoolEndDate: Date;
   qualification: string;
-  certificateImage: string;
+  certificateImage?: string;
   currentEmploymerName: string;
   currentEmploymentStartDate: Date;
   currentEmploymentEndDate: Date;

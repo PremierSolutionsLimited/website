@@ -17,5 +17,5 @@ export interface SelectTypeComponentProp {
 
 export interface IType {
   name: string;
-  description?: string;
+  value: string;
 }

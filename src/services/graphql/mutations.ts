@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 
 export const createDriverApplication = gql`
   mutation (
+    $title: Title!
     $lastName: String!
     $firstName: String!
     $otherNames: String!
@@ -18,7 +19,7 @@ export const createDriverApplication = gql`
     $residence: String
     $ghanaPostGps: String
     $licenseId: String!
-    $licenseExpiry: Date!
+    $licenseExpiryDate: Date!
     $licenseImageFront: String!
     $licenseImageBack: String!
     $licenseClass: LicenseClass!
@@ -48,6 +49,7 @@ export const createDriverApplication = gql`
   ) {
     createDriverApplication(
       input: {
+        title: $title
         lastName: $lastName
         firstName: $firstName
         otherNames: $otherNames
@@ -64,7 +66,7 @@ export const createDriverApplication = gql`
         residence: $residence
         ghanaPostGps: $ghanaPostGps
         licenseId: $licenseId
-        licenseExpiry: $licenseExpiry
+        licenseExpiryDate: $licenseExpiryDate
         licenseImageFront: $licenseImageFront
         licenseImageBack: $licenseImageBack
         licenseClass: $licenseClass

@@ -1,4 +1,11 @@
-import React, { Fragment, useState, lazy, Suspense } from "react";
+import React, {
+  Fragment,
+  useState,
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+} from "react";
 import { ApolloError, useMutation } from "@apollo/client";
 import { CREATE_DRIVER_APPLICATION } from "../../../services/graphql";
 import { ContextLoader } from "../../../shared/loaders";
@@ -6,8 +13,13 @@ import {
   CreateApplicationInputProp,
   CreateApplicationOuputProp,
 } from "./types";
+import { useAuthProvider } from "../../../services/context";
 import { getAvailableDays } from "../util/availability";
+import { getImage } from "../util/images";
+import { getTypeOfCars } from "../util/typeOfCars";
 import { IType } from "../bones/types";
+import { useMultipleImageUpload } from "../../../components/hooks";
+import { ImageUrlProps } from "../../../components/hooks/useMultipleImageUpload";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/steps";
 
@@ -17,6 +29,8 @@ const LicenceComponent = lazy(() => import("../components/license"));
 const AvailabiltyComponent = lazy(() => import("../components/availabilty"));
 
 const MainComponent = () => {
+  const [, state] = useAuthProvider();
+  const { load, handleFileSelection } = useMultipleImageUpload();
   // for tabs
   const [tab, setTab] = useState<string>("personal");
 
@@ -55,6 +69,7 @@ const MainComponent = () => {
   //   useState<string>("");
 
   // states for driver's license information
+  let licenseId: string;
   const [hasALicense, setHasALicense] = useState<string>("");
   const [licenseType, setLicenseType] = useState<string>("");
   const [licenseExpiryDate, setLicenseExpiryDate] = useState<string>("");
@@ -70,6 +85,15 @@ const MainComponent = () => {
   const [driverLicenseBackImageUrl, setDriverLicenseBackImageUrl] =
     useState<string>("");
   const [typesOfCars, setTypeOfCars] = React.useState<IType[]>([]);
+
+  // transmission types to submit to db
+  const [transmissionTypes, setTransmissionTypes] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (typesOfCars) {
+      setTransmissionTypes(getTypeOfCars(typesOfCars));
+    }
+  }, [typesOfCars]);
 
   // state's for driver availability
   const [mondayActive, setMondayActive] = useState<boolean>(false);
@@ -133,19 +157,45 @@ const MainComponent = () => {
     CreateApplicationInputProp
   >(CREATE_DRIVER_APPLICATION);
 
-  // const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault()
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   let files = await getImage({
+  //     driverFile,
+  //     driverLicenseFrontFile,
+  //     driverLicenseBackFile,
+  //   });
+  //   let images: ImageUrlProps[] = await handleFileSelection(files);
+
   //   createApplication({
-  //     variables:{
+  //     variables: {
+  //       lastName:state?.userToken?.lastName,
+  //       firstName:state?.userToken?.firstName,
+  //       otherNames:state?.userToken?.otherNames,
+  //       gender:state?.userToken?.gender,
+  //       dob: new Date(state?.userToken?.dob),
+  //       email:state?.userToken?.email,
+  //       photograph: images[0]?.fileUrl,
+  //       maritalStatus: maritalStatus,
+  //       numberOfChildren: parseInt(numberOfChildren),
+  //       hasLicense : hasALicense === "yes" ? true : false,
+  //       phone:telephone,
+  //       region: region,
+  //       city: city,
+  //       residence:currentAddress,
+  //       licenseId:licenseId,
+  //       licenseExpiry: new Date(licenseExpiryDate),
+  //       licenseImageFront: images[1]?.fileUrl,
+  //       licenseImageBack: images[2]?.fileUrl,
+  //       licenseClass: licenseClass,
+  //       drivingExperience: parseInt(yearsOfExperienceOnLicense),
+  //       vehicleClasses: "",
+  //       transmissionTypes: typesOfCars
 
-  //     }
-  //   }).then(() => {
-
-  //   }).catch((e: ApolloError) => {
-
+  //     },
   //   })
-
-  // }
+  //     .then(() => {})
+  //     .catch((e: ApolloError) => {});
+  // };
 
   return (
     <Fragment>

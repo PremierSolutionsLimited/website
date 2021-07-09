@@ -44,12 +44,12 @@ const useMultipleImageUpload = () => {
       //Update progress bar
       task.on(
         "state_changed",
-        function progress(snapshot) {
+        function progress(snapshot: any) {
           // let percentage =
           //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           // uploader.value = percentage;
         },
-        function error(err) {
+        function error(err: any) {
           reject(err);
         },
         function complete() {
