@@ -1,7 +1,5 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { PersonalComponentProp } from "./types";
-import SelectGenderPreference from "../bones/genderPrefered";
-import { IGenderPreference } from "../bones/types";
 
 const user = {
   name: "Debbie Lewis",
@@ -12,15 +10,12 @@ const user = {
 };
 
 const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
-  const [genderPreference, setGenderPreference] = useState<IGenderPreference[]>(
-    []
-  );
   return (
     <Fragment>
       <form className="divide-y divide-gray-200 lg:col-span-9">
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
-          <div>
+          {/* <div>
             <h2 className="text-lg leading-6 font-medium text-gray-900">
               Profile
             </h2>
@@ -28,16 +23,16 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
               This information will be displayed publicly so be careful what you
               share.
             </p>
-          </div>
+          </div> */}
 
-          <div className="mt-6 flex flex-col lg:flex-row">
+          <div className="mt-0 flex flex-col lg:flex-row">
             <div className="flex-grow space-y-6">
               <div>
                 <label
                   htmlFor="username"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Full Name
+                  Username
                 </label>
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
@@ -52,23 +47,20 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
 
               <div>
                 <label
-                  htmlFor="about"
+                  htmlFor="username"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  About
+                  Nationalilty
                 </label>
-                <div className="mt-1">
-                  <textarea
-                    id="about"
-                    name="about"
-                    rows={3}
-                    className="shadow-sm focus:ring-white focus:border-white mt-1 block w-full sm:text-sm border-none rounded-none bg-gray-100"
-                    defaultValue={""}
+                <div className="mt-1 rounded-md shadow-sm flex">
+                  <input
+                    type="text"
+                    name="last_name"
+                    id="last_name"
+                    autoComplete="family-name"
+                    className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
                 </div>
-                <p className="mt-2 text-sm text-gray-500">
-                  Brief description for your profile.
-                </p>
               </div>
             </div>
 
@@ -135,7 +127,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
           </div>
 
           <div className="mt-6 grid grid-cols-12 gap-6">
-            <div className="col-span-12">
+            <div className="col-span-12 sm:col-span-12">
               <label
                 htmlFor="url"
                 className="block text-sm font-medium text-gray-700"
@@ -149,17 +141,32 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
-
             <div className="col-span-12 sm:col-span-6">
               <label
-                htmlFor="company"
-                className="block pb-2 text-sm font-medium text-gray-700"
+                htmlFor="url"
+                className="block text-sm font-medium text-gray-700"
               >
-                Select gender of drivers prefered
+                Digital Address
               </label>
-              <SelectGenderPreference
-                genderPreference={genderPreference}
-                setGenderPreference={setGenderPreference}
+              <input
+                type="text"
+                name="url"
+                id="url"
+                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="url"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Phone
+              </label>
+              <input
+                type="text"
+                name="url"
+                id="url"
+                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
           </div>
@@ -176,7 +183,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
               </button> */}
             <button
               type="button"
-              onClick={() => setTab("carInfo")}
+              onClick={() => setTab("other")}
               className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
             >
               Next

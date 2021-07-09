@@ -3,7 +3,7 @@ import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/client-steps";
 
 import PersonalComponent from "../components/personal";
-import CarInfoComponent from "../components/carInfo";
+import OtherInformationComponent from "../components/otherInfo";
 import CarImagesComponent from "../components/carImage";
 
 const MainComponent = () => {
@@ -26,9 +26,9 @@ const MainComponent = () => {
                   <PersonalComponent setTab={setTab} />
                 </Fragment>
               )}
-              {tab === "carInfo" && (
+              {tab === "other" && (
                 <Fragment>
-                  <CarInfoComponent setTab={setTab} />
+                  <OtherInformationComponent setTab={setTab} />
                 </Fragment>
               )}
               {tab === "carImages" && (
