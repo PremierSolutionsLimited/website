@@ -4,7 +4,7 @@ import StepComponent from "../../../shared/client-steps";
 
 import PersonalComponent from "../components/personal";
 import OtherInformationComponent from "../components/otherInfo";
-import CarImagesComponent from "../components/carImage";
+import EmergencyComponent from "../components/emergency";
 
 const MainComponent = () => {
   const [tab, setTab] = useState<string>("personal");
@@ -31,9 +31,9 @@ const MainComponent = () => {
                   <OtherInformationComponent setTab={setTab} />
                 </Fragment>
               )}
-              {tab === "carImages" && (
+              {tab === "emergency" && (
                 <Fragment>
-                  <CarImagesComponent setTab={setTab} />
+                  <EmergencyComponent setTab={setTab} />
                 </Fragment>
               )}
             </div>

@@ -15,7 +15,7 @@ const CarInfoComponent: React.FC<CarInfoComponentProp> = ({ setTab }) => {
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
-                className="block text-sm font-medium  text-gray-700"
+                className="block text-sm font-medium pb-2  text-gray-700"
               >
                 ID Type
               </label>
@@ -100,7 +100,7 @@ const CarInfoComponent: React.FC<CarInfoComponentProp> = ({ setTab }) => {
                 Back
               </button>
               <button
-                onClick={() => setTab("carImages")}
+                onClick={() => setTab("emergency")}
                 type="button"
                 className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
               >

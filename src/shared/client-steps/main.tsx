@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-// personal, carInfo, carImages
+// personal, other, emergency
 
 const StepsComponent = ({ tab }: { tab: string }) => {
   return (
@@ -11,7 +11,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
             {/*Complete Step*/}
             <div
               className={`-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full ${
-                tab === "carInfo" || tab === "carImages"
+                tab === "other" || tab === "emergency"
                   ? "bg-pink-600"
                   : "bg-gray-300"
               }`}
@@ -43,7 +43,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
               <div className="min-w-0">
                 <h3
                   className={`text-xs leading-4 font-medium ${
-                    tab === "carInfo" || tab === "carImages"
+                    tab === "other" || tab === "emergency"
                       ? "text-gray-600"
                       : "text-pink-600"
                   } uppercase tracking-wide`}
@@ -62,7 +62,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
             {/*Complete Step*/}
             <div
               className={`-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full ${
-                tab === "carImages" ? "bg-pink-600" : "bg-gray-300"
+                tab === "emergency" ? "bg-pink-600" : "bg-gray-300"
               }`}
             ></div>
             <div className="relative flex items-start space-x-4 group focus:outline-none">
@@ -73,7 +73,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   </span>
                 ) : (
                   <Fragment>
-                    {tab === "carInfo" ? (
+                    {tab === "other" ? (
                       <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-pink-600 rounded-full">
                         <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
                       </span>
@@ -99,12 +99,12 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   className={`text-xs leading-4 font-medium uppercase tracking-wide ${
                     tab === "personal"
                       ? "text-gray-600"
-                      : tab === "carInfo"
+                      : tab === "other"
                       ? "text-pink-600"
                       : "text-gray-500"
                   } `}
                 >
-                  Car Details
+                  Other Information
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
@@ -119,13 +119,13 @@ const StepsComponent = ({ tab }: { tab: string }) => {
 
             <div className="relative flex items-start space-x-4 group focus:outline-none">
               <div className="h-9 flex items-center">
-                {tab === "personal" || tab === "carInfo" ? (
+                {tab === "personal" || tab === "other" ? (
                   <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-gray-300 rounded-full group-hover:border-gray-400 group-focus:border-gray-400 transition ease-in-out duration-150">
                     <span className="h-2.5 w-2.5 bg-transparent rounded-full group-hover:bg-gray-300 group-focus:bg-gray-300 transition ease-in-out duration-150"></span>
                   </span>
                 ) : (
                   <Fragment>
-                    {tab === "carImages" ? (
+                    {tab === "emergency" ? (
                       <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-700 group-focus:bg-pink-700 transition ease-in-out duration-150">
                         <svg
                           className="w-5 h-5 text-white"

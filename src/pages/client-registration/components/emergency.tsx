@@ -147,7 +147,7 @@ export default function CarImagesComponent({ setTab }: CarImagesComponentProp) {
         <div className="pt-6 divide-y divide-gray-200">
           <div className="mt-4 py-4 px-4 flex justify-end sm:px-6">
             <button
-              onClick={() => setTab("carInfo")}
+              onClick={() => setTab("other")}
               type="button"
               className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
             >
