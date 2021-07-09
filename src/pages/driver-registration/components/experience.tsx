@@ -11,18 +11,21 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   setPreviousEmployerName,
   previousPositionHeld,
   setPreviousPositionHeld,
-  postionStartDate,
-  setPositionStartDate,
-  positionEndDate,
-  setPositionEndDate,
-  reasonForLeaving,
-  setReasonForLeaving,
+  previousPostionStartDate,
+  setPreviousPositionStartDate,
+  previousPositionEndDate,
+  setPreviousPositionEndDate,
+  reasonForLeavingPreviousWork,
+  setReasonForLeavingPreviousWork,
   currentEmployerName,
   setCurrentEmployerName,
   currentPositionStartDate,
   setCurrentPostionStartDate,
+  currentPositionEndDate,
+  setCurrentPostionEndDate,
   currentPositionHeld,
   setCurrentPositionHeld,
+
   // yearsOfDrivingExperience,
   // setYearsOfDrivingExperience,
 }) => {
@@ -131,9 +134,9 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 required
                 type={"date"}
                 id={"dob"}
-                value={postionStartDate}
+                value={previousPostionStartDate}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPositionStartDate(e.target.value)
+                  setPreviousPositionStartDate(e.target.value)
                 }
                 className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
               />
@@ -149,9 +152,9 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 required
                 type={"date"}
                 id={"dob"}
-                value={positionEndDate}
+                value={previousPositionEndDate}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPositionEndDate(e.target.value)
+                  setPreviousPositionEndDate(e.target.value)
                 }
                 className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
               />
@@ -168,9 +171,9 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
-                value={reasonForLeaving}
+                value={reasonForLeavingPreviousWork}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setReasonForLeaving(e.target.value)
+                  setReasonForLeavingPreviousWork(e.target.value)
                 }
                 autoComplete="organization"
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"

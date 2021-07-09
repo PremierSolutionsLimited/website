@@ -58,13 +58,21 @@ const MainComponent = () => {
   const [hasBeenArrested, setHasBeenArrested] = useState<string>("");
   const [previousEmployerName, setPreviousEmployerName] = useState<string>("");
   const [previousPositionHeld, setPreviousPositionHeld] = useState<string>("");
-  const [postionStartDate, setPositionStartDate] = useState<string>("");
-  const [positionEndDate, setPositionEndDate] = useState<string>("");
-  const [reasonForLeaving, setReasonForLeaving] = useState<string>("");
+  const [previousPostionStartDate, setPreviousPositionStartDate] =
+    useState<string>("");
+  const [previousPositionEndDate, setPreviousPositionEndDate] =
+    useState<string>("");
+  const [reasonForLeavingPreviousWork, setReasonForLeavingPreviousWork] =
+    useState<string>("");
   const [currentEmployerName, setCurrentEmployerName] = useState<string>("");
   const [currentPositionStartDate, setCurrentPostionStartDate] =
     useState<string>("");
+  const [currentPositionEndDate, setCurrentPostionEndDate] =
+    useState<string>("");
   const [currentPositionHeld, setCurrentPositionHeld] = useState<string>("");
+  const [reasonForLeavingCurrentWork, setReasonForLeavingCurrentWork] =
+    useState<string>("");
+
   // const [yearsOfDrivingExperience, setYearsOfDrivingExperience] =
   //   useState<string>("");
 
@@ -139,63 +147,77 @@ const MainComponent = () => {
     }
   };
 
-  // console.log(
-  //   "days",
-  //   getAvailableDays(
-  //     mondayActive,
-  //     tuesdayActive,
-  //     wednesdayActive,
-  //     thursdayActive,
-  //     fridayActive,
-  //     saturdayActive,
-  //     sundayActive
-  //   )
-  // );
-
   const [createApplication, { loading }] = useMutation<
     CreateApplicationOuputProp,
     CreateApplicationInputProp
   >(CREATE_DRIVER_APPLICATION);
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   let files = await getImage({
-  //     driverFile,
-  //     driverLicenseFrontFile,
-  //     driverLicenseBackFile,
-  //   });
-  //   let images: ImageUrlProps[] = await handleFileSelection(files);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    let files = await getImage({
+      driverFile,
+      driverLicenseFrontFile,
+      driverLicenseBackFile,
+    });
+    let images: ImageUrlProps[] = await handleFileSelection(files);
+    let availableDays = getAvailableDays(
+      mondayActive,
+      tuesdayActive,
+      wednesdayActive,
+      thursdayActive,
+      fridayActive,
+      saturdayActive,
+      sundayActive
+    );
 
-  //   createApplication({
-  //     variables: {
-  //       lastName:state?.userToken?.lastName,
-  //       firstName:state?.userToken?.firstName,
-  //       otherNames:state?.userToken?.otherNames,
-  //       gender:state?.userToken?.gender,
-  //       dob: new Date(state?.userToken?.dob),
-  //       email:state?.userToken?.email,
-  //       photograph: images[0]?.fileUrl,
-  //       maritalStatus: maritalStatus,
-  //       numberOfChildren: parseInt(numberOfChildren),
-  //       hasLicense : hasALicense === "yes" ? true : false,
-  //       phone:telephone,
-  //       region: region,
-  //       city: city,
-  //       residence:currentAddress,
-  //       licenseId:licenseId,
-  //       licenseExpiry: new Date(licenseExpiryDate),
-  //       licenseImageFront: images[1]?.fileUrl,
-  //       licenseImageBack: images[2]?.fileUrl,
-  //       licenseClass: licenseClass,
-  //       drivingExperience: parseInt(yearsOfExperienceOnLicense),
-  //       vehicleClasses: "",
-  //       transmissionTypes: typesOfCars
-
-  //     },
-  //   })
-  //     .then(() => {})
-  //     .catch((e: ApolloError) => {});
-  // };
+    createApplication({
+      variables: {
+        title: state?.userToken?.title,
+        lastName: state?.userToken?.lastName,
+        firstName: state?.userToken?.firstName,
+        otherNames: state?.userToken?.otherNames,
+        gender: state?.userToken?.gender,
+        dob: new Date(state?.userToken?.dob),
+        email: state?.userToken?.email,
+        photograph: images[0]?.fileUrl,
+        maritalStatus: maritalStatus,
+        numberOfChildren: parseInt(numberOfChildren),
+        hasLicense: hasALicense === "yes" ? true : false,
+        phone: telephone,
+        region: region,
+        city: city,
+        residence: currentAddress,
+        licenseId: licenseId,
+        licenseExpiryDate: new Date(licenseExpiryDate),
+        licenseImageFront: images[1]?.fileUrl,
+        licenseImageBack: images[2]?.fileUrl,
+        licenseClass: licenseClass,
+        drivingExperience: parseInt(yearsOfExperienceOnLicense),
+        vehicleClasses: "",
+        transmissionTypes: transmissionTypes,
+        hasAccidents: hadAccidents === "yes" ? true : false,
+        hasCrimeRecords: hasBeenArrested === "yes" ? true : false,
+        hasSmartPhone: hasSmartPhone === "yes" ? true : false,
+        canUseMap: canUseMap === "yes" ? true : false,
+        availablity: availableDays,
+        nameOfSchool: nameOfSchoolCompleted,
+        schoolEndDate: new Date(yearOfGraduation),
+        qualification: highestLevelOfEducation,
+        currentEmploymerName: currentEmployerName,
+        currentEmploymentStartDate: new Date(currentPositionStartDate),
+        currentEmploymentEndDate: new Date(currentPositionEndDate),
+        currentEmploymentPositionHeld: currentPositionHeld,
+        reasonForLeavingCurrentWork: reasonForLeavingCurrentWork,
+        previousEmploymerName: previousEmployerName,
+        previousEmploymentStartDate: new Date(previousPostionStartDate),
+        previousEmploymentEndDate: new Date(previousPositionEndDate),
+        previousPositionHeld: previousPositionHeld,
+        previousReasonForLeaving: reasonForLeavingPreviousWork,
+      },
+    })
+      .then(() => {})
+      .catch((e: ApolloError) => {});
+  };
 
   return (
     <Fragment>
@@ -255,16 +277,24 @@ const MainComponent = () => {
                       setPreviousEmployerName={setPreviousEmployerName}
                       previousPositionHeld={previousPositionHeld}
                       setPreviousPositionHeld={setPreviousPositionHeld}
-                      postionStartDate={postionStartDate}
-                      setPositionStartDate={setPositionStartDate}
-                      positionEndDate={positionEndDate}
-                      setPositionEndDate={setPositionEndDate}
-                      reasonForLeaving={reasonForLeaving}
-                      setReasonForLeaving={setReasonForLeaving}
+                      previousPostionStartDate={previousPostionStartDate}
+                      setPreviousPositionStartDate={
+                        setPreviousPositionStartDate
+                      }
+                      previousPositionEndDate={previousPositionEndDate}
+                      setPreviousPositionEndDate={setPreviousPositionEndDate}
+                      reasonForLeavingPreviousWork={
+                        reasonForLeavingPreviousWork
+                      }
+                      setReasonForLeavingPreviousWork={
+                        setReasonForLeavingPreviousWork
+                      }
                       currentEmployerName={currentEmployerName}
                       setCurrentEmployerName={setCurrentEmployerName}
                       currentPositionStartDate={currentPositionStartDate}
                       setCurrentPostionStartDate={setCurrentPostionStartDate}
+                      currentPositionEndDate={currentPositionEndDate}
+                      setCurrentPostionEndDate={setCurrentPostionEndDate}
                       currentPositionHeld={currentPositionHeld}
                       setCurrentPositionHeld={setCurrentPositionHeld}
                       // yearsOfDrivingExperience={yearsOfDrivingExperience}

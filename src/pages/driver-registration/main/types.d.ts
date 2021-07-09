@@ -27,9 +27,9 @@ export interface CreateApplicationInputProp {
   hasCrimeRecords: boolean;
   hasSmartPhone: boolean;
   canUseMap: boolean;
-  availablity: string;
-  nameOfSchool: !string;
-  schoolStartDate: Date;
+  availablity: string[];
+  nameOfSchool: string;
+  schoolStartDate?: Date;
   schoolEndDate: Date;
   qualification: string;
   certificateImage?: string;

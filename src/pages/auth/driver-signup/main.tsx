@@ -13,7 +13,8 @@ const DriverSignup = () => {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [gender, setGender] = useState("");
+  const [otherNames, setOtherNames] = useState("");
+  const [title, setTitle] = useState("");
   const [dob, setDob] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,7 +35,9 @@ const DriverSignup = () => {
       lastName,
       dob: new Date(dob),
       email,
-      gender,
+      gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
+      title,
+      otherNames,
     };
     setLoading(true);
     wait(2000).then(async () => {
@@ -98,7 +101,7 @@ const DriverSignup = () => {
               <div className="mt-6">
                 <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="flex flex-wrap -mx-2 overflow-hidden">
-                    <div className="my-2 px-2 w-1/2 overflow-hidden">
+                    <div className="my-1 px-2 w-1/2 overflow-hidden">
                       <div>
                         <label
                           htmlFor="email"
@@ -123,7 +126,7 @@ const DriverSignup = () => {
                       </div>
                     </div>
 
-                    <div className="my-2 px-2 w-1/2 overflow-hidden">
+                    <div className="my-1 px-2 w-1/2 overflow-hidden">
                       <div>
                         <label
                           htmlFor="email"
@@ -148,27 +151,58 @@ const DriverSignup = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Gender
-                    </label>
-                    <select
-                      id="country"
-                      name="country"
-                      autoComplete="country"
-                      value={gender}
-                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                        setGender(e.target.value)
-                      }
-                      className="block w-full text-sm py-3 px-3 form-select bg-gray-100 p-2 border-none rounded-none shadow-sm placeholder-gray-200 focus:outline-none focus:ring-white focus:border-white"
-                    >
-                      <option>Please Choose</option>
-                      <option value="MALE">Male</option>
-                      <option value="FEMALE">Female</option>
-                    </select>
+                  <div className="flex flex-wrap -mx-2 overflow-hidden">
+                    <div className="my-0 px-2 w-1/2 overflow-hidden">
+                      <div>
+                        <label
+                          htmlFor="password"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Other Names
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            id="text"
+                            name="text"
+                            type="text"
+                            autoComplete="text"
+                            placeholder="Eg. Jr."
+                            value={otherNames}
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) => setOtherNames(e.target.value)}
+                            required
+                            className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="my-0 px-2 w-1/2 overflow-hidden">
+                      <div>
+                        <label
+                          htmlFor="password"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Title
+                        </label>
+                        <select
+                          id="country"
+                          name="country"
+                          autoComplete="country"
+                          value={title}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                            setTitle(e.target.value)
+                          }
+                          className="block w-full text-sm py-3 px-3 form-select bg-gray-100 p-2 border-none rounded-none shadow-sm placeholder-gray-200 focus:outline-none focus:ring-white focus:border-white"
+                        >
+                          <option>Please Choose</option>
+                          <option value="MR">Mr</option>
+                          <option value="MRS">Mrs</option>
+                          <option value="MISS">Miss</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                   <div className="space-y-1">
                     <label
