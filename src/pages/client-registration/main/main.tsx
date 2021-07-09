@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { EmergencyInputProp } from "../bones/types";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/client-steps";
 
@@ -8,6 +9,10 @@ import EmergencyComponent from "../components/emergency";
 
 const MainComponent = () => {
   const [tab, setTab] = useState<string>("personal");
+
+  const [emergencyContact, setEmergencyContact] = useState<
+    EmergencyInputProp[]
+  >([]);
   return (
     <Fragment>
       <Header />
@@ -33,7 +38,11 @@ const MainComponent = () => {
               )}
               {tab === "emergency" && (
                 <Fragment>
-                  <EmergencyComponent setTab={setTab} />
+                  <EmergencyComponent
+                    setTab={setTab}
+                    emergencyContact={emergencyContact}
+                    setEmergencyContact={setEmergencyContact}
+                  />
                 </Fragment>
               )}
             </div>
