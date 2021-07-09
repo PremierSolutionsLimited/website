@@ -105,3 +105,51 @@ export const createDriverApplication = gql`
     }
   }
 `;
+
+export const createClient = gql`
+  mutation (
+    $username: String
+    $title: Title
+    $lastName: String!
+    $firstName: String!
+    $gender: Gender!
+    $dob: Date!
+    $photograph: String
+    $email: String!
+    $phone: String!
+    $nationality: String!
+    $residence: String
+    $ghanaPostGps: String
+    $defaultPreferredGender: [Gender]
+    $idType: String
+    $idNumber: String
+    $idIssueDate: Date
+    $idExpiryDate: Date
+    $emergencyContacts: [EmergencyContactInput]
+  ) {
+    createClient(
+      input: {
+        username: $username
+        title: $title
+        lastName: $lastName
+        firstName: $firstName
+        gender: $gender
+        dob: $dob
+        photograph: $photograph
+        phone: $phone
+        email: $email
+        nationality: $nationality
+        residence: $residence
+        ghanaPostGps: $ghanaPostGps
+        defaultPreferredGender: $defaultPreferredGender
+        idType: $idType
+        idNumber: $idNumber
+        idIssueDate: $idIssueDate
+        idExpiryDate: $idExpiryDate
+        emergencyContacts: $emergencyContacts
+      }
+    ) {
+      _id
+    }
+  }
+`;
