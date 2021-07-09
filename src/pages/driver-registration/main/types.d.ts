@@ -37,7 +37,7 @@ export interface CreateApplicationInputProp {
   currentEmploymentStartDate: Date;
   currentEmploymentEndDate: Date;
   currentEmploymentPositionHeld: string;
-  reasonForLeavingCurrentWork: string;
+  reasonForLeavingCurrentWork?: string;
   previousEmploymerName: string;
   previousEmploymentStartDate: Date;
   previousEmploymentEndDate: Date;

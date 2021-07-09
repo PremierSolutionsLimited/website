@@ -97,4 +97,7 @@ export interface AvailabiltyComponentProp {
   setSaturdayActive: React.Dispatch<React.SetStateAction<boolean>>;
   sundayActive: boolean;
   setSundayActive: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
+  loading: boolean;
+  load: number;
 }

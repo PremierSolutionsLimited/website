@@ -164,7 +164,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                Reason for leaving
+                Reason for leaving previous work
               </label>
               <input
                 required
@@ -199,6 +199,27 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
+
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Position Held
+              </label>
+              <input
+                required
+                type="text"
+                name="company"
+                id="company"
+                value={currentPositionHeld}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setCurrentPositionHeld(e.target.value)
+                }
+                autoComplete="organization"
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
@@ -222,19 +243,17 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                Position Held
+                End Date
               </label>
               <input
                 required
-                type="text"
-                name="company"
-                id="company"
-                value={currentPositionHeld}
+                type={"date"}
+                id={"dob"}
+                value={currentPositionEndDate}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setCurrentPositionHeld(e.target.value)
+                  setCurrentPostionEndDate(e.target.value)
                 }
-                autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
               />
             </div>
 

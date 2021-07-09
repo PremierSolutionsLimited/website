@@ -1,11 +1,4 @@
-import React, {
-  Fragment,
-  useState,
-  lazy,
-  Suspense,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { Fragment, useState, lazy, Suspense, useEffect } from "react";
 import { ApolloError, useMutation } from "@apollo/client";
 import { CREATE_DRIVER_APPLICATION } from "../../../services/graphql";
 import { ContextLoader } from "../../../shared/loaders";
@@ -70,8 +63,6 @@ const MainComponent = () => {
   const [currentPositionEndDate, setCurrentPostionEndDate] =
     useState<string>("");
   const [currentPositionHeld, setCurrentPositionHeld] = useState<string>("");
-  const [reasonForLeavingCurrentWork, setReasonForLeavingCurrentWork] =
-    useState<string>("");
 
   // const [yearsOfDrivingExperience, setYearsOfDrivingExperience] =
   //   useState<string>("");
@@ -152,7 +143,7 @@ const MainComponent = () => {
     CreateApplicationInputProp
   >(CREATE_DRIVER_APPLICATION);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let files = await getImage({
       driverFile,
@@ -207,12 +198,11 @@ const MainComponent = () => {
         currentEmploymentStartDate: new Date(currentPositionStartDate),
         currentEmploymentEndDate: new Date(currentPositionEndDate),
         currentEmploymentPositionHeld: currentPositionHeld,
-        reasonForLeavingCurrentWork: reasonForLeavingCurrentWork,
+        previousReasonForLeaving: reasonForLeavingPreviousWork,
         previousEmploymerName: previousEmployerName,
         previousEmploymentStartDate: new Date(previousPostionStartDate),
         previousEmploymentEndDate: new Date(previousPositionEndDate),
         previousPositionHeld: previousPositionHeld,
-        previousReasonForLeaving: reasonForLeavingPreviousWork,
       },
     })
       .then(() => {})
@@ -297,6 +287,7 @@ const MainComponent = () => {
                       setCurrentPostionEndDate={setCurrentPostionEndDate}
                       currentPositionHeld={currentPositionHeld}
                       setCurrentPositionHeld={setCurrentPositionHeld}
+
                       // yearsOfDrivingExperience={yearsOfDrivingExperience}
                       // setYearsOfDrivingExperience={setYearsOfDrivingExperience}
                     />
@@ -351,6 +342,9 @@ const MainComponent = () => {
                       setSaturdayActive={setSaturdayActive}
                       sundayActive={sundayActive}
                       setSundayActive={setSundayActive}
+                      load={load as number}
+                      loading={loading}
+                      handleSubmit={handleSubmit}
                     />
                   </Fragment>
                 )}
