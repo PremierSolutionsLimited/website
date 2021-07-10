@@ -10,7 +10,7 @@ export default function CarImagesComponent({
   return (
     <Fragment>
       <div>
-        <form className="divide-y divide-gray-200 lg:col-span-9">
+        <div className="divide-y divide-white lg:col-span-9">
           {/* Profile section */}
 
           <EmergencyComponentSelect
@@ -35,7 +35,7 @@ export default function CarImagesComponent({
               </button>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </Fragment>
   );
