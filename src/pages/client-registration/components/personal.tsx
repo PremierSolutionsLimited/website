@@ -1,30 +1,25 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { PersonalComponentProp } from "./types";
+import ProfileImage from "../../../assets/images/male.jpeg";
 
-const user = {
-  name: "Debbie Lewis",
-  handle: "deblewis",
-  email: "debbielewis@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80",
-};
-
-const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
+const PersonalComponent: React.FC<PersonalComponentProp> = ({
+  setTab,
+  username,
+  setUsername,
+  nationality,
+  setNationality,
+  placeOfResidence,
+  setPlaceOfResidence,
+  digitalAddress,
+  setDigitalAddress,
+  phone,
+  setPhone,
+}) => {
   return (
     <Fragment>
       <form className="divide-y divide-gray-200 lg:col-span-9">
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
-          {/* <div>
-            <h2 className="text-lg leading-6 font-medium text-gray-900">
-              Profile
-            </h2>
-            <p className="mt-1 text-sm text-gray-500">
-              This information will be displayed publicly so be careful what you
-              share.
-            </p>
-          </div> */}
-
           <div className="mt-0 flex flex-col lg:flex-row">
             <div className="flex-grow space-y-6">
               <div>
@@ -39,6 +34,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                     type="text"
                     name="last_name"
                     id="last_name"
+                    value={username}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setUsername(e.target.value)
+                    }
                     autoComplete="family-name"
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
@@ -57,6 +56,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                     type="text"
                     name="last_name"
                     id="last_name"
+                    value={nationality}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setNationality(e.target.value)
+                    }
                     autoComplete="family-name"
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
@@ -79,7 +82,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                   >
                     <img
                       className="rounded-full h-full w-full"
-                      src={user.imageUrl}
+                      src={ProfileImage}
                       alt=""
                     />
                   </div>
@@ -106,7 +109,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
               <div className="hidden relative rounded-full overflow-hidden lg:block">
                 <img
                   className="relative rounded-full w-40 h-40"
-                  src={user.imageUrl}
+                  src={ProfileImage}
                   alt=""
                 />
                 <label
@@ -138,6 +141,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 type="text"
                 name="url"
                 id="url"
+                value={placeOfResidence}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPlaceOfResidence(e.target.value)
+                }
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
@@ -152,6 +159,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 type="text"
                 name="url"
                 id="url"
+                value={digitalAddress}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setDigitalAddress(e.target.value)
+                }
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
@@ -166,6 +177,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 type="text"
                 name="url"
                 id="url"
+                value={phone}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPhone(e.target.value)
+                }
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>

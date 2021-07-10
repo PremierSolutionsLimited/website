@@ -1,12 +1,21 @@
-import { Fragment, useState } from "react";
-import { CarInfoComponentProp } from "./types";
-import { IGenderPreference } from "../bones/types";
+import React, { Fragment } from "react";
+import { OtherInfoComponentProp } from "./types";
+
 import SelectGenderPreference from "../bones/gender";
 
-const CarInfoComponent: React.FC<CarInfoComponentProp> = ({ setTab }) => {
-  const [genderPreference, setGenderPreference] = useState<IGenderPreference[]>(
-    []
-  );
+const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
+  setTab,
+  genderPreference,
+  setGenderPreference,
+  idType,
+  setIdType,
+  idIssueDate,
+  setIdIssueDate,
+  idExpiryDate,
+  setIdExpiryDate,
+  idNumber,
+  setIdNumber,
+}) => {
   return (
     <Fragment>
       <form className="divide-y divide-gray-200 lg:col-span-9">
@@ -22,6 +31,10 @@ const CarInfoComponent: React.FC<CarInfoComponentProp> = ({ setTab }) => {
               <select
                 id="location"
                 name="location"
+                value={idType}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setIdType(e.target.value)
+                }
                 className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
               >
                 <option>Please Choose</option>
@@ -39,6 +52,10 @@ const CarInfoComponent: React.FC<CarInfoComponentProp> = ({ setTab }) => {
                 type="text"
                 name="company"
                 id="company"
+                value={idNumber}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setIdNumber(e.target.value)
+                }
                 autoComplete="organization"
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
@@ -55,6 +72,10 @@ const CarInfoComponent: React.FC<CarInfoComponentProp> = ({ setTab }) => {
                 type="date"
                 name="company"
                 id="company"
+                value={idIssueDate}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setIdIssueDate(e.target.value)
+                }
                 autoComplete="organization"
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
@@ -71,6 +92,10 @@ const CarInfoComponent: React.FC<CarInfoComponentProp> = ({ setTab }) => {
                 type="date"
                 name="company"
                 id="company"
+                value={idExpiryDate}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setIdExpiryDate(e.target.value)
+                }
                 autoComplete="organization"
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />

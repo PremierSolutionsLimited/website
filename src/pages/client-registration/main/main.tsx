@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { EmergencyInputProp } from "../bones/types";
+import { EmergencyInputProp, IGenderPreference } from "../bones/types";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/client-steps";
 
@@ -8,8 +8,24 @@ import OtherInformationComponent from "../components/otherInfo";
 import EmergencyComponent from "../components/emergency";
 
 const MainComponent = () => {
+  // toggle tab
   const [tab, setTab] = useState<string>("personal");
 
+  // states for personal information
+  const [username, setUsername] = useState<string>("");
+  const [nationality, setNationality] = useState<string>("");
+  const [placeOfResdience, setPlaceOfResidence] = useState<string>("");
+  const [digitalAddress, setDigitalAddress] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+
+  // states for other components
+  const [idType, setIdType] = useState<string>("");
+  const [idNumber, setIdNumber] = useState<string>("");
+  const [idIssueDate, setIdIssueDate] = useState<string>("");
+  const [idExpiryDate, setIdExpiryDate] = useState<string>("");
+  const [genderPreference, setGenderPreference] = useState<IGenderPreference[]>(
+    []
+  );
   const [emergencyContact, setEmergencyContact] = useState<
     EmergencyInputProp[]
   >([]);
@@ -28,12 +44,36 @@ const MainComponent = () => {
             <div className="sm:col-span-3 ml-10 ">
               {tab === "personal" && (
                 <Fragment>
-                  <PersonalComponent setTab={setTab} />
+                  <PersonalComponent
+                    setTab={setTab}
+                    username={username}
+                    setUsername={setUsername}
+                    nationality={nationality}
+                    setNationality={setNationality}
+                    placeOfResidence={placeOfResdience}
+                    setPlaceOfResidence={setPlaceOfResidence}
+                    digitalAddress={digitalAddress}
+                    setDigitalAddress={setDigitalAddress}
+                    phone={phone}
+                    setPhone={setPhone}
+                  />
                 </Fragment>
               )}
               {tab === "other" && (
                 <Fragment>
-                  <OtherInformationComponent setTab={setTab} />
+                  <OtherInformationComponent
+                    setTab={setTab}
+                    idType={idType}
+                    setIdType={setIdType}
+                    idNumber={idNumber}
+                    setIdNumber={setIdNumber}
+                    idIssueDate={idIssueDate}
+                    setIdIssueDate={setIdIssueDate}
+                    idExpiryDate={idExpiryDate}
+                    setIdExpiryDate={setIdExpiryDate}
+                    genderPreference={genderPreference}
+                    setGenderPreference={setGenderPreference}
+                  />
                 </Fragment>
               )}
               {tab === "emergency" && (
