@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, Suspense } from "react";
 import { CreateClientInputProp, CreateClientOutputProp } from "./types";
 import { EmergencyInputProp, IGenderPreference } from "../bones/types";
 import { getGenderPreference } from "../util/defaultGender";
@@ -6,6 +6,7 @@ import { ApolloError, useMutation } from "@apollo/client";
 import { CREATE_CLIENT } from "../../../services/graphql";
 import { useAuthProvider } from "../../../services/context";
 import { v4 } from "uuid";
+import { ContextLoader } from "../../../shared/loaders";
 import toast from "react-hot-toast";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/client-steps";
@@ -66,56 +67,84 @@ const MainComponent = () => {
   ) => {
     e.preventDefault();
 
-    if (!clientFile) return toast.error("Please add a profile image");
-    setUploadingToFirebase(true);
-    let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
-    const uploadTask = storage.ref(`/store/${fileName}`).put(clientFile);
-    uploadTask.on(
-      "state_changed",
-      (snapShot: any) => {},
-      (err: any) => {
-        setUploadingToFirebase(false);
+    // if (!clientFile) return toast.error("Please add a profile image");
+    if (clientFile) {
+      setUploadingToFirebase(true);
+      let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
+      const uploadTask = storage.ref(`/store/${fileName}`).put(clientFile);
+      uploadTask.on(
+        "state_changed",
+        (snapShot: any) => {},
+        (err: any) => {
+          setUploadingToFirebase(false);
 
-        return toast.error(err?.message);
-      },
-      () => {
-        storage
-          .ref("store")
-          .child(fileName)
-          .getDownloadURL()
-          .then((fireBaseUrl: string) => {
-            invokeCreateClient({
-              variables: {
-                title: state?.userToken?.title,
-                lastName: state?.userToken?.lastName,
-                firstName: state?.userToken?.firstName,
-                otherNames: state?.userToken?.otherNames,
-                gender: state?.userToken?.gender,
-                dob: new Date(state?.userToken?.dob),
-                email: state?.userToken?.email,
-                nationality,
-                residence: placeOfResdience,
-                ghanaPostGps: digitalAddress,
-                defaultPreferredGender: defaultGenderPreference,
-                idType,
-                idNumber,
-                idIssueDate: new Date(idIssueDate),
-                idExpiryDate: new Date(idExpiryDate),
-                emergencyContacts: emergencyContact,
-                photograph: fireBaseUrl,
-                username,
-                phone,
-              },
-            })
-              .then(() => {
-                toast.success("Application completed successfully");
+          return toast.error(err?.message);
+        },
+        () => {
+          storage
+            .ref("store")
+            .child(fileName)
+            .getDownloadURL()
+            .then((fireBaseUrl: string) => {
+              invokeCreateClient({
+                variables: {
+                  title: state?.userToken?.title,
+                  lastName: state?.userToken?.lastName,
+                  firstName: state?.userToken?.firstName,
+                  otherNames: state?.userToken?.otherNames,
+                  gender: state?.userToken?.gender,
+                  dob: new Date(state?.userToken?.dob),
+                  email: state?.userToken?.email,
+                  nationality,
+                  residence: placeOfResdience,
+                  ghanaPostGps: digitalAddress,
+                  defaultPreferredGender: defaultGenderPreference,
+                  idType,
+                  idNumber,
+                  idIssueDate: new Date(idIssueDate),
+                  idExpiryDate: new Date(idExpiryDate),
+                  emergencyContacts: emergencyContact,
+                  photograph: fireBaseUrl,
+                  username,
+                  phone,
+                },
               })
-              .catch((e: ApolloError) => {
-                return toast.error(e.graphQLErrors[0].message);
-              });
-          });
-      }
-    );
+                .then(() => {
+                  toast.success("Application completed successfully");
+                })
+                .catch((e: ApolloError) => {
+                  return toast.error(e.graphQLErrors[0].message);
+                });
+            });
+        }
+      );
+    } else {
+      invokeCreateClient({
+        variables: {
+          title: state?.userToken?.title,
+          lastName: state?.userToken?.lastName,
+          firstName: state?.userToken?.firstName,
+          otherNames: state?.userToken?.otherNames,
+          gender: state?.userToken?.gender,
+          dob: new Date(state?.userToken?.dob),
+          email: state?.userToken?.email,
+          nationality,
+          residence: placeOfResdience,
+          ghanaPostGps: digitalAddress,
+          defaultPreferredGender: defaultGenderPreference,
+          idType,
+          idNumber,
+          idIssueDate: new Date(idIssueDate),
+          idExpiryDate: new Date(idExpiryDate),
+          emergencyContacts: emergencyContact,
+
+          username,
+          phone,
+        },
+      }).then(() => {
+        toast.success("Application completed successfully");
+      });
+    }
   };
 
   // function to handle image upload from client's pc
@@ -139,59 +168,60 @@ const MainComponent = () => {
                 <StepComponent tab={tab} />
               </div>
             </div>
-
-            <div className="sm:col-span-3 ml-10 ">
-              {tab === "personal" && (
-                <Fragment>
-                  <PersonalComponent
-                    setTab={setTab}
-                    username={username}
-                    setUsername={setUsername}
-                    nationality={nationality}
-                    setNationality={setNationality}
-                    placeOfResidence={placeOfResdience}
-                    setPlaceOfResidence={setPlaceOfResidence}
-                    digitalAddress={digitalAddress}
-                    setDigitalAddress={setDigitalAddress}
-                    phone={phone}
-                    setPhone={setPhone}
-                    handleImageUpload={handleImageUpload}
-                    clientImageUrl={clientImageUrl}
-                  />
-                </Fragment>
-              )}
-              {tab === "other" && (
-                <Fragment>
-                  <OtherInformationComponent
-                    setTab={setTab}
-                    idType={idType}
-                    setIdType={setIdType}
-                    idNumber={idNumber}
-                    setIdNumber={setIdNumber}
-                    idIssueDate={idIssueDate}
-                    setIdIssueDate={setIdIssueDate}
-                    idExpiryDate={idExpiryDate}
-                    setIdExpiryDate={setIdExpiryDate}
-                    genderPreference={genderPreference}
-                    setGenderPreference={setGenderPreference}
-                  />
-                </Fragment>
-              )}
-              {tab === "emergency" && (
-                <Fragment>
-                  <EmergencyComponent
-                    setTab={setTab}
-                    emergencyContact={emergencyContact}
-                    setEmergencyContact={setEmergencyContact}
-                    completingApplication={loading}
-                    uploadingToFirebase={uploadingToFirebase}
-                    handleHandleCompleteRegistration={
-                      handleHandleCompleteRegistration
-                    }
-                  />
-                </Fragment>
-              )}
-            </div>
+            <Suspense fallback={ContextLoader()}>
+              <div className="sm:col-span-3 ml-10 ">
+                {tab === "personal" && (
+                  <Fragment>
+                    <PersonalComponent
+                      setTab={setTab}
+                      username={username}
+                      setUsername={setUsername}
+                      nationality={nationality}
+                      setNationality={setNationality}
+                      placeOfResidence={placeOfResdience}
+                      setPlaceOfResidence={setPlaceOfResidence}
+                      digitalAddress={digitalAddress}
+                      setDigitalAddress={setDigitalAddress}
+                      phone={phone}
+                      setPhone={setPhone}
+                      handleImageUpload={handleImageUpload}
+                      clientImageUrl={clientImageUrl}
+                    />
+                  </Fragment>
+                )}
+                {tab === "other" && (
+                  <Fragment>
+                    <OtherInformationComponent
+                      setTab={setTab}
+                      idType={idType}
+                      setIdType={setIdType}
+                      idNumber={idNumber}
+                      setIdNumber={setIdNumber}
+                      idIssueDate={idIssueDate}
+                      setIdIssueDate={setIdIssueDate}
+                      idExpiryDate={idExpiryDate}
+                      setIdExpiryDate={setIdExpiryDate}
+                      genderPreference={genderPreference}
+                      setGenderPreference={setGenderPreference}
+                    />
+                  </Fragment>
+                )}
+                {tab === "emergency" && (
+                  <Fragment>
+                    <EmergencyComponent
+                      setTab={setTab}
+                      emergencyContact={emergencyContact}
+                      setEmergencyContact={setEmergencyContact}
+                      completingApplication={loading}
+                      uploadingToFirebase={uploadingToFirebase}
+                      handleHandleCompleteRegistration={
+                        handleHandleCompleteRegistration
+                      }
+                    />
+                  </Fragment>
+                )}
+              </div>
+            </Suspense>
           </div>
         </div>
       </div>

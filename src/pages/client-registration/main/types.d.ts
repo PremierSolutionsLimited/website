@@ -6,7 +6,7 @@ export interface CreateClientInputProp {
   gender: string;
   otherNames: string;
   dob: Date;
-  photograph: string;
+  photograph?: string;
   phone: string;
   email: string;
   nationality: string;
