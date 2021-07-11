@@ -39,4 +39,9 @@ export interface EmergencyComponentProp {
   setEmergencyContact: React.Dispatch<
     React.SetStateAction<EmergencyInputProp[]>
   >;
+  completingApplication: boolean;
+  uploadingToFirebase: boolean;
+  handleHandleCompleteRegistration: (
+    e: React.FormEvent<HTMLButtonElement>
+  ) => void;
 }

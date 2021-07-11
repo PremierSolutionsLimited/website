@@ -155,7 +155,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                     tab === "social" ? "text-pink-600" : "text-gray-500"
                   } `}
                 >
-                  Car Images
+                  Emergency Contacts
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque

@@ -45,7 +45,7 @@ const MainComponent = ({
           </div>
         </button>
       </div>
-      <div style={{ height: "65vh" }} className="overflow-y-auto">
+      <div style={{ height: "57vh" }} className="overflow-y-auto">
         {emergencyContact.map((contact: EmergencyInputProp, index: number) => (
           <React.Fragment key={index}>
             <div className="py-3 px-4 sm:p-6 lg:pb-8">
