@@ -14,10 +14,19 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setDigitalAddress,
   phone,
   setPhone,
+  handleImageUpload,
+  clientImageUrl,
 }) => {
+  function handleGoToNextPage(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    return setTab("other");
+  }
   return (
     <Fragment>
-      <form className="divide-y divide-gray-200 lg:col-span-9">
+      <form
+        onSubmit={handleGoToNextPage}
+        className="divide-y divide-gray-200 lg:col-span-9"
+      >
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
           <div className="mt-0 flex flex-col lg:flex-row">
@@ -25,7 +34,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               <div>
                 <label
                   htmlFor="username"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block pb-3  text-sm font-medium text-gray-700"
                 >
                   Username
                 </label>
@@ -38,6 +47,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setUsername(e.target.value)
                     }
+                    required
                     autoComplete="family-name"
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
@@ -47,7 +57,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               <div>
                 <label
                   htmlFor="username"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm pb-3  font-medium text-gray-700"
                 >
                   Nationalilty
                 </label>
@@ -60,6 +70,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setNationality(e.target.value)
                     }
+                    required
                     autoComplete="family-name"
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
@@ -82,7 +93,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                   >
                     <img
                       className="rounded-full h-full w-full"
-                      src={ProfileImage}
+                      src={clientImageUrl || ProfileImage}
                       alt=""
                     />
                   </div>
@@ -99,6 +110,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                         id="user_photo"
                         name="user_photo"
                         type="file"
+                        accept={"image/*"}
+                        onChange={handleImageUpload}
                         className="absolute w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
                       />
                     </div>
@@ -109,7 +122,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               <div className="hidden relative rounded-full overflow-hidden lg:block">
                 <img
                   className="relative rounded-full w-40 h-40"
-                  src={ProfileImage}
+                  src={clientImageUrl || ProfileImage}
                   alt=""
                 />
                 <label
@@ -122,6 +135,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     type="file"
                     id="user-photo"
                     name="user-photo"
+                    accept={"image/*"}
+                    onChange={handleImageUpload}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
                   />
                 </label>
@@ -133,7 +148,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
             <div className="col-span-12 sm:col-span-12">
               <label
                 htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm pb-3 font-medium text-gray-700"
               >
                 Place of Residence
               </label>
@@ -141,6 +156,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
+                required
                 value={placeOfResidence}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPlaceOfResidence(e.target.value)
@@ -151,7 +167,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm pb-3  font-medium text-gray-700"
               >
                 Digital Address
               </label>
@@ -169,15 +185,18 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm pb-3  font-medium text-gray-700"
               >
                 Phone
               </label>
               <input
-                type="text"
+                type="number"
                 name="url"
                 id="url"
                 value={phone}
+                required
+                maxLength={10}
+                minLength={10}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPhone(e.target.value)
                 }
@@ -197,8 +216,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 Cancel
               </button> */}
             <button
-              type="button"
-              onClick={() => setTab("other")}
+              type="submit"
               className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
             >
               Next

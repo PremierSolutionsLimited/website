@@ -18,6 +18,10 @@ const MainComponent = () => {
   const [digitalAddress, setDigitalAddress] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
 
+  // for clients's image
+  const [clientFile, setClientFile] = useState<any>(null);
+  const [clientImageUrl, setClientImageUrl] = useState<string>("");
+
   // states for other components
   const [idType, setIdType] = useState<string>("");
   const [idNumber, setIdNumber] = useState<string>("");
@@ -26,9 +30,22 @@ const MainComponent = () => {
   const [genderPreference, setGenderPreference] = useState<IGenderPreference[]>(
     []
   );
+
+  // for emergency contact
   const [emergencyContact, setEmergencyContact] = useState<
     EmergencyInputProp[]
   >([]);
+
+  // function to handle image upload from client's pc
+  const handleImageUpload = (e: any) => {
+    if (e.target.files[0] !== undefined) {
+      setClientImageUrl(URL.createObjectURL(e.target.files[0]));
+      setClientFile(e.target.files[0]);
+    } else {
+      setClientImageUrl(URL.createObjectURL(clientFile));
+      setClientFile(clientFile);
+    }
+  };
   return (
     <Fragment>
       <Header />
@@ -56,6 +73,8 @@ const MainComponent = () => {
                     setDigitalAddress={setDigitalAddress}
                     phone={phone}
                     setPhone={setPhone}
+                    handleImageUpload={handleImageUpload}
+                    clientImageUrl={clientImageUrl}
                   />
                 </Fragment>
               )}

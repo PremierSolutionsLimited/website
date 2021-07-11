@@ -13,6 +13,8 @@ export interface PersonalComponentProp {
   setDigitalAddress: React.Dispatch<React.SetStateAction<string>>;
   phone: string;
   setPhone: React.Dispatch<React.SetStateAction<string>>;
+  handleImageUpload: (e: any) => void;
+  clientImageUrl: string;
 }
 
 export interface OtherInfoComponentProp {
