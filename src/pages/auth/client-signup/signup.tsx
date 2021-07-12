@@ -95,7 +95,7 @@ const Signup = () => {
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm pb-1 font-medium text-gray-700"
                         >
                           First Name
                         </label>
@@ -120,7 +120,7 @@ const Signup = () => {
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm pb-1 font-medium text-gray-700"
                         >
                           Last Name
                         </label>
@@ -146,7 +146,7 @@ const Signup = () => {
                       <div>
                         <label
                           htmlFor="password"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm pb-1 font-medium text-gray-700"
                         >
                           Other Names
                         </label>
@@ -172,7 +172,7 @@ const Signup = () => {
                       <div>
                         <label
                           htmlFor="password"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm pb-1 font-medium text-gray-700"
                         >
                           Title
                         </label>
@@ -197,7 +197,7 @@ const Signup = () => {
                   <div className="space-y-1">
                     <label
                       htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm pb-1 font-medium text-gray-700"
                     >
                       Date of Birth
                     </label>
@@ -217,7 +217,7 @@ const Signup = () => {
                   <div className="space-y-1">
                     <label
                       htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm pb-1 font-medium text-gray-700"
                     >
                       Email address
                     </label>
