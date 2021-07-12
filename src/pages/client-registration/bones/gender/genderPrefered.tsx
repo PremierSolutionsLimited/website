@@ -1,12 +1,12 @@
 import { FC, Fragment, useState, useCallback, useRef } from "react";
-import { ListLoader } from "../../../shared/loaders";
-import { useOutsideListener } from "../../../components/hooks";
+import { ListLoader } from "../../../../shared/loaders";
+import { useOutsideListener } from "../../../../components/hooks";
 import {
   SelectGenderPreferenceComponentProp,
   IGenderPreference,
-} from "./types";
+} from "../types";
 // import { reduceString } from "../../../components/utils/truncate";
-import Transition from "../../../components/transitions";
+import Transition from "../../../../components/transitions";
 
 const data: IGenderPreference[] = [
   {

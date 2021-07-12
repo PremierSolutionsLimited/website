@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react";
+import { Fragment } from "react";
 import {
   ApolloClient,
   ApolloProvider,
@@ -10,11 +10,10 @@ import {
 import { onError } from "@apollo/client/link/error";
 import Auth, { BASE_URL } from "./cookie.config";
 import { useAuthProvider } from "../context";
-import { useToasts } from "react-toast-notifications";
+import toast from "react-hot-toast";
 
-const ClientApollo: FC = ({ children }) => {
+const ClientApollo = ({ children }) => {
   const [{ signOut }] = useAuthProvider();
-  const { addToast } = useToasts();
   const httpLink = new HttpLink({
     uri: BASE_URL,
   });
@@ -22,7 +21,7 @@ const ClientApollo: FC = ({ children }) => {
   const authLink = new ApolloLink((operation, forward) => {
     let authorization = null;
     let auth = Auth.getCipher();
-    let customHeaders: any = {};
+    let customHeaders = {};
     if (auth) {
       authorization = JSON.parse(auth).token;
       customHeaders.Authorization = authorization;
@@ -41,15 +40,13 @@ const ClientApollo: FC = ({ children }) => {
       if (graphQLErrors?.length > 0) {
         if (graphQLErrors[0].message === "AuthorizationExpired") {
           signOut();
-          addToast("Your session expired, please login", {
-            appearance: "warning",
-          });
+          return toast.error("Oops... Your session expired");
         }
       }
     }
 
     if (networkError) {
-      return addToast(networkError?.message, { appearance: "warning" });
+      return toast.error(networkError.message);
     }
   });
 
