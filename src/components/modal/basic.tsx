@@ -23,7 +23,7 @@ const Modal: React.FC<BasicModalComponentProp> = ({
         <Dialog
           as="div"
           static
-          className="fixed z-10 inset-0 overflow-y-auto"
+          className="fixed z-30 inset-0 overflow-y-auto"
           initialFocus={ref}
           open={show}
           onClose={setShow}
@@ -57,7 +57,7 @@ const Modal: React.FC<BasicModalComponentProp> = ({
               leaveFrom="opacity-100 translate-x-0 sm:scale-100"
               leaveTo="translate-x-20"
             >
-              <div className="fixed z-20 inset-x-0   sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
+              <div className="fixed z-30 inset-x-0   sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
                 <div
                   ref={ref}
                   style={{ width: `${size}vw`, height: `${height}vh` }}

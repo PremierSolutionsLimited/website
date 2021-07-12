@@ -30,7 +30,7 @@ const StepsComponent = ({ tab }: Props) => {
                   </span>
                 ) : (
                   <Fragment>
-                    <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-red-800 group-focus:bg-red-800 transition ease-in-out duration-150">
+                    <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-700 group-focus:bg-pink-700 transition ease-in-out duration-150">
                       <svg
                         className="w-5 h-5 text-white"
                         viewBox="0 0 20 20"
@@ -88,7 +88,7 @@ const StepsComponent = ({ tab }: Props) => {
                         <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
                       </span>
                     ) : (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-red-800 group-focus:bg-red-800 transition ease-in-out duration-150">
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-700 group-focus:bg-pink-700 transition ease-in-out duration-150">
                         <svg
                           className="w-5 h-5 text-white"
                           viewBox="0 0 20 20"
@@ -145,7 +145,7 @@ const StepsComponent = ({ tab }: Props) => {
                         <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
                       </span>
                     ) : (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-red-800 group-focus:bg-red-800 transition ease-in-out duration-150">
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-700 group-focus:bg-pink-700 transition ease-in-out duration-150">
                         <svg
                           className="w-5 h-5 text-white"
                           viewBox="0 0 20 20"
@@ -196,7 +196,7 @@ const StepsComponent = ({ tab }: Props) => {
                 ) : (
                   <Fragment>
                     {tab === "avaiabliity" ? (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-red-800 group-focus:bg-red-800 transition ease-in-out duration-150">
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-700 group-focus:bg-pink-700 transition ease-in-out duration-150">
                         <svg
                           className="w-5 h-5 text-white"
                           viewBox="0 0 20 20"

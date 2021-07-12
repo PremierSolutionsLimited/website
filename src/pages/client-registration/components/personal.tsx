@@ -1,49 +1,53 @@
-import { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { PersonalComponentProp } from "./types";
-import SelectGenderPreference from "../bones/genderPrefered";
-import { IGenderPreference } from "../bones/types";
+import ProfileImage from "../../../assets/images/male.jpeg";
 
-const user = {
-  name: "Debbie Lewis",
-  handle: "deblewis",
-  email: "debbielewis@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80",
-};
-
-const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
-  const [genderPreference, setGenderPreference] = useState<IGenderPreference[]>(
-    []
-  );
+const PersonalComponent: React.FC<PersonalComponentProp> = ({
+  setTab,
+  username,
+  setUsername,
+  nationality,
+  setNationality,
+  placeOfResidence,
+  setPlaceOfResidence,
+  digitalAddress,
+  setDigitalAddress,
+  phone,
+  setPhone,
+  handleImageUpload,
+  clientImageUrl,
+}) => {
+  function handleGoToNextPage(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    return setTab("other");
+  }
   return (
     <Fragment>
-      <form className="divide-y divide-gray-200 lg:col-span-9">
+      <form
+        onSubmit={handleGoToNextPage}
+        className="divide-y divide-gray-200 lg:col-span-9"
+      >
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
-          <div>
-            <h2 className="text-lg leading-6 font-medium text-gray-900">
-              Profile
-            </h2>
-            <p className="mt-1 text-sm text-gray-500">
-              This information will be displayed publicly so be careful what you
-              share.
-            </p>
-          </div>
-
-          <div className="mt-6 flex flex-col lg:flex-row">
+          <div className="mt-0 flex flex-col lg:flex-row">
             <div className="flex-grow space-y-6">
               <div>
                 <label
                   htmlFor="username"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block pb-3  text-sm font-medium text-gray-700"
                 >
-                  Full Name
+                  Username
                 </label>
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     type="text"
                     name="last_name"
                     id="last_name"
+                    value={username}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setUsername(e.target.value)
+                    }
+                    required
                     autoComplete="family-name"
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
@@ -52,23 +56,25 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
 
               <div>
                 <label
-                  htmlFor="about"
-                  className="block text-sm font-medium text-gray-700"
+                  htmlFor="username"
+                  className="block text-sm pb-3  font-medium text-gray-700"
                 >
-                  About
+                  Nationalilty
                 </label>
-                <div className="mt-1">
-                  <textarea
-                    id="about"
-                    name="about"
-                    rows={3}
-                    className="shadow-sm focus:ring-white focus:border-white mt-1 block w-full sm:text-sm border-none rounded-none bg-gray-100"
-                    defaultValue={""}
+                <div className="mt-1 rounded-md shadow-sm flex">
+                  <input
+                    type="text"
+                    name="last_name"
+                    id="last_name"
+                    value={nationality}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setNationality(e.target.value)
+                    }
+                    required
+                    autoComplete="family-name"
+                    className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
                 </div>
-                <p className="mt-2 text-sm text-gray-500">
-                  Brief description for your profile.
-                </p>
               </div>
             </div>
 
@@ -87,7 +93,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                   >
                     <img
                       className="rounded-full h-full w-full"
-                      src={user.imageUrl}
+                      src={clientImageUrl || ProfileImage}
                       alt=""
                     />
                   </div>
@@ -104,6 +110,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                         id="user_photo"
                         name="user_photo"
                         type="file"
+                        accept={"image/*"}
+                        onChange={handleImageUpload}
                         className="absolute w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
                       />
                     </div>
@@ -114,7 +122,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
               <div className="hidden relative rounded-full overflow-hidden lg:block">
                 <img
                   className="relative rounded-full w-40 h-40"
-                  src={user.imageUrl}
+                  src={clientImageUrl || ProfileImage}
                   alt=""
                 />
                 <label
@@ -127,6 +135,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                     type="file"
                     id="user-photo"
                     name="user-photo"
+                    accept={"image/*"}
+                    onChange={handleImageUpload}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
                   />
                 </label>
@@ -135,10 +145,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
           </div>
 
           <div className="mt-6 grid grid-cols-12 gap-6">
-            <div className="col-span-12">
+            <div className="col-span-12 sm:col-span-12">
               <label
                 htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm pb-3 font-medium text-gray-700"
               >
                 Place of Residence
               </label>
@@ -146,20 +156,51 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 type="text"
                 name="url"
                 id="url"
+                required
+                value={placeOfResidence}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPlaceOfResidence(e.target.value)
+                }
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
-
             <div className="col-span-12 sm:col-span-6">
               <label
-                htmlFor="company"
-                className="block pb-2 text-sm font-medium text-gray-700"
+                htmlFor="url"
+                className="block text-sm pb-3  font-medium text-gray-700"
               >
-                Select gender of drivers prefered
+                Digital Address
               </label>
-              <SelectGenderPreference
-                genderPreference={genderPreference}
-                setGenderPreference={setGenderPreference}
+              <input
+                type="text"
+                name="url"
+                id="url"
+                value={digitalAddress}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setDigitalAddress(e.target.value)
+                }
+                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="url"
+                className="block text-sm pb-3  font-medium text-gray-700"
+              >
+                Phone
+              </label>
+              <input
+                type="number"
+                name="url"
+                id="url"
+                value={phone}
+                required
+                maxLength={10}
+                minLength={10}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPhone(e.target.value)
+                }
+                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
           </div>
@@ -175,8 +216,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({ setTab }) => {
                 Cancel
               </button> */}
             <button
-              type="button"
-              onClick={() => setTab("carInfo")}
+              type="submit"
               className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
             >
               Next

@@ -10,9 +10,8 @@ import React, {
 } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ContextLoader } from "../../shared/loaders";
-import { ToastProvider } from "react-toast-notifications";
 import { IContext, IContextControllerProps } from "./types";
-import { ClientApollo } from "../adapters";
+import ClientApollo from "../adapters/clientApollo";
 import Auth from "../adapters/cookie.config";
 import ProtectedRoutes from "../adapters/protectedRoutes";
 
@@ -146,11 +145,9 @@ function AppNavigator() {
       ) : (
         <Fragment>
           <AuthContext.Provider value={[authContextController, state]}>
-            <ToastProvider autoDismiss>
-              <ClientApollo>
-                <SettingsConfig />
-              </ClientApollo>
-            </ToastProvider>
+            <ClientApollo>
+              <SettingsConfig />
+            </ClientApollo>
           </AuthContext.Provider>
         </Fragment>
       )}

@@ -8,9 +8,11 @@ import Transition from "../../../components/transitions";
 const data: IType[] = [
   {
     name: "Manual Car",
+    value: "MANUAL",
   },
   {
     name: "Automatic Car",
+    value: "AUTOMATIC",
   },
 ];
 

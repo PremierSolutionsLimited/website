@@ -8,7 +8,7 @@ class Auth {
   }
 
   setCipher(token: string): void {
-    Cookies.set("had-cipher", token);
+    Cookies.set("had-cipher", token, { expires: 1 });
   }
 
   clearCipher(): void {
