@@ -6,7 +6,6 @@ import React, {
   createContext,
   useContext,
 } from "react";
-
 import { ContextLoader } from "../../shared/loaders";
 import {
   IContext,

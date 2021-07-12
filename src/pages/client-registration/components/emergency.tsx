@@ -3,7 +3,7 @@ import { EmergencyComponentProp } from "./types";
 import { CircleSpinner } from "react-spinners-kit";
 import EmergencyComponentSelect from "../bones/emergency-select";
 
-export default function CarImagesComponent({
+export default function EmergencyComponent({
   setTab,
   emergencyContact,
   setEmergencyContact,

@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { StageSpinner } from "react-spinners-kit";
-import { useAuthProvider } from "../../../services/context";
+import { useRegistrationProvider } from "../../../services/context";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -18,7 +18,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const { push } = useHistory();
-  const [{ signIn }] = useAuthProvider();
+  const [{ startRegistration }] = useRegistrationProvider();
 
   // wait function
   function wait(timeout: number) {
@@ -41,7 +41,7 @@ const Signup = () => {
     setLoading(true);
     wait(2000).then(async () => {
       setLoading(false);
-      await signIn(data);
+      await startRegistration(data);
       push("/client-registration");
     });
   };

@@ -10,6 +10,7 @@ export interface SelectGenderPreferenceComponentProp {
 
 export interface IGenderPreference {
   gender: string;
+  value: string;
 }
 
 export interface MainComponentProp {

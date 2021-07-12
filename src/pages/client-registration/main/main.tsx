@@ -4,7 +4,7 @@ import { EmergencyInputProp, IGenderPreference } from "../bones/types";
 import { getGenderPreference } from "../util/defaultGender";
 import { ApolloError, useMutation } from "@apollo/client";
 import { CREATE_CLIENT } from "../../../services/graphql";
-import { useAuthProvider } from "../../../services/context";
+import { useRegistrationProvider } from "../../../services/context";
 import { v4 } from "uuid";
 import { ContextLoader } from "../../../shared/loaders";
 import toast from "react-hot-toast";
@@ -18,7 +18,7 @@ const SucessComponent = lazy(() => import("../success"));
 
 let storage: any;
 const MainComponent = () => {
-  const [, state] = useAuthProvider();
+  const [, registrationState] = useRegistrationProvider();
   // toggle tab
   const [tab, setTab] = useState<string>("personal");
 
@@ -69,99 +69,91 @@ const MainComponent = () => {
     e: React.FormEvent<HTMLButtonElement>
   ) => {
     e.preventDefault();
-    setShowSucessComponent(!showSuccessComponent);
+
+    if (clientFile) {
+      setUploadingToFirebase(true);
+      let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
+      const uploadTask = storage.ref(`/store/${fileName}`).put(clientFile);
+      uploadTask.on(
+        "state_changed",
+        (snapShot: any) => {},
+        (err: any) => {
+          setUploadingToFirebase(false);
+
+          return toast.error(err?.message);
+        },
+        () => {
+          storage
+            .ref("store")
+            .child(fileName)
+            .getDownloadURL()
+            .then((fireBaseUrl: string) => {
+              invokeCreateClient({
+                variables: {
+                  title: registrationState?.status?.title,
+                  lastName: registrationState?.status?.lastName,
+                  firstName: registrationState?.status?.firstName,
+                  otherNames: registrationState?.status?.otherNames,
+                  gender: registrationState?.status?.gender,
+                  dob: new Date(registrationState?.status?.dob),
+                  email: registrationState?.status?.email,
+                  nationality,
+                  residence: placeOfResdience,
+                  ghanaPostGps: digitalAddress,
+                  defaultPreferredGender: defaultGenderPreference,
+                  idType,
+                  idNumber,
+                  idIssueDate: new Date(idIssueDate),
+                  idExpiryDate: new Date(idExpiryDate),
+                  emergencyContacts: emergencyContact,
+                  photograph: fireBaseUrl,
+                  username,
+                  phone,
+                },
+              })
+                .then(() => {
+                  toast.success("Application completed successfully");
+                  setShowSucessComponent(!showSuccessComponent);
+                })
+                .catch((e: ApolloError) => {
+                  console.log("error", e);
+                  return toast.error(e.graphQLErrors[0].message);
+                });
+            });
+        }
+      );
+    } else {
+      invokeCreateClient({
+        variables: {
+          title: registrationState?.status?.title,
+          lastName: registrationState?.status?.lastName,
+          firstName: registrationState?.status?.firstName,
+          otherNames: registrationState?.status?.otherNames,
+          gender: registrationState?.status?.gender,
+          dob: new Date(registrationState?.status?.dob),
+          email: registrationState?.status?.email,
+          nationality,
+          residence: placeOfResdience,
+          ghanaPostGps: digitalAddress,
+          defaultPreferredGender: defaultGenderPreference,
+          idType,
+          idNumber,
+          idIssueDate: new Date(idIssueDate),
+          idExpiryDate: new Date(idExpiryDate),
+          emergencyContacts: emergencyContact,
+          username,
+          phone,
+        },
+      })
+        .then(() => {
+          toast.success("Application completed successfully");
+          setShowSucessComponent(!showSuccessComponent);
+        })
+        .catch((e: ApolloError) => {
+          return toast.error(e.graphQLErrors[0].message);
+        });
+    }
   };
-
-  // const handleHandleCompleteRegistration = (
-  //   e: React.FormEvent<HTMLButtonElement>
-  // ) => {
-  //   e.preventDefault();
-
-  //   if (clientFile) {
-  //     setUploadingToFirebase(true);
-  //     let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
-  //     const uploadTask = storage.ref(`/store/${fileName}`).put(clientFile);
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapShot: any) => {},
-  //       (err: any) => {
-  //         setUploadingToFirebase(false);
-
-  //         return toast.error(err?.message);
-  //       },
-  //       () => {
-  //         storage
-  //           .ref("store")
-  //           .child(fileName)
-  //           .getDownloadURL()
-  //           .then((fireBaseUrl: string) => {
-  //             invokeCreateClient({
-  //               variables: {
-  //                 title: state?.userToken?.title,
-  //                 lastName: state?.userToken?.lastName,
-  //                 firstName: state?.userToken?.firstName,
-  //                 otherNames: state?.userToken?.otherNames,
-  //                 gender: state?.userToken?.gender,
-  //                 dob: new Date(state?.userToken?.dob),
-  //                 email: state?.userToken?.email,
-  //                 nationality,
-  //                 residence: placeOfResdience,
-  //                 ghanaPostGps: digitalAddress,
-  //                 defaultPreferredGender: defaultGenderPreference,
-  //                 idType,
-  //                 idNumber,
-  //                 idIssueDate: new Date(idIssueDate),
-  //                 idExpiryDate: new Date(idExpiryDate),
-  //                 emergencyContacts: emergencyContact,
-  //                 photograph: fireBaseUrl,
-  //                 username,
-  //                 phone,
-  //               },
-  //             })
-  //               .then(() => {
-  //                 toast.success("Application completed successfully");
-  //                 setShowSucessComponent(!showSuccessComponent);
-  //               })
-  //               .catch((e: ApolloError) => {
-  //                 console.log("error", e);
-  //                 return toast.error(e.graphQLErrors[0].message);
-  //               });
-  //           });
-  //       }
-  //     );
-  //   } else {
-  //     invokeCreateClient({
-  //       variables: {
-  //         title: state?.userToken?.title,
-  //         lastName: state?.userToken?.lastName,
-  //         firstName: state?.userToken?.firstName,
-  //         otherNames: state?.userToken?.otherNames,
-  //         gender: state?.userToken?.gender,
-  //         dob: new Date(state?.userToken?.dob),
-  //         email: state?.userToken?.email,
-  //         nationality,
-  //         residence: placeOfResdience,
-  //         ghanaPostGps: digitalAddress,
-  //         defaultPreferredGender: defaultGenderPreference,
-  //         idType,
-  //         idNumber,
-  //         idIssueDate: new Date(idIssueDate),
-  //         idExpiryDate: new Date(idExpiryDate),
-  //         emergencyContacts: emergencyContact,
-  //         username,
-  //         phone,
-  //       },
-  //     })
-  //       .then(() => {
-  //         toast.success("Application completed successfully");
-  //         setShowSucessComponent(!showSuccessComponent);
-  //       })
-  //       .catch((e: ApolloError) => {
-  //         console.log("error", e);
-  //         return toast.error(e.graphQLErrors[0].message);
-  //       });
-  //   }
-  // };
 
   // function to handle image upload from client's pc
   const handleImageUpload = (e: any) => {
