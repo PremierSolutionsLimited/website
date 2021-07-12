@@ -14,7 +14,7 @@ import { IType } from "../bones/types";
 import { useMultipleImageUpload } from "../../../components/hooks";
 import { ImageUrlProps } from "../../../components/hooks/useMultipleImageUpload";
 import Header from "../../../shared/layout";
-import StepComponent from "../../../shared/steps";
+import StepComponent from "../../../shared/driver-steps";
 import toast from "react-hot-toast";
 
 const PersonalComponent = lazy(() => import("../components/personal"));

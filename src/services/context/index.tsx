@@ -27,9 +27,7 @@ const ClientRegistrationComponent = lazy(
 const DriverSignupComponent = lazy(
   () => import("../../pages/auth/driver-signup")
 );
-const DriverLoginComponent = lazy(
-  () => import("../../pages/auth/driver-login")
-);
+
 const DriverRegistationComponent = lazy(
   () => import("../../pages/driver-registration")
 );
@@ -85,11 +83,6 @@ const SettingsConfig = () => {
             <Route
               component={DriverSignupComponent}
               path={"/driver-signup"}
-              exact={true}
-            />
-            <Route
-              component={DriverLoginComponent}
-              path={"/driver-login"}
               exact={true}
             />
             <ProtectedRoutes

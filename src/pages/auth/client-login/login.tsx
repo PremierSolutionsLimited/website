@@ -47,7 +47,7 @@ const Login = () => {
           </div>
         </button>
 
-        <div className="flex-1  flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:mx-36 xl:mx-36">
+        <div className="flex-1 relative flex flex-col justify-center py-12 sm:px-2 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
               <div className={""}>

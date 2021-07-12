@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { StageSpinner } from "react-spinners-kit";
 import { useAuthProvider } from "../../../services/context";
 
@@ -75,7 +75,7 @@ const DriverSignup = () => {
           </div>
         </button>
 
-        <div className="flex-1  flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none  lg:mx-32 xl:mx-32">
+        <div className="flex-1 relative flex flex-col justify-center py-12 sm:px-0 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
               <img
@@ -105,7 +105,7 @@ const DriverSignup = () => {
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm pb-1  font-medium text-gray-700"
                         >
                           First Name
                         </label>
@@ -130,7 +130,7 @@ const DriverSignup = () => {
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm pb-1  font-medium text-gray-700"
                         >
                           Last Name
                         </label>
@@ -156,7 +156,7 @@ const DriverSignup = () => {
                       <div>
                         <label
                           htmlFor="password"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm pb-1  font-medium text-gray-700"
                         >
                           Other Names
                         </label>
@@ -182,7 +182,7 @@ const DriverSignup = () => {
                       <div>
                         <label
                           htmlFor="password"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm pb-1  font-medium text-gray-700"
                         >
                           Title
                         </label>
@@ -194,7 +194,7 @@ const DriverSignup = () => {
                           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                             setTitle(e.target.value)
                           }
-                          className="block w-full text-sm py-3 px-3 form-select bg-gray-100 p-2 border-none rounded-none shadow-sm placeholder-gray-200 focus:outline-none focus:ring-white focus:border-white"
+                          className="block w-full mt-1 text-sm py-3 px-3 form-select bg-gray-100 p-2 border-none rounded-none shadow-sm placeholder-gray-200 focus:outline-none focus:ring-white focus:border-white"
                         >
                           <option>Please Choose</option>
                           <option value="MR">Mr</option>
@@ -207,7 +207,7 @@ const DriverSignup = () => {
                   <div className="space-y-1">
                     <label
                       htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm pb-1  font-medium text-gray-700"
                     >
                       Date of Birth
                     </label>
@@ -227,7 +227,7 @@ const DriverSignup = () => {
                   <div className="space-y-1">
                     <label
                       htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm pb-1 font-medium text-gray-700"
                     >
                       Email address
                     </label>
@@ -261,7 +261,7 @@ const DriverSignup = () => {
                   </button>
                 </form>
               </div>
-              <div className="text-center font-light mt-3  text-gray-900 text-sm">
+              <div className="text-center font-light mt-10  text-gray-900 text-sm">
                 By signing up, you agree to our terms and privacy policy.
               </div>
               <div className="text-center font-light text-gray-900 text-sm">
@@ -269,7 +269,7 @@ const DriverSignup = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row items-center justify-center mt-10 font-light">
+          {/* <div className="flex flex-row items-center justify-center mt-10 font-light">
             <div>Already have an account? </div>
             <Link to="/driver-login">
               <button
@@ -279,7 +279,7 @@ const DriverSignup = () => {
                 Log In
               </button>
             </Link>
-          </div>
+          </div> */}
           <div className={"flex flex-col items-center w-full"}>
             <i className="mt-2 text-sm font-light sm:text-sm md:text-base text-gray-700">
               Powered by Polymorph Labs Ghana Limited
