@@ -42,25 +42,31 @@ export default function Header() {
                   registration
                 </div>
                 <div className="flex items-center md:ml-12">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      endRegistration();
-                      push("/driver-login");
-                    }}
-                    className="text-base font-medium text-gray-500 hover:text-gray-900"
-                  >
-                    Sign in
-                  </button>
+                  {registrationState?.status?.typeOfRegistration ===
+                    "Client" && (
+                    <Fragment>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          endRegistration();
+                          push("/client-login");
+                        }}
+                        className="text-base font-medium text-gray-500 hover:text-gray-900"
+                      >
+                        Sign in
+                      </button>
+                    </Fragment>
+                  )}
+
                   <button
                     type="button"
                     onClick={() => {
                       endRegistration();
                       push("/");
                     }}
-                    className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-pink-600 hover:bg-pink-700"
+                    className="ml-8 inline-flex focus:outline-none items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-pink-600 hover:bg-pink-700"
                   >
-                    Home page
+                    End Registration
                   </button>
                 </div>
               </div>
@@ -93,7 +99,7 @@ export default function Header() {
                       />
                     </div>
                     <div className="-mr-2">
-                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-500">
                         <span className="sr-only">Close menu</span>
                         <XIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>
@@ -114,23 +120,29 @@ export default function Header() {
                         endRegistration();
                         push("/");
                       }}
-                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-pink-600 hover:bg-pink-700"
                     >
-                      Home page
+                      End Registration
                     </button>
-                    <p className="mt-6 text-center text-base font-medium text-gray-500">
-                      Existing customer?{" "}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          endRegistration();
-                          push("/driver-login");
-                        }}
-                        className="text-pink-600 hover:text-pink-500"
-                      >
-                        Sign in
-                      </button>
-                    </p>
+
+                    {registrationState?.status?.typeOfRegistration ===
+                      "Client" && (
+                      <Fragment>
+                        <p className="mt-6 text-center text-base font-medium text-gray-500">
+                          Existing customer?{" "}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              endRegistration();
+                              push("/client-login");
+                            }}
+                            className="text-pink-600 hover:text-pink-500"
+                          >
+                            Sign in
+                          </button>
+                        </p>
+                      </Fragment>
+                    )}
                   </div>
                 </div>
               </div>

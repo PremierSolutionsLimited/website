@@ -1,7 +1,7 @@
 import { lazy, Suspense, Fragment } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ContextLoader } from "../../shared/loaders";
-import ProtectedRoutes from "../adapters/protectedRoutes";
+// import ProtectedRoutes from "../adapters/protectedRoutes";
 
 const ClientLoginComponent = lazy(
   () => import("../../pages/auth/client-login")
@@ -42,7 +42,7 @@ const SettingsConfig = () => {
               path={"/driver-signup"}
               exact={true}
             />
-            <ProtectedRoutes
+            <Route
               component={DriverRegistationComponent}
               path={"/driver-registration"}
               exact={true}

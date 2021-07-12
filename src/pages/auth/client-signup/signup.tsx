@@ -37,6 +37,7 @@ const Signup = () => {
       gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
       title,
       otherNames,
+      typeOfRegistration: "Client",
     };
     setLoading(true);
     wait(2000).then(async () => {
