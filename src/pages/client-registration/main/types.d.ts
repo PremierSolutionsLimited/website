@@ -1,23 +1,23 @@
 export interface CreateClientInputProp {
-  username: string;
-  title: string;
+  username?: string;
+  title?: string;
   lastName: string;
   firstName: string;
   gender: string;
-  otherNames: string;
+  otherNames?: string;
   dob: Date;
   photograph?: string;
   phone: string;
   email: string;
   nationality: string;
-  residence: string;
-  ghanaPostGps: string;
-  defaultPreferredGender: string[];
-  idType: string;
-  idNumber: string;
-  idIssueDate: Date;
-  idExpiryDate: Date;
-  emergencyContacts: EmergencyContact[];
+  residence?: string;
+  ghanaPostGps?: string;
+  defaultPreferredGender?: string[];
+  idType?: string;
+  idNumber?: string;
+  idIssueDate?: Date;
+  idExpiryDate?: Date;
+  emergencyContacts?: EmergencyContact[];
 }
 
 export interface CreateClientOutputProp {

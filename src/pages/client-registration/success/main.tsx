@@ -6,11 +6,7 @@ import { useAuthProvider } from "../../../services/context";
 import { useHistory } from "react-router-dom";
 import Modal from "../../../components/modal";
 
-const MainComponent = ({
-  show,
-
-  setShow,
-}: SucessComponentProp) => {
+const MainComponent = ({ show, setShow }: SucessComponentProp) => {
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
@@ -54,11 +50,11 @@ const MainComponent = ({
             </svg>
           </button> */}
         </div>
-        <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 transform transition-all sm:my-8 sm:align-middle sm:p-6">
+        <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 transform transition-all max-w-sm sm:my-8 sm:align-middle sm:p-6">
           <div>
-            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+            <div className="mx-auto flex items-center justify-center h-14 w-14 rounded-full bg-green-100">
               <CheckIcon
-                className="h-6 w-6 text-green-600"
+                className="h-8 w-8 text-green-600"
                 aria-hidden="true"
               />
             </div>
@@ -70,8 +66,6 @@ const MainComponent = ({
                 <p className="text-md text-gray-800 font-light">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
                   laborum corporis consequatur vero eius eveniet officiis sed
-                  quas sequi, fugit nulla dolor voluptas, voluptate eligendi
-                  iure, est perferendis libero quos.
                 </p>
               </div>
             </div>

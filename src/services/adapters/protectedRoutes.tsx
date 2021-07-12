@@ -18,7 +18,7 @@ const PrivateRoute = ({
       render={(props: any) => {
         let token = Auth.getCipher();
         if (!token) {
-          return <Redirect to={{ pathname: "/login" }} />;
+          return <Redirect to={{ pathname: "/" }} />;
         }
         return <Component />;
       }}

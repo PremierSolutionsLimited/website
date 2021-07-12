@@ -11,7 +11,7 @@ export default function Header() {
   const { push } = useHistory();
 
   return (
-    <Popover className=" bg-white z-40 top-0 sticky overflow-y-none">
+    <Popover className=" bg-white z-30 top-0 sticky overflow-y-none">
       {({ open }) => (
         <>
           <div
