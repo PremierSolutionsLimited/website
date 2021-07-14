@@ -218,6 +218,7 @@ const DriverSignup = () => {
                         type={"date"}
                         id={"dob"}
                         value={dob}
+                        min=""
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setDob(e.target.value)
                         }
