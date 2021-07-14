@@ -29,9 +29,10 @@ export interface CreateApplicationInputProp {
   canUseMap: boolean;
   availablity: string[];
   nameOfSchool: string;
+  schoolLevel: string;
   schoolStartDate?: Date;
   schoolEndDate: Date;
-  qualification: string;
+  qualification?: string;
   certificateImage?: string;
   currentEmploymerName: string;
   currentEmploymentStartDate: Date;

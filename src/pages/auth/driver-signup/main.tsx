@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { StageSpinner } from "react-spinners-kit";
 import { useRegistrationProvider } from "../../../services/context";
@@ -22,6 +22,7 @@ const DriverSignup = () => {
   const { push } = useHistory();
   const [{ startRegistration }] = useRegistrationProvider();
 
+  const [usersAge, setUsersAge] = useState<string>("");
   const [isDriverBelowAge, setIsDriverBelowAge] = useState<boolean>(false);
 
   // wait function
@@ -31,22 +32,26 @@ const DriverSignup = () => {
     });
   }
 
-  function checkUsersAge(dob: string) {
+  const checkUsersAge = useCallback((dob: string) => {
+    // (dob: string) {
     let currentDate = new Date();
     let userDate = new Date(dob);
     let age = differenceInCalendarYears(currentDate, userDate);
     if (age >= 18) {
+      setUsersAge(age.toString());
       return setIsDriverBelowAge(false);
     } else {
+      setUsersAge(age.toString());
       return setIsDriverBelowAge(true);
     }
-  }
+    // }
+  }, []);
 
   useEffect(() => {
     if (dob) {
       checkUsersAge(dob);
     }
-  }, [dob]);
+  }, [checkUsersAge, dob]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -59,6 +64,7 @@ const DriverSignup = () => {
       title,
       otherNames,
       typeOfRegistration: "Driver",
+      age: usersAge,
     };
     setLoading(true);
     wait(2000).then(async () => {

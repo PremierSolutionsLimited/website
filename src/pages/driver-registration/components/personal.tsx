@@ -269,18 +269,22 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               >
                 Highest Level of Education
               </label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                required
+              <select
+                id="location"
+                name="location"
                 value={highestLevelOfEducation}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                required
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setHighestLevelOfEducation(e.target.value)
                 }
-                autoComplete="organization"
-                className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
+                className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+              >
+                <option>Please Choose</option>
+                <option value={"PRIMARY"}>Primary</option>
+                <option value={"MIDDLE"}>Middle</option>
+                <option value={"SECONDARY"}>Secondary</option>
+                <option value={"TERTIARY"}>Tertiary</option>
+              </select>
             </div>
             <div className="col-span-12 sm:col-span-6">
               <label

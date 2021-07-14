@@ -6,7 +6,7 @@ import {
   CreateApplicationInputProp,
   CreateApplicationOuputProp,
 } from "./types";
-import { useAuthProvider } from "../../../services/context";
+import { useRegistrationProvider } from "../../../services/context";
 import { getAvailableDays } from "../util/availability";
 import { getImage } from "../util/images";
 import { getTypeOfCars } from "../util/typeOfCars";
@@ -23,7 +23,7 @@ const LicenceComponent = lazy(() => import("../components/license"));
 const AvailabiltyComponent = lazy(() => import("../components/availabilty"));
 
 const MainComponent = () => {
-  const [, state] = useAuthProvider();
+  const [, registrationState] = useRegistrationProvider();
   const { load, handleFileSelection } = useMultipleImageUpload();
   // for tabs
   const [tab, setTab] = useState<string>("personal");
@@ -92,7 +92,7 @@ const MainComponent = () => {
     }
   }, [typesOfCars]);
 
-  // state's for driver availability
+  // registrationState's for driver availability
   const [mondayActive, setMondayActive] = useState<boolean>(false);
   const [tuesdayActive, setTuesdayActive] = useState<boolean>(false);
   const [wednesdayActive, setWednesdayActive] = useState<boolean>(false);
@@ -161,13 +161,13 @@ const MainComponent = () => {
 
     createApplication({
       variables: {
-        title: state?.userToken?.title,
-        lastName: state?.userToken?.lastName,
-        firstName: state?.userToken?.firstName,
-        otherNames: state?.userToken?.otherNames,
-        gender: state?.userToken?.gender,
-        dob: new Date(state?.userToken?.dob),
-        email: state?.userToken?.email,
+        title: registrationState?.userToken?.title,
+        lastName: registrationState?.userToken?.lastName,
+        firstName: registrationState?.userToken?.firstName,
+        otherNames: registrationState?.userToken?.otherNames,
+        gender: registrationState?.userToken?.gender,
+        dob: new Date(registrationState?.userToken?.dob),
+        email: registrationState?.userToken?.email,
         photograph: images[0]?.fileUrl,
         maritalStatus: maritalStatus,
         numberOfChildren: parseInt(numberOfChildren),
@@ -191,7 +191,7 @@ const MainComponent = () => {
         availablity: availableDays,
         nameOfSchool: nameOfSchoolCompleted,
         schoolEndDate: new Date(yearOfGraduation),
-        qualification: highestLevelOfEducation,
+        schoolLevel: highestLevelOfEducation,
         currentEmploymerName: currentEmployerName,
         currentEmploymentStartDate: new Date(currentPositionStartDate),
         currentEmploymentEndDate: new Date(currentPositionEndDate),
