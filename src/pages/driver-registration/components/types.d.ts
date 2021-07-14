@@ -100,4 +100,5 @@ export interface AvailabiltyComponentProp {
   handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
   loading: boolean;
   currentImageLoaderPrompt: number;
+  uploadingToFirebase: boolean;
 }

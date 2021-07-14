@@ -1,9 +1,7 @@
 /* eslint-disable no-useless-concat */
 import * as React from "react";
 // import { ImageListType, ImageType } from "react-images-uploading";
-// import { storage } from "../../services/firebase";
-
-let storage: any;
+import { storage } from "../../services/firebase";
 
 export type ImageUrlProps = {
   name: string;
@@ -35,7 +33,7 @@ const useMultipleImageUpload = () => {
   ): Promise<ImageUrlProps> => {
     return new Promise(function (resolve, reject) {
       let fileName = `${imageFile.file?.name.split(".")[0]}`;
-      let storageRef = storage.ref("store" + "/" + fileName);
+      let storageRef = storage.ref("driver" + "/" + fileName);
       setLoad(i + 1);
 
       //Upload file with data url
@@ -50,11 +48,13 @@ const useMultipleImageUpload = () => {
           // uploader.value = percentage;
         },
         function error(err: any) {
+          console.log("firebase error", err);
+
           reject(err);
         },
         function complete() {
           storage
-            .ref("store")
+            .ref("driver")
             .child(fileName)
             .getDownloadURL()
             .then((downloadURL: string) => {

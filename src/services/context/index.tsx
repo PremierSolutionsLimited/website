@@ -1,44 +1,33 @@
 import React, {
   Fragment,
-  lazy,
-  Suspense,
   useReducer,
   useEffect,
   useMemo,
   createContext,
   useContext,
 } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ContextLoader } from "../../shared/loaders";
-import { IContext, IContextControllerProps } from "./types";
+import {
+  IContext,
+  IContextControllerProps,
+  IRegistrationContext,
+  IRegistrationContextControllerProps,
+} from "./types";
 import ClientApollo from "../adapters/clientApollo";
 import Auth from "../adapters/cookie.config";
-import ProtectedRoutes from "../adapters/protectedRoutes";
-
-const ClientLoginComponent = lazy(
-  () => import("../../pages/auth/client-login")
-);
-const ClientSignupComponent = lazy(
-  () => import("../../pages/auth/client-signup")
-);
-const ClientRegistrationComponent = lazy(
-  () => import("../../pages/client-registration")
-);
-const DriverSignupComponent = lazy(
-  () => import("../../pages/auth/driver-signup")
-);
-const DriverLoginComponent = lazy(
-  () => import("../../pages/auth/driver-login")
-);
-const DriverRegistationComponent = lazy(
-  () => import("../../pages/driver-registration")
-);
-const LandingPageComponent = lazy(() => import("../../pages/landingpage"));
+import Registration from "../adapters/registrationCookie";
+import SettingsConfig from "./settings";
 
 const AuthContext = createContext(
   [] as (IContext | IContextControllerProps | any)[]
 );
+
+const RegistrationContext = createContext(
+  [] as (IRegistrationContext | IRegistrationContextControllerProps | any)[]
+);
+
 export const useAuthProvider = () => useContext(AuthContext);
+export const useRegistrationProvider = () => useContext(RegistrationContext);
 
 const Manipulator = (prevState: any, action: any) => {
   switch (action.type) {
@@ -66,48 +55,30 @@ const Manipulator = (prevState: any, action: any) => {
   }
 };
 
-const SettingsConfig = () => {
-  return (
-    <Fragment>
-      <BrowserRouter>
-        <Suspense fallback={ContextLoader()}>
-          <Switch>
-            <Route
-              component={ClientLoginComponent}
-              path={"/client-login"}
-              exact={true}
-            />
-            <Route
-              component={ClientSignupComponent}
-              path={"/client-signup"}
-              exact={true}
-            />
-            <Route
-              component={DriverSignupComponent}
-              path={"/driver-signup"}
-              exact={true}
-            />
-            <Route
-              component={DriverLoginComponent}
-              path={"/driver-login"}
-              exact={true}
-            />
-            <ProtectedRoutes
-              component={DriverRegistationComponent}
-              path={"/driver-registration"}
-              exact={true}
-            />
-            <ProtectedRoutes
-              component={ClientRegistrationComponent}
-              path={"/client-registration"}
-              exact={true}
-            />
-            <Route component={LandingPageComponent} path={"/"} />
-          </Switch>
-        </Suspense>
-      </BrowserRouter>
-    </Fragment>
-  );
+const RegistrationManipulator = (prevState: any, action: any) => {
+  switch (action.type) {
+    case "RESTORE_REGISTRATION":
+      return {
+        ...prevState,
+        status: action.status,
+        isLoading: false,
+      };
+    case "START_REGISTRATION":
+      return {
+        ...prevState,
+        isEnded: false,
+        status: action.registrationStatus,
+      };
+    case "END_REGISTRATION":
+      return {
+        ...prevState,
+        isLoading: false,
+        status: null,
+        isEnded: true,
+      };
+    default:
+      return prevState;
+  }
 };
 
 function AppNavigator() {
@@ -116,6 +87,25 @@ function AppNavigator() {
     isSignout: false,
     userToken: null,
   });
+  const [registrationState, dispatchRegistration] = useReducer(
+    RegistrationManipulator,
+    {
+      isLoading: true,
+      isEnded: false,
+      status: null,
+    }
+  );
+
+  // persist registration data
+  useEffect(() => {
+    let status: string | null = Registration.getCipher();
+    let data;
+    if (status) data = JSON.parse(status);
+    else data = null;
+    dispatchRegistration({ type: "RESTORE_REGISTRATION", status: data });
+  }, []);
+
+  // save user token
 
   useEffect(() => {
     let userToken: string | null = Auth.getCipher();
@@ -138,16 +128,37 @@ function AppNavigator() {
     }),
     []
   );
+
+  const registrationContextController = useMemo(
+    () => ({
+      startRegistration: async (registrationStatus: object): Promise<void> => {
+        Registration.setCipher(JSON.stringify(registrationStatus));
+        dispatchRegistration({
+          type: "START_REGISTRATION",
+          registrationStatus: registrationStatus,
+        });
+      },
+      endRegistration: (): void => {
+        Registration.clearCipher();
+        dispatchRegistration({ type: "END_REGISTRATION" });
+      },
+    }),
+    []
+  );
   return (
     <Fragment>
-      {state.isLoading ? (
+      {state.isLoading || registrationState.isLoading ? (
         <ContextLoader />
       ) : (
         <Fragment>
           <AuthContext.Provider value={[authContextController, state]}>
-            <ClientApollo>
-              <SettingsConfig />
-            </ClientApollo>
+            <RegistrationContext.Provider
+              value={[registrationContextController, registrationState]}
+            >
+              <ClientApollo>
+                <SettingsConfig />
+              </ClientApollo>
+            </RegistrationContext.Provider>
           </AuthContext.Provider>
         </Fragment>
       )}
