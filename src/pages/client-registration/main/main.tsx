@@ -7,6 +7,7 @@ import { CREATE_CLIENT } from "../../../services/graphql";
 import { useRegistrationProvider } from "../../../services/context";
 import { v4 } from "uuid";
 import { ContextLoader } from "../../../shared/loaders";
+import { storage } from "../../../services/firebase";
 import toast from "react-hot-toast";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/client-steps";
@@ -16,7 +17,6 @@ const OtherInformationComponent = lazy(() => import("../components/otherInfo"));
 const EmergencyComponent = lazy(() => import("../components/emergency"));
 const SucessComponent = lazy(() => import("../success"));
 
-let storage: any;
 const MainComponent = () => {
   const [, registrationState] = useRegistrationProvider();
   // toggle tab
@@ -73,18 +73,17 @@ const MainComponent = () => {
     if (clientFile) {
       setUploadingToFirebase(true);
       let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
-      const uploadTask = storage.ref(`/store/${fileName}`).put(clientFile);
+      const uploadTask = storage.ref(`/clients/${fileName}`).put(clientFile);
       uploadTask.on(
         "state_changed",
         (snapShot: any) => {},
         (err: any) => {
           setUploadingToFirebase(false);
-
           return toast.error(err?.message);
         },
         () => {
           storage
-            .ref("store")
+            .ref("clients")
             .child(fileName)
             .getDownloadURL()
             .then((fireBaseUrl: string) => {
@@ -112,8 +111,9 @@ const MainComponent = () => {
                 },
               })
                 .then(() => {
-                  toast.success("Application completed successfully");
+                  // toast.success("Application completed successfully");
                   setShowSucessComponent(!showSuccessComponent);
+                  setUploadingToFirebase(false);
                 })
                 .catch((e: ApolloError) => {
                   console.log("error", e);
@@ -148,6 +148,7 @@ const MainComponent = () => {
         .then(() => {
           toast.success("Application completed successfully");
           setShowSucessComponent(!showSuccessComponent);
+          setUploadingToFirebase(false);
         })
         .catch((e: ApolloError) => {
           return toast.error(e.graphQLErrors[0].message);

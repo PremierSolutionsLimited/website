@@ -38,14 +38,14 @@ export default function EmergencyComponent({
                 className="ml-5 flex flex-row items-center bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4  justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
               >
                 <div className="mr-2">
-                  {completingApplication
+                  {uploadingToFirebase || completingApplication
                     ? "Completing Process"
                     : "Complete Process"}
                 </div>
 
                 <div>
                   {" "}
-                  {completingApplication ? (
+                  {uploadingToFirebase || completingApplication ? (
                     <Fragment>
                       <div className="mt-1">
                         <CircleSpinner loading color="#fff" size={15} />
