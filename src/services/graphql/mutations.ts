@@ -33,6 +33,7 @@ export const createDriverApplication = gql`
     $availablity: [Day!]!
     $nameOfSchool: String!
     $schoolStartDate: Date
+    $schoolLevel: EducationalLevel
     $schoolEndDate: Date
     $qualification: String
     $certificateImage: String
@@ -80,6 +81,7 @@ export const createDriverApplication = gql`
         availablity: $availablity
         educationalHistory: {
           nameOfSchool: $nameOfSchool
+          level: $schoolLevel
           startDate: $schoolStartDate
           endDate: $schoolEndDate
           qualification: $qualification

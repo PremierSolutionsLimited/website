@@ -11,9 +11,11 @@ import Transition from "../../../../components/transitions";
 const data: IGenderPreference[] = [
   {
     gender: "Male",
+    value: "MALE",
   },
   {
     gender: "Female",
+    value: "FEMALE",
   },
 ];
 
