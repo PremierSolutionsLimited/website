@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Switch } from "@headlessui/react";
 import { AvailabiltyComponentProp } from "./types";
+import { CircleSpinner } from "react-spinners-kit";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -25,6 +26,7 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
   currentImageLoaderPrompt,
   loading,
   handleSubmit,
+  uploadingToFirebase,
 }) => {
   return (
     <Fragment>
@@ -263,15 +265,43 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
             </button>
             <button
               type="button"
-              // onClick={handleSubmit}
-              disabled={currentImageLoaderPrompt !== null || loading}
+              onClick={handleSubmit}
+              disabled={uploadingToFirebase || loading}
               className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
             >
-              {currentImageLoaderPrompt
-                ? `Uploading File ${currentImageLoaderPrompt}`
-                : loading
-                ? "Submitting Application"
-                : "Submit Application"}
+              <div className="mr-2">
+                {uploadingToFirebase || loading
+                  ? "Completing Process"
+                  : "Complete Process"}
+              </div>
+
+              <div>
+                {" "}
+                {uploadingToFirebase || loading ? (
+                  <Fragment>
+                    <div className="mt-1">
+                      <CircleSpinner loading color="#fff" size={15} />
+                    </div>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 "
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </Fragment>
+                )}
+              </div>
             </button>
           </div>
         </div>

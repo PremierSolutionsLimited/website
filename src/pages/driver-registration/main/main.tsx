@@ -8,11 +8,13 @@ import {
 } from "./types";
 import { useRegistrationProvider } from "../../../services/context";
 import { getAvailableDays } from "../util/availability";
-import { getImage } from "../util/images";
+// import { getImage } from "../util/images";
 import { getTypeOfCars } from "../util/typeOfCars";
 import { IType } from "../bones/types";
 import { useMultipleImageUpload } from "../../../components/hooks";
-import { ImageUrlProps } from "../../../components/hooks/useMultipleImageUpload";
+// import { ImageUrlProps } from "../../../components/hooks/useMultipleImageUpload";
+import { v4 } from "uuid";
+import { storage } from "../../../services/firebase";
 import Header from "../../../shared/layout";
 import StepComponent from "../../../shared/driver-steps";
 import toast from "react-hot-toast";
@@ -21,13 +23,15 @@ const PersonalComponent = lazy(() => import("../components/personal"));
 const ExperienceComponent = lazy(() => import("../components/experience"));
 const LicenceComponent = lazy(() => import("../components/license"));
 const AvailabiltyComponent = lazy(() => import("../components/availabilty"));
+const SucessComponent = lazy(() => import("../success"));
 
 const MainComponent = () => {
   const [, registrationState] = useRegistrationProvider();
-  const { load, handleFileSelection } = useMultipleImageUpload();
+  const { load } = useMultipleImageUpload();
   // for tabs
   const [tab, setTab] = useState<string>("personal");
-
+  const [uploadingToFirebase, setUploadingToFirebase] =
+    useState<boolean>(false);
   // states for driver's personal information
   const [currentAddress, setCurrentAddress] = useState<string>("");
   const [region, setRegion] = useState<string>("");
@@ -92,6 +96,13 @@ const MainComponent = () => {
     }
   }, [typesOfCars]);
 
+  // set user's age
+  useEffect(() => {
+    setAge(registrationState?.status?.age);
+  }, [registrationState?.status?.age]);
+
+  console.log("state", new Date(registrationState?.status?.dob));
+
   // registrationState's for driver availability
   const [mondayActive, setMondayActive] = useState<boolean>(false);
   const [tuesdayActive, setTuesdayActive] = useState<boolean>(false);
@@ -100,6 +111,10 @@ const MainComponent = () => {
   const [fridayActive, setFridayActive] = useState<boolean>(false);
   const [saturdayActive, setSaturdayActive] = useState<boolean>(false);
   const [sundayActive, setSundayActive] = useState<boolean>(false);
+
+  // trigger success modal
+  const [showSuccessComponent, setShowSucessComponent] =
+    useState<boolean>(false);
 
   // function to handle image upload from user's pc
   const handleImageUpload = (e: any) => {
@@ -143,12 +158,6 @@ const MainComponent = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let files = await getImage({
-      driverFile,
-      driverLicenseFrontFile,
-      driverLicenseBackFile,
-    });
-    let images: ImageUrlProps[] = await handleFileSelection(files);
     let availableDays = getAvailableDays(
       mondayActive,
       tuesdayActive,
@@ -159,55 +168,215 @@ const MainComponent = () => {
       sundayActive
     );
 
-    createApplication({
-      variables: {
-        title: registrationState?.userToken?.title,
-        lastName: registrationState?.userToken?.lastName,
-        firstName: registrationState?.userToken?.firstName,
-        otherNames: registrationState?.userToken?.otherNames,
-        gender: registrationState?.userToken?.gender,
-        dob: new Date(registrationState?.userToken?.dob),
-        email: registrationState?.userToken?.email,
-        photograph: images[0]?.fileUrl,
-        maritalStatus: maritalStatus,
-        numberOfChildren: parseInt(numberOfChildren),
-        hasLicense: hasALicense === "yes" ? true : false,
-        phone: telephone,
-        region: region,
-        city: city,
-        residence: currentAddress,
-        licenseId: licenseId,
-        licenseExpiryDate: new Date(licenseExpiryDate),
-        licenseImageFront: images[1]?.fileUrl,
-        licenseImageBack: images[2]?.fileUrl,
-        licenseClass: licenseClass,
-        drivingExperience: parseInt(yearsOfExperienceOnLicense),
-        vehicleClasses: "",
-        transmissionTypes: transmissionTypes,
-        hasAccidents: hadAccidents === "yes" ? true : false,
-        hasCrimeRecords: hasBeenArrested === "yes" ? true : false,
-        hasSmartPhone: hasSmartPhone === "yes" ? true : false,
-        canUseMap: canUseMap === "yes" ? true : false,
-        availablity: availableDays,
-        nameOfSchool: nameOfSchoolCompleted,
-        schoolEndDate: new Date(yearOfGraduation),
-        schoolLevel: highestLevelOfEducation,
-        currentEmploymerName: currentEmployerName,
-        currentEmploymentStartDate: new Date(currentPositionStartDate),
-        currentEmploymentEndDate: new Date(currentPositionEndDate),
-        currentEmploymentPositionHeld: currentPositionHeld,
-        previousReasonForLeaving: reasonForLeavingPreviousWork,
-        previousEmploymerName: previousEmployerName,
-        previousEmploymentStartDate: new Date(previousPostionStartDate),
-        previousEmploymentEndDate: new Date(previousPositionEndDate),
-        previousPositionHeld: previousPositionHeld,
-      },
-    })
-      .then(() => {})
-      .catch((e: ApolloError) => {
-        return toast.error(e.graphQLErrors[0].message);
-      });
+    if (driverFile) {
+      setUploadingToFirebase(true);
+      let fileName = `${v4()}.${driverFile.type.split("/")[1]}`;
+      const uploadTask = storage.ref(`/drivers/${fileName}`).put(driverFile);
+      uploadTask.on(
+        "state_changed",
+        (snapShot: any) => {},
+        (err: any) => {
+          setUploadingToFirebase(false);
+          return toast.error(err?.message);
+        },
+        () => {
+          storage
+            .ref("drivers")
+            .child(fileName)
+            .getDownloadURL()
+            .then((fireBaseUrl: string) => {
+              createApplication({
+                variables: {
+                  title: registrationState?.status?.title,
+                  lastName: registrationState?.status?.lastName,
+                  firstName: registrationState?.status?.firstName,
+                  otherNames: registrationState?.status?.otherNames,
+                  gender: registrationState?.status?.gender,
+                  dob: new Date(registrationState?.status?.dob),
+                  email: registrationState?.status?.email,
+                  photograph: fireBaseUrl,
+                  maritalStatus: maritalStatus,
+                  numberOfChildren: parseInt(numberOfChildren),
+                  hasLicense: hasALicense === "yes" ? true : false,
+                  phone: telephone,
+                  region: region,
+                  city: city,
+                  residence: currentAddress,
+                  licenseId: licenseId,
+                  licenseExpiryDate: new Date(licenseExpiryDate),
+                  //  licenseImageFront: images[1]?.fileUrl,
+                  //  licenseImageBack: images[2]?.fileUrl,
+                  licenseClass: licenseClass,
+                  drivingExperience: parseInt(yearsOfExperienceOnLicense),
+                  vehicleClasses: "",
+                  transmissionTypes: transmissionTypes,
+                  hasAccidents: hadAccidents === "yes" ? true : false,
+                  hasCrimeRecords: hasBeenArrested === "yes" ? true : false,
+                  hasSmartPhone: hasSmartPhone === "yes" ? true : false,
+                  canUseMap: canUseMap === "yes" ? true : false,
+                  availablity: availableDays,
+                  nameOfSchool: nameOfSchoolCompleted,
+                  schoolEndDate: new Date(yearOfGraduation),
+                  schoolLevel: highestLevelOfEducation,
+                  currentEmploymerName: currentEmployerName,
+                  currentEmploymentStartDate: new Date(
+                    currentPositionStartDate
+                  ),
+                  currentEmploymentEndDate: new Date(currentPositionEndDate),
+                  currentEmploymentPositionHeld: currentPositionHeld,
+                  previousReasonForLeaving: reasonForLeavingPreviousWork,
+                  previousEmploymerName: previousEmployerName,
+                  previousEmploymentStartDate: new Date(
+                    previousPostionStartDate
+                  ),
+                  previousEmploymentEndDate: new Date(previousPositionEndDate),
+                  previousPositionHeld: previousPositionHeld,
+                },
+              })
+                .then(() => {
+                  setShowSucessComponent(!showSuccessComponent);
+                })
+                .catch((e: ApolloError) => {
+                  console.log("first error", e);
+
+                  return toast.error(e.graphQLErrors[0].message);
+                });
+            });
+        }
+      );
+    } else {
+      createApplication({
+        variables: {
+          title: registrationState?.status?.title,
+          lastName: registrationState?.status?.lastName,
+          firstName: registrationState?.status?.firstName,
+          otherNames: registrationState?.status?.otherNames,
+          gender: registrationState?.status?.gender,
+          dob: new Date(registrationState?.status?.dob),
+          email: registrationState?.status?.email,
+          maritalStatus: maritalStatus,
+          numberOfChildren: parseInt(numberOfChildren),
+          hasLicense: hasALicense === "yes" ? true : false,
+          phone: telephone,
+          region: region,
+          city: city,
+          residence: currentAddress,
+          licenseId: licenseId,
+          licenseExpiryDate: new Date(licenseExpiryDate),
+          //  licenseImageFront: images[1]?.fileUrl,
+          //  licenseImageBack: images[2]?.fileUrl,
+          licenseClass: licenseClass,
+          drivingExperience: parseInt(yearsOfExperienceOnLicense),
+          vehicleClasses: "",
+          transmissionTypes: transmissionTypes,
+          hasAccidents: hadAccidents === "yes" ? true : false,
+          hasCrimeRecords: hasBeenArrested === "yes" ? true : false,
+          hasSmartPhone: hasSmartPhone === "yes" ? true : false,
+          canUseMap: canUseMap === "yes" ? true : false,
+          availablity: availableDays,
+          nameOfSchool: nameOfSchoolCompleted,
+          schoolEndDate: new Date(yearOfGraduation),
+          schoolLevel: highestLevelOfEducation,
+          currentEmploymerName: currentEmployerName,
+          currentEmploymentStartDate: new Date(currentPositionStartDate),
+          currentEmploymentEndDate: new Date(currentPositionEndDate),
+          currentEmploymentPositionHeld: currentPositionHeld,
+          previousReasonForLeaving: reasonForLeavingPreviousWork,
+          previousEmploymerName: previousEmployerName,
+          previousEmploymentStartDate: new Date(previousPostionStartDate),
+          previousEmploymentEndDate: new Date(previousPositionEndDate),
+          previousPositionHeld: previousPositionHeld,
+        },
+      })
+        .then(() => {
+          toast.success("Application completed successfully");
+          setShowSucessComponent(!showSuccessComponent);
+          setUploadingToFirebase(false);
+        })
+        .catch((e: ApolloError) => {
+          console.log("erer", e);
+
+          return toast.error(e.graphQLErrors[0].message);
+        });
+    }
   };
+  // const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     let files = await getImage({
+  //       driverFile,
+  //       driverLicenseFrontFile,
+  //       driverLicenseBackFile,
+  //     });
+  //     let images: ImageUrlProps[] = await handleFileSelection(files);
+  //     let availableDays = getAvailableDays(
+  //       mondayActive,
+  //       tuesdayActive,
+  //       wednesdayActive,
+  //       thursdayActive,
+  //       fridayActive,
+  //       saturdayActive,
+  //       sundayActive
+  //     );
+  //     createApplication({
+  //       variables: {
+  //         title: registrationState?.status?.title,
+  //         lastName: registrationState?.status?.lastName,
+  //         firstName: registrationState?.status?.firstName,
+  //         otherNames: registrationState?.status?.otherNames,
+  //         gender: registrationState?.status?.gender,
+  //         dob: new Date(registrationState?.status?.dob),
+  //         email: registrationState?.status?.email,
+  //         photograph: images[0]?.fileUrl,
+  //         maritalStatus: maritalStatus,
+  //         numberOfChildren: parseInt(numberOfChildren),
+  //         hasLicense: hasALicense === "yes" ? true : false,
+  //         phone: telephone,
+  //         region: region,
+  //         city: city,
+  //         residence: currentAddress,
+  //         licenseId: licenseId,
+  //         licenseExpiryDate: new Date(licenseExpiryDate),
+  //         licenseImageFront: images[1]?.fileUrl,
+  //         licenseImageBack: images[2]?.fileUrl,
+  //         licenseClass: licenseClass,
+  //         drivingExperience: parseInt(yearsOfExperienceOnLicense),
+  //         vehicleClasses: "",
+  //         transmissionTypes: transmissionTypes,
+  //         hasAccidents: hadAccidents === "yes" ? true : false,
+  //         hasCrimeRecords: hasBeenArrested === "yes" ? true : false,
+  //         hasSmartPhone: hasSmartPhone === "yes" ? true : false,
+  //         canUseMap: canUseMap === "yes" ? true : false,
+  //         availablity: availableDays,
+  //         nameOfSchool: nameOfSchoolCompleted,
+  //         schoolEndDate: new Date(yearOfGraduation),
+  //         schoolLevel: highestLevelOfEducation,
+  //         currentEmploymerName: currentEmployerName,
+  //         currentEmploymentStartDate: new Date(currentPositionStartDate),
+  //         currentEmploymentEndDate: new Date(currentPositionEndDate),
+  //         currentEmploymentPositionHeld: currentPositionHeld,
+  //         previousReasonForLeaving: reasonForLeavingPreviousWork,
+  //         previousEmploymerName: previousEmployerName,
+  //         previousEmploymentStartDate: new Date(previousPostionStartDate),
+  //         previousEmploymentEndDate: new Date(previousPositionEndDate),
+  //         previousPositionHeld: previousPositionHeld,
+  //       },
+  //     })
+  //       .then(() => {
+  //         setShowSucessComponent(!showSuccessComponent);
+  //       })
+  //       .catch((e: ApolloError) => {
+  //         console.log("first error", e);
+
+  //         return toast.error(e.graphQLErrors[0].message);
+  //       });
+  //   } catch (error) {
+  //     console.log("second error", error);
+
+  //     toast.error(error?.graphQLErrors[0]?.message);
+  //   }
+  // };
 
   return (
     <Fragment>
@@ -345,10 +514,15 @@ const MainComponent = () => {
                       currentImageLoaderPrompt={load as number}
                       loading={loading}
                       handleSubmit={handleSubmit}
+                      uploadingToFirebase={uploadingToFirebase}
                     />
                   </Fragment>
                 )}
               </div>
+              <SucessComponent
+                show={showSuccessComponent}
+                setShow={setShowSucessComponent}
+              />
             </Suspense>
           </div>
         </div>
