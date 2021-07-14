@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { StageSpinner } from "react-spinners-kit";
 import { useRegistrationProvider } from "../../../services/context";
+import { differenceInCalendarYears } from "date-fns";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -20,12 +21,31 @@ const Signup = () => {
   const { push } = useHistory();
   const [{ startRegistration }] = useRegistrationProvider();
 
+  const [isClientBelowAge, setIsClientBelowAge] = useState<boolean>(false);
+
   // wait function
   function wait(timeout: number) {
     return new Promise((resolve) => {
       setTimeout(resolve, timeout);
     });
   }
+
+  function checkUsersAge(dob: string) {
+    let currentDate = new Date();
+    let userDate = new Date(dob);
+    let age = differenceInCalendarYears(currentDate, userDate);
+    if (age >= 18) {
+      return setIsClientBelowAge(false);
+    } else {
+      return setIsClientBelowAge(true);
+    }
+  }
+
+  useEffect(() => {
+    if (dob) {
+      checkUsersAge(dob);
+    }
+  }, [dob]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -75,7 +95,7 @@ const Signup = () => {
           </div>
         </button>
 
-        <div className="flex-1 relative flex flex-col justify-center py-12 sm:px-0 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
+        <div className="flex-1 relative flex flex-col justify-center py-12 md:px-0 px-5 sm:px-5 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
               <img
@@ -214,6 +234,13 @@ const Signup = () => {
                         className="mt-1 block w-full pl-1 pr-1 py-1 text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
                       />
                     </div>
+                    {isClientBelowAge && (
+                      <Fragment>
+                        <p className="font-medium mt-1 text-xs text-red-600 hover:text-red-700">
+                          You must be at least 18 years to sign up
+                        </p>
+                      </Fragment>
+                    )}
                   </div>
                   <div className="space-y-1">
                     <label
@@ -240,6 +267,7 @@ const Signup = () => {
                   </div>{" "}
                   <button
                     type="submit"
+                    disabled={isClientBelowAge}
                     className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
                     {loading ? (
