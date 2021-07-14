@@ -18,11 +18,11 @@ export const createDriverApplication = gql`
     $city: String
     $residence: String
     $ghanaPostGps: String
-    $licenseId: String!
-    $licenseExpiryDate: Date!
-    $licenseImageFront: String!
-    $licenseImageBack: String!
-    $licenseClass: LicenseClass!
+    $licenseId: String
+    $licenseExpiryDate: Date
+    $licenseImageFront: String
+    $licenseImageBack: String
+    $licenseClass: LicenseClass
     $drivingExperience: Int
     $vehicleClasses: [ID]
     $transmissionTypes: [TransmissionType!]!
@@ -31,7 +31,7 @@ export const createDriverApplication = gql`
     $hasSmartPhone: Boolean
     $canUseMap: Boolean
     $availablity: [Day!]!
-    $nameOfSchool: String!
+    $nameOfSchool: String
     $schoolStartDate: Date
     $schoolLevel: EducationalLevel
     $schoolEndDate: Date
