@@ -10,10 +10,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setNationality,
   placeOfResidence,
   setPlaceOfResidence,
-  digitalAddress,
-  setDigitalAddress,
-  phone,
-  setPhone,
+  password,
+  setPassword,
+  confirmPassword,
+  setConfirmPassword,
   handleImageUpload,
   clientImageUrl,
 }) => {
@@ -169,16 +169,17 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 htmlFor="url"
                 className="block text-sm pb-3  font-medium text-gray-700"
               >
-                Digital Address
+                Password
               </label>
               <input
-                type="text"
+                type="password"
                 name="url"
                 id="url"
-                value={digitalAddress}
+                value={password}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setDigitalAddress(e.target.value)
+                  setPassword(e.target.value)
                 }
+                required
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
@@ -187,18 +188,16 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 htmlFor="url"
                 className="block text-sm pb-3  font-medium text-gray-700"
               >
-                Phone
+                Confirm Password
               </label>
               <input
-                type="number"
+                type="password"
                 name="url"
                 id="url"
-                value={phone}
+                value={confirmPassword}
                 required
-                maxLength={10}
-                minLength={10}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPhone(e.target.value)
+                  setConfirmPassword(e.target.value)
                 }
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />

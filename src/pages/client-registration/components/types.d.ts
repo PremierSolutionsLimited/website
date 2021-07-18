@@ -9,16 +9,20 @@ export interface PersonalComponentProp {
   setNationality: React.Dispatch<React.SetStateAction<string>>;
   placeOfResidence: string;
   setPlaceOfResidence: React.Dispatch<React.SetStateAction<string>>;
-  digitalAddress: string;
-  setDigitalAddress: React.Dispatch<React.SetStateAction<string>>;
-  phone: string;
-  setPhone: React.Dispatch<React.SetStateAction<string>>;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  confirmPassword: string;
+  setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
   handleImageUpload: (e: any) => void;
   clientImageUrl: string;
 }
 
 export interface OtherInfoComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
+  digitalAddress: string;
+  setDigitalAddress: React.Dispatch<React.SetStateAction<string>>;
+  phone: string;
+  setPhone: React.Dispatch<React.SetStateAction<string>>;
   idType: string;
   setIdType: React.Dispatch<React.SetStateAction<string>>;
   idNumber: string;

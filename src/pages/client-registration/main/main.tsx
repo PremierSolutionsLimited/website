@@ -26,8 +26,8 @@ const MainComponent = () => {
   const [username, setUsername] = useState<string>("");
   const [nationality, setNationality] = useState<string>("");
   const [placeOfResdience, setPlaceOfResidence] = useState<string>("");
-  const [digitalAddress, setDigitalAddress] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   // for clients's image
   const [clientFile, setClientFile] = useState<any>(null);
@@ -36,6 +36,8 @@ const MainComponent = () => {
     useState<boolean>(false);
 
   // states for other components
+  const [digitalAddress, setDigitalAddress] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
   const [idType, setIdType] = useState<string>("");
   const [idNumber, setIdNumber] = useState<string>("");
   const [idIssueDate, setIdIssueDate] = useState<string>("");
@@ -189,12 +191,12 @@ const MainComponent = () => {
                       setNationality={setNationality}
                       placeOfResidence={placeOfResdience}
                       setPlaceOfResidence={setPlaceOfResidence}
-                      digitalAddress={digitalAddress}
-                      setDigitalAddress={setDigitalAddress}
-                      phone={phone}
-                      setPhone={setPhone}
                       handleImageUpload={handleImageUpload}
                       clientImageUrl={clientImageUrl}
+                      password={password}
+                      setPassword={setPassword}
+                      confirmPassword={confirmPassword}
+                      setConfirmPassword={setConfirmPassword}
                     />
                   </Fragment>
                 )}
@@ -202,6 +204,10 @@ const MainComponent = () => {
                   <Fragment>
                     <OtherInformationComponent
                       setTab={setTab}
+                      digitalAddress={digitalAddress}
+                      setDigitalAddress={setDigitalAddress}
+                      phone={phone}
+                      setPhone={setPhone}
                       idType={idType}
                       setIdType={setIdType}
                       idNumber={idNumber}

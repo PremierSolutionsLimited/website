@@ -44,7 +44,7 @@ export default function Header() {
                   Hi {registrationState?.status?.firstName}, complete your
                   registration
                 </div>
-                <ClientDashboardNavComponent />
+
                 <div className="flex items-center md:ml-12">
                   {registrationState?.status?.typeOfRegistration ===
                     "Client" && (

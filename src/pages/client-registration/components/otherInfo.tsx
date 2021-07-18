@@ -15,6 +15,10 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
   setIdExpiryDate,
   idNumber,
   setIdNumber,
+  digitalAddress,
+  setDigitalAddress,
+  phone,
+  setPhone,
 }) => {
   function handleGoToNextPage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,6 +32,45 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
       >
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
           <div className="mt-6 grid grid-cols-12 gap-6">
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="url"
+                className="block text-sm pb-3  font-medium text-gray-700"
+              >
+                Digital Address
+              </label>
+              <input
+                type="text"
+                name="url"
+                id="url"
+                value={digitalAddress}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setDigitalAddress(e.target.value)
+                }
+                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="url"
+                className="block text-sm pb-3  font-medium text-gray-700"
+              >
+                Phone
+              </label>
+              <input
+                type="number"
+                name="url"
+                id="url"
+                value={phone}
+                required
+                maxLength={10}
+                minLength={10}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPhone(e.target.value)
+                }
+                className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+              />
+            </div>
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
