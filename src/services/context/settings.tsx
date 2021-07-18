@@ -1,7 +1,7 @@
 import { lazy, Suspense, Fragment } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ContextLoader } from "../../shared/loaders";
-// import ProtectedRoutes from "../adapters/protectedRoutes";
+import ProtectedRoutes from "../adapters/protectedRoutes";
 
 const ClientLoginComponent = lazy(
   () => import("../../pages/auth/client-login")
@@ -20,6 +20,9 @@ const DriverRegistationComponent = lazy(
   () => import("../../pages/driver-registration")
 );
 const LandingPageComponent = lazy(() => import("../../pages/landingpage"));
+
+// client dashboard
+const Dashboard = lazy(() => import("../../pages/client-dashboard/dashboard"));
 
 const SettingsConfig = () => {
   return (
@@ -48,8 +51,18 @@ const SettingsConfig = () => {
               exact={true}
             />
             <Route
+              component={DriverRegistationComponent}
+              path={"/driver-registration"}
+              exact={true}
+            />
+            <Route
               component={ClientRegistrationComponent}
               path={"/client-registration"}
+              exact={true}
+            />
+            <ProtectedRoutes
+              component={Dashboard}
+              path={"/app/"}
               exact={true}
             />
             <Route component={LandingPageComponent} path={"/"} />

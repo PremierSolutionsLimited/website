@@ -1,6 +1,11 @@
 import { Fragment } from "react";
 import { Popover } from "@headlessui/react";
 import { MenuIcon } from "@heroicons/react/outline";
+import {
+  ClientDashBoardNavigation,
+  ClientDashBoardNavigationProps,
+} from "../navigation/navigation";
+import { Link } from "react-router-dom";
 
 const MainComponent = () => {
   return (
@@ -12,32 +17,26 @@ const MainComponent = () => {
         </Popover.Button>
       </div>
       <Popover.Group as="nav" className="hidden md:flex space-x-10">
-        <a
-          href="#"
-          className="text-base font-medium text-gray-500 hover:text-gray-900"
-        >
-          Solution
-        </a>
+        {ClientDashBoardNavigation?.map(
+          (
+            navigation: ClientDashBoardNavigationProps,
+            navigationIdx: number
+          ) => (
+            <Fragment key={navigationIdx}>
+              <Link
+                to={navigation?.route}
+                className="text-base flex flex-row items-center font-medium text-gray-500 hover:text-gray-900 "
+              >
+                <div className="mr-2"> {navigation?.name}</div>
 
-        <a
-          href="#"
-          className="text-base font-medium text-gray-500 hover:text-gray-900"
-        >
-          Pricing
-        </a>
-        <a
-          href="#"
-          className="text-base font-medium text-gray-500 hover:text-gray-900"
-        >
-          Docs
-        </a>
-
-        <a
-          href="#"
-          className="text-base font-medium text-gray-500 hover:text-gray-900"
-        >
-          More
-        </a>
+                {/* <navigation.icon
+                  className="flex-shrink-0 h-5 w-5 "
+                  aria-hidden="true"
+                /> */}
+              </Link>
+            </Fragment>
+          )
+        )}
       </Popover.Group>
     </Fragment>
   );
