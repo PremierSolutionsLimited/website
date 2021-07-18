@@ -128,6 +128,7 @@ export const createClient = gql`
     $idIssueDate: Date
     $idExpiryDate: Date
     $emergencyContacts: [EmergencyContactInput]
+    $password: String
   ) {
     createClient(
       input: {
@@ -149,6 +150,7 @@ export const createClient = gql`
         idIssueDate: $idIssueDate
         idExpiryDate: $idExpiryDate
         emergencyContacts: $emergencyContacts
+        password: $password
       }
     ) {
       _id

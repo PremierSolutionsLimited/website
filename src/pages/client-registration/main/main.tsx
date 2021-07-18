@@ -110,6 +110,7 @@ const MainComponent = () => {
                   photograph: fireBaseUrl,
                   username,
                   phone,
+                  password,
                 },
               })
                 .then(() => {
@@ -145,6 +146,7 @@ const MainComponent = () => {
           emergencyContacts: emergencyContact,
           username,
           phone,
+          password,
         },
       })
         .then(() => {

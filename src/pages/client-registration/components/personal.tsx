@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { PersonalComponentProp } from "./types";
 import ProfileImage from "../../../assets/images/male.jpeg";
+import toast from "react-hot-toast";
 
 const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setTab,
@@ -19,7 +20,11 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
 }) => {
   function handleGoToNextPage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    return setTab("other");
+    if (password !== confirmPassword) {
+      return toast.error("Passwords do not match");
+    } else {
+      setTab("other");
+    }
   }
   return (
     <Fragment>
