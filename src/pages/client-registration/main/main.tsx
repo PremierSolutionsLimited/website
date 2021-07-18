@@ -9,7 +9,7 @@ import { v4 } from "uuid";
 import { ContextLoader } from "../../../shared/loaders";
 import { storage } from "../../../services/firebase";
 import toast from "react-hot-toast";
-import Header from "../../../shared/layout";
+import Header from "../../../shared/layout/registration";
 import StepComponent from "../../../shared/client-steps";
 
 const PersonalComponent = lazy(() => import("../components/personal"));

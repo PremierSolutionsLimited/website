@@ -4,7 +4,7 @@ import { MenuIcon } from "@heroicons/react/outline";
 import {
   ClientDashBoardNavigation,
   ClientDashBoardNavigationProps,
-} from "../navigation/navigation";
+} from "../client-layout/navigation/navigation";
 import { Link, useLocation } from "react-router-dom";
 
 const MainComponent = () => {

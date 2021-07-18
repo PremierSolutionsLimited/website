@@ -15,7 +15,7 @@ import { useMultipleImageUpload } from "../../../components/hooks";
 // import { ImageUrlProps } from "../../../components/hooks/useMultipleImageUpload";
 import { v4 } from "uuid";
 import { storage } from "../../../services/firebase";
-import Header from "../../../shared/layout";
+import Header from "../../../shared/layout/registration";
 import StepComponent from "../../../shared/driver-steps";
 import toast from "react-hot-toast";
 
@@ -300,83 +300,6 @@ const MainComponent = () => {
         });
     }
   };
-  // const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     let files = await getImage({
-  //       driverFile,
-  //       driverLicenseFrontFile,
-  //       driverLicenseBackFile,
-  //     });
-  //     let images: ImageUrlProps[] = await handleFileSelection(files);
-  //     let availableDays = getAvailableDays(
-  //       mondayActive,
-  //       tuesdayActive,
-  //       wednesdayActive,
-  //       thursdayActive,
-  //       fridayActive,
-  //       saturdayActive,
-  //       sundayActive
-  //     );
-  //     createApplication({
-  //       variables: {
-  //         title: registrationState?.status?.title,
-  //         lastName: registrationState?.status?.lastName,
-  //         firstName: registrationState?.status?.firstName,
-  //         otherNames: registrationState?.status?.otherNames,
-  //         gender: registrationState?.status?.gender,
-  //         dob: new Date(registrationState?.status?.dob),
-  //         email: registrationState?.status?.email,
-  //         photograph: images[0]?.fileUrl,
-  //         maritalStatus: maritalStatus,
-  //         numberOfChildren: parseInt(numberOfChildren),
-  //         hasLicense: hasALicense === "yes" ? true : false,
-  //         phone: telephone,
-  //         region: region,
-  //         city: city,
-  //         residence: currentAddress,
-  //         licenseId: licenseId,
-  //         licenseExpiryDate: new Date(licenseExpiryDate),
-  //         licenseImageFront: images[1]?.fileUrl,
-  //         licenseImageBack: images[2]?.fileUrl,
-  //         licenseClass: licenseClass,
-  //         drivingExperience: parseInt(yearsOfExperienceOnLicense),
-  //         vehicleClasses: "",
-  //         transmissionTypes: transmissionTypes,
-  //         hasAccidents: hadAccidents === "yes" ? true : false,
-  //         hasCrimeRecords: hasBeenArrested === "yes" ? true : false,
-  //         hasSmartPhone: hasSmartPhone === "yes" ? true : false,
-  //         canUseMap: canUseMap === "yes" ? true : false,
-  //         availablity: availableDays,
-  //         nameOfSchool: nameOfSchoolCompleted,
-  //         schoolEndDate: new Date(yearOfGraduation),
-  //         schoolLevel: highestLevelOfEducation,
-  //         currentEmploymerName: currentEmployerName,
-  //         currentEmploymentStartDate: new Date(currentPositionStartDate),
-  //         currentEmploymentEndDate: new Date(currentPositionEndDate),
-  //         currentEmploymentPositionHeld: currentPositionHeld,
-  //         previousReasonForLeaving: reasonForLeavingPreviousWork,
-  //         previousEmploymerName: previousEmployerName,
-  //         previousEmploymentStartDate: new Date(previousPostionStartDate),
-  //         previousEmploymentEndDate: new Date(previousPositionEndDate),
-  //         previousPositionHeld: previousPositionHeld,
-  //       },
-  //     })
-  //       .then(() => {
-  //         setShowSucessComponent(!showSuccessComponent);
-  //       })
-  //       .catch((e: ApolloError) => {
-  //         console.log("first error", e);
-
-  //         return toast.error(e.graphQLErrors[0].message);
-  //       });
-  //   } catch (error) {
-  //     console.log("second error", error);
-
-  //     toast.error(error?.graphQLErrors[0]?.message);
-  //   }
-  // };
 
   return (
     <Fragment>
