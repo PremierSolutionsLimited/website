@@ -1,6 +1,10 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 import { TopNav } from "./components/topnav";
+import { Route } from "react-router-dom";
+import { ContextLoader } from "../../loaders";
+import { RouteProp } from "./navigation/types";
+import { routes } from "./navigation";
 
 export default function AppLayout() {
   return (
@@ -10,7 +14,20 @@ export default function AppLayout() {
         <TopNav />
 
         <div className="py-10">
-          <header>
+          <Suspense fallback={ContextLoader()}>
+            {routes.map((route: RouteProp, i: number) => {
+              return (
+                <Fragment key={i}>
+                  <Route
+                    path={route.path}
+                    component={route.component as any}
+                    exact={route.exact}
+                  />
+                </Fragment>
+              );
+            })}
+          </Suspense>
+          {/* <header>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h1 className="text-3xl font-bold leading-tight text-gray-900">
                 Dashboard
@@ -19,13 +36,13 @@ export default function AppLayout() {
           </header>
           <main>
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-              {/* Replace with your content */}
+           
               <div className="px-4 py-8 sm:px-0">
                 <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
               </div>
-              {/* /End replace */}
+            
             </div>
-          </main>
+          </main> */}
         </div>
       </div>
     </Fragment>

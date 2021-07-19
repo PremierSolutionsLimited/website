@@ -3,7 +3,6 @@ import {
   BreadCrumb,
   BreadCrumbProp,
 } from "../../../../shared/ui-modules/breadCrumb";
-import Header from "../../../../shared/layout";
 import DataView from "../data-view";
 
 const pages: BreadCrumbProp[] = [
@@ -95,7 +94,6 @@ const people = [
 const MainComponent = () => {
   return (
     <Fragment>
-      <Header />
       <div className="max-w-7xl  max-h-screen mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">
         <div className={"mt-3 px-0 flex flex-row items-center justify-between"}>
           <div>

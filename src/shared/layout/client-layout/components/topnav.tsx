@@ -2,6 +2,9 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { classNames } from "../../../../components/classnames";
+import { userNavigation, ClientDashBoardNavigation } from "./util";
+import { ClientDashBoardNavigationProps } from "./types";
+import { Link, useLocation } from "react-router-dom";
 
 const user = {
   name: "Tom Cook",
@@ -9,18 +12,9 @@ const user = {
   imageUrl:
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
-const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-];
-const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
-];
+
 const TopNav = () => {
+  const { pathname } = useLocation();
   return (
     <Fragment>
       <Disclosure as="nav" className="bg-white shadow-sm">
@@ -42,21 +36,28 @@ const TopNav = () => {
                     />
                   </div>
                   <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "border-indigo-500 text-gray-900"
-                            : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-                          "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    {ClientDashBoardNavigation.map(
+                      (
+                        item: ClientDashBoardNavigationProps,
+                        itemIdx: number
+                      ) => (
+                        <Link
+                          key={itemIdx}
+                          to={item?.href}
+                          className={classNames(
+                            item.href === pathname
+                              ? "border-indigo-500 text-gray-900"
+                              : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+                            "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                          )}
+                          aria-current={
+                            item.href === pathname ? "page" : undefined
+                          }
+                        >
+                          {item.name}
+                        </Link>
+                      )
+                    )}
                   </div>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:items-center">
@@ -130,20 +131,20 @@ const TopNav = () => {
 
             <Disclosure.Panel className="sm:hidden">
               <div className="pt-2 pb-3 space-y-1">
-                {navigation.map((item) => (
-                  <a
+                {ClientDashBoardNavigation.map((item) => (
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     className={classNames(
-                      item.current
+                      item.href === pathname
                         ? "bg-indigo-50 border-indigo-500 text-indigo-700"
                         : "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800",
                       "block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                     )}
-                    aria-current={item.current ? "page" : undefined}
+                    aria-current={item.href === pathname ? "page" : undefined}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div className="pt-4 pb-3 border-t border-gray-200">

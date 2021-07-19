@@ -1,35 +1,46 @@
-import {
-  HomeIcon,
-  MapIcon,
-  CollectionIcon,
-  CogIcon,
-} from "@heroicons/react/outline";
+import { lazy } from "react";
+import { RouteProp } from "./types";
+import { DASHBOARD, MY_FLEET, SETTINGS, HISTORY } from "./constants";
 
-export interface ClientDashBoardNavigationProps {
-  route: string;
-  name: string;
-  icon: any;
-}
+const Dashboard = lazy(
+  () => import("../../../../pages/client-dashboard/dashboard")
+);
+const MyFleetComponent = lazy(
+  () => import("../../../../pages/client-dashboard/fleets")
+);
+const HistoryComponent = lazy(
+  () => import("../../../../pages/client-dashboard/history")
+);
+const SettingsComponent = lazy(
+  () => import("../../../../pages/client-dashboard/settings")
+);
 
-export const ClientDashBoardNavigation: ClientDashBoardNavigationProps[] = [
+const routes: RouteProp[] = [
   {
+    component: Dashboard,
     name: "Dashboard",
-    route: "/app/",
-    icon: HomeIcon,
+    path: DASHBOARD,
+    exact: true,
   },
   {
-    name: "My Fleet",
-    route: "/app/myfleet",
-    icon: MapIcon,
+    component: MyFleetComponent,
+    name: "My Fleets",
+    path: MY_FLEET,
+    exact: true,
   },
   {
-    name: "History",
-    route: "/app/history",
-    icon: CollectionIcon,
+    component: HistoryComponent,
+    name: "History Management",
+    path: HISTORY,
+    exact: true,
   },
+
   {
+    component: SettingsComponent,
     name: "Settings",
-    route: "/app/settings",
-    icon: CogIcon,
+    path: SETTINGS,
+    exact: true,
   },
 ];
+
+export default routes;
