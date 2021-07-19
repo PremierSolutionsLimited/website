@@ -1,6 +1,9 @@
 export const Pagination = () => {
   return (
-    <nav className="px-4 py-3   " aria-label="Pagination">
+    <nav
+      className="px-4 py-3   border-t border-gray-200 "
+      aria-label="Pagination"
+    >
       <div className="justify-between mt-4 flex items-center ">
         <div className="hidden sm:block">
           <p className=" text-gray-800 text-sm">Showing 1 to 2 of 2 results</p>

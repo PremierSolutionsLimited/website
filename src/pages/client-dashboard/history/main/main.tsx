@@ -10,10 +10,12 @@ const pages: BreadCrumbProp[] = [{ name: "History ", href: "/app/history" }];
 
 const people = [
   {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
+    name: "Trip 001",
+    title: "Trip type 1",
+    department: "Lorem ipsum, dolor sit amet consectetur",
+    startTime: new Date(),
+    endTime: new Date(),
+    createdAt: new Date(),
     email: "jane.cooper@example.com",
     image:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
@@ -30,8 +32,7 @@ const MainComponent = () => {
           <div>
             <BreadCrumb pages={pages} />
           </div>
-          <div className={"flex flex-row items-center"}>
-            <div className={"mr-3"}></div>
+          <div className={""}>
             <div className="flex-1 flex items-center">
               <input
                 type="search"
@@ -43,8 +44,9 @@ const MainComponent = () => {
             </div>
           </div>
         </div>
-
-        <DataView data={people} onView={(dataFromCard) => {}} />
+        <div className="mt-5">
+          <DataView data={people} onView={(dataFromCard) => {}} />
+        </div>
       </div>
     </Fragment>
   );

@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { HistoryCardComponentProp } from "./types";
+import moment from "moment";
 
 const CardComponent = ({ data, onView }: HistoryCardComponentProp) => {
   return (
@@ -14,7 +15,6 @@ const CardComponent = ({ data, onView }: HistoryCardComponentProp) => {
               <div className="text-sm font-medium text-gray-900">
                 {data.name}
               </div>
-              <div className="text-sm text-gray-500">{data.email}</div>
             </div>
           </div>
         </td>
@@ -28,10 +28,16 @@ const CardComponent = ({ data, onView }: HistoryCardComponentProp) => {
           </span>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {data.role}
+          {moment(data.startTime).format("MMMM Do, YYYY")}
+        </td>
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          {moment(data.endTime).format("MMMM Do, YYYY")}
+        </td>{" "}
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          {moment(data.createdAt).format("MMMM Do, YYYY")}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-          <div className="text-indigo-600 hover:text-indigo-900">Edit</div>
+          <div className="text-indigo-600 hover:text-indigo-900">View</div>
         </td>
       </tr>
     </Fragment>
