@@ -5,9 +5,10 @@ import {
   ClientDashBoardNavigation,
   ClientDashBoardNavigationProps,
 } from "../navigation/navigation";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const MainComponent = () => {
+  const { pathname } = useLocation();
   return (
     <Fragment>
       <div className="-mr-2 -my-2 md:hidden">
@@ -25,9 +26,13 @@ const MainComponent = () => {
             <Fragment key={navigationIdx}>
               <Link
                 to={navigation?.route}
-                className="text-base flex flex-row items-center font-medium text-gray-500 hover:text-gray-900 "
+                className={`text-base flex flex-row ${
+                  pathname === navigation?.route
+                    ? "bg-pink-500 text-white rounded-md"
+                    : "text-gray-500 hover:text-gray-900"
+                } py-2 px-3 items-center font-medium   `}
               >
-                <div className="mr-2"> {navigation?.name}</div>
+                <div className="mr-0"> {navigation?.name}</div>
 
                 {/* <navigation.icon
                   className="flex-shrink-0 h-5 w-5 "
