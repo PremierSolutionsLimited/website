@@ -22,8 +22,9 @@ const DriverRegistationComponent = lazy(
 const LandingPageComponent = lazy(() => import("../../pages/landingpage"));
 
 // client dashboard
-const Dashboard = lazy(() => import("../../pages/client-dashboard/dashboard"));
-const History = lazy(() => import("../../pages/client-dashboard/history"));
+const ClientDashboardLayout = lazy(
+  () => import("../../shared/layout/client-layout")
+);
 
 const SettingsConfig = () => {
   return (
@@ -61,8 +62,7 @@ const SettingsConfig = () => {
               path={"/client-registration"}
               exact={true}
             />
-            <Route component={Dashboard} path={"/app/"} exact={true} />
-            <Route component={History} path={"/app/history"} exact={true} />
+            <Route component={ClientDashboardLayout} path={"/app/"} />
             <Route component={LandingPageComponent} path={"/"} />
           </Switch>
         </Suspense>
