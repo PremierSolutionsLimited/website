@@ -9,10 +9,11 @@ import { routes } from "./navigation";
 export default function AppLayout() {
   return (
     <Fragment>
-      <div className="min-h-screen bg-gray-100">
-        {/* top nav bar */}
+      {/* top nav bar */}
+      <div className="top-0 sticky overscroll-none">
         <TopNav />
-
+      </div>
+      <div className="min-h-screen bg-gray-100">
         <div className="py-10">
           <Suspense fallback={ContextLoader()}>
             {routes.map((route: RouteProp, i: number) => {
