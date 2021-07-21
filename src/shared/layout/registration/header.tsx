@@ -6,8 +6,6 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useHistory } from "react-router-dom";
 import { useRegistrationProvider } from "../../../services/context";
 
-import ClientDashboardNavComponentMobile from "./mobile";
-
 export default function Header() {
   const [{ endRegistration }, registrationState] = useRegistrationProvider();
   const { push } = useHistory();
@@ -116,7 +114,7 @@ export default function Header() {
                       registration
                     </div>
                   </div>
-                  <ClientDashboardNavComponentMobile />
+
                   <div className="mt-6">
                     <button
                       type="button"

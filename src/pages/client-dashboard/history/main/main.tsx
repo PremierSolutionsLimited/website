@@ -95,11 +95,11 @@ const MainComponent = () => {
   return (
     <Fragment>
       <div className="max-w-7xl  max-h-screen mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">
-        <div className={"mt-3 px-0 flex flex-row items-center justify-between"}>
+        <div className={"mt-0 px-0 flex flex-row items-center justify-between"}>
           <div>
             <BreadCrumb pages={pages} />
           </div>
-          <div className={""}>
+          {/* <div className={""}>
             <div className="flex-1 flex items-center">
               <input
                 type="search"
@@ -109,7 +109,7 @@ const MainComponent = () => {
                 placeholder="Search "
               />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="mt-5">
           <DataView data={people} onView={(dataFromCard) => {}} />

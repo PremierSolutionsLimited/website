@@ -14,7 +14,7 @@ export default function AppLayout() {
         <TopNav />
       </div>
       <div className="min-h-screen bg-gray-100">
-        <div className="py-10">
+        <div className="py-0">
           <Suspense fallback={ContextLoader()}>
             {routes.map((route: RouteProp, i: number) => {
               return (

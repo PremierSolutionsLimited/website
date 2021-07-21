@@ -6,7 +6,7 @@ const CardComponent = ({ data, onView }: HistoryCardComponentProp) => {
   return (
     <Fragment>
       <tr>
-        <td className="px-6 py-4 whitespace-nowrap">
+        <td className="px-6 py-3 whitespace-nowrap">
           <div className="flex items-center">
             <div className="flex-shrink-0 h-10 w-10">
               <img className="h-10 w-10 rounded-none" src={data.image} alt="" />
@@ -18,7 +18,7 @@ const CardComponent = ({ data, onView }: HistoryCardComponentProp) => {
             </div>
           </div>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap">
+        <td className="px-6 py-3 whitespace-nowrap">
           <div className="text-sm text-gray-900">{data.title}</div>
           <div className="text-sm text-gray-500">{data.department}</div>
         </td>
@@ -27,7 +27,7 @@ const CardComponent = ({ data, onView }: HistoryCardComponentProp) => {
             Active
           </span>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
           {moment(data.startTime).format("MMMM Do, YYYY")}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -36,8 +36,8 @@ const CardComponent = ({ data, onView }: HistoryCardComponentProp) => {
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
           {moment(data.createdAt).format("MMMM Do, YYYY")}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-          <div className="text-indigo-600 hover:text-indigo-900">View</div>
+        <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+          <div className="text-pink-600 hover:text-pink-700">View</div>
         </td>
       </tr>
     </Fragment>

@@ -1,3 +1,4 @@
+import { ChevronRightIcon } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -31,18 +32,13 @@ export const BreadCrumb: FC<Props> = ({ pages }) => {
           {pages.map((page) => (
             <li key={page.name}>
               <div className="flex items-center">
-                <svg
-                  className="flex-shrink-0 h-5 w-5 text-gray-300"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+                <ChevronRightIcon
+                  className="flex-shrink-0 h-5 w-5 text-gray-400"
                   aria-hidden="true"
-                >
-                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-                </svg>
+                />
                 <Link
                   to={page.href}
-                  className="ml-4 text-md font-medium text-gray-600 hover:text-gray-700"
+                  className="ml-4 text-xl font-medium text-gray-600 hover:text-gray-700"
                   aria-current={pathname === page.href ? "page" : undefined}
                 >
                   {page?.name}
