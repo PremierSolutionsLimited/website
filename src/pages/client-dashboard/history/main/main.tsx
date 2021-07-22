@@ -6,7 +6,9 @@ import {
 import Header from "../../../../shared/layout";
 import DataView from "../data-view";
 
-const pages: BreadCrumbProp[] = [{ name: "History ", href: "/app/history" }];
+const pages: BreadCrumbProp[] = [
+  { name: "Trip History ", href: "/app/history" },
+];
 
 const people = [
   {
@@ -20,6 +22,73 @@ const people = [
     image:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
   },
+  {
+    name: "Trip 002",
+    title: "Trip type 2",
+    department: "Lorem ipsum, dolor sit amet consectetur",
+    startTime: new Date(),
+    endTime: new Date(),
+    createdAt: new Date(),
+    email: "jane.cooper@example.com",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+  },
+  {
+    name: "Trip 003",
+    title: "Trip type 3",
+    department: "Lorem ipsum, dolor sit amet consectetur",
+    startTime: new Date(),
+    endTime: new Date(),
+    createdAt: new Date(),
+    email: "jane.cooper@example.com",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+  },
+  {
+    name: "Trip 004",
+    title: "Trip type 4",
+    department: "Lorem ipsum, dolor sit amet consectetur",
+    startTime: new Date(),
+    endTime: new Date(),
+    createdAt: new Date(),
+    email: "jane.cooper@example.com",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+  },
+  {
+    name: "Trip 005",
+    title: "Trip type 5",
+    department: "Lorem ipsum, dolor sit amet consectetur",
+    startTime: new Date(),
+    endTime: new Date(),
+    createdAt: new Date(),
+    email: "jane.cooper@example.com",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+  },
+  {
+    name: "Trip 006",
+    title: "Trip type 6",
+    department: "Lorem ipsum, dolor sit amet consectetur",
+    startTime: new Date(),
+    endTime: new Date(),
+    createdAt: new Date(),
+    email: "jane.cooper@example.com",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+  },
+  {
+    name: "Trip 007",
+    title: "Trip type 7",
+    department: "Lorem ipsum, dolor sit amet consectetur",
+    startTime: new Date(),
+    endTime: new Date(),
+    createdAt: new Date(),
+    email: "jane.cooper@example.com",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+  },
+
   // More people...
 ];
 
@@ -27,7 +96,7 @@ const MainComponent = () => {
   return (
     <Fragment>
       <Header />
-      <div className="max-w-7xl mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">
+      <div className="max-w-7xl  max-h-screen mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">
         <div className={"mt-3 px-0 flex flex-row items-center justify-between"}>
           <div>
             <BreadCrumb pages={pages} />
