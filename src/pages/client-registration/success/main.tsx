@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import { CheckIcon } from "@heroicons/react/outline";
 import { useAuthProvider } from "../../../services/context";
 import { useHistory } from "react-router-dom";
-import Modal from "../../../components/modal";
+import { BasicModal } from "../../../components/modal";
 
 const MainComponent = ({ show, setShow }: SucessComponentProp) => {
   const isTabletOrMobile = useMediaQuery({
@@ -22,7 +22,7 @@ const MainComponent = ({ show, setShow }: SucessComponentProp) => {
   };
   return (
     <Fragment>
-      <Modal
+      <BasicModal
         show={show}
         setShow={setShow}
         size={isTabletOrMobile ? 100 : 30}
@@ -80,7 +80,7 @@ const MainComponent = ({ show, setShow }: SucessComponentProp) => {
             </button>
           </div>
         </div>
-      </Modal>
+      </BasicModal>
     </Fragment>
   );
 };

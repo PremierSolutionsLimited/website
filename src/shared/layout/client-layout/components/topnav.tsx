@@ -1,10 +1,13 @@
-import { Fragment } from "react";
+import { Fragment, lazy, useState, Suspense } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { classNames } from "../../../../components/classnames";
 import { userNavigation, ClientDashBoardNavigation } from "./util";
 import { ClientDashBoardNavigationProps } from "./types";
 import { Link, useLocation } from "react-router-dom";
+import { ContextLoader } from "../../../loaders";
+
+const LogoutModal = lazy(() => import("./logout"));
 
 const user = {
   name: "Tom Cook",
@@ -15,6 +18,8 @@ const user = {
 
 const TopNav = () => {
   const { pathname } = useLocation();
+  const [logout, setLogout] = useState(false);
+
   return (
     <Fragment>
       <Disclosure as="nav" className="bg-white shadow-sm">
@@ -109,6 +114,19 @@ const TopNav = () => {
                                 )}
                               </Menu.Item>
                             ))}
+                            <Menu.Item>
+                              {({ active }) => (
+                                <div
+                                  onClick={() => setLogout(true)}
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+                                  )}
+                                >
+                                  Logout
+                                </div>
+                              )}
+                            </Menu.Item>
                           </Menu.Items>
                         </Transition>
                       </>
@@ -185,6 +203,9 @@ const TopNav = () => {
           </>
         )}
       </Disclosure>
+      <Suspense fallback={ContextLoader()}>
+        <LogoutModal setShow={setLogout} show={logout} />
+      </Suspense>
     </Fragment>
   );
 };
