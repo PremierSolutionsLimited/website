@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { ScaleIcon, CheckCircleIcon, StarIcon } from "@heroicons/react/outline";
-
+import { BarChart } from "../chart";
 const cards = [
   { name: "Active Requests", href: "#", icon: CheckCircleIcon, amount: "200" },
   { name: "Total Number of Trips", href: "#", icon: ScaleIcon, amount: "100" },
@@ -57,6 +57,19 @@ const MainComponent = () => {
                   </div>
                 </div>
               ))}
+            </div>
+            <div
+              style={{
+                height: "55vh",
+              }}
+              className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-1"
+            >
+              <h2 className="text-lg leading-6 font-medium text-gray-900">
+                Weekly Summary
+              </h2>
+              <div className="bg-white p-10 overflow-hidden shadow rounded-lg">
+                <BarChart />
+              </div>
             </div>
           </div>
         </div>
