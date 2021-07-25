@@ -1,13 +1,12 @@
 import { Fragment } from "react";
+import { HISTORY } from "../../../../shared/layout/client-layout/navigation/constants";
 import {
   BreadCrumb,
   BreadCrumbProp,
 } from "../../../../shared/ui-modules/breadCrumb";
 import DataView from "../data-view";
 
-const pages: BreadCrumbProp[] = [
-  { name: "Trip History ", href: "/app/history" },
-];
+const pages: BreadCrumbProp[] = [{ name: "Trip History ", href: HISTORY }];
 
 const people = [
   {
