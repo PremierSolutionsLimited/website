@@ -101,8 +101,6 @@ const MainComponent = () => {
     setAge(registrationState?.status?.age);
   }, [registrationState?.status?.age]);
 
-  console.log("state", new Date(registrationState?.status?.dob));
-
   // registrationState's for driver availability
   const [mondayActive, setMondayActive] = useState<boolean>(false);
   const [tuesdayActive, setTuesdayActive] = useState<boolean>(false);
