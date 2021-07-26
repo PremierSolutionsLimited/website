@@ -17,5 +17,5 @@ export interface FleetDataViewComponentProp {
 export interface FleetCardComponentProp {
   onView: (dataFromCard: any) => void;
   onUpdate: (dataFromCard: any) => void;
-  data: any;
+  data: MyFleet;
 }

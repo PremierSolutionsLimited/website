@@ -26,16 +26,11 @@ const DataViewComponent: React.FC<FleetDataViewComponentProp> = ({
           </Fragment>
         ))}
       </div>
-      {total > data?.length && (
-        <div className={"mt-0"}>
-          <Pagination
-            skip={skip}
-            limit={limit}
-            setSkip={setSkip}
-            total={total}
-          />
-        </div>
-      )}
+      {/* {total > data?.length && ( */}
+      <div className={"mt-5"}>
+        <Pagination skip={skip} limit={limit} setSkip={setSkip} total={total} />
+      </div>
+      {/* )} */}
     </Fragment>
   );
 };

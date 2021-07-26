@@ -108,6 +108,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
         model,
         make,
         images,
+        registrationNumber,
       },
     })
       .then(() => {
@@ -148,6 +149,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
       setImageFile3(image1File3);
     }
   };
+
   return (
     <Fragment>
       <BasicModal
@@ -302,7 +304,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                   setMake(e.target.value);
                 }}
                 className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. 2020"
+                placeholder="Eg. Toyota"
               />
             </div>
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
@@ -320,7 +322,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                   setModel(e.target.value);
                 }}
                 className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. Toyota"
+                placeholder="Eg. Camry"
               />
             </div>
             <div className="col-span-12 sm:col-span-12 md:col-span-6">

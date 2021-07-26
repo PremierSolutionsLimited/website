@@ -15,11 +15,34 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
                 className=" w-full  object-scale-down lg:object-cover  lg:h-full rounded-2xl"
               />
             </div>
-            <div className="flex-auto ml-3 justify-evenly py-2">
+            <div className="flex-auto ml-3 justify-evenly py-2 relative">
+              <div className="hidden sm:block absolute top-0 right-0 pt-2 pr-4">
+                <button
+                  type="button"
+                  className="text-gray-400 hover:text-gray-500 hover:bg-gray-200 bg-gray-100 h-12 w-12 rounded-full flex items-center justify-center focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                  aria-label="Close"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                </button>
+              </div>
               <div className="flex flex-wrap ">
                 <div className="w-full flex-none text-xs text-blue-700 font-medium ">
                   {data?.class?.name}
                 </div>
+
                 <h2 className="flex-auto text-lg font-medium">{data?.model}</h2>
               </div>
               <p className="mt-3"></p>

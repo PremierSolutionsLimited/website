@@ -24,7 +24,18 @@ const MainComponent = () => {
   const { data, loading, refetch } = useQuery<
     MyFleetOutputProp,
     MyFleetInputProp
-  >(GET_MY_FLEET);
+  >(GET_MY_FLEET, {
+    variables: {
+      populate: ["class"],
+      pagination: {
+        skip,
+        limit,
+      },
+      sort: {
+        _id: "descending",
+      },
+    },
+  });
 
   const [showAddCar, setShowAddCar] = useState<boolean>(false);
   const [showUpdateCar, setShowUpdateCar] = useState<boolean>(false);

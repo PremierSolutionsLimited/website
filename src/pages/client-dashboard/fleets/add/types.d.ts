@@ -37,6 +37,7 @@ export interface AddVehicleInputProp {
   images: string[];
   model: string;
   make: string;
+  registrationNumber: string;
 }
 
 export interface AddVehicleOutputProp {
