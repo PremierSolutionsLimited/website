@@ -10,10 +10,12 @@ import { useCurrentClient } from "../../../../services/context/currentClient";
 import ProfileImage from "../../../../assets/images/male.jpeg";
 
 const LogoutModal = lazy(() => import("./logout"));
+const ChangePasswordModal = lazy(() => import("./changpassword"));
 
 const TopNav = () => {
   const { pathname } = useLocation();
   const [logout, setLogout] = useState(false);
+  const [showChangePassword, setShowChangePassword] = useState(false);
 
   const curentClient = useCurrentClient();
 
@@ -113,7 +115,7 @@ const TopNav = () => {
                                 <div
                                   className={classNames(
                                     active ? "" : "",
-                                    "block px-4 py-0 text-xs font-medium text-gray-900"
+                                    "block px-4 pb-2 text-xs font-medium text-gray-900"
                                   )}
                                 >
                                   {curentClient?.email}
@@ -121,6 +123,19 @@ const TopNav = () => {
                               )}
                             </Menu.Item>
 
+                            <Menu.Item>
+                              {({ active }) => (
+                                <div
+                                  onClick={() => setShowChangePassword(true)}
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+                                  )}
+                                >
+                                  Update Password
+                                </div>
+                              )}
+                            </Menu.Item>
                             <Menu.Item>
                               {({ active }) => (
                                 <div
@@ -212,6 +227,10 @@ const TopNav = () => {
       </Disclosure>
       <Suspense fallback={ContextLoader()}>
         <LogoutModal setShow={setLogout} show={logout} />
+        <ChangePasswordModal
+          setShow={setShowChangePassword}
+          show={showChangePassword}
+        />
       </Suspense>
     </Fragment>
   );
