@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { FleetCardComponentProp } from "./types";
 import CarImage from "../../../../assets/images/hyndai.png";
+import ReactTooltip from "react-tooltip";
 
 const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
   return (
@@ -19,6 +20,8 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
               <div className="hidden sm:block absolute top-0 right-0 pt-2 pr-4">
                 <button
                   type="button"
+                  data-tip
+                  data-for="registerTip"
                   className="text-gray-400 hover:text-gray-500 hover:bg-gray-200 bg-gray-100 h-12 w-12 rounded-full flex items-center justify-center focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
                   aria-label="Close"
                 >
@@ -37,6 +40,9 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
                     />
                   </svg>
                 </button>
+                <ReactTooltip id="registerTip" place="top" effect="solid">
+                  Book a trip
+                </ReactTooltip>
               </div>
               <div className="flex flex-wrap ">
                 <div className="w-full flex-none text-xs text-blue-700 font-medium ">
