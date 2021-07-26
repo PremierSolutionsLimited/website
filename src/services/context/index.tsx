@@ -14,6 +14,7 @@ import {
   IRegistrationContextControllerProps,
 } from "./types";
 import ClientApollo from "../adapters/clientApollo";
+import CurrentClient from "./currentClient";
 import Auth from "../adapters/cookie.config";
 import Registration from "../adapters/registrationCookie";
 import SettingsConfig from "./settings";
@@ -156,7 +157,9 @@ function AppNavigator() {
               value={[registrationContextController, registrationState]}
             >
               <ClientApollo>
-                <SettingsConfig />
+                <CurrentClient>
+                  <SettingsConfig />
+                </CurrentClient>
               </ClientApollo>
             </RegistrationContext.Provider>
           </AuthContext.Provider>

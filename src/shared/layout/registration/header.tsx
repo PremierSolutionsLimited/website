@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useHistory } from "react-router-dom";
-import { useRegistrationProvider } from "../../services/context";
+import { useRegistrationProvider } from "../../../services/context";
 
 export default function Header() {
   const [{ endRegistration }, registrationState] = useRegistrationProvider();
@@ -41,6 +41,7 @@ export default function Header() {
                   Hi {registrationState?.status?.firstName}, complete your
                   registration
                 </div>
+
                 <div className="flex items-center md:ml-12">
                   {registrationState?.status?.typeOfRegistration ===
                     "Client" && (
@@ -113,6 +114,7 @@ export default function Header() {
                       registration
                     </div>
                   </div>
+
                   <div className="mt-6">
                     <button
                       type="button"

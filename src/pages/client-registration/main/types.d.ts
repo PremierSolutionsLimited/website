@@ -18,6 +18,7 @@ export interface CreateClientInputProp {
   idIssueDate?: Date;
   idExpiryDate?: Date;
   emergencyContacts?: EmergencyContact[];
+  password: string;
 }
 
 export interface CreateClientOutputProp {
