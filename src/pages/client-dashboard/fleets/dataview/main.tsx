@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { FleetDataViewComponentProp } from "./types";
 import Pagination from "../../../../shared/ui-modules/pagination/pagination";
 import CardComponent from "./card";
+import { MyFleet } from "../main/types";
 
 const DataViewComponent: React.FC<FleetDataViewComponentProp> = ({
   onView,
@@ -15,7 +16,7 @@ const DataViewComponent: React.FC<FleetDataViewComponentProp> = ({
   return (
     <Fragment>
       <div className="mt-2 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
-        {data.map((fleet: any, historyIdx: number) => (
+        {data.map((fleet: MyFleet, historyIdx: number) => (
           <Fragment key={historyIdx}>
             <CardComponent
               data={fleet}

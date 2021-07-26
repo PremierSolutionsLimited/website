@@ -69,7 +69,7 @@ const MainComponent = () => {
                       <EmptyAlert
                         page="vehicles"
                         buttonMessage="Add Vehicle"
-                        emptyMessage={"Get started by add a new vehicle"}
+                        emptyMessage={"Get started by adding a new vehicle"}
                         onClickButton={() => {
                           setShowAddCar(true);
                         }}
@@ -96,7 +96,12 @@ const MainComponent = () => {
                 </Fragment>
               ) : (
                 <Fragment>
-                  <ErrorAlert reload={refetch} canReload model={"vehicles"} />
+                  <ErrorAlert
+                    reload={refetch}
+                    canReload
+                    model={"vehicles"}
+                    message="An error occured trying to load your vehicles"
+                  />
                 </Fragment>
               )}
             </Fragment>

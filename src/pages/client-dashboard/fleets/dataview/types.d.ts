@@ -1,9 +1,10 @@
 import React from "react";
+import { MyFleet } from "../main/types";
 
 export interface FleetDataViewComponentProp {
-  onView: (dataFromCard: any) => void;
-  onUpdate: (dataFromCard: any) => void;
-  data: any;
+  onView: (dataFromCard: MyFleet) => void;
+  onUpdate: (dataFromCard: MyFleet) => void;
+  data: MyFleet[];
   limit: number;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
   total: number;

@@ -5,7 +5,7 @@ import { RefreshIcon } from "@heroicons/react/outline";
 interface Props {
   model: string;
   canReload: boolean;
-  message?: string;
+  message: string;
   reload: () => void;
 }
 
@@ -30,7 +30,7 @@ const ErrorAlert: FC<Props> = ({ model, canReload, message, reload }) => {
           </svg>
         </div>
         <div className={"mt-2"}>
-          <span className={"text-2xl font-bold"}>Can't fetch {model}</span>
+          <span className={"text-lg font-medium"}>Can't fetch {model}</span>
         </div>
         <div className={"mb-2"}>
           <span className={" font-light"}>{message}</span>
@@ -40,9 +40,7 @@ const ErrorAlert: FC<Props> = ({ model, canReload, message, reload }) => {
             <div>
               <button
                 onClick={reload}
-                className={
-                  "border-2 border-dashed px-5 py-2 bg-white hover:bg-gray-50 flex flex-row items-center"
-                }
+                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
               >
                 <RefreshIcon className={"h-6 w-6 mr-2 text-orange-500"} />
                 <span className={"font-semibold"}> Reload</span>
@@ -55,8 +53,8 @@ const ErrorAlert: FC<Props> = ({ model, canReload, message, reload }) => {
   );
 };
 
-ErrorAlert.defaultProps = {
-  message: "Some message for dey this side. So put some in the message prop",
-};
+// ErrorAlert.defaultProps = {
+//   message: "Some message for dey this side. So put some in the message prop",
+// };
 
 export { ErrorAlert };

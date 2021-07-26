@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { FleetCardComponentProp } from "./types";
 import CarImage from "../../../../assets/images/hyndai.png";
+
 const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
   return (
     <Fragment>
@@ -9,7 +10,7 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
           <div className="flex-none lg:flex">
             <div className=" h-full w-full lg:h-full lg:w-full   lg:mb-0 mb-3">
               <img
-                src={CarImage}
+                src={data?.class?.icon || CarImage}
                 alt="Just a flower"
                 className=" w-full  object-scale-down lg:object-cover  lg:h-full rounded-2xl"
               />
@@ -17,11 +18,9 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
             <div className="flex-auto ml-3 justify-evenly py-2">
               <div className="flex flex-wrap ">
                 <div className="w-full flex-none text-xs text-blue-700 font-medium ">
-                  Vehicle Class
+                  {data?.class?.name}
                 </div>
-                <h2 className="flex-auto text-lg font-medium">
-                  Mercedes AMG Class
-                </h2>
+                <h2 className="flex-auto text-lg font-medium">{data?.model}</h2>
               </div>
               <p className="mt-3"></p>
               <div className="flex py-4  text-sm text-gray-500">
@@ -46,7 +45,7 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
                       d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                     ></path>
                   </svg>
-                  <p className="">Cochin,KL</p>
+                  <p className="">{data?.make}</p>
                 </div>
                 <div className="flex-1 inline-flex items-center">
                   <svg
@@ -63,7 +62,7 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
                       d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                     ></path>
                   </svg>
-                  <p className="">GE-0234-2343</p>
+                  <p className="">{data?.registrationNumber}</p>
                 </div>
               </div>
               <div className="flex p-4 pb-2 border-t border-gray-200 "></div>
