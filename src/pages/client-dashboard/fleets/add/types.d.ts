@@ -3,6 +3,7 @@ import React from "react";
 export interface AddCarComponentProp {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  refetch: () => void;
 }
 
 export interface VehicleClassesInputProp {
@@ -26,4 +27,20 @@ export interface VehicleClasses {
   createdAt: Date;
   updatedAt: Date;
   deleted: boolean;
+}
+
+export interface AddVehicleInputProp {
+  client: string;
+  class: string;
+  transmissionType: string;
+  color: string;
+  images: string[];
+  model: string;
+  make: string;
+}
+
+export interface AddVehicleOutputProp {
+  createVehicle: {
+    _id: string;
+  };
 }

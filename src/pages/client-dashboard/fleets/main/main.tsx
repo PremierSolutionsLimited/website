@@ -47,7 +47,11 @@ const MainComponent = () => {
         </div>
       </div>
       <Suspense fallback={ContextLoader()}>
-        <AddCarComponent show={showAddCar} setShow={setShowAddCar} />
+        <AddCarComponent
+          show={showAddCar}
+          setShow={setShowAddCar}
+          refetch={() => null}
+        />
         <UpdateCarComponent show={showUpdateCar} setShow={setShowUpdateCar} />
       </Suspense>
     </Fragment>

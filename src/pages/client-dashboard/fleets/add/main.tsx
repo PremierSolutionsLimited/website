@@ -1,25 +1,39 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   AddCarComponentProp,
   VehicleClassOutputProp,
   VehicleClassesInputProp,
   VehicleClasses,
+  AddVehicleOutputProp,
+  AddVehicleInputProp,
 } from "./types";
 import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { UploadCarsComponent } from "./components/uploadcars";
-import { useQuery } from "@apollo/client";
-import { GET_VEHICLE_CLASSES } from "../../../../services/graphql/fleet";
+import { ApolloError, useMutation, useQuery } from "@apollo/client";
+import {
+  ADD_VEHICLE,
+  GET_VEHICLE_CLASSES,
+} from "../../../../services/graphql/fleet";
+import { useCurrentClient } from "../../../../services/context/currentClient";
 import SketchPickerComponent from "./components";
+import toast from "react-hot-toast";
+import _ from "lodash";
+import { CircleSpinner } from "react-spinners-kit";
 
-const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
+const MainComponent: React.FC<AddCarComponentProp> = ({
+  show,
+  setShow,
+  refetch,
+}) => {
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
 
+  const [clientId, setClientId] = useState<string>("");
   const [vehicleClass, setVehicleClass] = useState<string>("");
   const [transmissionType, setTransmissionType] = useState<string>("");
-  // const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([]);
   const [make, setMake] = useState<string>("");
   const [model, setModel] = useState<string>("");
   const [registrationNumber, setRegistrationNumber] = useState<string>("");
@@ -28,11 +42,18 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [color, setColor] = useState("");
 
+  const currentClient = useCurrentClient();
+
   // get vehicle  classes
   const { data: vehicleClasses, loading: loadingVehicleClasses } = useQuery<
     VehicleClassOutputProp,
     VehicleClassesInputProp
   >(GET_VEHICLE_CLASSES);
+
+  const [invokeCreateVehicle, { loading }] = useMutation<
+    AddVehicleOutputProp,
+    AddVehicleInputProp
+  >(ADD_VEHICLE);
 
   // for uploading car images
   const [image1File1, setImageFile1] = useState<any>(null);
@@ -41,6 +62,64 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
   const [imageUrl2, setImageUrl2] = useState<string>("");
   const [image1File3, setImageFile3] = useState<any>(null);
   const [imageUrl3, setImageUrl3] = useState<string>("");
+
+  useEffect(() => {
+    if (currentClient) {
+      setClientId(currentClient?._id);
+    }
+  }, [currentClient]);
+
+  const resetState = () => {
+    setImageFile1(null);
+    setImageUrl1("");
+    setImageFile2(null);
+    setImageUrl2("");
+    setImageFile3(null);
+    setImageUrl3("");
+    setImages([]);
+    setVehicleClass("");
+    setClientId("");
+    setMake("");
+    setModel("");
+    setRegistrationNumber("");
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (vehicleClass.trim() === "") {
+      return toast.error("Please choose the class your vehicle belongs to");
+    }
+    if (transmissionType.trim() === "") {
+      return toast.error("Please choose  your vehicle's transmission type");
+    }
+    if (color.trim() === "") {
+      return toast.error("Please choose the colour of your vehicle ");
+    }
+
+    if (color.trim() === "") {
+      return toast.error("Please chose the model of your vehicle ");
+    }
+    invokeCreateVehicle({
+      variables: {
+        client: clientId,
+        class: vehicleClass,
+        transmissionType,
+        color,
+        model,
+        make,
+        images,
+      },
+    })
+      .then(() => {
+        refetch();
+        setShow(false);
+        toast.success("Vehicle created successfully");
+        resetState();
+      })
+      .catch((e: ApolloError) => {
+        toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)));
+      });
+  };
 
   const handleUploadImage1 = (e: any) => {
     if (e.target.files[0] !== undefined) {
@@ -203,6 +282,8 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
                   defaultValue="Canada"
                 >
                   <option>Please Choose</option>
+                  <option value="MANUAL">Manual</option>
+                  <option value="AUTOMATIC">Automatic</option>
                 </select>
               </div>
             </div>
@@ -285,10 +366,20 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
             </span>
             <span className="inline-flex rounded-none shadow-sm ">
               <button
-                type="submit"
+                type="button"
+                onClick={handleSubmit}
+                disabled={loading}
                 className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
               >
-                <span className="mx-1">Save</span>
+                {loading ? (
+                  <Fragment>
+                    <CircleSpinner loading color="#fff" size={13} />
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <span className="mx-1">Save</span>
+                  </Fragment>
+                )}
               </button>
             </span>
           </div>
