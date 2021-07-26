@@ -1,8 +1,15 @@
 import React, { Fragment, useState } from "react";
-import { AddCarComponentProp } from "./types";
+import {
+  AddCarComponentProp,
+  VehicleClassOutputProp,
+  VehicleClassesInputProp,
+  VehicleClasses,
+} from "./types";
 import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { UploadCarsComponent } from "./components/uploadcars";
+import { useQuery } from "@apollo/client";
+import { GET_VEHICLE_CLASSES } from "../../../../services/graphql/fleet";
 import SketchPickerComponent from "./components";
 
 const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
@@ -10,9 +17,24 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
     query: "(min-width: 320px) and (max-width: 480px)",
   });
 
+  const [vehicleClass, setVehicleClass] = useState<string>("");
+  const [transmissionType, setTransmissionType] = useState<string>("");
+  // const [images, setImages] = useState<string[]>([]);
+  const [make, setMake] = useState<string>("");
+  const [model, setModel] = useState<string>("");
+  const [registrationNumber, setRegistrationNumber] = useState<string>("");
+
+  // for colour select component
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [color, setColor] = useState("");
 
+  // get vehicle  classes
+  const { data: vehicleClasses, loading: loadingVehicleClasses } = useQuery<
+    VehicleClassOutputProp,
+    VehicleClassesInputProp
+  >(GET_VEHICLE_CLASSES);
+
+  // for uploading car images
   const [image1File1, setImageFile1] = useState<any>(null);
   const [imageUrl1, setImageUrl1] = useState<string>("");
   const [image1File2, setImageFile2] = useState<any>(null);
@@ -20,7 +42,6 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
   const [image1File3, setImageFile3] = useState<any>(null);
   const [imageUrl3, setImageUrl3] = useState<string>("");
 
-  // function to handle licenseBack upload from user's pc
   const handleUploadImage1 = (e: any) => {
     if (e.target.files[0] !== undefined) {
       setImageUrl1(URL.createObjectURL(e.target.files[0]));
@@ -92,10 +113,49 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
                   id="location"
                   name="location"
                   required
+                  value={vehicleClass}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    setVehicleClass(e.target.value);
+                  }}
                   className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
                   defaultValue="Canada"
                 >
                   <option>Please Choose</option>
+                  {loadingVehicleClasses ? (
+                    <Fragment>
+                      <option>Loading...</option>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      {vehicleClasses ? (
+                        <Fragment>
+                          {vehicleClasses?.vehicleClassesLength === 0 ? (
+                            <Fragment>
+                              <option>No vehicle classes found</option>
+                            </Fragment>
+                          ) : (
+                            <Fragment>
+                              {vehicleClasses?.vehicleClasses?.map(
+                                (item: VehicleClasses, itemIdx: number) => (
+                                  <Fragment key={itemIdx}>
+                                    <option value={item?._id}>
+                                      {item?.name}
+                                    </option>
+                                  </Fragment>
+                                )
+                              )}
+                            </Fragment>
+                          )}
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          <option>
+                            An error occured trying to load the data
+                          </option>
+                        </Fragment>
+                      )}
+                    </Fragment>
+                  )}
                 </select>
               </div>
             </div>
@@ -135,6 +195,10 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
                   id="location"
                   name="location"
                   required
+                  value={transmissionType}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    setTransmissionType(e.target.value);
+                  }}
                   className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
                   defaultValue="Canada"
                 >
@@ -152,8 +216,12 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
               <input
                 type="text"
                 required
+                value={make}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setMake(e.target.value);
+                }}
                 className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. Doe"
+                placeholder="Eg. 2020"
               />
             </div>
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
@@ -166,8 +234,12 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
               <input
                 type="text"
                 required
+                value={model}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setModel(e.target.value);
+                }}
                 className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. Doe"
+                placeholder="Eg. Toyota"
               />
             </div>
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
@@ -180,8 +252,12 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
               <input
                 type="text"
                 required
+                value={registrationNumber}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setRegistrationNumber(e.target.value);
+                }}
                 className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. Doe"
+                placeholder="Eg. GE-320-20"
               />
             </div>
 
