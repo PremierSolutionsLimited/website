@@ -10,3 +10,16 @@ export const loginClient = gql`
     }
   }
 `;
+
+export const changePassword = gql`
+  mutation ($oldPassword: String!, $newPassword: String!) {
+    updateClientPassword(
+      input: { oldPassword: $oldPassword, newPassword: $newPassword }
+    ) {
+      client {
+        _id
+      }
+      token
+    }
+  }
+`;
