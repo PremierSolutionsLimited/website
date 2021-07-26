@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { ForgotPasswordComponentProp } from "./types";
 import { XIcon } from "@heroicons/react/outline";
 import { useMediaQuery } from "react-responsive";
-import Modal from "../../components/modal/basic";
+import { SuccessModal } from "../../components/modal";
 import SendCodeComponent from "./send-code";
 import VerifyCodeComponent from "./verify";
 
@@ -18,7 +18,11 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
 
   return (
     <Fragment>
-      <Modal show={show} setShow={setShow} size={isTabletOrMobile ? 100 : 30}>
+      <SuccessModal
+        show={show}
+        setShow={setShow}
+        size={isTabletOrMobile ? 100 : 30}
+      >
         <div
           className={
             "w-full border-b shadow-none border-gray-200 flex flex-row justify-between px-5 pt-5 pb-3 items-center"
@@ -87,7 +91,7 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
             </Fragment>
           )}
         </div>
-      </Modal>
+      </SuccessModal>
     </Fragment>
   );
 };

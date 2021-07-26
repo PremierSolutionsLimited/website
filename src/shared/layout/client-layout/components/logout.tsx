@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { BasicModal } from "../../../../components/modal";
 import { useAuthProvider } from "../../../../services/context";
+import { useMediaQuery } from "react-responsive";
 import LogoutSVG from "../../../../components/svgs/logout";
 
 interface Props {
@@ -10,6 +11,9 @@ interface Props {
 }
 
 const Logout: React.FC<Props> = ({ show, setShow }) => {
+  const isTabletOrMobile = useMediaQuery({
+    query: "(min-width: 320px) and (max-width: 480px)",
+  });
   const [{ signOut }] = useAuthProvider();
   const { push } = useHistory();
 
@@ -20,9 +24,13 @@ const Logout: React.FC<Props> = ({ show, setShow }) => {
   };
   return (
     <Fragment>
-      <BasicModal show={show} setShow={setShow} size={25}>
+      <BasicModal
+        show={show}
+        setShow={setShow}
+        size={isTabletOrMobile ? 100 : 25}
+      >
         <div className="px-6">
-          <div className="inline-block align-bottom  px-4 pt-5 pb-0 text-left overflow-hidden shadow-none transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+          <div className="inline-block align-bottom  px-4 pt-5 pb-0 text-left overflow-hidden shadow-none transform transition-all sm:my-8 sm:align-middle sm:max-w-full sm:w-full sm:p-6">
             <div>
               <div className="mx-auto flex items-center justify-center rounded-none ">
                 <LogoutSVG className="h-24 w-24" />

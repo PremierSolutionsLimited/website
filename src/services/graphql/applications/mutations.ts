@@ -114,6 +114,7 @@ export const createClient = gql`
     $title: Title
     $lastName: String!
     $firstName: String!
+    $otherNames: String
     $gender: Gender!
     $dob: Date!
     $photograph: String
@@ -136,6 +137,7 @@ export const createClient = gql`
         title: $title
         lastName: $lastName
         firstName: $firstName
+        otherNames: $otherNames
         gender: $gender
         dob: $dob
         photograph: $photograph
