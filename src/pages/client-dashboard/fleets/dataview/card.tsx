@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { FleetCardComponentProp } from "./types";
 import CarImage from "../../../../assets/images/hyndai.png";
-const Card = ({ data, onView }: FleetCardComponentProp) => {
+const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
   return (
     <Fragment>
       <div className="flex flex-col">
@@ -95,6 +95,7 @@ const Card = ({ data, onView }: FleetCardComponentProp) => {
                   View
                 </button>
                 <button
+                  onClick={onUpdate}
                   className="mb-2 md:mb-0 focus:outline-none bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
                   type="button"
                   aria-label="like"

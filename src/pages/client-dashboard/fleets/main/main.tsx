@@ -9,6 +9,7 @@ import {
 import DataView from "../dataview";
 
 const AddCarComponent = lazy(() => import("../add"));
+const UpdateCarComponent = lazy(() => import("../update"));
 
 const pages: BreadCrumbProp[] = [{ name: "My Fleet ", href: MY_FLEET }];
 
@@ -16,6 +17,7 @@ const data: any[] = ["1", "43", "32"];
 
 const MainComponent = () => {
   const [showAddCar, setShowAddCar] = useState<boolean>(false);
+  const [showUpdateCar, setShowUpdateCar] = useState<boolean>(false);
   return (
     <Fragment>
       <div className="max-w-7xl  max-h-screen mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">
@@ -35,11 +37,18 @@ const MainComponent = () => {
           </div>
         </div>
         <div className="mt-5">
-          <DataView data={data} onView={(dataFromCard) => {}} />
+          <DataView
+            data={data}
+            onView={(dataFromCard) => {}}
+            onUpdate={(dataFromCard) => {
+              setShowUpdateCar(!showUpdateCar);
+            }}
+          />
         </div>
       </div>
       <Suspense fallback={ContextLoader()}>
         <AddCarComponent show={showAddCar} setShow={setShowAddCar} />
+        <UpdateCarComponent show={showUpdateCar} setShow={setShowUpdateCar} />
       </Suspense>
     </Fragment>
   );
