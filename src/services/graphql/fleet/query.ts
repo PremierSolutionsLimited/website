@@ -25,3 +25,37 @@ export const getVehicleClasses = gql`
     vehicleClassesLength(filter: $filter)
   }
 `;
+
+export const getMyFleet = gql`
+  query (
+    $filter: GetVehiclesFilter
+    $skip: Int
+    $limit: Int
+    $sort: GetVehiclesSort
+    $populate: [String]
+  ) {
+    vehicles(
+      filter: $filter
+      pagination: { skip: $skip, limit: $limit }
+      sort: $sort
+      populate: $populate
+    ) {
+      _id
+      code
+      class {
+        _id
+        name
+        description
+        icon
+      }
+      color
+      images
+      make
+      model
+      registrationNumber
+      createdAt
+      updatedAt
+    }
+    vehiclesLength(filter: $filter)
+  }
+`;
