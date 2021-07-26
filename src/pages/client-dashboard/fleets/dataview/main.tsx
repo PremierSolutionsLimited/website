@@ -1,11 +1,15 @@
 import { Fragment } from "react";
 import { FleetDataViewComponentProp } from "./types";
-import { Pagination } from "../../../../shared/ui-modules/pagination";
+import Pagination from "../../../../shared/ui-modules/pagination/pagination";
 import CardComponent from "./card";
 
 const DataViewComponent: React.FC<FleetDataViewComponentProp> = ({
   onView,
   onUpdate,
+  limit,
+  total,
+  skip,
+  setSkip,
   data,
 }) => {
   return (
@@ -21,9 +25,23 @@ const DataViewComponent: React.FC<FleetDataViewComponentProp> = ({
           </Fragment>
         ))}
       </div>
-      <Pagination />
+      {total > data?.length && (
+        <div className={"mt-0"}>
+          <Pagination
+            skip={skip}
+            limit={limit}
+            setSkip={setSkip}
+            total={total}
+          />
+        </div>
+      )}
     </Fragment>
   );
 };
 
+DataViewComponent.defaultProps = {
+  limit: 4,
+  skip: 0,
+  end: 0,
+};
 export default DataViewComponent;

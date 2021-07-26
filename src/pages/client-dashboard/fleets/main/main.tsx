@@ -1,5 +1,6 @@
 import { PlusCircleIcon } from "@heroicons/react/outline";
 import { Fragment, lazy, Suspense, useState } from "react";
+import { usePagination } from "../../../../components/hooks";
 import { MY_FLEET } from "../../../../shared/layout/client-layout/navigation/constants";
 import { ContextLoader } from "../../../../shared/loaders";
 import {
@@ -13,9 +14,11 @@ const UpdateCarComponent = lazy(() => import("../update"));
 
 const pages: BreadCrumbProp[] = [{ name: "My Fleet ", href: MY_FLEET }];
 
-const data: any[] = ["1", "43", "32"];
+const data: any[] = ["1", "43", "32", "23"];
 
 const MainComponent = () => {
+  const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
+
   const [showAddCar, setShowAddCar] = useState<boolean>(false);
   const [showUpdateCar, setShowUpdateCar] = useState<boolean>(false);
   return (
@@ -38,6 +41,13 @@ const MainComponent = () => {
         </div>
         <div className="mt-5">
           <DataView
+            limit={limit}
+            setLimit={setLimit}
+            end={end}
+            setEnd={setEnd}
+            skip={skip}
+            setSkip={setSkip}
+            total={200}
             data={data}
             onView={(dataFromCard) => {}}
             onUpdate={(dataFromCard) => {
