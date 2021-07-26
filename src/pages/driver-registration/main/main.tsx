@@ -1,6 +1,6 @@
 import React, { Fragment, useState, lazy, Suspense, useEffect } from "react";
 import { ApolloError, useMutation } from "@apollo/client";
-import { CREATE_DRIVER_APPLICATION } from "../../../services/graphql";
+import { CREATE_DRIVER_APPLICATION } from "../../../services/graphql/applications";
 import { ContextLoader } from "../../../shared/loaders";
 import {
   CreateApplicationInputProp,

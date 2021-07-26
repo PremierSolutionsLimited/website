@@ -1,10 +1,11 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, Suspense } from "react";
 import { TopNav } from "./components/topnav";
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 import { ContextLoader } from "../../loaders";
 import { RouteProp } from "./navigation/types";
 import { routes } from "./navigation";
+import PrivateRoute from "../../../services/adapters/protectedRoutes";
 
 export default function AppLayout() {
   return (
@@ -19,7 +20,7 @@ export default function AppLayout() {
             {routes.map((route: RouteProp, i: number) => {
               return (
                 <Fragment key={i}>
-                  <Route
+                  <PrivateRoute
                     path={route.path}
                     component={route.component as any}
                     exact={route.exact}

@@ -3,7 +3,7 @@ import { CreateClientInputProp, CreateClientOutputProp } from "./types";
 import { EmergencyInputProp, IGenderPreference } from "../bones/types";
 import { getGenderPreference } from "../util/defaultGender";
 import { ApolloError, useMutation } from "@apollo/client";
-import { CREATE_CLIENT } from "../../../services/graphql";
+import { CREATE_CLIENT } from "../../../services/graphql/applications";
 import { useRegistrationProvider } from "../../../services/context";
 import { v4 } from "uuid";
 import { ContextLoader } from "../../../shared/loaders";
