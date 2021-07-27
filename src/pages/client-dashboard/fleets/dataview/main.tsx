@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { FleetDataViewComponentProp } from "./types";
+import { MyFleet } from "../main/types";
 import Pagination from "../../../../shared/ui-modules/pagination/pagination";
 import CardComponent from "./card";
-import { MyFleet } from "../main/types";
 
 const DataViewComponent: React.FC<FleetDataViewComponentProp> = ({
   onView,
