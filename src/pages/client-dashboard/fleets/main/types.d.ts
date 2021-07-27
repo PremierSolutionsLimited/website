@@ -24,6 +24,7 @@ export interface MyFleet {
   make: string;
   model: string;
   registrationNumber: string;
+  transmissionType: string;
   createdAt: Date;
   updatedAt: Date;
 }

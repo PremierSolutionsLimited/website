@@ -37,6 +37,7 @@ const MainComponent = () => {
     },
   });
 
+  const [selectedCar, setSelectedCar] = useState<MyFleet>();
   const [showAddCar, setShowAddCar] = useState<boolean>(false);
   const [showUpdateCar, setShowUpdateCar] = useState<boolean>(false);
   return (
@@ -99,6 +100,7 @@ const MainComponent = () => {
                         data={data?.vehicles}
                         onView={(dataFromCard: MyFleet) => {}}
                         onUpdate={(dataFromCard: MyFleet) => {
+                          setSelectedCar(dataFromCard);
                           setShowUpdateCar(!showUpdateCar);
                         }}
                       />
@@ -125,7 +127,12 @@ const MainComponent = () => {
           setShow={setShowAddCar}
           refetch={refetch}
         />
-        <UpdateCarComponent show={showUpdateCar} setShow={setShowUpdateCar} />
+        <UpdateCarComponent
+          show={showUpdateCar}
+          setShow={setShowUpdateCar}
+          selectedVehicle={selectedCar}
+          refetch={refetch}
+        />
       </Suspense>
     </Fragment>
   );

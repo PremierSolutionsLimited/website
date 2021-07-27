@@ -53,6 +53,7 @@ export const getMyFleet = gql`
       make
       model
       registrationNumber
+      transmissionType
       createdAt
       updatedAt
     }

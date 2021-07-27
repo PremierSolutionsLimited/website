@@ -25,3 +25,29 @@ export const createVehicle = gql`
     }
   }
 `;
+
+export const updateVehicle = gql`
+  mutation (
+    $vehicleId: ID!
+    $class: ID
+    $transmissionType: TransmissionType
+    $color: String
+    $images: [String]
+    $make: String
+    $model: String
+  ) {
+    updateVehicle(
+      input: {
+        vehicleId: $vehicleId
+        class: $class
+        transmissionType: $transmissionType
+        color: $color
+        images: $images
+        model: $model
+        make: $make
+      }
+    ) {
+      _id
+    }
+  }
+`;

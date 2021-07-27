@@ -97,23 +97,13 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
               <div className="flex p-4 pb-2 border-t border-gray-200 "></div>
               <div className="flex space-x-3 text-sm font-medium">
                 <div className="flex-auto flex space-x-3">
-                  <button className="mb-2 md:mb-0 focus:outline-none bg-white px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
-                    <span className="text-green-400 hover:text-green-500 rounded-lg">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                    <span>Active </span>
-                  </button>
+                  <div className="mb-2 md:mb-0 focus:outline-none bg-white px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full  inline-flex items-center space-x-2 ">
+                    <div
+                      style={{ backgroundColor: data?.color || "transaparent" }}
+                      className=" flex-shrink-0 cursor-pointer p-2  rounded-full"
+                    />
+                    <span className="font-medium text-xs">Color </span>
+                  </div>
                 </div>
                 <button
                   className="mb-2 md:mb-0 focus:outline-none bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
