@@ -1,18 +1,61 @@
-import React, { Fragment, useState } from "react";
-import { AddCarComponentProp } from "./types";
+import React, { Fragment, useEffect, useState } from "react";
+import {
+  AddCarComponentProp,
+  VehicleClassOutputProp,
+  VehicleClassesInputProp,
+  VehicleClasses,
+  AddVehicleOutputProp,
+  AddVehicleInputProp,
+} from "./types";
 import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { UploadCarsComponent } from "./components/uploadcars";
+import { ApolloError, useMutation, useQuery } from "@apollo/client";
+import {
+  ADD_VEHICLE,
+  GET_VEHICLE_CLASSES,
+} from "../../../../services/graphql/fleet";
+import { useCurrentClient } from "../../../../services/context/currentClient";
 import SketchPickerComponent from "./components";
+import toast from "react-hot-toast";
+import _ from "lodash";
+import { CircleSpinner } from "react-spinners-kit";
 
-const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
+const MainComponent: React.FC<AddCarComponentProp> = ({
+  show,
+  setShow,
+  refetch,
+}) => {
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
 
+  const [clientId, setClientId] = useState<string>("");
+  const [vehicleClass, setVehicleClass] = useState<string>("");
+  const [transmissionType, setTransmissionType] = useState<string>("");
+  const [images, setImages] = useState<string[]>([]);
+  const [make, setMake] = useState<string>("");
+  const [model, setModel] = useState<string>("");
+  const [registrationNumber, setRegistrationNumber] = useState<string>("");
+
+  // for colour select component
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [color, setColor] = useState("");
 
+  const currentClient = useCurrentClient();
+
+  // get vehicle  classes
+  const { data: vehicleClasses, loading: loadingVehicleClasses } = useQuery<
+    VehicleClassOutputProp,
+    VehicleClassesInputProp
+  >(GET_VEHICLE_CLASSES);
+
+  const [invokeCreateVehicle, { loading }] = useMutation<
+    AddVehicleOutputProp,
+    AddVehicleInputProp
+  >(ADD_VEHICLE);
+
+  // for uploading car images
   const [image1File1, setImageFile1] = useState<any>(null);
   const [imageUrl1, setImageUrl1] = useState<string>("");
   const [image1File2, setImageFile2] = useState<any>(null);
@@ -20,7 +63,65 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
   const [image1File3, setImageFile3] = useState<any>(null);
   const [imageUrl3, setImageUrl3] = useState<string>("");
 
-  // function to handle licenseBack upload from user's pc
+  useEffect(() => {
+    if (currentClient) {
+      setClientId(currentClient?._id);
+    }
+  }, [currentClient]);
+
+  const resetState = () => {
+    setImageFile1(null);
+    setImageUrl1("");
+    setImageFile2(null);
+    setImageUrl2("");
+    setImageFile3(null);
+    setImageUrl3("");
+    setImages([]);
+    setVehicleClass("");
+    setClientId("");
+    setMake("");
+    setModel("");
+    setRegistrationNumber("");
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (vehicleClass.trim() === "") {
+      return toast.error("Please choose the class your vehicle belongs to");
+    }
+    if (transmissionType.trim() === "") {
+      return toast.error("Please choose  your vehicle's transmission type");
+    }
+    if (color.trim() === "") {
+      return toast.error("Please choose the colour of your vehicle ");
+    }
+
+    if (color.trim() === "") {
+      return toast.error("Please chose the model of your vehicle ");
+    }
+    invokeCreateVehicle({
+      variables: {
+        client: clientId,
+        class: vehicleClass,
+        transmissionType,
+        color,
+        model,
+        make,
+        images,
+        registrationNumber,
+      },
+    })
+      .then(() => {
+        refetch();
+        setShow(false);
+        toast.success("Vehicle created successfully");
+        resetState();
+      })
+      .catch((e: ApolloError) => {
+        toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)));
+      });
+  };
+
   const handleUploadImage1 = (e: any) => {
     if (e.target.files[0] !== undefined) {
       setImageUrl1(URL.createObjectURL(e.target.files[0]));
@@ -48,6 +149,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
       setImageFile3(image1File3);
     }
   };
+
   return (
     <Fragment>
       <BasicModal
@@ -92,10 +194,49 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
                   id="location"
                   name="location"
                   required
+                  value={vehicleClass}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    setVehicleClass(e.target.value);
+                  }}
                   className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
                   defaultValue="Canada"
                 >
                   <option>Please Choose</option>
+                  {loadingVehicleClasses ? (
+                    <Fragment>
+                      <option>Loading...</option>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      {vehicleClasses ? (
+                        <Fragment>
+                          {vehicleClasses?.vehicleClassesLength === 0 ? (
+                            <Fragment>
+                              <option>No vehicle classes found</option>
+                            </Fragment>
+                          ) : (
+                            <Fragment>
+                              {vehicleClasses?.vehicleClasses?.map(
+                                (item: VehicleClasses, itemIdx: number) => (
+                                  <Fragment key={itemIdx}>
+                                    <option value={item?._id}>
+                                      {item?.name}
+                                    </option>
+                                  </Fragment>
+                                )
+                              )}
+                            </Fragment>
+                          )}
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          <option>
+                            An error occured trying to load the data
+                          </option>
+                        </Fragment>
+                      )}
+                    </Fragment>
+                  )}
                 </select>
               </div>
             </div>
@@ -135,10 +276,16 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
                   id="location"
                   name="location"
                   required
+                  value={transmissionType}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    setTransmissionType(e.target.value);
+                  }}
                   className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
                   defaultValue="Canada"
                 >
                   <option>Please Choose</option>
+                  <option value="MANUAL">Manual</option>
+                  <option value="AUTOMATIC">Automatic</option>
                 </select>
               </div>
             </div>
@@ -152,8 +299,12 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
               <input
                 type="text"
                 required
+                value={make}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setMake(e.target.value);
+                }}
                 className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. Doe"
+                placeholder="Eg. Toyota"
               />
             </div>
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
@@ -166,8 +317,12 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
               <input
                 type="text"
                 required
+                value={model}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setModel(e.target.value);
+                }}
                 className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. Doe"
+                placeholder="Eg. Camry"
               />
             </div>
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
@@ -180,8 +335,12 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
               <input
                 type="text"
                 required
+                value={registrationNumber}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setRegistrationNumber(e.target.value);
+                }}
                 className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. Doe"
+                placeholder="Eg. GE-320-20"
               />
             </div>
 
@@ -209,10 +368,20 @@ const MainComponent: React.FC<AddCarComponentProp> = ({ show, setShow }) => {
             </span>
             <span className="inline-flex rounded-none shadow-sm ">
               <button
-                type="submit"
+                type="button"
+                onClick={handleSubmit}
+                disabled={loading}
                 className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
               >
-                <span className="mx-1">Save</span>
+                {loading ? (
+                  <Fragment>
+                    <CircleSpinner loading color="#fff" size={13} />
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <span className="mx-1">Save</span>
+                  </Fragment>
+                )}
               </button>
             </span>
           </div>

@@ -25,7 +25,7 @@ const SketchPickerComponent = ({ show, setShow, color, setColor }: Props) => {
         leaveFrom="translate-x-0"
         leaveTo="opacity-0"
       >
-        <div ref={wrapperRef} className={"absolute"}>
+        <div ref={wrapperRef} className={"absolute z-30"}>
           <SketchPicker
             color={color}
             onChangeComplete={(color) => {

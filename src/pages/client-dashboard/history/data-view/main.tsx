@@ -1,11 +1,16 @@
-import { Pagination } from "../../../../shared/ui-modules/pagination";
 import { HistoryDataViewComponentProp } from "./types";
 import { Fragment } from "react";
+import { TripHistory } from "../main/types";
 import CardComponent from "./card";
+import Pagination from "../../../../shared/ui-modules/pagination/pagination";
 
 export default function MainComponent({
   data,
   onView,
+  limit,
+  total,
+  skip,
+  setSkip,
 }: HistoryDataViewComponentProp) {
   return (
     <div className="flex flex-col">
@@ -19,7 +24,13 @@ export default function MainComponent({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Trip Code
+                    Trip Code | Vehicle
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Vehicle Registration No.
                   </th>
                   <th
                     scope="col"
@@ -46,19 +57,14 @@ export default function MainComponent({
                   >
                     End Time
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Trip Date
-                  </th>
+
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">Edit</span>
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {data.map((history: any, historyIdx: number) => (
+                {data.map((history: TripHistory, historyIdx: number) => (
                   <Fragment key={historyIdx}>
                     <CardComponent
                       data={history}
@@ -69,7 +75,14 @@ export default function MainComponent({
               </tbody>
             </table>
           </div>
-          <Pagination />
+          <div className={"mt-5"}>
+            <Pagination
+              skip={skip}
+              limit={limit}
+              setSkip={setSkip}
+              total={total}
+            />
+          </div>
         </div>
       </div>
     </div>
