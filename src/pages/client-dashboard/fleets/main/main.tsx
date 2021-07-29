@@ -16,6 +16,7 @@ import DataView from "../dataview";
 
 const AddCarComponent = lazy(() => import("../add"));
 const UpdateCarComponent = lazy(() => import("../update"));
+const ViewCarComponent = lazy(() => import("../view"));
 
 const pages: BreadCrumbProp[] = [{ name: "My Fleet ", href: MY_FLEET }];
 
@@ -40,6 +41,7 @@ const MainComponent = () => {
   const [selectedCar, setSelectedCar] = useState<MyFleet>();
   const [showAddCar, setShowAddCar] = useState<boolean>(false);
   const [showUpdateCar, setShowUpdateCar] = useState<boolean>(false);
+  const [showViewCar, setShowViewCar] = useState<boolean>(false);
   return (
     <Fragment>
       <div className="max-w-7xl  max-h-screen mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">
@@ -98,7 +100,10 @@ const MainComponent = () => {
                         setSkip={setSkip}
                         total={data?.vehiclesLength}
                         data={data?.vehicles}
-                        onView={(dataFromCard: MyFleet) => {}}
+                        onView={(dataFromCard: MyFleet) => {
+                          setSelectedCar(dataFromCard);
+                          setShowViewCar(!showViewCar);
+                        }}
                         onUpdate={(dataFromCard: MyFleet) => {
                           setSelectedCar(dataFromCard);
                           setShowUpdateCar(!showUpdateCar);
@@ -132,6 +137,11 @@ const MainComponent = () => {
           setShow={setShowUpdateCar}
           selectedVehicle={selectedCar}
           refetch={refetch}
+        />
+        <ViewCarComponent
+          show={showViewCar}
+          setShow={setShowViewCar}
+          vehicle={selectedCar}
         />
       </Suspense>
     </Fragment>

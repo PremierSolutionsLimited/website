@@ -26,6 +26,9 @@ const AvailabiltyComponent = lazy(() => import("../components/availabilty"));
 const SucessComponent = lazy(() => import("../success"));
 
 const MainComponent = () => {
+  useEffect(() => {
+    document.title = "Driver Registration | Hire A Driver";
+  }, []);
   const [, registrationState] = useRegistrationProvider();
   const { load } = useMultipleImageUpload();
   // for tabs

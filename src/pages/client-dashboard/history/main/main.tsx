@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, lazy, Suspense, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { HISTORY } from "../../../../shared/layout/client-layout/navigation/constants";
 import {
@@ -6,7 +6,7 @@ import {
   BreadCrumbProp,
 } from "../../../../shared/ui-modules/breadCrumb";
 import { usePagination } from "../../../../components/hooks";
-import { DataLoader } from "../../../../shared/loaders";
+import { ContextLoader, DataLoader } from "../../../../shared/loaders";
 import { ErrorAlert } from "../../../../components/alert/error";
 import { EmptyAlert } from "../../../../components/alert/empty";
 import {
@@ -17,16 +17,19 @@ import {
 import { GET_TRIP_HISTORY } from "../../../../services/graphql/history";
 import DataView from "../data-view";
 
+const ViewTripComponent = lazy(() => import("../view"));
 const pages: BreadCrumbProp[] = [{ name: "Trip History ", href: HISTORY }];
 
 const MainComponent = () => {
+  const [viewTrip, setViewTrip] = useState<boolean>(false);
+  const [selectedTrip, setSelectedTrip] = useState<TripHistory>();
   const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
   const { data, loading, refetch } = useQuery<
     TripHistoryOutputProp,
     TripHistoryInputProp
   >(GET_TRIP_HISTORY, {
     variables: {
-      populate: ["vehicle"],
+      populate: ["vehicle", "class"],
       pagination: {
         skip,
         limit,
@@ -36,6 +39,7 @@ const MainComponent = () => {
       },
     },
   });
+
   return (
     <Fragment>
       <div className="max-w-7xl  max-h-screen mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">
@@ -76,7 +80,10 @@ const MainComponent = () => {
                         setSkip={setSkip}
                         total={data?.tripsLength}
                         data={data?.trips}
-                        onView={(dataFromCard: TripHistory) => {}}
+                        onView={(dataFromCard: TripHistory) => {
+                          setSelectedTrip(dataFromCard);
+                          setViewTrip(!viewTrip);
+                        }}
                       />
                     </Fragment>
                   )}
@@ -95,6 +102,13 @@ const MainComponent = () => {
           )}
         </div>
       </div>
+      <Suspense fallback={ContextLoader}>
+        <ViewTripComponent
+          show={viewTrip}
+          setShow={setViewTrip}
+          trip={selectedTrip}
+        />
+      </Suspense>
     </Fragment>
   );
 };
