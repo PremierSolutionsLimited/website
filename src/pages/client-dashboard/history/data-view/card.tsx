@@ -1,16 +1,16 @@
 import { Fragment } from "react";
 import { HistoryCardComponentProp } from "./types";
 import moment from "moment";
-import CarImage from "../../../../assets/images/hyndai.png";
+import CarImage from "../../../../assets/images/bmw.png";
 
 const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
   return (
     <tr>
       <td className="px-6 py-3 whitespace-nowrap">
         <div className="flex items-center">
-          <div className="flex-shrink-0 h-10 w-10">
+          <div className="flex-shrink-0 h-10 w-14">
             <img
-              className="h-10 w-10 rounded-none"
+              className="h-10 w-14 rounded-none"
               src={history?.vehicle?.class?.icon || CarImage}
               alt=""
             />
@@ -96,7 +96,13 @@ const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
       )}
 
       <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-        <div className="text-pink-600 hover:text-pink-700">View</div>
+        <button
+          onClick={onView}
+          type="button"
+          className="text-pink-600 hover:text-pink-700 cursor-pointer focus:outline-none "
+        >
+          View
+        </button>
       </td>
     </tr>
   );

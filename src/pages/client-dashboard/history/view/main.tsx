@@ -4,7 +4,9 @@ import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { useLocationName } from "../../../../components/hooks/useLocationName";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
+import ReactStars from "react-rating-stars-component";
 import moment from "moment";
+import CarImage from "../../../../assets/images/bmw.png";
 
 const MainComponent: React.FC<ViewTripComponentProp> = ({
   show,
@@ -35,7 +37,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [trip]);
 
   React.useEffect(() => {
     const getLat = async () => {
@@ -50,7 +52,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [trip]);
 
   return (
     <Fragment>
@@ -95,39 +97,50 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
               <dl className="sm:divide-y sm:divide-gray-200">
                 <div className="py-4 sm:py-5 relative sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <div className={"col-span-2 ml-5"}>
-                    <h1 className={"font-light"}>From</h1>
-                    <span className={"font-medium"}>
+                    <h1 className={"font-light ml-4"}>From</h1>
+                    <span className={"font-medium ml-4"}>
                       {loadPickup ? "loading..." : pickup}
                     </span>
                   </div>
                   <div className={"col-span-2 ml-5"}>
-                    <h1 className={"font-light"}>To</h1>
-                    <span className={"font-medium"}>
+                    <h1 className={"font-light ml-4"}>To</h1>
+                    <span className={"font-medium ml-4"}>
                       {loadDropoff ? "loading..." : dropoff}
                     </span>
                   </div>
-                  <div className={"absolute left-0 w-0.5"}>
+                  <div
+                    className={
+                      "absolute left-2 sm:left-2 md:left-10 top-6 w-0.5"
+                    }
+                  >
                     <LocationMarkerIcon
-                      className={"h-5 -ml-3.5 w-5 text-blue-900"}
+                      className={"h-5 -ml-3.5 w-5 text-pink-600"}
                     />
                     <div
                       className={
-                        "h-16 rounded-lg -ml-1 w-0.5 -mt-2 bg-blue-900"
+                        "h-20 rounded-lg -ml-1 w-0.5 -mt-2 bg-pink-600"
                       }
                     />
                     <div
                       className={
-                        "h-2 w-2 rounded-full -ml-1.5 bg-blue-900 -mt-1"
+                        "h-2 w-2 rounded-full -ml-1.5 bg-pink-600 -mt-1"
                       }
                     ></div>
                   </div>
+                  <dd className="-mt-10 hidden sm:hidden md:block text-sm text-gray-900 sm:-mt-10 sm:col-span-1">
+                    <img
+                      className="h-24 w-36 rounded-none"
+                      src={trip?.vehicle?.class?.icon || CarImage}
+                      alt=""
+                    />
+                  </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
                     Trip Type
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {trip?.tripType || "Not Specified"}
+                    {trip?.tripType?.name || "Not Specified"}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -183,6 +196,29 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                     {trip?.notes || "Not Specified"}
                   </dd>
                 </div>
+
+                {trip?.driverRated && (
+                  <Fragment>
+                    <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <dt className="text-sm font-medium text-gray-500">
+                        Driver Rating
+                      </dt>
+                      <ReactStars
+                        size={30}
+                        value={trip?.driverRating}
+                        edit={false}
+                      />
+                    </div>
+                    <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <dt className="text-sm font-medium text-gray-500">
+                        Driver Review
+                      </dt>
+                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        {trip?.driverReview || "Not Specified"}
+                      </dd>
+                    </div>
+                  </Fragment>
+                )}
               </dl>
             </div>
           </div>
