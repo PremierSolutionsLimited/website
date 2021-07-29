@@ -15,11 +15,11 @@ import {
   ADD_VEHICLE,
   GET_VEHICLE_CLASSES,
 } from "../../../../services/graphql/fleet";
+import { CircleSpinner } from "react-spinners-kit";
 import { useCurrentClient } from "../../../../services/context/currentClient";
 import SketchPickerComponent from "./components";
 import toast from "react-hot-toast";
 import _ from "lodash";
-import { CircleSpinner } from "react-spinners-kit";
 
 const MainComponent: React.FC<AddCarComponentProp> = ({
   show,

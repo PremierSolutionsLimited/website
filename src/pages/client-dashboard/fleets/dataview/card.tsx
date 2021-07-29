@@ -106,6 +106,7 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
                   </div>
                 </div>
                 <button
+                  onClick={onView}
                   className="mb-2 md:mb-0 focus:outline-none bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
                   type="button"
                   aria-label="like"
