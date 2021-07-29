@@ -19,7 +19,7 @@ const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
             <div className="text-sm font-medium text-gray-900">
               {history?.vehicle?.model}
             </div>
-            <div className="text-sm text-gray-500">{history?.code}</div>
+            <div className="text-sm text-gray-500">#{history?.code}</div>
           </div>
         </div>
       </td>
@@ -67,12 +67,34 @@ const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
           </td>
         </Fragment>
       )}
-      <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
-        {moment(history?.startTime).format("MMMM Do YYYY, h:mm:ss a")}
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-        {moment(history?.endTime).format("MMMM Do YYYY, h:mm:ss a")}
-      </td>
+      {history?.startTime ? (
+        <Fragment>
+          <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+            {moment(history?.startTime).format("MMMM Do YYYY, h:mm:ss a")}
+          </td>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+            Not Specifed
+          </td>
+        </Fragment>
+      )}
+
+      {history?.endTime ? (
+        <Fragment>
+          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {moment(history?.endTime).format("MMMM Do YYYY, h:mm:ss a")}
+          </td>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+            Not Specifed
+          </td>
+        </Fragment>
+      )}
+
       <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
         <div className="text-pink-600 hover:text-pink-700">View</div>
       </td>
