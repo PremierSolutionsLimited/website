@@ -18,6 +18,10 @@ const EmergencyComponent = lazy(() => import("../components/emergency"));
 const SucessComponent = lazy(() => import("../success"));
 
 const MainComponent = () => {
+  useEffect(() => {
+    document.title = "Client Registration | Hire A Driver";
+  }, []);
+
   const [, registrationState] = useRegistrationProvider();
   // toggle tab
   const [tab, setTab] = useState<string>("personal");

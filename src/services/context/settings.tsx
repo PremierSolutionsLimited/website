@@ -1,7 +1,7 @@
 import { lazy, Suspense, Fragment } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ContextLoader } from "../../shared/loaders";
-// import ProtectedRoutes from "../adapters/protectedRoutes";
+import ProtectedRoutes from "../adapters/protectedRoutes";
 
 const ClientLoginComponent = lazy(
   () => import("../../pages/auth/client-login")
@@ -25,6 +25,8 @@ const LandingPageComponent = lazy(() => import("../../pages/landingpage"));
 const ClientDashboardLayout = lazy(
   () => import("../../shared/layout/client-layout")
 );
+// reset password
+const ResetPassword = lazy(() => import("../../pages/fogotpassword/reset"));
 
 const SettingsConfig = () => {
   return (
@@ -61,6 +63,11 @@ const SettingsConfig = () => {
               component={ClientRegistrationComponent}
               path={"/client-registration"}
               exact={true}
+            />
+            <ProtectedRoutes
+              exact={true}
+              component={ResetPassword}
+              path={"/app/resetpassword"}
             />
             <Route component={ClientDashboardLayout} path={"/app/"} />
             <Route component={LandingPageComponent} path={"/"} />

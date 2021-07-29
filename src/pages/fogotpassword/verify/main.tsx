@@ -1,7 +1,11 @@
 import { Fragment } from "react";
+import { VerifyCodeComponentProp } from "./types";
 import VerifyPasswordSvg from "../../../components/svgs/verifypassword";
 
-const VerifyCodeComponent = () => {
+const VerifyCodeComponent: React.FC<VerifyCodeComponentProp> = ({
+  verificationCode,
+  setVerificationCode,
+}) => {
   return (
     <Fragment>
       <div className="col-span-2">
@@ -26,6 +30,8 @@ const VerifyCodeComponent = () => {
           placeholder="Eg. 123434"
           maxLength={6}
           minLength={6}
+          value={verificationCode}
+          onChange={(e) => setVerificationCode(e.target.value)}
           required
           className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
         />

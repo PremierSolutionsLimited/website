@@ -23,3 +23,41 @@ export const changePassword = gql`
     }
   }
 `;
+
+export const sendClientCode = gql`
+  mutation ($username: String!, $medium: MessageMedium!) {
+    sendClientCode(input: { username: $username, medium: $medium }) {
+      token
+      client {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const verifyClientCode = gql`
+  mutation ($username: String!, $code: String!, $medium: MessageMedium!) {
+    verifyClientCode(
+      input: { username: $username, medium: $medium, code: $code }
+    ) {
+      token
+      client {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const resetClientCode = gql`
+  mutation ($newPassword: String!) {
+    resetClientPassword(input: { newPassword: $newPassword }) {
+      token
+      client {
+        _id
+        username
+      }
+    }
+  }
+`;
