@@ -4,33 +4,58 @@ import { XIcon } from "@heroicons/react/outline";
 import { useMediaQuery } from "react-responsive";
 import { SuccessModal } from "../../components/modal";
 import { ApolloError, useMutation } from "@apollo/client";
-import { SendCodeInput, SendCodeOutput } from "./types";
-import { SEND_CLIENT_CODE } from "../../services/graphql/auth";
+import {
+  SendCodeInput,
+  SendCodeOutput,
+  VerifyCodeInput,
+  VerifyCodeOutput,
+} from "./types";
+import {
+  SEND_CLIENT_CODE,
+  VERIFY_CLIENT_CODE,
+} from "../../services/graphql/auth";
+import { useAuthProvider } from "../../services/context";
+import { CircleSpinner } from "react-spinners-kit";
 import SendCodeComponent from "./send-code";
 import VerifyCodeComponent from "./verify";
+import ResetPassswordComponent from "./reset";
 import toast from "react-hot-toast";
 import _ from "lodash";
-import { CircleSpinner } from "react-spinners-kit";
 
 const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
   setShow,
   show,
 }) => {
-  const [tab, setTab] = useState<"SEND_CODE" | "VERIFY_CODE">("SEND_CODE");
+  const [{ signIn }] = useAuthProvider();
+  const [tab, setTab] = useState<
+    "SEND_CODE" | "VERIFY_CODE" | "RESET_PASSWORD"
+  >("SEND_CODE");
   const [email, setEmail] = useState<string>("");
+  const [verificationCode, setVerificationCode] = useState<string>("");
 
-  let loading;
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+
   const [invokeSendClientCode, { loading: sendingCode }] = useMutation<
     SendCodeOutput,
     SendCodeInput
   >(SEND_CLIENT_CODE);
 
+  const [invokeVerifyClientCode, { loading: verifyingCode }] = useMutation<
+    VerifyCodeOutput,
+    VerifyCodeInput
+  >(VERIFY_CLIENT_CODE);
+
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
 
+  // send client code
   const handleSendClientCode = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    if (email.trim() === "") {
+      return toast.error("Enter your email address");
+    }
     invokeSendClientCode({
       variables: {
         username: email,
@@ -47,12 +72,38 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
       });
   };
 
+  // verify client code
+  const handleVerifyClientCode = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (verificationCode.trim() === "") {
+      return toast.error("Enter the code you received in your mail");
+    }
+    invokeVerifyClientCode({
+      variables: {
+        username: email,
+        medium: "EMAIL",
+        code: verificationCode,
+      },
+    })
+      .then(async ({ data }) => {
+        if (data) {
+          await signIn(data?.verifyClientCode);
+          return setTab("RESET_PASSWORD");
+        }
+      })
+      .catch((e: ApolloError) => {
+        return toast.error(
+          _.startCase(_.lowerCase(e?.graphQLErrors[0]?.message))
+        );
+      });
+  };
   return (
     <Fragment>
       <SuccessModal
         show={show}
         setShow={setShow}
         size={isTabletOrMobile ? 100 : 30}
+        canClose={false}
       >
         <div
           className={
@@ -74,7 +125,20 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
           )}
           {tab === "VERIFY_CODE" && (
             <Fragment>
-              <VerifyCodeComponent />
+              <VerifyCodeComponent
+                verificationCode={verificationCode}
+                setVerificationCode={setVerificationCode}
+              />
+            </Fragment>
+          )}
+          {tab === "RESET_PASSWORD" && (
+            <Fragment>
+              <ResetPassswordComponent
+                password={password}
+                setPassword={setPassword}
+                confirmPassword={confirmPassword}
+                setConfirmPassword={setConfirmPassword}
+              />
             </Fragment>
           )}
         </div>
@@ -123,11 +187,14 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
               </button>
 
               <button
+                typeof="button"
+                onClick={handleVerifyClientCode}
+                disabled={verifyingCode}
                 className={
                   "border-r  col-span-1 flex justify-center p-5 hover:bg-gray-100 focus:outline-none  "
                 }
               >
-                {loading ? (
+                {verifyingCode ? (
                   <Fragment>
                     <CircleSpinner loading color={"#d81b60"} size={18} />
                   </Fragment>

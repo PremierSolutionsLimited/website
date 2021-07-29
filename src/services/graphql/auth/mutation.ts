@@ -35,3 +35,17 @@ export const sendClientCode = gql`
     }
   }
 `;
+
+export const verifyClientCode = gql`
+  mutation ($username: String!, $code: String!, $medium: MessageMedium!) {
+    verifyClientCode(
+      input: { username: $username, medium: $medium, code: $code }
+    ) {
+      token
+      client {
+        _id
+        username
+      }
+    }
+  }
+`;

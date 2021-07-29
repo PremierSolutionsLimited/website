@@ -15,3 +15,15 @@ export interface SendCodeOutput {
     _id: string;
   };
 }
+
+export interface VerifyCodeInput {
+  username: string;
+  medium: string;
+  code: string;
+}
+
+export interface VerifyCodeOutput {
+  verifyClientCode: {
+    _id: string;
+  };
+}
