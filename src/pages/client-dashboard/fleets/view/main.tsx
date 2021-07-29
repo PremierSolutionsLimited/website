@@ -4,6 +4,8 @@ import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import moment from "moment";
 import CarImage1 from "../../../../assets/images/hyndai.png";
+import CarImage2 from "../../../../assets/images/bmw.png";
+import CarImage3 from "../../../../assets/images/mercedez.png";
 
 const MainComponent: React.FC<ViewFleetComponentProp> = ({
   show,
@@ -119,14 +121,14 @@ const MainComponent: React.FC<ViewFleetComponentProp> = ({
                   </dt>
                   <dd className="mt-1  sm:mt-0 sm:col-span-1">
                     <img
-                      src={CarImage1}
+                      src={CarImage2}
                       className="h-full w-full"
                       alt="vehicle 1"
                     />
                   </dd>
                   <dd className="mt-1  sm:mt-0 sm:col-span-1">
                     <img
-                      src={CarImage1}
+                      src={CarImage3}
                       className="h-full w-full"
                       alt="vehicle 1"
                     />
