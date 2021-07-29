@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Layout } from "../layout";
 import GetStartedComponent from "../components/getStarted";
 import UsersComponent from "../components/users";
@@ -6,6 +6,9 @@ import FeaturesComponent from "../components/feature";
 import NewsLetter from "../components/newsLetter";
 
 const MainComponent = () => {
+  useEffect(() => {
+    document.title = "Hire A Driver";
+  }, []);
   return (
     <Fragment>
       <Layout>
