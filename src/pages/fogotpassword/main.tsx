@@ -14,11 +14,10 @@ import {
   SEND_CLIENT_CODE,
   VERIFY_CLIENT_CODE,
 } from "../../services/graphql/auth";
-import { useAuthProvider } from "../../services/context";
 import { CircleSpinner } from "react-spinners-kit";
+import Auth from "../../services/adapters/cookie.config";
 import SendCodeComponent from "./send-code";
 import VerifyCodeComponent from "./verify";
-import ResetPassswordComponent from "./reset";
 import toast from "react-hot-toast";
 import _ from "lodash";
 
@@ -26,15 +25,11 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
   setShow,
   show,
 }) => {
-  const [{ signIn }] = useAuthProvider();
   const [tab, setTab] = useState<
     "SEND_CODE" | "VERIFY_CODE" | "RESET_PASSWORD"
   >("SEND_CODE");
   const [email, setEmail] = useState<string>("");
   const [verificationCode, setVerificationCode] = useState<string>("");
-
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const [invokeSendClientCode, { loading: sendingCode }] = useMutation<
     SendCodeOutput,
@@ -87,7 +82,7 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
     })
       .then(async ({ data }) => {
         if (data) {
-          await signIn(data?.verifyClientCode);
+          Auth.setCipher(data?.verifyClientCode?.token);
           return setTab("RESET_PASSWORD");
         }
       })
@@ -97,6 +92,7 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
         );
       });
   };
+
   return (
     <Fragment>
       <SuccessModal
@@ -128,16 +124,6 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
               <VerifyCodeComponent
                 verificationCode={verificationCode}
                 setVerificationCode={setVerificationCode}
-              />
-            </Fragment>
-          )}
-          {tab === "RESET_PASSWORD" && (
-            <Fragment>
-              <ResetPassswordComponent
-                password={password}
-                setPassword={setPassword}
-                confirmPassword={confirmPassword}
-                setConfirmPassword={setConfirmPassword}
               />
             </Fragment>
           )}

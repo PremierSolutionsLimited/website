@@ -49,3 +49,15 @@ export const verifyClientCode = gql`
     }
   }
 `;
+
+export const resetClientCode = gql`
+  mutation ($newPassword: String!) {
+    resetClientPassword(input: { newPassword: $newPassword }) {
+      token
+      client {
+        _id
+        username
+      }
+    }
+  }
+`;

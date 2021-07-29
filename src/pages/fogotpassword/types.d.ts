@@ -12,7 +12,11 @@ export interface SendCodeInput {
 
 export interface SendCodeOutput {
   sendClientCode: {
-    _id: string;
+    token: string;
+    client: {
+      _id: string;
+      username: string;
+    };
   };
 }
 
@@ -24,6 +28,10 @@ export interface VerifyCodeInput {
 
 export interface VerifyCodeOutput {
   verifyClientCode: {
-    _id: string;
+    token: string;
+    client: {
+      _id: string;
+      username: string;
+    };
   };
 }
