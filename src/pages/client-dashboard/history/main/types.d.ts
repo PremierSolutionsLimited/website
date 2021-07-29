@@ -1,6 +1,10 @@
 import { MyFleet } from "../../fleets/main/types";
 export interface TripHistoryInputProp {
-  filter?: {};
+  filter?: {
+    client?: {
+      eq: string;
+    };
+  };
   pagination: {
     skip: number;
     limit: number;
