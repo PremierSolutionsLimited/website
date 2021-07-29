@@ -4,14 +4,14 @@ import { TripHistory } from "../main/types";
 import CardComponent from "./card";
 import Pagination from "../../../../shared/ui-modules/pagination/pagination";
 
-export default function MainComponent({
+const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
   data,
   onView,
   limit,
   total,
   skip,
   setSkip,
-}: HistoryDataViewComponentProp) {
+}) => {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -64,10 +64,10 @@ export default function MainComponent({
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {data.map((history: TripHistory, historyIdx: number) => (
+                {data?.map((history: TripHistory, historyIdx: number) => (
                   <Fragment key={historyIdx}>
                     <CardComponent
-                      data={history}
+                      history={history}
                       onView={() => onView(history)}
                     />
                   </Fragment>
@@ -87,4 +87,12 @@ export default function MainComponent({
       </div>
     </div>
   );
-}
+};
+
+DataViewComponent.defaultProps = {
+  limit: 4,
+  skip: 0,
+  end: 0,
+};
+
+export default DataViewComponent;

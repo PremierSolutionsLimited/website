@@ -1,6 +1,7 @@
+import React from "react";
 import { TripHistory } from "../main/types";
 export interface HistoryDataViewComponentProp {
-  onView: (dataFromCard: TripHistory) => void;
+  onView: (dataFromCard: any) => void;
   data: TripHistory[];
   limit: number;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
@@ -13,5 +14,5 @@ export interface HistoryDataViewComponentProp {
 
 export interface HistoryCardComponentProp {
   onView: (dataFromCard: any) => void;
-  data: TripHistory;
+  history: TripHistory;
 }

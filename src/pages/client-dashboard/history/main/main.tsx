@@ -26,7 +26,7 @@ const MainComponent = () => {
     TripHistoryInputProp
   >(GET_TRIP_HISTORY, {
     variables: {
-      populate: ["vehicle"],
+      populate: ["vehicle", "class"],
       pagination: {
         skip,
         limit,
@@ -36,6 +36,7 @@ const MainComponent = () => {
       },
     },
   });
+
   return (
     <Fragment>
       <div className="max-w-7xl  max-h-screen mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">

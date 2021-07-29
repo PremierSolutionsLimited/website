@@ -16,8 +16,8 @@ const DataViewComponent: React.FC<FleetDataViewComponentProp> = ({
   return (
     <Fragment>
       <div className="mt-2 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
-        {data.map((fleet: MyFleet, historyIdx: number) => (
-          <Fragment key={historyIdx}>
+        {data?.map((fleet: MyFleet, fleetIdx: number) => (
+          <Fragment key={fleetIdx}>
             <CardComponent
               data={fleet}
               onView={() => onView(fleet)}
