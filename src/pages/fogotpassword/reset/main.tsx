@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { ApolloError, useMutation } from "@apollo/client";
 import { ResetPasswordInput, ResetPasswordOutput } from "./types";
@@ -9,6 +9,10 @@ import toast from "react-hot-toast";
 import _ from "lodash";
 
 const SendCodeComponent = () => {
+  useEffect(() => {
+    document.title = "Reset Password | Hire A Driver";
+  }, []);
+
   const { push } = useHistory();
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
