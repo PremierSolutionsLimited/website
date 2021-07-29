@@ -1,20 +1,51 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { ForgotPasswordComponentProp } from "./types";
 import { XIcon } from "@heroicons/react/outline";
 import { useMediaQuery } from "react-responsive";
 import { SuccessModal } from "../../components/modal";
+import { ApolloError, useMutation } from "@apollo/client";
+import { SendCodeInput, SendCodeOutput } from "./types";
+import { SEND_CLIENT_CODE } from "../../services/graphql/auth";
 import SendCodeComponent from "./send-code";
 import VerifyCodeComponent from "./verify";
+import toast from "react-hot-toast";
+import _ from "lodash";
+import { CircleSpinner } from "react-spinners-kit";
 
 const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
   setShow,
   show,
 }) => {
   const [tab, setTab] = useState<"SEND_CODE" | "VERIFY_CODE">("SEND_CODE");
+  const [email, setEmail] = useState<string>("");
+
+  let loading;
+  const [invokeSendClientCode, { loading: sendingCode }] = useMutation<
+    SendCodeOutput,
+    SendCodeInput
+  >(SEND_CLIENT_CODE);
 
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
+
+  const handleSendClientCode = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    invokeSendClientCode({
+      variables: {
+        username: email,
+        medium: "EMAIL",
+      },
+    })
+      .then(() => {
+        return setTab("VERIFY_CODE");
+      })
+      .catch((e: ApolloError) => {
+        return toast.error(
+          _.startCase(_.lowerCase(e?.graphQLErrors[0]?.message))
+        );
+      });
+  };
 
   return (
     <Fragment>
@@ -38,7 +69,7 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
         <div className={"bg-white px-20 grid grid-cols-2 shadow-none"}>
           {tab === "SEND_CODE" && (
             <Fragment>
-              <SendCodeComponent />
+              <SendCodeComponent email={email} setEmail={setEmail} />
             </Fragment>
           )}
           {tab === "VERIFY_CODE" && (
@@ -61,24 +92,34 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
               </button>
 
               <button
-                onClick={() => setTab("VERIFY_CODE")}
+                typeof={"button"}
+                disabled={sendingCode}
+                onClick={handleSendClientCode}
                 className={
                   "border-r  col-span-1 flex justify-center p-5 hover:bg-gray-100 focus:outline-none  "
                 }
               >
-                <span className={"text-lg font-light"}>Send Code</span>
+                {sendingCode ? (
+                  <Fragment>
+                    <CircleSpinner loading color={"#d81b60"} size={18} />
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <span className={"text-lg font-light"}>Send Code</span>
+                  </Fragment>
+                )}
               </button>
             </Fragment>
           )}
           {tab === "VERIFY_CODE" && (
             <Fragment>
               <button
-                onClick={() => setShow(false)}
+                onClick={() => setTab("SEND_CODE")}
                 className={
                   "border-r col-span-1 flex justify-center p-5 hover:bg-gray-100 focus:outline-none "
                 }
               >
-                <span className={"text-lg font-light"}>Close</span>
+                <span className={"text-lg font-light"}>Back</span>
               </button>
 
               <button
@@ -86,7 +127,15 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
                   "border-r  col-span-1 flex justify-center p-5 hover:bg-gray-100 focus:outline-none  "
                 }
               >
-                <span className={"text-lg font-light"}>Verify Code</span>
+                {loading ? (
+                  <Fragment>
+                    <CircleSpinner loading color={"#d81b60"} size={18} />
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <span className={"text-lg font-light"}>Verify Code</span>
+                  </Fragment>
+                )}
               </button>
             </Fragment>
           )}

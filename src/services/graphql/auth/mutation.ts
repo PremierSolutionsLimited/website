@@ -23,3 +23,15 @@ export const changePassword = gql`
     }
   }
 `;
+
+export const sendClientCode = gql`
+  mutation ($username: String!, $medium: MessageMedium!) {
+    sendClientCode(input: { username: $username, medium: $medium }) {
+      token
+      client {
+        _id
+        username
+      }
+    }
+  }
+`;
