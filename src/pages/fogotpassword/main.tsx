@@ -15,7 +15,7 @@ import {
   VERIFY_CLIENT_CODE,
 } from "../../services/graphql/auth";
 import { CircleSpinner } from "react-spinners-kit";
-import Auth from "../../services/adapters/cookie.config";
+import { useAuthProvider } from "../../services/context";
 import SendCodeComponent from "./send-code";
 import VerifyCodeComponent from "./verify";
 import toast from "react-hot-toast";
@@ -25,9 +25,8 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
   setShow,
   show,
 }) => {
-  const [tab, setTab] = useState<
-    "SEND_CODE" | "VERIFY_CODE" | "RESET_PASSWORD"
-  >("SEND_CODE");
+  const [{ signIn }] = useAuthProvider();
+  const [tab, setTab] = useState<"SEND_CODE" | "VERIFY_CODE">("SEND_CODE");
   const [email, setEmail] = useState<string>("");
   const [verificationCode, setVerificationCode] = useState<string>("");
 
@@ -82,8 +81,8 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
     })
       .then(async ({ data }) => {
         if (data) {
-          Auth.setCipher(data?.verifyClientCode?.token);
-          return setTab("RESET_PASSWORD");
+          await signIn(data?.verifyClientCode);
+          return (window.location.pathname = "/app/resetpassword");
         }
       })
       .catch((e: ApolloError) => {
