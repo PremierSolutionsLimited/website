@@ -12,6 +12,7 @@ import { MyFleetOutputProp, MyFleetInputProp, MyFleet } from "./types";
 import { GET_MY_FLEET } from "../../../../services/graphql/fleet";
 import { ErrorAlert } from "../../../../components/alert/error";
 import { EmptyAlert } from "../../../../components/alert/empty";
+import { useCurrentClient } from "../../../../services/context/currentClient";
 import DataView from "../dataview";
 
 const AddCarComponent = lazy(() => import("../add"));
@@ -21,12 +22,20 @@ const ViewCarComponent = lazy(() => import("../view"));
 const pages: BreadCrumbProp[] = [{ name: "My Fleet ", href: MY_FLEET }];
 
 const MainComponent = () => {
+  const currentClient = useCurrentClient();
   const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
   const { data, loading, refetch } = useQuery<
     MyFleetOutputProp,
     MyFleetInputProp
   >(GET_MY_FLEET, {
     variables: {
+      filter: {
+        client: currentClient?._id
+          ? {
+              eq: currentClient?._id,
+            }
+          : undefined,
+      },
       populate: ["class"],
       pagination: {
         skip,

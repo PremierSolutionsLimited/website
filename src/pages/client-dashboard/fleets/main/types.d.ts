@@ -1,5 +1,9 @@
 export interface MyFleetInputProp {
-  filter?: {};
+  filter?: {
+    client?: {
+      eq: string;
+    };
+  };
   pagination: {
     skip: number;
     limit: number;
