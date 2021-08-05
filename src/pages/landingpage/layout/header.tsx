@@ -9,16 +9,14 @@ import Logo from "../../../assets/images/logo.png";
 const MainHeader = () => {
   const { push } = useHistory();
   //for showiung courses dropdown
-  const [showCoursesDropdown, setShowCoursesDropdown] =
-    useState<boolean>(false);
+  const [, setShowCoursesDropdown] = useState<boolean>(false);
   const showCouresesDropdownContainerRef = useRef<any>(null);
   useOutsideListener(showCouresesDropdownContainerRef, () =>
     setShowCoursesDropdown(false)
   );
 
   //   for showing more dropdown details
-  const [showMoreLinksDropdown, setShowMoreLinksDropdown] =
-    useState<boolean>(false);
+  const [, setShowMoreLinksDropdown] = useState<boolean>(false);
   const showMoreLinksDropwdownContainerRef = useRef<any>(null);
   useOutsideListener(showMoreLinksDropwdownContainerRef, () =>
     setShowMoreLinksDropdown(false)
@@ -66,9 +64,15 @@ const MainHeader = () => {
                   href="#"
                   className="text-base text-black dark:text-gray-100 hover:text-black"
                 >
-                  Product
+                  Our Offers
                 </a>
-                <div
+                <a
+                  href="#"
+                  className="text-base text-black dark:text-gray-100 hover:text-black"
+                >
+                  Who we are?
+                </a>
+                {/* <div
                   className="relative"
                   onMouseEnter={() => setShowCoursesDropdown(true)}
                   onMouseLeave={() => setShowCoursesDropdown(false)}
@@ -108,7 +112,6 @@ const MainHeader = () => {
                             className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900"
                           >
                             <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-pink-900 text-white sm:h-12 sm:w-12">
-                              {/* <!-- Heroicon name: chart-bar --> */}
                               <svg
                                 className="h-6 w-6"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +143,6 @@ const MainHeader = () => {
                             className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900"
                           >
                             <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-pink-900 text-white sm:h-12 sm:w-12">
-                              {/* <!-- Heroicon name: cursor-click --> */}
                               <svg
                                 className="h-6 w-6"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +174,6 @@ const MainHeader = () => {
                             className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900"
                           >
                             <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-pink-900 text-white sm:h-12 sm:w-12">
-                              {/* <!-- Heroicon name: shield-check --> */}
                               <svg
                                 className="h-6 w-6"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +205,6 @@ const MainHeader = () => {
                             className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900"
                           >
                             <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-pink-900 text-white sm:h-12 sm:w-12">
-                              {/* <!-- Heroicon name: view-grid --> */}
                               <svg
                                 className="h-6 w-6"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -253,7 +253,7 @@ const MainHeader = () => {
                       </div>
                     </div>
                   </Transition>
-                </div>
+                </div> */}
 
                 <a
                   href="#"
@@ -262,7 +262,7 @@ const MainHeader = () => {
                   Resources
                 </a>
 
-                <div
+                {/* <div
                   className="relative"
                   onMouseEnter={() => setShowMoreLinksDropdown(true)}
                   onMouseLeave={() => setShowMoreLinksDropdown(false)}
@@ -350,7 +350,7 @@ const MainHeader = () => {
                       </div>
                     </div>
                   </Transition>
-                </div>
+                </div> */}
               </nav>
               <div className="flex items-center md:ml-12">
                 <div className="relative inline-block text-left mr-3">

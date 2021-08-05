@@ -42,11 +42,12 @@ const FeaturesComponent = () => {
 
           <div className="relative">
             <h2 className="text-center text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Enjoy these features
+              Who we are?
             </h2>
             <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
-              It's never been easier to find a designated driver! We have a wide
-              variety of features for you
+              We provide professionally trained and certified drivers for
+              Clients with vehicles on an hourly, daily, weekly, and monthly
+              basis
             </p>
           </div>
 
@@ -68,28 +69,28 @@ const FeaturesComponent = () => {
                   <dt>
                     <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                       <svg
-                        className="h-6 w-6"
                         xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        aria-hidden="true"
                       >
                         <path
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                         />
                       </svg>
                     </div>
                     <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
-                      In-App Navigation
+                      Customer Value Proposition (CVP) Convenience
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    In-built access to Google Maps lets your track the the
-                    driver.
+                    Easy way to hire a professionally trained driver / chauffeur
+                    to (male / female) drive you in the comfort of your vehicle.
+                    Easy registering and hiring process.
                   </dd>
                 </div>
 
@@ -113,14 +114,13 @@ const FeaturesComponent = () => {
                       </svg>
                     </div>
                     <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
-                      Merch
+                      Safety
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    We provide you with a platform to advertise, sell, and give
-                    merch exclusive to your brand, right from your profile.
-                    Easily advertise branded t-shirts, bottles, books, pens, and
-                    many other merch from your profile.
+                    Drivers / chauffeurs trained to drive defensively to protect
+                    people and property. Background checks conducted on all
+                    drivers.
                   </dd>
                 </div>
 
@@ -128,28 +128,27 @@ const FeaturesComponent = () => {
                   <dt>
                     <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                       <svg
-                        className="h-6 w-6"
                         xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        aria-hidden="true"
                       >
                         <path
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
+                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                         />
                       </svg>
                     </div>
                     <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
-                      Early Access
+                      Professionalism
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Give your most supportive fans early access to your new
-                    creations with ease.
+                    Drivers / Chauffeurs trained to be competent and respectful
+                    in dealing with clients.
                   </dd>
                 </div>
               </dl>
@@ -234,11 +233,11 @@ const FeaturesComponent = () => {
             <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
               <div className="lg:col-start-2">
                 <h3 className="text-2xl font-bold text-gray-900 tracking-tight sm:text-3xl">
-                  Always in the loop
+                  Benefits
                 </h3>
                 <p className="mt-3 text-lg text-gray-500">
-                  Never miss out on all the fan that happens on Fanbase. Get
-                  immediate updates on the activities of your favorites.
+                  Access to a professionally trained and certified driver when
+                  you urgently need one
                 </p>
 
                 <dl className="mt-10 space-y-10">
@@ -262,13 +261,12 @@ const FeaturesComponent = () => {
                         </svg>
                       </div>
                       <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
-                        Mobile notifications
+                        Relaxation
                       </p>
                     </dt>
                     <dd className="mt-2 ml-16 text-base text-gray-500">
-                      Receive timely push messages, alerting you to all or
-                      selected happenings and activities of your favorites on
-                      Fanbase.
+                      You relax and get to enjoy the comfort of your vehicle
+                      whilst a professionally trained chauffeur drives you.
                     </dd>
                   </div>
 
@@ -292,12 +290,12 @@ const FeaturesComponent = () => {
                         </svg>
                       </div>
                       <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
-                        Reminder emails
+                        Productivity
                       </p>
                     </dt>
                     <dd className="mt-2 ml-16 text-base text-gray-500">
-                      Opt for Email notifications about events, newsletters, and
-                      other activities on Fanbase.
+                      You can be productive whilst in traffic sitting in the
+                      comfort of your vehicle
                     </dd>
                   </div>
                   <div className="relative">
@@ -320,12 +318,12 @@ const FeaturesComponent = () => {
                         </svg>
                       </div>
                       <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
-                        Reminder emails
+                        Convenience
                       </p>
                     </dt>
                     <dd className="mt-2 ml-16 text-base text-gray-500">
-                      Opt for Email notifications about events, newsletters, and
-                      other activities on Fanbase.
+                      No need to worry about hiring a driver on a temporary
+                      basis when your children reopen school
                     </dd>
                   </div>
                 </dl>
