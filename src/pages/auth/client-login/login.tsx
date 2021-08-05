@@ -7,6 +7,7 @@ import { LOGIN_CLIENT } from "../../../services/graphql/auth";
 import { ContextLoader } from "../../../shared/loaders";
 import { LoginInputProps, LoginOutputProps } from "./types";
 import { StageSpinner } from "react-spinners-kit";
+import Logo from "../../../assets/images/logo.png";
 import _ from "lodash";
 import toast from "react-hot-toast";
 
@@ -63,17 +64,17 @@ const Login = () => {
               src={bgImage}
               alt=""
             />
-            <div
+            {/* <div
               className={"absolute top-0 bg-black bg-opacity-10 h-full w-full"}
             >
-              {/* <div className="relative">
+              <div className="relative">
                 <img
-                  src={LogoFanbaseSmall}
+                  src={Logo}
                   className=" h-auto absolute -top-48 w-auto"
                   alt="logo"
                 />
-              </div> */}
-            </div>
+              </div>
+            </div> */}
           </div>
         </button>
 
@@ -81,11 +82,7 @@ const Login = () => {
           <div className="w-full">
             <div>
               <div className={""}>
-                <img
-                  className="h-12 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt="Workflow"
-                />
+                <img className="h-16 w-auto" src={Logo} alt="Workflow" />
               </div>
               <h2 className="mt-6 text-3xl font-bold text-pink-600">
                 Client Login

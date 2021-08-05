@@ -18,6 +18,8 @@ import {
 } from "../../../../services/graphql/fleet";
 import { ApolloError, useMutation, useQuery } from "@apollo/client";
 import { CircleSpinner } from "react-spinners-kit";
+import { getImage } from "../add/utils/util";
+import { useMultipleImageUpload } from "../../../../components/hooks";
 import SketchPickerComponent from "./components";
 import toast from "react-hot-toast";
 import _ from "lodash";
@@ -31,11 +33,11 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
-
+  const { loading: uploadLoadings, upload } =
+    useMultipleImageUpload("clientFleet");
   const [vehicleId, setVehicleId] = useState<string>("");
   const [vehicleClass, setVehicleClass] = useState<string>("");
   const [transmissionType, setTransmissionType] = useState<string>("");
-  const [images, setImages] = useState<string[]>([]);
   const [make, setMake] = useState<string>("");
   const [model, setModel] = useState<string>("");
   const [registrationNumber, setRegistrationNumber] = useState<string>("");
@@ -47,11 +49,13 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
       setVehicleId(selectedVehicle?._id);
       setVehicleClass(selectedVehicle?.class?._id);
       setTransmissionType(selectedVehicle?.transmissionType);
-      setImages(selectedVehicle?.images);
       setMake(selectedVehicle?.make);
       setModel(selectedVehicle?.model);
       setRegistrationNumber(selectedVehicle?.registrationNumber);
       setColor(selectedVehicle?.color);
+      setImageUrl1(selectedVehicle?.images[0]);
+      setImageUrl2(selectedVehicle?.images[1]);
+      setImageUrl3(selectedVehicle?.images[2]);
     }
   }, [selectedVehicle]);
 
@@ -80,7 +84,6 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
     setImageUrl2("");
     setImageFile3(null);
     setImageUrl3("");
-    setImages([]);
     setVehicleClass("");
     setVehicleId("");
     setMake("");
@@ -88,7 +91,7 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
     setRegistrationNumber("");
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (vehicleClass.trim() === "") {
       return toast.error("Please choose the class your vehicle belongs to");
@@ -103,6 +106,16 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
     if (color.trim() === "") {
       return toast.error("Please chose the model of your vehicle ");
     }
+
+    let imageUrls: string[] = [];
+    let imageFiles = getImage(image1File1, image1File2, image1File3);
+
+    if (imageFiles.length > 0) {
+      for (let i = 0; i < imageFiles.length; i++) {
+        let element = await upload(imageFiles[i]?.value as File);
+        imageUrls.push(element);
+      }
+    }
     invokeUpdateVehicle({
       variables: {
         vehicleId: vehicleId,
@@ -111,7 +124,10 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
         color,
         model,
         make,
-        images,
+        images:
+          imageFiles.length > 0
+            ? imageUrls
+            : (selectedVehicle?.images as string[]),
         registrationNumber,
       },
     })
@@ -348,7 +364,10 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
             </div>
 
             {/* upload cars */}
-            <div className="col-span-12 sm:col-span-12 md:col-span-12">
+            <div
+              style={{ height: "25vh" }}
+              className="col-span-12 sm:col-span-12 md:col-span-12 overflow-scroll scrollContainer"
+            >
               <UploadCarsComponent
                 imageUrl1={imageUrl1}
                 handleUploadImage1={handleUploadImage1}
@@ -373,10 +392,10 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
               <button
                 type="button"
                 onClick={handleSubmit}
-                disabled={loading}
+                disabled={uploadLoadings || loading}
                 className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
               >
-                {loading ? (
+                {uploadLoadings || loading ? (
                   <Fragment>
                     <CircleSpinner loading color="#fff" size={13} />
                   </Fragment>

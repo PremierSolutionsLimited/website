@@ -1,13 +1,8 @@
-interface Props {
-  driverFile: any;
-  driverLicenseFrontFile: any;
-  driverLicenseBackFile: any;
-}
-export const getImage = ({
-  driverFile,
-  driverLicenseFrontFile,
-  driverLicenseBackFile,
-}: Props) => {
+export const getImage = (
+  driverFile: any,
+  driverLicenseFrontFile: any,
+  driverLicenseBackFile: any
+) => {
   let files: any = [];
 
   files.push({

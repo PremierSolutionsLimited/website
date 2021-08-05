@@ -5,6 +5,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useHistory } from "react-router-dom";
 import { useRegistrationProvider } from "../../../services/context";
+import Logo from "../../../assets/images/logo.png";
 
 export default function Header() {
   const [{ endRegistration }, registrationState] = useRegistrationProvider();
@@ -23,11 +24,7 @@ export default function Header() {
               <div>
                 <a href="#" className="flex">
                   <span className="sr-only">Workflow</span>
-                  <img
-                    className="h-8 w-auto sm:h-10"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                    alt=""
-                  />
+                  <img className="h-8 w-auto sm:h-10" src={Logo} alt="" />
                 </a>
               </div>
               <div className="-mr-2 -my-2 md:hidden">
@@ -93,11 +90,7 @@ export default function Header() {
                 <div className="pt-5 pb-6 px-5 sm:pb-8">
                   <div className="flex items-center justify-between">
                     <div>
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                        alt="Workflow"
-                      />
+                      <img className="h-8 w-auto" src={Logo} alt="Workflow" />
                     </div>
                     <div className="-mr-2">
                       <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-500">

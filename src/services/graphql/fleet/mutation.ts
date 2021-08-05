@@ -9,6 +9,7 @@ export const createVehicle = gql`
     $images: [String]
     $make: String
     $model: String
+    $registrationNumber: String
   ) {
     createVehicle(
       input: {
@@ -19,6 +20,7 @@ export const createVehicle = gql`
         images: $images
         model: $model
         make: $make
+        registrationNumber: $registrationNumber
       }
     ) {
       _id
@@ -35,6 +37,7 @@ export const updateVehicle = gql`
     $images: [String]
     $make: String
     $model: String
+    $registrationNumber: String
   ) {
     updateVehicle(
       input: {
@@ -45,6 +48,7 @@ export const updateVehicle = gql`
         images: $images
         model: $model
         make: $make
+        registrationNumber: $registrationNumber
       }
     ) {
       _id

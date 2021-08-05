@@ -2,15 +2,20 @@ import React, { Fragment } from "react";
 import { LicenseComponentProp } from "./types";
 import { CameraIcon } from "@heroicons/react/outline";
 import SelectTypeOfCars from "../bones/typeMultiSelect";
+import toast from "react-hot-toast";
 
 export default function LicenseComponent({
   setTab,
   hasALicense,
   setHasALicense,
+  licenseId,
+  setLicenseId,
   licenseType,
   setLicenseType,
   licenseExpiryDate,
   setLicenseExpiryDate,
+  licenseIssueDate,
+  setLicenseIssueDate,
   licenseNumber,
   setLicenseNumber,
   yearsOfExperienceOnLicense,
@@ -26,6 +31,9 @@ export default function LicenseComponent({
 }: LicenseComponentProp) {
   const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!driverLicenseFrontImageUrl || !driverLicenseBackImageUrl) {
+      return toast.error("Please add a license images");
+    }
     return setTab("avaiabliity");
   };
   return (
@@ -90,6 +98,24 @@ export default function LicenseComponent({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
+                License Issue Date
+              </label>
+              <input
+                required
+                type={"date"}
+                id={"expiry"}
+                value={licenseIssueDate}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setLicenseIssueDate(e.target.value)
+                }
+                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
                 License Expiry Date
               </label>
               <input
@@ -101,6 +127,25 @@ export default function LicenseComponent({
                   setLicenseExpiryDate(e.target.value)
                 }
                 className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                License ID
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                required
+                value={licenseId}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setLicenseId(e.target.value)
+                }
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">

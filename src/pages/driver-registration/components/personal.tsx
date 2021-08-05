@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { PersonalComponentProp } from "./types";
 import ProfileImage from "../../../assets/images/male.jpeg";
+import toast from "react-hot-toast";
 
 const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setTab,
@@ -33,6 +34,9 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
 }) => {
   const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!driverImageUrl) {
+      return toast.error("Please add a profile image");
+    }
     return setTab("experience");
   };
   return (
@@ -253,6 +257,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="number"
                 name="company"
                 id="company"
+                min="0"
                 value={numberOfChildren}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setNumberOfChildren(e.target.value)
