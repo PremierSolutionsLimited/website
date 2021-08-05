@@ -22,6 +22,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
 }) => {
   function handleGoToNextPage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     return setTab("emergency");
   }
   return (

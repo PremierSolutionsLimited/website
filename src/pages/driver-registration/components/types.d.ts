@@ -61,12 +61,16 @@ export interface ExperienceComponentProp {
 
 export interface LicenseComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
+  licenseId: string;
+  setLicenseId: React.Dispatch<React.SetStateAction<string>>;
   typesOfCars: IType[];
   setTypeOfCars: React.Dispatch<React.SetStateAction<IType[]>>;
   hasALicense: string;
   setHasALicense: React.Dispatch<React.SetStateAction<string>>;
   licenseType: string;
   setLicenseType: React.Dispatch<React.SetStateAction<string>>;
+  licenseIssueDate: string;
+  setLicenseIssueDate: React.Dispatch<React.SetStateAction<string>>;
   licenseExpiryDate: string;
   setLicenseExpiryDate: React.Dispatch<React.SetStateAction<string>>;
   licenseNumber: string;
@@ -99,6 +103,6 @@ export interface AvailabiltyComponentProp {
   setSundayActive: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
   loading: boolean;
-  currentImageLoaderPrompt: number;
   uploadingToFirebase: boolean;
+  currentImageLoaderPrompt: number;
 }

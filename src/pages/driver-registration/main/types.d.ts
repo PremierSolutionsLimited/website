@@ -16,6 +16,7 @@ export interface CreateApplicationInputProp {
   residence?: string;
   ghanaPostGps?: string;
   licenseId?: string;
+  licenseIssueDate?: Date;
   licenseExpiryDate?: Date;
   licenseImageFront?: string;
   licenseImageBack?: string;

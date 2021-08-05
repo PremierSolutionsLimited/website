@@ -12,7 +12,7 @@ const UsersComponent = () => {
           <div className="space-y-12">
             <div className="space-y-5  sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
               <h2 className="text-3xl mt-10 sm:mt-10 md:mt-0 text-center font-extrabold tracking-tight sm:text-4xl">
-                We are satisfied when you are happy.
+                Our Offers.
               </h2>
               <p className="text-xl text-center pb-12 text-gray-500">
                 Wherever you wish to go, our drivers will get you there safely
@@ -31,7 +31,7 @@ const UsersComponent = () => {
 
                   <div className="space-y-2">
                     <div className="text-lg leading-6 text-amber-900 font-medium space-y-1">
-                      <h3>In City Drivers</h3>
+                      <h3>Cross Country Trips</h3>
                     </div>
                   </div>
                 </div>
@@ -47,7 +47,7 @@ const UsersComponent = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="text-lg leading-6 text-amber-900  font-medium space-y-1">
-                      <h3>Pick up your friend</h3>
+                      <h3>Inter City Trips</h3>
                     </div>
                   </div>
                 </div>
@@ -64,7 +64,7 @@ const UsersComponent = () => {
 
                   <div className="space-y-2">
                     <div className="text-lg leading-6 text-amber-900  font-medium space-y-1">
-                      <h3>Drop an urgent package for you</h3>
+                      <h3>Short Trips</h3>
                     </div>
                   </div>
                 </div>

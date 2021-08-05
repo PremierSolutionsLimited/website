@@ -53,7 +53,7 @@ const MainComponent = () => {
   return (
     <Fragment>
       <div className="max-w-7xl  max-h-screen mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">
-        <div className={"mt-0 px-0 flex flex-row items-center justify-between"}>
+        <div className={"mt-0 px-6 flex flex-row items-center justify-between"}>
           <div>
             <BreadCrumb pages={pages} />
           </div>

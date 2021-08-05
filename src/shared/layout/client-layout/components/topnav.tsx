@@ -8,6 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ContextLoader } from "../../../loaders";
 import { useCurrentClient } from "../../../../services/context/currentClient";
 import ProfileImage from "../../../../assets/images/male.jpeg";
+import Logo from "../../../../assets/images/logo.png";
 
 const LogoutModal = lazy(() => import("./logout"));
 const ChangePasswordModal = lazy(() => import("./changpassword"));
@@ -30,12 +31,12 @@ const TopNav = () => {
                   <div className="flex-shrink-0 flex items-center">
                     <img
                       className="block lg:hidden h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                      src={Logo}
                       alt="Workflow"
                     />
                     <img
-                      className="hidden lg:block h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
+                      className="hidden lg:block h-12 w-auto"
+                      src={Logo}
                       alt="Workflow"
                     />
                   </div>

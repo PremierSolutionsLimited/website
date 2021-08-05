@@ -1,76 +1,44 @@
-/* eslint-disable no-useless-concat */
-import * as React from "react";
-// import { ImageListType, ImageType } from "react-images-uploading";
+import { useState } from "react";
 import { storage } from "../../services/firebase";
 
-export type ImageUrlProps = {
-  name: string;
-  fileUrl: string;
-};
+const useImageUpload = (assetFolderName: string) => {
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState<number | null>(null);
 
-// for multiple image upload to firebase
-const useMultipleImageUpload = () => {
-  const [load, setLoad] = React.useState<number | null>(null);
+  const upload = (file: File): Promise<string> =>
+    new Promise<string>((resolve, reject) => {
+      setLoading(true); // true
+      const fileNewName: string = new Date().toString() + file.name;
+      const uploadTask = storage
+        .ref(`${assetFolderName}/${fileNewName}`)
+        .put(file);
 
-  const handleFileSelection = async (images: any) => {
-    // get files
-    let imageUrls: ImageUrlProps[] = [];
-    for (let i = 0; i < images.length; i++) {
-      let imageFile: File = images[i];
-      let singleImageUrl: ImageUrlProps = await uploadImageAsPromise(
-        imageFile,
-        i
-      );
-      imageUrls.push(singleImageUrl);
-    }
-    return imageUrls;
-  };
-
-  //handle waiting to upload each file to firebase using promise
-  const uploadImageAsPromise = async (
-    imageFile: any,
-    i: number
-  ): Promise<ImageUrlProps> => {
-    return new Promise(function (resolve, reject) {
-      let fileName = `${imageFile.file?.name.split(".")[0]}`;
-      let storageRef = storage.ref("driver" + "/" + fileName);
-      setLoad(i + 1);
-
-      //Upload file with data url
-      let task = storageRef.putString(imageFile.dataURL as string, "data_url");
-
-      //Update progress bar
-      task.on(
+      uploadTask.on(
         "state_changed",
-        function progress(snapshot: any) {
-          // let percentage =
-          //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          // uploader.value = percentage;
+        (snapshot) => {
+          let initProgress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setProgress(initProgress);
         },
-        function error(err: any) {
-          console.log("firebase error", err);
-
-          reject(err);
+        (error) => {
+          setLoading(false);
+          reject(error);
         },
-        function complete() {
+        () => {
           storage
-            .ref("driver")
-            .child(fileName)
+            .ref(assetFolderName)
+            .child(fileNewName)
             .getDownloadURL()
-            .then((downloadURL: string) => {
-              setLoad(null);
-              let imageUrlsss: ImageUrlProps = {
-                name: fileName,
-                fileUrl: downloadURL,
-              };
-              resolve(imageUrlsss);
-            });
+            .then((url) => {
+              setLoading(false);
+              resolve(url);
+            })
+            .catch((e) => reject(e));
         }
       );
     });
-  };
 
-  return { handleFileSelection, load };
+  return { upload, progress, loading };
 };
 
-export default useMultipleImageUpload;
+export default useImageUpload;

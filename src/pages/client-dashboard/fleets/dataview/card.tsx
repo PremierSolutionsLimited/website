@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { FleetCardComponentProp } from "./types";
-import CarImage from "../../../../assets/images/hyndai.png";
+import NoImage from "../../../../assets/images/no-image.png";
 import ReactTooltip from "react-tooltip";
 
 const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
@@ -9,13 +9,28 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
       <div className="flex flex-col">
         <div className="bg-white shadow-md  rounded-2xl p-4">
           <div className="flex-none lg:flex">
-            <div className=" h-full w-full lg:h-full lg:w-full   lg:mb-0 mb-3">
-              <img
-                src={data?.class?.icon || CarImage}
-                alt="Just a flower"
-                className=" w-full  object-scale-down lg:object-cover  lg:h-full rounded-2xl"
-              />
-            </div>
+            {data?.class?.icon ? (
+              <Fragment>
+                <div className=" h-full w-full lg:h-full lg:w-full   lg:mb-0 mb-3">
+                  <img
+                    src={data?.class?.icon || NoImage}
+                    alt="Just a flower"
+                    className=" w-full  object-scale-down lg:object-cover  lg:h-full rounded-2xl"
+                  />
+                </div>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <div className=" h-40 w-44 lg:h-40 lg:w-44   lg:mb-0 mb-3">
+                  <img
+                    src={NoImage}
+                    alt="Just a flower"
+                    className=" w-full  object-scale-down lg:object-cover  lg:h-full rounded-2xl"
+                  />
+                </div>
+              </Fragment>
+            )}
+
             <div className="flex-auto ml-3 justify-evenly py-2 relative">
               <div className="hidden sm:block absolute top-0 right-0 pt-2 pr-4">
                 <button

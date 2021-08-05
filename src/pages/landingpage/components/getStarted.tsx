@@ -50,14 +50,14 @@ export default function GetStartedComponent() {
                       className="text-4xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4"
                       data-aos="zoom-y-out"
                     >
-                      Let a Professional
+                      Premier Chauffeur
                     </h1>
                     <h1
                       className="text-4xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4"
                       data-aos="zoom-y-out"
                     >
                       <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-pink-700">
-                        take the wheel
+                        You Relax, We Drive
                       </span>
                     </h1>
                     <div className="max-w-3xl mx-auto">
@@ -66,11 +66,10 @@ export default function GetStartedComponent() {
                         data-aos="zoom-y-out"
                         data-aos-delay="150"
                       >
-                        To drive you and your family, you will need a private
-                        car driver with excellent chauffeuring capabilities.
-                        Hire the best auto drivers in your area that are
-                        professional and qualified to obey all safety
-                        regulations.
+                        We provide you the comfort of travelling in your own
+                        vehicle, while our professionally trained chauffeur /
+                        driver, drives you. You do not have to worry about
+                        traffic and delays.
                       </p>
                       <div className={"block sm:block md:hidden"}>
                         <Link to="/driver-signup">

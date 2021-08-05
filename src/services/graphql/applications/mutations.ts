@@ -19,6 +19,7 @@ export const createDriverApplication = gql`
     $residence: String
     $ghanaPostGps: String
     $licenseId: String
+    $licenseIssueDate: Date
     $licenseExpiryDate: Date
     $licenseImageFront: String
     $licenseImageBack: String
@@ -67,6 +68,7 @@ export const createDriverApplication = gql`
         residence: $residence
         ghanaPostGps: $ghanaPostGps
         licenseId: $licenseId
+        licenseIssueDate: $licenseIssueDate
         licenseExpiryDate: $licenseExpiryDate
         licenseImageFront: $licenseImageFront
         licenseImageBack: $licenseImageBack

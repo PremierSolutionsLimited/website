@@ -20,6 +20,9 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
 }) => {
   function handleGoToNextPage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!clientImageUrl) {
+      return toast.error("Please add a profile image");
+    }
     if (password !== confirmPassword) {
       return toast.error("Passwords do not match");
     } else {
