@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { StageSpinner } from "react-spinners-kit";
 import { useRegistrationProvider } from "../../../services/context";
 import { differenceInCalendarYears } from "date-fns";
+import Logo from "../../../assets/images/logo.png";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -105,11 +106,7 @@ const DriverSignup = () => {
         <div className="flex-1 relative flex flex-col justify-center py-12 md:px-0 px-5 sm:px-5 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
-              <img
-                className="h-12 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt="Workflow"
-              />
+              <img className="h-14 w-auto" src={Logo} alt="Workflow" />
               <h2 className="mt-6 text-3xl font-bold text-pink-600">
                 Driver Application
               </h2>

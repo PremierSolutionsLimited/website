@@ -4,6 +4,7 @@ import { Transition } from "@headlessui/react";
 import { useOutsideListener } from "../../../components/hooks";
 import { Link, useHistory } from "react-router-dom";
 import SignupDropDown from "./bones/signupDropdown";
+import Logo from "../../../assets/images/logo.png";
 
 const MainHeader = () => {
   const { push } = useHistory();
@@ -51,15 +52,11 @@ const MainHeader = () => {
         }`}
       >
         <div className="relative max-w-7xl mx-auto ">
-          <div className="flex justify-between items-center px-4 py-3 sm:px-6 md:justify-start md:space-x-10 ">
+          <div className="flex justify-between items-center px-4 py-3 sm:px-6 md:justify-start md:space-x-8 ">
             <Link to="/">
               <a href="#" className="flex">
                 <span className="sr-only">Logo</span>
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt="Workflow"
-                />
+                <img className="h-10 w-auto" src={Logo} alt="Workflow" />
               </a>
             </Link>
 
@@ -384,11 +381,7 @@ const MainHeader = () => {
                 <div className="pt-5 pb-6 px-5">
                   <div className="flex items-center justify-between">
                     <div>
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                        alt="Workflow"
-                      />
+                      <img className="h-8 w-auto" src={Logo} alt="Workflow" />
                     </div>
                     <div className="-mr-2">
                       <button
