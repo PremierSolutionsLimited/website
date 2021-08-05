@@ -186,7 +186,6 @@ const MainComponent = () => {
         imageUrls.push(element);
       }
     }
-    console.log("image urls after firebase upload", imageUrls);
     createApplication({
       variables: {
         title: registrationState?.status?.title,

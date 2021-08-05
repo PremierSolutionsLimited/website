@@ -3,9 +3,6 @@ import { ViewFleetComponentProp } from "./types";
 import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import moment from "moment";
-import CarImage1 from "../../../../assets/images/hyndai.png";
-import CarImage2 from "../../../../assets/images/bmw.png";
-import CarImage3 from "../../../../assets/images/mercedez.png";
 
 const MainComponent: React.FC<ViewFleetComponentProp> = ({
   show,
@@ -114,21 +111,21 @@ const MainComponent: React.FC<ViewFleetComponentProp> = ({
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
                     <img
-                      src={CarImage1}
+                      src={vehicle?.images[0]}
                       className="h-full w-full"
                       alt="vehicle 1"
                     />
                   </dt>
                   <dd className="mt-1  sm:mt-0 sm:col-span-1">
                     <img
-                      src={CarImage2}
+                      src={vehicle?.images[1]}
                       className="h-full w-full"
                       alt="vehicle 1"
                     />
                   </dd>
                   <dd className="mt-1  sm:mt-0 sm:col-span-1">
                     <img
-                      src={CarImage3}
+                      src={vehicle?.images[2]}
                       className="h-full w-full"
                       alt="vehicle 1"
                     />

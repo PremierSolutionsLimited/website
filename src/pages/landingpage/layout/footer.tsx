@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment } from "react";
 import FooterSvg from "../../../components/svgs/footer";
-import Logo from "../../../assets/images/logo.png";
+// import Logo from "../../../assets/images/logo.png";
+import Picture from "../../../assets/images/Picture.jpg";
 export interface Props {}
 
 const Footer = () => {
@@ -15,7 +16,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto py-0 px-4 sm:px-6 lg:py-0 lg:px-8">
           <div className="xl:grid xl:grid-cols-4 xl:gap-8">
             <div className="space-y-4 xl:col-span-1 ">
-              <img className="h-12 w-auto" src={Logo} alt="Workflow" />
+              <img className="h-12 w-auto" src={Picture} alt="Workflow" />
               <div>
                 <p className="text-gray-800 text-base ">
                   Making Dreams Reality
