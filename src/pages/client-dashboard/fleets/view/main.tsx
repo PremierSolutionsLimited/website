@@ -110,25 +110,49 @@ const MainComponent: React.FC<ViewFleetComponentProp> = ({
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
-                    <img
-                      src={vehicle?.images[0]}
-                      className="h-full w-full"
-                      alt="vehicle 1"
-                    />
+                    {vehicle?.images[0] ? (
+                      <Fragment>
+                        <img
+                          src={vehicle?.images[0]}
+                          className="h-full w-full"
+                          alt="vehicle 1"
+                        />
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        <div className="relative block h-48 w-full border-2 border-gray-300 border-dashed rounded-lg p-2  text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
+                      </Fragment>
+                    )}
                   </dt>
                   <dd className="mt-1  sm:mt-0 sm:col-span-1">
-                    <img
-                      src={vehicle?.images[1]}
-                      className="h-full w-full"
-                      alt="vehicle 1"
-                    />
+                    {vehicle?.images[1] ? (
+                      <Fragment>
+                        <img
+                          src={vehicle?.images[1]}
+                          className="h-full w-full"
+                          alt="vehicle 1"
+                        />
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        <div className="relative block h-48 w-full border-2 border-gray-300 border-dashed rounded-lg p-2  text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
+                      </Fragment>
+                    )}
                   </dd>
                   <dd className="mt-1  sm:mt-0 sm:col-span-1">
-                    <img
-                      src={vehicle?.images[2]}
-                      className="h-full w-full"
-                      alt="vehicle 1"
-                    />
+                    {vehicle?.images[2] ? (
+                      <Fragment>
+                        <img
+                          src={vehicle?.images[2]}
+                          className="h-full w-full"
+                          alt="vehicle 1"
+                        />
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        <div className="relative block h-48 w-full border-2 border-gray-300 border-dashed rounded-lg p-2  text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
+                      </Fragment>
+                    )}
                   </dd>
                 </div>
               </dl>
