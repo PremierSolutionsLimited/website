@@ -23,8 +23,8 @@ const AvailabiltyComponent: React.FC<AvailabiltyComponentProp> = ({
   setSaturdayActive,
   sundayActive,
   setSundayActive,
-  currentImageLoaderPrompt,
   loading,
+  currentImageLoaderPrompt,
   handleSubmit,
   uploadingToFirebase,
 }) => {
