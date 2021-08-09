@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { BookTripComponentProp } from "./types";
 import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
-import { ageGroup1, duration } from "./components/data/age";
+import { ageGroup1, duration as DurationData } from "./components/data/age";
 import TripComponent from "./components/screens/trip";
 import OriginComponent from "./components/screens/origin";
 import DestinationComponent from "./components/screens/destination";
@@ -18,7 +18,15 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   });
   const [tab, setTab] = useState<string>("trip");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState(ageGroup1[0]);
-  const [durationType, setDurationType] = useState(duration[0]);
+  const [durationType, setDurationType] = useState(DurationData[0]);
+  const [durationTypeSelected, setDurationTypeSelected] =
+    useState<string>("Hours");
+
+  const [duration, setDuration] = useState<string>("");
+  const [tripStartDate, setTripStartDate] = useState<string>("");
+  const [endTime, setEndTime] = useState<Date | undefined>();
+
+  console.log("end time", endTime);
 
   return (
     <Fragment>
@@ -66,6 +74,13 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setSelectedAgeGroup={setSelectedAgeGroup}
                     selectedDuration={durationType}
                     setSelectedDuration={setDurationType}
+                    durationTypeSelected={durationTypeSelected}
+                    setDurationTypeSelected={setDurationTypeSelected}
+                    duration={duration}
+                    setDuration={setDuration}
+                    tripStartDate={tripStartDate}
+                    setTripStartDate={setTripStartDate}
+                    setEndTime={setEndTime}
                   />
                 </Fragment>
               )}

@@ -52,6 +52,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+                  nostrum voluptate, sed officia blanditiis vero dolore, alias
                 </p>
               </div>
             </div>
@@ -107,6 +108,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+                  nostrum voluptate, sed officia blanditiis vero dolore, alias
                 </p>
               </div>
             </div>
