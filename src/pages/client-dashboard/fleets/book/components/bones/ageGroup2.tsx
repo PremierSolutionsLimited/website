@@ -1,46 +1,38 @@
 import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 
-const duration = [
-  {
-    name: "Hours",
-  },
-  {
-    name: "Days",
-  },
-  {
-    name: "Weeks",
-  },
-  {
-    name: "Months",
-  },
+const ageGroup = [
+  { name: "35-44 years old", group: "GROUP5" },
+  { name: "45-54 years old", group: "GROUP6" },
+  { name: "55-64 years old", group: "GROUP7" },
+  { name: "65 and over", group: "GROUP H" },
 ];
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function DurationTypeComponent() {
-  const [selected, setSelected] = useState(duration[0]);
+export default function AgeGroupComponent2() {
+  const [selected, setSelected] = useState();
 
   return (
     <RadioGroup value={selected} onChange={setSelected}>
       <RadioGroup.Label className="sr-only">Privacy setting</RadioGroup.Label>
-      <div className="bg-white flex flex-row rounded-md -space-y-px">
-        {duration.map((setting, settingIdx) => (
+      <div className="bg-white rounded-md -space-y-px">
+        {ageGroup.map((setting, settingIdx) => (
           <RadioGroup.Option
             key={setting.name}
             value={setting}
             className={({ checked }) =>
               classNames(
-                settingIdx === 0 ? "rounded-md" : "rounded-md",
-                settingIdx === duration.length - 1
-                  ? "rounded-md"
-                  : "rounded-md",
+                settingIdx === 0 ? "rounded-tl-md rounded-tr-md" : "",
+                settingIdx === ageGroup.length - 1
+                  ? "rounded-bl-md rounded-br-md"
+                  : "",
                 checked
                   ? "bg-indigo-50 border-indigo-200 z-10"
                   : "border-gray-200",
-                "relative border p-4 flex mr-4 cursor-pointer focus:outline-none"
+                "relative border p-4 flex cursor-pointer focus:outline-none"
               )
             }
           >

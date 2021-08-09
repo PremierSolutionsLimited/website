@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import DurationType from "../bones/durationType";
+import AgeGroup1 from "../bones/ageGroup1";
+import AgeGroup2 from "../bones/ageGroup2";
 
-export default function Origin() {
+export default function Trip() {
   return (
     <Fragment>
       <div className="grid grid-cols-12 gap-3">
@@ -49,6 +51,27 @@ export default function Origin() {
           </label>
           <div className="mt-1 rounded-none shadow-none">
             <DurationType />
+          </div>
+        </div>
+        <div className="col-span-12 sm:col-span-12 md:col-span-6">
+          <label
+            htmlFor="url"
+            className="block text-sm pb-1 font-medium text-gray-700"
+          >
+            Age Group
+          </label>
+          <div className="mt-1 rounded-none shadow-none">
+            <AgeGroup1 />
+          </div>
+        </div>
+        <div className="col-span-12 sm:col-span-12 md:col-span-6">
+          <label
+            htmlFor="url"
+            className="block text-sm pb-5 font-medium text-gray-700"
+          />
+
+          <div className="mt-1 rounded-none shadow-none">
+            <AgeGroup2 />
           </div>
         </div>
       </div>
