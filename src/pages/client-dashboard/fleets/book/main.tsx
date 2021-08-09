@@ -93,7 +93,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
               )}
               {tab === "origin" && (
                 <Fragment>
-                  <OriginComponent />
+                  <OriginComponent setTab={setTab} />
                 </Fragment>
               )}
               {tab === "destination" && (

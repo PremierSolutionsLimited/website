@@ -23,3 +23,7 @@ export interface TripComponentProp {
   setEndTime: React.Dispatch<React.SetStateAction<Date | undefined>>;
   endTime: Date | undefined;
 }
+
+export interface OriginComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+}
