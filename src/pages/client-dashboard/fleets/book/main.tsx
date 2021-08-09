@@ -23,12 +23,10 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
   const [durationTypeSelected, setDurationTypeSelected] =
     useState<string>("Hours");
-
   const [duration, setDuration] = useState<string>("");
+  const [requestType, setRequesType] = useState<string>("");
   const [tripStartDate, setTripStartDate] = useState<string>("");
   const [endTime, setEndTime] = useState<Date | undefined>();
-
-  console.log("end time", endTime);
 
   return (
     <Fragment>
@@ -61,14 +59,16 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
               </svg>
             </button>
           </div>
-          <span className={"font-medium text-md mt-5"}>Book a trip</span>
-          <div className=" grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5">
-            <div className="sm:col-span-2 ">
+          <span className={"font-medium text-md mt-5"}>
+            Book a trip with your "{selectedCar?.make}"
+          </span>
+          <div className=" grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5 md:grid-cols-5">
+            <div className="sm:col-span-2 md:col-span-2 hidden sm:hidden md:block ">
               <div className={"mt-5 top-20 sticky overflow-y-none"}>
                 <StepComponent tab={tab} />
               </div>
             </div>
-            <div className="sm:col-span-3 ml-10 ">
+            <div className="sm:col-span-5 md:col-span-3 ml-0 sm:ml-0 md:ml-5 ">
               {tab === "trip" && (
                 <Fragment>
                   <TripComponent
@@ -84,6 +84,10 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setTripStartDate={setTripStartDate}
                     setEndTime={setEndTime}
                     endTime={endTime}
+                    requestType={requestType}
+                    setRequestType={setRequesType}
+                    setShow={setShow}
+                    setTab={setTab}
                   />
                 </Fragment>
               )}

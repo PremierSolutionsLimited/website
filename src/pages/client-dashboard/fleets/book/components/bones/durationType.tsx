@@ -30,14 +30,16 @@ export default function DurationTypeComponent({
         <div
           key={setting.name}
           onClick={() => {
-            getFinalDateWithDurationTypeInput(
-              settingIdx,
-              duration,
-              selectedDate,
-              setEndTime
-            );
             setDurationTypeSelected(setting?.name);
             setSelected(setting);
+            if (selectedDate && duration) {
+              getFinalDateWithDurationTypeInput(
+                settingIdx,
+                duration,
+                selectedDate,
+                setEndTime
+              );
+            }
           }}
           className={classNames(
             settingIdx === 0 ? "rounded-md" : "rounded-md",

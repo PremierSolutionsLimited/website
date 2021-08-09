@@ -14,8 +14,12 @@ export interface TripComponentProp {
   setDurationTypeSelected: React.Dispatch<React.SetStateAction<string>>;
   duration: string;
   setDuration: React.Dispatch<React.SetStateAction<string>>;
+  requestType: string;
+  setRequestType: React.Dispatch<React.SetStateAction<string>>;
   tripStartDate: string;
   setTripStartDate: React.Dispatch<React.SetStateAction<string>>;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setTab: React.Dispatch<React.SetStateAction<string>>;
   setEndTime: React.Dispatch<React.SetStateAction<Date | undefined>>;
   endTime: Date | undefined;
 }

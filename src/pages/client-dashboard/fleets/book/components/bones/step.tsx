@@ -50,7 +50,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                 >
                   Trip Information
                 </h3>
-                <p className="text-sm font-light leading-5 text-gray-500">
+                <p className="text-sm flex items-start font-light leading-5 text-gray-500">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
                   nostrum voluptate, sed officia blanditiis vero dolore, alias
                 </p>
@@ -104,7 +104,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                       : "text-gray-500"
                   } `}
                 >
-                  Origin
+                  Location Origin
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
@@ -155,7 +155,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                     tab === "social" ? "text-pink-600" : "text-gray-500"
                   } `}
                 >
-                  Destination
+                  Location Destination
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
