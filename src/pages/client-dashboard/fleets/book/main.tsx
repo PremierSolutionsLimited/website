@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { BookTripComponentProp } from "./types";
 import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
-import { ageGroup1, duration as DurationData } from "./components/data/age";
+import { IDurationType, IGroupType } from "./components/data/types";
 import TripComponent from "./components/screens/trip";
 import OriginComponent from "./components/screens/origin";
 import DestinationComponent from "./components/screens/destination";
@@ -17,8 +17,10 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
   const [tab, setTab] = useState<string>("trip");
-  const [selectedAgeGroup, setSelectedAgeGroup] = useState(ageGroup1[0]);
-  const [durationType, setDurationType] = useState(DurationData[0]);
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState<
+    IGroupType | undefined
+  >();
+  const [durationType, setDurationType] = useState<IDurationType | undefined>();
   const [durationTypeSelected, setDurationTypeSelected] =
     useState<string>("Hours");
 
@@ -81,6 +83,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     tripStartDate={tripStartDate}
                     setTripStartDate={setTripStartDate}
                     setEndTime={setEndTime}
+                    endTime={endTime}
                   />
                 </Fragment>
               )}

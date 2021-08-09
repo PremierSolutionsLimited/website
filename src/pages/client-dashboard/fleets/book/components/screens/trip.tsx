@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
 import { TripComponentProp } from "./types";
 import { getFinalDateWithDurationInput } from "../utils/switch";
+import { IDurationType } from "../data/types";
 import DurationType from "../bones/durationType";
 import AgeGroup1 from "../bones/ageGroup1";
 import AgeGroup2 from "../bones/ageGroup2";
+import moment from "moment";
 
 export default function Trip({
   selectedAgeGroup,
@@ -17,6 +19,7 @@ export default function Trip({
   tripStartDate,
   setTripStartDate,
   setEndTime,
+  endTime,
 }: TripComponentProp) {
   return (
     <Fragment>
@@ -49,8 +52,12 @@ export default function Trip({
           </label>
           <div className="mt-1 rounded-none shadow-none">
             <DurationType
-              selected={selectedDuration}
+              setDurationTypeSelected={setDurationTypeSelected}
+              selected={selectedDuration as IDurationType}
               setSelected={setSelectedDuration}
+              duration={duration}
+              selectedDate={tripStartDate}
+              setEndTime={setEndTime}
             />
           </div>
         </div>
@@ -99,6 +106,21 @@ export default function Trip({
             </select>
           </div>
         </div>
+
+        {endTime && (
+          <Fragment>
+            <div className="col-span-12 sm:col-span-12 md:col-span-12">
+              <label
+                htmlFor="url"
+                className="block text-sm pb-1 font-medium text-green-600"
+              >
+                Expected End Date :{" "}
+                {moment(endTime).format("MMM, Do, YYYY hh:mm A")}
+              </label>
+            </div>
+          </Fragment>
+        )}
+
         <div className="col-span-12 sm:col-span-12 md:col-span-6">
           <label
             htmlFor="url"
