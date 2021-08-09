@@ -3,7 +3,7 @@ import { FleetCardComponentProp } from "./types";
 import NoImage from "../../../../assets/images/no-image.png";
 import ReactTooltip from "react-tooltip";
 
-const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
+const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
   return (
     <Fragment>
       <div className="flex flex-col">
@@ -36,6 +36,7 @@ const Card = ({ data, onView, onUpdate }: FleetCardComponentProp) => {
                 <button
                   type="button"
                   data-tip
+                  onClick={onBook}
                   data-for="registerTip"
                   className="text-gray-400 hover:text-gray-500 hover:bg-gray-200 bg-gray-100 h-12 w-12 rounded-full flex items-center justify-center focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
                   aria-label="Close"
