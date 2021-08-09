@@ -1,9 +1,15 @@
 import React, { Fragment } from "react";
+import { TripComponentProp } from "./types";
 import DurationType from "../bones/durationType";
 import AgeGroup1 from "../bones/ageGroup1";
 import AgeGroup2 from "../bones/ageGroup2";
 
-export default function Trip() {
+export default function Trip({
+  selectedAgeGroup,
+  setSelectedAgeGroup,
+  selectedDuration,
+  setSelectedDuration,
+}: TripComponentProp) {
   return (
     <Fragment>
       <div className="grid grid-cols-12 gap-3">
@@ -50,7 +56,10 @@ export default function Trip() {
             Duration Type
           </label>
           <div className="mt-1 rounded-none shadow-none">
-            <DurationType />
+            <DurationType
+              selected={selectedDuration}
+              setSelected={setSelectedDuration}
+            />
           </div>
         </div>
         <div className="col-span-12 sm:col-span-12 md:col-span-6">
@@ -61,7 +70,10 @@ export default function Trip() {
             Age Group
           </label>
           <div className="mt-1 rounded-none shadow-none">
-            <AgeGroup1 />
+            <AgeGroup1
+              selected={selectedAgeGroup}
+              setSelected={setSelectedAgeGroup}
+            />
           </div>
         </div>
         <div className="col-span-12 sm:col-span-12 md:col-span-6">
@@ -71,7 +83,10 @@ export default function Trip() {
           />
 
           <div className="mt-1 rounded-none shadow-none">
-            <AgeGroup2 />
+            <AgeGroup2
+              selected={selectedAgeGroup}
+              setSelected={setSelectedAgeGroup}
+            />
           </div>
         </div>
       </div>

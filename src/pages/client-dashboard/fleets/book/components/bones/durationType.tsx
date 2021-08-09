@@ -1,28 +1,12 @@
 import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
-
-const duration = [
-  {
-    name: "Hours",
-  },
-  {
-    name: "Days",
-  },
-  {
-    name: "Weeks",
-  },
-  {
-    name: "Months",
-  },
-];
+import { duration } from "../data/age";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function DurationTypeComponent() {
-  const [selected, setSelected] = useState(duration[0]);
-
+export default function DurationTypeComponent({ selected, setSelected }: any) {
   return (
     <RadioGroup value={selected} onChange={setSelected}>
       <RadioGroup.Label className="sr-only">Privacy setting</RadioGroup.Label>
@@ -37,9 +21,7 @@ export default function DurationTypeComponent() {
                 settingIdx === duration.length - 1
                   ? "rounded-md"
                   : "rounded-md",
-                checked
-                  ? "bg-indigo-50 border-indigo-200 z-10"
-                  : "border-gray-200",
+                checked ? "bg-pink-50 border-pink-200 z-10" : "border-gray-200",
                 "relative border p-4 flex mr-4 cursor-pointer focus:outline-none"
               )
             }
@@ -49,9 +31,9 @@ export default function DurationTypeComponent() {
                 <span
                   className={classNames(
                     checked
-                      ? "bg-indigo-600 border-transparent"
+                      ? "bg-pink-600 border-transparent"
                       : "bg-white border-gray-300",
-                    active ? "ring-2 ring-offset-2 ring-indigo-500" : "",
+                    active ? "ring-2 ring-offset-2 ring-pink-500" : "",
                     "h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center"
                   )}
                   aria-hidden="true"
@@ -62,7 +44,7 @@ export default function DurationTypeComponent() {
                   <RadioGroup.Label
                     as="span"
                     className={classNames(
-                      checked ? "text-indigo-900" : "text-gray-900",
+                      checked ? "text-pink-900" : "text-gray-900",
                       "block text-sm font-medium"
                     )}
                   >
