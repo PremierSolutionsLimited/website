@@ -40,8 +40,7 @@ const MainComponent = () => {
                 <div className="sm:col-span-6">
                   <h2 className="text-xl font-medium text-gray-900">Profile</h2>
                   <p className="mt-1 text-sm text-gray-500">
-                    This information will be displayed publicly so be careful
-                    what you share.
+                    Update your personal information here.
                   </p>
                 </div>
 

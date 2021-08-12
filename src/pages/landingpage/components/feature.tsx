@@ -47,7 +47,7 @@ const FeaturesComponent = () => {
             <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
               We provide professionally trained and certified drivers for
               Clients with vehicles on an hourly, daily, weekly, and monthly
-              basis
+              basis.
             </p>
           </div>
 
@@ -84,12 +84,12 @@ const FeaturesComponent = () => {
                       </svg>
                     </div>
                     <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
-                      Customer Value Proposition (CVP) Convenience
+                      Convenience
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Easy way to hire a professionally trained driver / chauffeur
-                    to (male / female) drive you in the comfort of your vehicle.
+                    Easy way to hire a professionally trained chauffeur
+                    to drive you in the comfort of your vehicle.
                     Easy registering and hiring process.
                   </dd>
                 </div>
@@ -118,8 +118,8 @@ const FeaturesComponent = () => {
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Drivers / chauffeurs trained to drive defensively to protect
-                    people and property. Background checks conducted on all
+                    Chauffeurs trained to drive defensively to protect
+                    people and property. Background checks are conducted on all
                     drivers.
                   </dd>
                 </div>
@@ -147,7 +147,7 @@ const FeaturesComponent = () => {
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Drivers / Chauffeurs trained to be competent and respectful
+                    Chauffeurs trained to be competent and respectful
                     in dealing with clients.
                   </dd>
                 </div>
@@ -237,7 +237,7 @@ const FeaturesComponent = () => {
                 </h3>
                 <p className="mt-3 text-lg text-gray-500">
                   Access to a professionally trained and certified driver when
-                  you urgently need one
+                  you urgently need one.
                 </p>
 
                 <dl className="mt-10 space-y-10">
@@ -295,7 +295,7 @@ const FeaturesComponent = () => {
                     </dt>
                     <dd className="mt-2 ml-16 text-base text-gray-500">
                       You can be productive whilst in traffic sitting in the
-                      comfort of your vehicle
+                      comfort of your vehicle.
                     </dd>
                   </div>
                   <div className="relative">
@@ -323,7 +323,7 @@ const FeaturesComponent = () => {
                     </dt>
                     <dd className="mt-2 ml-16 text-base text-gray-500">
                       No need to worry about hiring a driver on a temporary
-                      basis when your children reopen school
+                      basis when your children reopen school.
                     </dd>
                   </div>
                 </dl>

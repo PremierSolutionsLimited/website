@@ -39,12 +39,11 @@ const MainComponent = ({ show, setShow }: SucessComponentProp) => {
               </div>
               <div className="mt-3 text-center sm:mt-5">
                 <div className="text-xl leading-6 font-medium text-gray-900">
-                  Account Created Successfully
+                  Application Submitted Successfully
                 </div>
                 <div className="mt-2">
                   <p className="text-md text-gray-800 font-light">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-                    laborum corporis consequatur vero eius eveniet officiis sed
+                    Thank you for your application. Premier Solutions will be in touch for the next steps.
                   </p>
                 </div>
               </div>
@@ -55,7 +54,7 @@ const MainComponent = ({ show, setShow }: SucessComponentProp) => {
                 onClick={handleClearToken}
                 className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-600 text-base font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:text-sm"
               >
-                Sign In
+                OK
               </button>
             </div>
           </div>

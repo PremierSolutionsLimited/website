@@ -59,8 +59,8 @@ const StepsComponent = ({ tab }: Props) => {
                   Personal Information
                 </h3>
                 <p className="text-sm  font-light leading-5 text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  nostrum voluptate, sed officia blanditiis vero dolore, alias
+                  Provide information concerning yourself, your immediate family and
+                  your socio-economic life. 
                 </p>
               </div>
             </div>
@@ -118,8 +118,8 @@ const StepsComponent = ({ tab }: Props) => {
                   Experience
                 </h3>
                 <p className="text-sm leading-5 font-light text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  nostrum voluptate, sed officia blanditiis vero dolore, alias
+                  Provide information on your driving experience. Especially relevant is information 
+                  concerning your previous and current employment if any.
                 </p>
               </div>
             </div>
@@ -175,8 +175,8 @@ const StepsComponent = ({ tab }: Props) => {
                   License
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  nostrum voluptate, sed officia blanditiis vero dolore, alias
+                  Provide information on your driver's license, including expiry dates,
+                  license class among others.
                 </p>
               </div>
             </div>
@@ -229,8 +229,8 @@ const StepsComponent = ({ tab }: Props) => {
                   Availability
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  nostrum voluptate, sed officia blanditiis vero dolore, alias
+                  When are you available to work with us? Let us know so we can organise 
+                  to better serve you and our clients.
                 </p>
               </div>
             </div>
