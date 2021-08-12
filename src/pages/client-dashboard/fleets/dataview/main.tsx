@@ -7,6 +7,7 @@ import CardComponent from "./card";
 const DataViewComponent: React.FC<FleetDataViewComponentProp> = ({
   onView,
   onUpdate,
+  onBook,
   limit,
   total,
   skip,
@@ -21,6 +22,7 @@ const DataViewComponent: React.FC<FleetDataViewComponentProp> = ({
             <CardComponent
               data={fleet}
               onView={() => onView(fleet)}
+              onBook={() => onBook(fleet)}
               onUpdate={() => onUpdate(fleet)}
             />
           </Fragment>
