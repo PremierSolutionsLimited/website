@@ -1,15 +1,9 @@
-import { Dispatch, FC, Fragment, SetStateAction, useRef } from "react";
+import { FC, Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useOutsideListener } from "../hooks";
-interface Props {
-  show: boolean;
-  setShow: Dispatch<SetStateAction<boolean>>;
-  size?: number;
-  height?: number;
-  canClose?: boolean;
-}
+import { BasicModalComponentProp } from "./types";
 
-const Basic: FC<Props> = ({
+const Basic: FC<BasicModalComponentProp> = ({
   children,
   setShow,
   show,
@@ -64,6 +58,9 @@ const Basic: FC<Props> = ({
                 ref={ref}
                 style={{ width: `${size}vw`, height: `${height}vh` }}
                 className="inline-block align-bottom bg-white rounded-lg  text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-headline"
               >
                 {children}
               </div>
@@ -77,6 +74,7 @@ const Basic: FC<Props> = ({
 
 Basic.defaultProps = {
   size: 30,
+  canClose: true,
 };
 
 export default Basic;
