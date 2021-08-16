@@ -17,16 +17,13 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
   setDependents,
   setTab,
 }) => {
-  function handleGoToNextPage(e: React.FormEvent<HTMLFormElement>) {
+  function handleGoToNextPage(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     return setTab("emergency");
   }
   return (
     <Fragment>
-      <form
-        onSubmit={handleGoToNextPage}
-        className="divide-y divide-gray-200 lg:col-span-9"
-      >
+      <div className="divide-y divide-gray-200 lg:col-span-9">
         <div className="py-0 px-4 sm:p-6 lg:pb-8">
           <div className="mt-6 grid grid-cols-12 gap-6">
             <div className="col-span-12 sm:col-span-12">
@@ -142,14 +139,15 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
               Back
             </button>
             <button
-              type="submit"
+              type="button"
+              onClick={handleGoToNextPage}
               className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
             >
               Next
             </button>
           </div>
         </div>
-      </form>
+      </div>
     </Fragment>
   );
 };

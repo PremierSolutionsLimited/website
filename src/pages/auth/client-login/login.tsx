@@ -43,7 +43,7 @@ const Login = () => {
     })
       .then(async ({ data }) => {
         await signIn(data?.loginClient);
-        return (window.location.pathname = "/app/");
+        return push("/app/");
       })
       .catch((e: ApolloError) => {
         toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)));

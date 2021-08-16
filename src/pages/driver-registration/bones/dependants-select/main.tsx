@@ -83,7 +83,7 @@ const MainComponent = ({ dependDents, setDependents }: MainComponentProp) => {
                     newState[index] = {
                       firstName: dependent?.firstName,
                       relationship: dependent?.relationship,
-                      dob: new Date(newDob),
+                      dob: newDob,
                       lastName: dependent?.lastName,
                       gender: dependent?.gender,
                     };
