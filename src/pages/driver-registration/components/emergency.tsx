@@ -11,7 +11,7 @@ export default function EmergencyComponent({
   function handleGoToNextPage(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (emergencyContact.length === 0) {
-      return toast.error("Please add an emergency contact");
+      return toast.error("Please add at least one emergency contact");
     }
     return setTab("card");
   }
