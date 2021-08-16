@@ -47,6 +47,14 @@ export interface FamilyComponentProp {
   setDependents: React.Dispatch<React.SetStateAction<DependentsInputProp[]>>;
 }
 
+export interface EmergencyComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  emergencyContact: EmergencyInputProp[];
+  setEmergencyContact: React.Dispatch<
+    React.SetStateAction<EmergencyInputProp[]>
+  >;
+}
+
 export interface ExperienceComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
   hadAccidents: string;

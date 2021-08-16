@@ -42,6 +42,6 @@ export interface DependentsInputProp {
   lastName: string;
   firstName: string;
   gender: string;
-  dob: string;
+  dob: date;
   relationship: string;
 }

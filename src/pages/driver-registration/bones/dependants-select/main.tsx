@@ -6,7 +6,13 @@ const MainComponent = ({ dependDents, setDependents }: MainComponentProp) => {
   const handleAddDependents = () => {
     setDependents([
       ...dependDents,
-      { name: "", relationship: "", telephone: "", phone: "", address: "" },
+      {
+        lastName: "",
+        relationship: "",
+        firstName: "",
+        gender: "",
+        dob: new Date(),
+      },
     ]);
   };
   return (
@@ -77,7 +83,7 @@ const MainComponent = ({ dependDents, setDependents }: MainComponentProp) => {
                     newState[index] = {
                       firstName: dependent?.firstName,
                       relationship: dependent?.relationship,
-                      dob: newDob,
+                      dob: new Date(newDob),
                       lastName: dependent?.lastName,
                       gender: dependent?.gender,
                     };
