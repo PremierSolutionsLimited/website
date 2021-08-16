@@ -27,3 +27,7 @@ export interface TripComponentProp {
 export interface OriginComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface DestinationComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+}

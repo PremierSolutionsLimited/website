@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { OriginComponentProp } from "./types";
-import GoogleMap from "../map";
+import GoogleMap from "../pickup-map";
 
 export default function Origin({ setTab }: OriginComponentProp) {
   return (
@@ -24,6 +24,7 @@ export default function Origin({ setTab }: OriginComponentProp) {
         <span className="inline-flex rounded-none shadow-sm ">
           <button
             type="button"
+            onClick={() => setTab("destination")}
             className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
           >
             <span className="mx-1">Next</span>
