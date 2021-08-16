@@ -28,6 +28,14 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [tripStartDate, setTripStartDate] = useState<string>("");
   const [endTime, setEndTime] = useState<Date | undefined>();
 
+  const [lat, setLat] = useState<string>("");
+  const [lng, setLng] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+
+  console.log("lat", lat);
+  console.log("lng", lng);
+  console.log("address", address);
+
   return (
     <Fragment>
       <BasicModal
@@ -93,7 +101,12 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
               )}
               {tab === "origin" && (
                 <Fragment>
-                  <OriginComponent setTab={setTab} />
+                  <OriginComponent
+                    setLat={setLat}
+                    setLng={setLng}
+                    setAddress={setAddress}
+                    setTab={setTab}
+                  />
                 </Fragment>
               )}
               {tab === "destination" && (

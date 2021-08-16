@@ -2,14 +2,19 @@ import React, { Fragment } from "react";
 import { OriginComponentProp } from "./types";
 import GoogleMap from "../pickup-map";
 
-export default function Origin({ setTab }: OriginComponentProp) {
+export default function Origin({
+  setTab,
+  setLng,
+  setLat,
+  setAddress,
+}: OriginComponentProp) {
   return (
     <Fragment>
       <div
         style={{ height: "57vh" }}
         className="mt-0 overflow-y-scroll scrollContainer "
       >
-        <GoogleMap />
+        <GoogleMap setLng={setLng} setLat={setLat} setAddress={setAddress} />
       </div>
       <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">
         <span className="inline-flex rounded-none shadow-sm mr-2 ">

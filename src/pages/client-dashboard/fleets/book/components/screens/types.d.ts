@@ -25,6 +25,9 @@ export interface TripComponentProp {
 }
 
 export interface OriginComponentProp {
+  setLng: React.Dispatch<React.SetStateAction<string>>;
+  setLat: React.Dispatch<React.SetStateAction<string>>;
+  setAddress: React.Dispatch<React.SetStateAction<string>>;
   setTab: React.Dispatch<React.SetStateAction<string>>;
 }
 

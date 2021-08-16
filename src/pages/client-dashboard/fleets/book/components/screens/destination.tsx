@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
-import { OriginComponentProp } from "./types";
+import { DestinationComponentProp } from "./types";
 import GoogleMap from "../dropoff-map";
 
-export default function Destination({ setTab }: OriginComponentProp) {
+export default function Destination({ setTab }: DestinationComponentProp) {
   return (
     <Fragment>
       <div

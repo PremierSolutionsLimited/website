@@ -25,8 +25,8 @@ class MyGoogleMap extends Component {
     lng: null,
   };
 
-  componentWillMount() {
-    this.setCurrentLocation();
+  componentDidMount() {
+    this.setValues();
   }
 
   onMarkerInteraction = (childKey, childProps, mouse) => {
