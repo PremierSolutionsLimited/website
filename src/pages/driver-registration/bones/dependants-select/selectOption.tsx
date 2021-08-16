@@ -73,7 +73,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
         <select
           id="location"
           name="location"
-          className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+          className="mt-1 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
           value={gender}
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
             setGender(e.target.value)
@@ -92,15 +92,13 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
           Date of Birth
         </label>
         <input
-          required
           type={"date"}
           id={"dob"}
           value={dob}
-          min=""
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setDob(e.target.value)
           }
-          className="mt-1 block w-full pl-1 pr-1 py-1 text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+          className="mt-1 block w-full pl-1 pr-1 py-2 text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
         />
       </div>
     </Fragment>

@@ -55,7 +55,7 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           Telephone
         </label>
         <input
-          type="text"
+          type="number"
           name="url"
           id="url"
           value={telephone}
@@ -71,7 +71,7 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           Phone
         </label>
         <input
-          type="text"
+          type="number"
           name="url"
           id="url"
           value={phone}

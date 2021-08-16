@@ -30,7 +30,7 @@ const MainComponent = ({ dependDents, setDependents }: MainComponentProp) => {
           )}
         </div>
         <button
-          disabled={dependDents.length === 5 ? true : false}
+          disabled={dependDents.length === 3 ? true : false}
           style={{ width: "100%", cursor: "pointer" }}
           onClick={handleAddDependents}
           className={
@@ -42,12 +42,12 @@ const MainComponent = ({ dependDents, setDependents }: MainComponentProp) => {
               <path d="M12 2C6.489 2 2 6.489 2 12s4.489 10 10 10 10-4.489 10-10S17.511 2 12 2zm0 2c4.43 0 8 3.57 8 8s-3.57 8-8 8-8-3.57-8-8 3.57-8 8-8zm-1 3v4H7v2h4v4h2v-4h4v-2h-4V7h-2z" />
             </svg>
             <span className={"ml-2 text-gray-500 font-light"}>
-              Add {dependDents.length === 0 ? "" : "another"} emergency contact
+              Add {dependDents.length === 0 ? "" : "another"} dependant (if any)
             </span>
           </div>
         </button>
       </div>
-      <div style={{ height: "57vh" }} className="overflow-y-auto">
+      <div style={{ height: "25vh" }} className="overflow-y-auto">
         {dependDents.map((dependent: DependentsInputProp, index: number) => (
           <React.Fragment key={index}>
             <div className="py-3 px-4 sm:p-6 lg:pb-8">

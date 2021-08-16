@@ -10,8 +10,13 @@ export default function EmergencyComponent({
 }: EmergencyComponentProp) {
   function handleGoToNextPage(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
-    if (emergencyContact.length === 0) {
-      return toast.error("Please add at least one emergency contact");
+    if (
+      emergencyContact.length === 0 ||
+      emergencyContact[0]?.name === "" ||
+      emergencyContact[0]?.relationship === "" ||
+      emergencyContact[0]?.phone === ""
+    ) {
+      return toast.error("Please add at least one contact");
     }
     return setTab("card");
   }

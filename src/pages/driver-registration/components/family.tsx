@@ -27,17 +27,16 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
         onSubmit={handleGoToNextPage}
         className="divide-y divide-gray-200 lg:col-span-9"
       >
-        <div className="py-6 px-4 sm:p-6 lg:pb-8">
+        <div className="py-0 px-4 sm:p-6 lg:pb-8">
           <div className="mt-6 grid grid-cols-12 gap-6">
             <div className="col-span-12 sm:col-span-12">
               <label
                 htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
+                className="block text-sm pb-1 font-medium text-gray-700"
               >
                 Next of Kin Name
               </label>
               <input
-                required
                 type="text"
                 name="company"
                 id="company"
@@ -52,12 +51,11 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
+                className="block text-sm pb-1 font-medium text-gray-700"
               >
                 Relationship
               </label>
               <input
-                required
                 type="text"
                 name="company"
                 id="company"
@@ -72,12 +70,11 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
+                className="block text-sm pb-1 font-medium text-gray-700"
               >
                 Address
               </label>
               <input
-                required
                 type="text"
                 name="company"
                 id="company"
@@ -92,12 +89,11 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
+                className="block text-sm pb-1 font-medium text-gray-700"
               >
                 Phone
               </label>
               <input
-                required
                 type="number"
                 name="company"
                 id="company"
@@ -112,12 +108,11 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
+                className="block text-sm pb-1 font-medium text-gray-700"
               >
                 Telephone
               </label>
               <input
-                required
                 type="text"
                 name="company"
                 id="company"

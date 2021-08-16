@@ -28,7 +28,7 @@ export default function CardDetailsComponent({
   ghanaCardBackImageUrl,
   ghanaCardFrontImageUrl,
 }: CardDetailsComponentProp) {
-  const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleGotoNextPage = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!ghanaCardFrontImageUrl || !ghanaCardBackImageUrl) {
       return toast.error("Please add Ghana card images");
@@ -37,10 +37,7 @@ export default function CardDetailsComponent({
   };
   return (
     <div>
-      <form
-        onSubmit={handleGotoNextPage}
-        className="divide-y divide-gray-200 lg:col-span-9"
-      >
+      <form className="divide-y divide-gray-200 lg:col-span-9">
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
           <div className="mt-0 grid grid-cols-12 gap-6">
@@ -122,7 +119,7 @@ export default function CardDetailsComponent({
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
-            <div className="col-span-12 sm:col-span-6">
+            {/* <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
@@ -140,7 +137,7 @@ export default function CardDetailsComponent({
                 }
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
-            </div>
+            </div> */}
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
@@ -149,7 +146,7 @@ export default function CardDetailsComponent({
                 MOMO Number
               </label>
               <input
-                type="text"
+                type="number"
                 name="company"
                 id="company"
                 autoComplete="organization"
@@ -375,6 +372,7 @@ export default function CardDetailsComponent({
             </button>
             <button
               type="button"
+              onClick={handleGotoNextPage}
               className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
             >
               Next

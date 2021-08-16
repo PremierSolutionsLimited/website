@@ -187,7 +187,6 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Current Employer Name
               </label>
               <input
-                required
                 type="text"
                 name="company"
                 id="company"
@@ -208,7 +207,6 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Position Held
               </label>
               <input
-                required
                 type="text"
                 name="company"
                 id="company"
@@ -228,7 +226,6 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Start Date
               </label>
               <input
-                required
                 type={"date"}
                 id={"dob"}
                 value={currentPositionStartDate}
@@ -246,7 +243,6 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 End Date
               </label>
               <input
-                required
                 type={"date"}
                 id={"dob"}
                 value={currentPositionEndDate}
@@ -282,7 +278,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
           <div className="pt-6 divide-y divide-gray-200">
             <div className="mt-4 py-4 px-4 flex justify-end sm:px-6">
               <button
-                onClick={() => setTab("personal")}
+                onClick={() => setTab("card")}
                 type="button"
                 className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
               >
