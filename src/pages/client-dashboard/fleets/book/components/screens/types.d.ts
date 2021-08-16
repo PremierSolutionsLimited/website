@@ -33,4 +33,9 @@ export interface OriginComponentProp {
 
 export interface DestinationComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
+  setLng: React.Dispatch<React.SetStateAction<string>>;
+  setLat: React.Dispatch<React.SetStateAction<string>>;
+  setAddress: React.Dispatch<React.SetStateAction<string>>;
+  loading: boolean;
+  handleSubmit: any;
 }

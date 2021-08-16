@@ -1,12 +1,22 @@
-import { Fragment, useState } from "react";
-import { BookTripComponentProp } from "./types";
+import React, { Fragment, useState } from "react";
+import {
+  BookTripComponentProp,
+  BookTripInputProp,
+  BookTripOutputProp,
+} from "./types";
 import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { IDurationType, IGroupType } from "./components/data/types";
+import { ApolloError, useMutation } from "@apollo/client";
+import { CREATE_TRIP } from "../../../../services/graphql/fleet";
+import { useCurrentClient } from "../../../../services/context/currentClient";
+import { useHistory } from "react-router-dom";
 import TripComponent from "./components/screens/trip";
 import OriginComponent from "./components/screens/origin";
 import DestinationComponent from "./components/screens/destination";
 import StepComponent from "./components/bones";
+import toast from "react-hot-toast";
+import _ from "lodash";
 
 const MainComponent: React.FC<BookTripComponentProp> = ({
   show,
@@ -16,6 +26,9 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
+
+  const currentClient = useCurrentClient();
+  const { push } = useHistory();
   const [tab, setTab] = useState<string>("trip");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<
     IGroupType | undefined
@@ -28,13 +41,50 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [tripStartDate, setTripStartDate] = useState<string>("");
   const [endTime, setEndTime] = useState<Date | undefined>();
 
-  const [lat, setLat] = useState<string>("");
-  const [lng, setLng] = useState<string>("");
-  const [address, setAddress] = useState<string>("");
+  const [pickupLat, setPickupLat] = useState<string>("");
+  const [pickupLng, setPickupLng] = useState<string>("");
+  const [pickupAddress, setPickupAddress] = useState<string>("");
 
-  console.log("lat", lat);
-  console.log("lng", lng);
-  console.log("address", address);
+  const [dropOffLat, setDropOffLat] = useState<string>("");
+  const [dropOffLng, setDropOffLng] = useState<string>("");
+  const [dropOffAddress, setDropOffAddress] = useState<string>("");
+
+  const [invokeBookTripRequest, { loading }] = useMutation<
+    BookTripOutputProp,
+    BookTripInputProp
+  >(CREATE_TRIP);
+
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    invokeBookTripRequest({
+      variables: {
+        client: currentClient?._id as string,
+        vehicle: selectedCar?._id as string,
+        tripType: requestType,
+        expectedStartTime: new Date(tripStartDate),
+        expectedEndTime: endTime as Date,
+        pickUpLocation: {
+          pickupType: "Point",
+          pickupCordinates: [parseFloat(pickupLat), parseFloat(pickupLng)],
+        },
+        pickUpLocationName: pickupAddress,
+        dropOffLocation: {
+          dropOffType: "Point",
+          dropOffCordinates: [parseFloat(dropOffLat), parseFloat(dropOffLng)],
+        },
+        dropOffLocationName: dropOffAddress,
+        passengerAges: selectedAgeGroup?.group as string,
+      },
+    })
+      .then(() => {
+        toast.success("Trip booked successfully");
+        setShow(false);
+        return push("/app/history");
+      })
+      .catch((e: ApolloError) => {
+        toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)));
+      });
+  };
 
   return (
     <Fragment>
@@ -102,16 +152,23 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
               {tab === "origin" && (
                 <Fragment>
                   <OriginComponent
-                    setLat={setLat}
-                    setLng={setLng}
-                    setAddress={setAddress}
+                    setLat={setPickupLat}
+                    setLng={setPickupLng}
+                    setAddress={setPickupAddress}
                     setTab={setTab}
                   />
                 </Fragment>
               )}
               {tab === "destination" && (
                 <Fragment>
-                  <DestinationComponent setTab={setTab} />
+                  <DestinationComponent
+                    setTab={setTab}
+                    setLat={setDropOffLat}
+                    setLng={setDropOffLng}
+                    setAddress={setDropOffAddress}
+                    handleSubmit={handleSubmit}
+                    loading={loading}
+                  />
                 </Fragment>
               )}
             </div>
