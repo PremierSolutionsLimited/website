@@ -2,10 +2,8 @@ import React from "react";
 import { IDurationType, IGroupType } from "../data/types";
 
 export interface TripComponentProp {
-  selectedAgeGroup: IGroupType | undefined;
-  setSelectedAgeGroup: React.Dispatch<
-    React.SetStateAction<IGroupType | undefined>
-  >;
+  selectedAgeGroup: IGroupType[];
+  setSelectedAgeGroup: React.Dispatch<React.SetStateAction<IGroupType[]>>;
   selectedDuration: IDurationType | undefined;
   setSelectedDuration: React.Dispatch<
     React.SetStateAction<IDurationType | undefined>
@@ -24,6 +22,34 @@ export interface TripComponentProp {
   endTime: Date | undefined;
 }
 
+export interface GetTypesInput {
+  filter: {
+    deleted: {
+      eq: boolean;
+    };
+  };
+}
+
+export interface GetTypesOutput {
+  tripTypes: {
+    name: string;
+    _id: string;
+  }[];
+  tripTypesLength: number;
+}
+
 export interface OriginComponentProp {
+  setLng: React.Dispatch<React.SetStateAction<string>>;
+  setLat: React.Dispatch<React.SetStateAction<string>>;
+  setAddress: React.Dispatch<React.SetStateAction<string>>;
   setTab: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface DestinationComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  setLng: React.Dispatch<React.SetStateAction<string>>;
+  setLat: React.Dispatch<React.SetStateAction<string>>;
+  setAddress: React.Dispatch<React.SetStateAction<string>>;
+  loading: boolean;
+  handleSubmit: any;
 }

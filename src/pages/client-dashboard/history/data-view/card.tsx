@@ -58,13 +58,23 @@ const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
             </span>
           </td>
         </Fragment>
-      ) : (
+      ) : history?.status === "PREPARED" ? (
         <Fragment>
           <td className="px-6 py-4 whitespace-nowrap">
-            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-              Cancelled
+            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+              Prepared
             </span>
           </td>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <Fragment>
+            <td className="px-6 py-4 whitespace-nowrap">
+              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                Cancelled
+              </span>
+            </td>
+          </Fragment>
         </Fragment>
       )}
       {history?.startTime ? (
@@ -76,7 +86,7 @@ const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
       ) : (
         <Fragment>
           <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
-            Not Specifed
+            Trip is yet to start
           </td>
         </Fragment>
       )}
@@ -90,7 +100,7 @@ const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
       ) : (
         <Fragment>
           <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
-            Not Specifed
+            Trip is yet to start
           </td>
         </Fragment>
       )}

@@ -20,6 +20,7 @@ export const getTripHistory = gql`
         color
         model
         make
+        registrationNumber
         class {
           icon
           name

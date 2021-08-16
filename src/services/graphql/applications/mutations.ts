@@ -32,22 +32,18 @@ export const createDriverApplication = gql`
     $hasSmartPhone: Boolean
     $canUseMap: Boolean
     $availablity: [Day!]!
-    $nameOfSchool: String
-    $schoolStartDate: Date
-    $schoolLevel: EducationalLevel
-    $schoolEndDate: Date
-    $qualification: String
-    $certificateImage: String
-    $currentEmploymerName: String
-    $currentEmploymentStartDate: Date
-    $currentEmploymentEndDate: Date
-    $currentEmploymentPositionHeld: String
-    $reasonForLeavingCurrentWork: String
-    $previousEmploymerName: String
-    $previousEmploymentStartDate: Date
-    $previousEmploymentEndDate: Date
-    $previousPositionHeld: String
-    $previousReasonForLeaving: String
+    $educationalHistory: EducationalHistoryInput
+    $currentEmployment: WorkHistoryInput
+    $previousEmployment: WorkHistoryInput
+    $dependents: [DependantInput]
+    $emergencyContacts: [EmergencyContactInput]
+    $nextOfKin: EmergencyContactInput
+    $bankDetails: BankDetailsInput
+    $ghanaCardId: String
+    $ghanaCardIssueDate: Date
+    $ghanaCardExpiryDate: Date
+    $ghanaCardImageFont: String
+    $ghanaCardImageBack: String
   ) {
     createDriverApplication(
       input: {
@@ -81,28 +77,18 @@ export const createDriverApplication = gql`
         hasSmartPhone: $hasSmartPhone
         canUseMap: $canUseMap
         availablity: $availablity
-        educationalHistory: {
-          nameOfSchool: $nameOfSchool
-          level: $schoolLevel
-          startDate: $schoolStartDate
-          endDate: $schoolEndDate
-          qualification: $qualification
-          certificateImage: $certificateImage
-        }
-        currentEmployment: {
-          currentEmployerName: $currentEmploymerName
-          startDate: $currentEmploymentStartDate
-          endDate: $currentEmploymentEndDate
-          positionHeld: $currentEmploymentPositionHeld
-          reasonForLeaving: $reasonForLeavingCurrentWork
-        }
-        previousEmployment: {
-          currentEmployerName: $previousEmploymerName
-          startDate: $previousEmploymentStartDate
-          endDate: $previousEmploymentEndDate
-          positionHeld: $previousPositionHeld
-          reasonForLeaving: $previousReasonForLeaving
-        }
+        educationalHistory: $educationalHistory
+        currentEmployment: $currentEmployment
+        previousEmployment: $previousEmployment
+        emergencyContacts: $emergencyContacts
+        dependents: $dependents
+        bankDetails: $bankDetails
+        nextOfKin: $nextOfKin
+        ghanaCardId: $ghanaCardId
+        ghanaCardIssueDate: $ghanaCardIssueDate
+        ghanaCardExpiryDate: $ghanaCardExpiryDate
+        ghanaCardImageFront: $ghanaCardImageFont
+        ghanaCardImageBack: $ghanaCardImageBack
       }
     ) {
       _id

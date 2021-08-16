@@ -10,13 +10,17 @@ import { useRegistrationProvider } from "../../../services/context";
 import { getAvailableDays } from "../util/availability";
 import { getImage } from "../util/images";
 import { getTypeOfCars } from "../util/typeOfCars";
-import { IType } from "../bones/types";
+import { DependentsInputProp, IType } from "../bones/types";
 import { useMultipleImageUpload } from "../../../components/hooks";
+import { EmergencyInputProp } from "../../client-registration/bones/types";
 import Header from "../../../shared/layout/registration";
 import StepComponent from "../../../shared/driver-steps";
 import toast from "react-hot-toast";
 
 const PersonalComponent = lazy(() => import("../components/personal"));
+const FamilyComponent = lazy(() => import("../components/family"));
+const EmergencyComponent = lazy(() => import("../components/emergency"));
+const CardComponent = lazy(() => import("../components/card"));
 const ExperienceComponent = lazy(() => import("../components/experience"));
 const LicenceComponent = lazy(() => import("../components/license"));
 const AvailabiltyComponent = lazy(() => import("../components/availabilty"));
@@ -68,6 +72,36 @@ const MainComponent = () => {
   const [currentPositionEndDate, setCurrentPostionEndDate] =
     useState<string>("");
   const [currentPositionHeld, setCurrentPositionHeld] = useState<string>("");
+
+  // states for driver family information
+  const [nextOfKinName, setNextOfKinName] = useState<string>("");
+  const [nexOfKinRelation, setNextOfKinRelation] = useState<string>("");
+  const [nextOfKinTelephone, setNextOfKinTelephone] = useState<string>("");
+  const [nextOfKinPhone, setNextOfKinPhone] = useState<string>("");
+  const [nextOfKinAddress, setNextOfKinAddress] = useState<string>("");
+  const [dependents, setDependents] = useState<DependentsInputProp[]>([]);
+
+  // state for emergency contact
+  const [emergencyContact, setEmergencyContact] = useState<
+    EmergencyInputProp[]
+  >([]);
+
+  // states for driver card information
+  const [sortCode, setSortCode] = useState<string>("");
+  const [nameOfBank, setNameOfBank] = useState<string>("");
+  const [nameOfBankBranch, setNameOfBankBranch] = useState<string>("");
+  const [accountNumber, setAccoutNumber] = useState<string>("");
+  const [ssnitNumber, setSsnitNumber] = useState<string>("");
+  const [momoNumber, setMomoNumber] = useState<string>("");
+  const [ghanaCardId, setGhanaCardId] = useState<string>("");
+  const [ghanaCardIssueDate, setGhanaCardIssueDate] = useState<string>("");
+  const [ghanaCardExpiryDate, setGhanaCardExpiryDate] = useState<string>("");
+  const [ghanaCardFrontFile, setghanaCardFrontFrontFile] = useState<any>(null);
+  const [ghanaCardFrontImageUrl, setGhanaCardFrontImageUrl] =
+    useState<string>("");
+  const [ghanaCardBackFile, setGhanaCardBackFile] = useState<any>(null);
+  const [ghanaCardBackImageUrl, setGhanaCardBackImageUrl] =
+    useState<string>("");
 
   // states for driver's license information
   const [licenseId, setLicenseId] = useState<string>("");
@@ -128,6 +162,28 @@ const MainComponent = () => {
     }
   };
 
+  // function to handle cardFront upload from user's pc
+  const handleGhanaCardFrontImageUpload = (e: any) => {
+    if (e.target.files[0] !== undefined) {
+      setGhanaCardFrontImageUrl(URL.createObjectURL(e.target.files[0]));
+      setghanaCardFrontFrontFile(e.target.files[0]);
+    } else {
+      setDriverLicenseFrontImageUrl(URL.createObjectURL(ghanaCardFrontFile));
+      setghanaCardFrontFrontFile(ghanaCardFrontFile);
+    }
+  };
+
+  // function to handle card upload from user's pc
+  const handleGhanaCardBackImageUpload = (e: any) => {
+    if (e.target.files[0] !== undefined) {
+      setGhanaCardBackImageUrl(URL.createObjectURL(e.target.files[0]));
+      setGhanaCardBackFile(e.target.files[0]);
+    } else {
+      setGhanaCardBackImageUrl(URL.createObjectURL(ghanaCardBackFile));
+      setGhanaCardBackFile(ghanaCardBackFile);
+    }
+  };
+
   // function to handle licenseFront upload from user's pc
   const handleLicenseFrontImageUpload = (e: any) => {
     if (e.target.files[0] !== undefined) {
@@ -172,6 +228,8 @@ const MainComponent = () => {
     // all driver image files
     let imageFiles = getImage(
       driverFile,
+      ghanaCardFrontFile,
+      ghanaCardBackFile,
       driverLicenseFrontFile,
       driverLicenseBackFile
     );
@@ -206,8 +264,8 @@ const MainComponent = () => {
         licenseId: licenseId,
         licenseIssueDate: new Date(licenseIssueDate),
         licenseExpiryDate: new Date(licenseExpiryDate),
-        licenseImageFront: imageUrls[1],
-        licenseImageBack: imageUrls[2],
+        licenseImageFront: imageUrls[3],
+        licenseImageBack: imageUrls[4],
         licenseClass: licenseClass,
         drivingExperience: parseInt(yearsOfExperienceOnLicense),
         // vehicleClasses: undefined,
@@ -217,18 +275,46 @@ const MainComponent = () => {
         hasSmartPhone: hasSmartPhone === "yes" ? true : false,
         canUseMap: canUseMap === "yes" ? true : false,
         availablity: availableDays,
-        nameOfSchool: nameOfSchoolCompleted,
-        schoolEndDate: new Date(yearOfGraduation),
-        schoolLevel: highestLevelOfEducation,
-        currentEmploymerName: currentEmployerName,
-        currentEmploymentStartDate: new Date(currentPositionStartDate),
-        currentEmploymentEndDate: new Date(currentPositionEndDate),
-        currentEmploymentPositionHeld: currentPositionHeld,
-        previousReasonForLeaving: reasonForLeavingPreviousWork,
-        previousEmploymerName: previousEmployerName,
-        previousEmploymentStartDate: new Date(previousPostionStartDate),
-        previousEmploymentEndDate: new Date(previousPositionEndDate),
-        previousPositionHeld: previousPositionHeld,
+        educationalHistory: {
+          nameOfSchool: nameOfSchoolCompleted,
+          endDate: new Date(yearOfGraduation),
+          level: highestLevelOfEducation,
+        },
+        currentEmployment: {
+          currentEmployerName: currentEmployerName,
+          startDate: new Date(currentPositionStartDate),
+          endDate: new Date(currentPositionEndDate),
+          positionHeld: currentPositionHeld,
+        },
+        previousEmployment: {
+          currentEmployerName: previousEmployerName,
+          startDate: new Date(previousPostionStartDate),
+          endDate: new Date(previousPositionEndDate),
+          positionHeld: previousPositionHeld,
+          reasonForLeaving: reasonForLeavingPreviousWork,
+        },
+        emergencyContacts: emergencyContact,
+        dependents: dependents,
+        bankDetails: {
+          sortCode: sortCode,
+          nameOfBank: nameOfBank,
+          nameOfBankBranch: nameOfBankBranch,
+          accountNumber: accountNumber,
+          ssnitNumber: ssnitNumber,
+          momoNumber: momoNumber,
+        },
+        nextOfKin: {
+          name: nextOfKinName,
+          address: nextOfKinAddress,
+          phone: nextOfKinPhone,
+          relationship: nexOfKinRelation,
+          telephone: nextOfKinTelephone,
+        },
+        ghanaCardId,
+        ghanaCardExpiryDate: new Date(ghanaCardExpiryDate),
+        ghanaCardIssueDate: new Date(ghanaCardIssueDate),
+        ghanaCardImageFont: imageUrls[1],
+        ghanaCardImageBack: imageUrls[2],
       },
     })
       .then(() => {
@@ -245,7 +331,7 @@ const MainComponent = () => {
     <Fragment>
       <Header />
       <div className=" bg-white ">
-        <div className="max-w-7xl mx-auto pt-12 pb-0 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto pt-6 pb-0 px-4 sm:px-6 lg:px-8">
           <div className=" grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5">
             <div className="sm:col-span-2 ">
               <div className={"mt-5 top-20 sticky overflow-y-none"}>
@@ -284,6 +370,70 @@ const MainComponent = () => {
                       setCanUseMap={setCanUseMap}
                       handleImageUpload={handleImageUpload}
                       driverImageUrl={driverImageUrl}
+                    />
+                  </Fragment>
+                )}
+
+                {tab === "family" && (
+                  <Fragment>
+                    <FamilyComponent
+                      setTab={setTab}
+                      nextOfKinName={nextOfKinName}
+                      setNextOfKinName={setNextOfKinName}
+                      nexOfKinRelation={nexOfKinRelation}
+                      setNextOfKinRelation={setNextOfKinRelation}
+                      nextOfKinTelephone={nextOfKinTelephone}
+                      setNextOfKinTelephone={setNextOfKinTelephone}
+                      setNextOfKinPhone={setNextOfKinPhone}
+                      nextOfKinPhone={nextOfKinPhone}
+                      setNextOfKinAddress={setNextOfKinAddress}
+                      nextOfKinAddress={nextOfKinAddress}
+                      setDependents={setDependents}
+                      dependents={dependents}
+                    />
+                  </Fragment>
+                )}
+
+                {tab === "emergency" && (
+                  <Fragment>
+                    <EmergencyComponent
+                      emergencyContact={emergencyContact}
+                      setEmergencyContact={setEmergencyContact}
+                      setTab={setTab}
+                    />
+                  </Fragment>
+                )}
+
+                {tab === "card" && (
+                  <Fragment>
+                    <CardComponent
+                      sortCode={sortCode}
+                      setSortCode={setSortCode}
+                      setTab={setTab}
+                      nameOfBank={nameOfBank}
+                      setNameOfBank={setNameOfBank}
+                      nameOfBankBranch={nameOfBankBranch}
+                      setNameOfBankBranch={setNameOfBankBranch}
+                      accountNumber={accountNumber}
+                      setAccoutNumber={setAccoutNumber}
+                      ssnitNumber={ssnitNumber}
+                      setSsnitNumber={setSsnitNumber}
+                      momoNumber={momoNumber}
+                      setMomoNumber={setMomoNumber}
+                      ghanaCardId={ghanaCardId}
+                      setGhanaCardId={setGhanaCardId}
+                      ghanaCardIssueDate={ghanaCardIssueDate}
+                      setGhanaCardIssueDate={setGhanaCardIssueDate}
+                      ghanaCardExpiryDate={ghanaCardExpiryDate}
+                      setGhanaCardExpiryDate={setGhanaCardExpiryDate}
+                      ghanaCardFrontImageUrl={ghanaCardFrontImageUrl}
+                      ghanaCardBackImageUrl={ghanaCardBackImageUrl}
+                      handleGhanaCardFrontImageUpload={
+                        handleGhanaCardFrontImageUpload
+                      }
+                      handleGhanaCardBackImageUpload={
+                        handleGhanaCardBackImageUpload
+                      }
                     />
                   </Fragment>
                 )}
