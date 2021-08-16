@@ -48,6 +48,24 @@ export const createDriverApplication = gql`
     $previousEmploymentEndDate: Date
     $previousPositionHeld: String
     $previousReasonForLeaving: String
+    $dependents: [DependantInput]
+    $emergencyContacts: [EmergencyContactInput]
+    $sortCode: String
+    $nameOfBank: String
+    $nameOfBankBranch: String
+    $accountNumber: String
+    $ssnitNumber: String
+    $momoNumber: String
+    $nextOfKinName: String
+    $nextOfKinRelationship: String
+    $nextOfKinTelephone: String
+    $nextOfKinAddress: String
+    $nextOfKinPhone: String
+    $ghanaCardId: String
+    $ghanaCardIssueDate: Date
+    $ghanaCardExpiryDate: Date
+    $ghanaCardImageFont: String
+    $ghanaCardImageBack: String
   ) {
     createDriverApplication(
       input: {
@@ -103,6 +121,28 @@ export const createDriverApplication = gql`
           positionHeld: $previousPositionHeld
           reasonForLeaving: $previousReasonForLeaving
         }
+        emergencyContacts: $emergencyContacts
+        dependents: $dependents
+        bankDetails: {
+          sortCode: $sortCode
+          nameOfBank: $nameOfBank
+          nameOfBankBranch: $nameOfBankBranch
+          accountNumber: $accountNumber
+          ssnitNumber: $ssnitNumber
+          momoNumber: $momoNumber
+        }
+        nextOfKin: {
+          name: $nextOfKinName
+          address: $nextOfKinAddress
+          relationship: $nextOfKinRelationship
+          telephone: $nextOfKinTelephone
+          phone: $nextOfKinPhone
+        }
+        ghanaCardId: $ghanaCardId
+        ghanaCardIssueDate: $ghanaCardIssueDate
+        ghanaCardExpiryDate: $ghanaCardExpiryDate
+        ghanaCardImageFront: $ghanaCardImageFont
+        ghanaCardImageBack: $ghanaCardImageBack
       }
     ) {
       _id

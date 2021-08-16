@@ -228,6 +228,8 @@ const MainComponent = () => {
     // all driver image files
     let imageFiles = getImage(
       driverFile,
+      ghanaCardFrontFile,
+      ghanaCardBackFile,
       driverLicenseFrontFile,
       driverLicenseBackFile
     );
@@ -262,8 +264,8 @@ const MainComponent = () => {
         licenseId: licenseId,
         licenseIssueDate: new Date(licenseIssueDate),
         licenseExpiryDate: new Date(licenseExpiryDate),
-        licenseImageFront: imageUrls[1],
-        licenseImageBack: imageUrls[2],
+        licenseImageFront: imageUrls[3],
+        licenseImageBack: imageUrls[4],
         licenseClass: licenseClass,
         drivingExperience: parseInt(yearsOfExperienceOnLicense),
         // vehicleClasses: undefined,
@@ -285,6 +287,28 @@ const MainComponent = () => {
         previousEmploymentStartDate: new Date(previousPostionStartDate),
         previousEmploymentEndDate: new Date(previousPositionEndDate),
         previousPositionHeld: previousPositionHeld,
+        emergencyContacts: emergencyContact,
+        dependents: dependents,
+        bankDetails: {
+          sortCode,
+          nameOfBank,
+          nameOfBankBranch,
+          accountNumber,
+          ssnitNumber,
+          momoNumber,
+        },
+        nextOfKin: {
+          nextOfKinName,
+          nextOfKinAddress,
+          nextOfKinPhone,
+          nextOfKinRelationship: nexOfKinRelation,
+          nextOfKinTelephone,
+        },
+        ghanaCardId,
+        ghanaCardExpiryDate: new Date(ghanaCardExpiryDate),
+        ghanaCardIssueDate: new Date(ghanaCardIssueDate),
+        ghanaCardImageFont: imageUrls[1],
+        ghanaCardImageBack: imageUrls[2],
       },
     })
       .then(() => {

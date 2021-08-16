@@ -129,7 +129,7 @@ const StepsComponent = ({ tab }: Props) => {
                 </h3>
                 <p className="text-sm leading-5 font-light text-gray-500">
                   Provide information about your family. Give us details
-                  concerning your next of kin and decendants if any.
+                  concerning your next of kin and dependents if any.
                 </p>
               </div>
             </div>

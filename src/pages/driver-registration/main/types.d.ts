@@ -1,3 +1,6 @@
+import { EmergencyContact } from "../../client-registration/main/types";
+import { DependentsInputProp } from "../bones/types";
+
 export interface CreateApplicationInputProp {
   title: string;
   lastName: string;
@@ -45,6 +48,28 @@ export interface CreateApplicationInputProp {
   previousEmploymentEndDate?: Date;
   previousPositionHeld?: string;
   previousReasonForLeaving?: string;
+  emergencyContacts: EmergencyContact[];
+  dependents: DependentsInputProp[];
+  bankDetails: {
+    sortCode: string;
+    nameOfBank: string;
+    nameOfBankBranch: string;
+    accountNumber: string;
+    ssnitNumber: string;
+    momoNumber: string;
+  };
+  nextOfKin: {
+    nextOfKinName: string;
+    nextOfKinAddress: string;
+    nextOfKinRelationship: string;
+    nextOfKinTelephone: string;
+    nextOfKinPhone: string;
+  };
+  ghanaCardId: string;
+  ghanaCardIssueDate: Date;
+  ghanaCardExpiryDate: Date;
+  ghanaCardImageFont: string;
+  ghanaCardImageBack: string;
 }
 
 export interface CreateApplicationOuputProp {
