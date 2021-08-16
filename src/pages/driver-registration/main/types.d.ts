@@ -59,11 +59,11 @@ export interface CreateApplicationInputProp {
     momoNumber: string;
   };
   nextOfKin: {
-    nextOfKinName: string;
-    nextOfKinAddress: string;
-    nextOfKinRelationship: string;
-    nextOfKinTelephone: string;
-    nextOfKinPhone: string;
+    name: string;
+    relationship: string;
+    telephone: string;
+    phone: string;
+    address: string;
   };
   ghanaCardId: string;
   ghanaCardIssueDate: Date;

@@ -50,17 +50,13 @@ export const createDriverApplication = gql`
     $previousReasonForLeaving: String
     $dependents: [DependantInput]
     $emergencyContacts: [EmergencyContactInput]
+    $nextOfKin: EmergencyContactInput
     $sortCode: String
     $nameOfBank: String
     $nameOfBankBranch: String
     $accountNumber: String
     $ssnitNumber: String
     $momoNumber: String
-    $nextOfKinName: String
-    $nextOfKinRelationship: String
-    $nextOfKinTelephone: String
-    $nextOfKinAddress: String
-    $nextOfKinPhone: String
     $ghanaCardId: String
     $ghanaCardIssueDate: Date
     $ghanaCardExpiryDate: Date
@@ -131,13 +127,7 @@ export const createDriverApplication = gql`
           ssnitNumber: $ssnitNumber
           momoNumber: $momoNumber
         }
-        nextOfKin: {
-          name: $nextOfKinName
-          address: $nextOfKinAddress
-          relationship: $nextOfKinRelationship
-          telephone: $nextOfKinTelephone
-          phone: $nextOfKinPhone
-        }
+        nextOfKin: $nextOfKin
         ghanaCardId: $ghanaCardId
         ghanaCardIssueDate: $ghanaCardIssueDate
         ghanaCardExpiryDate: $ghanaCardExpiryDate
