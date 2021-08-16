@@ -245,7 +245,7 @@ const MainComponent = () => {
     <Fragment>
       <Header />
       <div className=" bg-white ">
-        <div className="max-w-7xl mx-auto pt-12 pb-0 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto pt-6 pb-0 px-4 sm:px-6 lg:px-8">
           <div className=" grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5">
             <div className="sm:col-span-2 ">
               <div className={"mt-5 top-20 sticky overflow-y-none"}>
