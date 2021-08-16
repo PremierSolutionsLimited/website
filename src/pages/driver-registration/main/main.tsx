@@ -296,12 +296,12 @@ const MainComponent = () => {
         emergencyContacts: emergencyContact,
         dependents: dependents,
         bankDetails: {
-          sortCode,
-          nameOfBank,
-          nameOfBankBranch,
-          accountNumber,
-          ssnitNumber,
-          momoNumber,
+          sortCode: sortCode,
+          nameOfBank: nameOfBank,
+          nameOfBankBranch: nameOfBankBranch,
+          accountNumber: accountNumber,
+          ssnitNumber: ssnitNumber,
+          momoNumber: momoNumber,
         },
         nextOfKin: {
           name: nextOfKinName,
