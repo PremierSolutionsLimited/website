@@ -1,5 +1,5 @@
 import React from "react";
-import { IType } from "../bones/types";
+import { DependentsInputProp, IType } from "../bones/types";
 
 export interface PersonalComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
@@ -29,6 +29,22 @@ export interface PersonalComponentProp {
   setCanUseMap: React.Dispatch<React.SetStateAction<string>>;
   handleImageUpload: (e: any) => void;
   driverImageUrl: string;
+}
+
+export interface FamilyComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  nextOfKinName: string;
+  setNextOfKinName: React.Dispatch<React.SetStateAction<string>>;
+  nexOfKinRelation: string;
+  setNextOfKinRelation: React.Dispatch<React.SetStateAction<string>>;
+  nextOfKinTelephone: string;
+  setNextOfKinTelephone: React.Dispatch<React.SetStateAction<string>>;
+  nextOfKinPhone: string;
+  setNextOfKinPhone: React.Dispatch<React.SetStateAction<string>>;
+  nextOfKinAddress: string;
+  setNextOfKinAddress: React.Dispatch<React.SetStateAction<string>>;
+  dependents: DependentsInputProp[];
+  setDependents: React.Dispatch<React.SetStateAction<DependentsInputProp[]>>;
 }
 
 export interface ExperienceComponentProp {

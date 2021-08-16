@@ -3,7 +3,7 @@ interface Props {
   tab: string;
 }
 
-// personal, family, emergency , card experience, license , avaiabliity
+// personal, family, emergency , card ,experience, license , avaiabliity
 
 const StepsComponent = ({ tab }: Props) => {
   return (

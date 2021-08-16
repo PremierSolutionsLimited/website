@@ -30,7 +30,7 @@ const MainComponent = () => {
   const { loading: uploadLoadings, upload } =
     useMultipleImageUpload("driverRegistration");
   // for tabs
-  const [tab, setTab] = useState<string>("personal");
+  const [tab, setTab] = useState<string>("experience");
 
   // states for driver's personal information
   const [currentAddress, setCurrentAddress] = useState<string>("");
