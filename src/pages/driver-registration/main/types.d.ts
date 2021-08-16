@@ -32,22 +32,26 @@ export interface CreateApplicationInputProp {
   hasSmartPhone?: boolean;
   canUseMap?: boolean;
   availablity?: string[];
-  nameOfSchool?: string;
-  schoolLevel?: string;
-  schoolStartDate?: Date;
-  schoolEndDate?: Date;
-  qualification?: string;
-  certificateImage?: string;
-  currentEmploymerName?: string;
-  currentEmploymentStartDate?: Date;
-  currentEmploymentEndDate?: Date;
-  currentEmploymentPositionHeld?: string;
-  reasonForLeavingCurrentWork?: string;
-  previousEmploymerName?: string;
-  previousEmploymentStartDate?: Date;
-  previousEmploymentEndDate?: Date;
-  previousPositionHeld?: string;
-  previousReasonForLeaving?: string;
+  educationalHistory: {
+    nameOfSchool: string;
+    level: string;
+    startDate?: Date;
+    endDate: Date;
+  };
+  currentEmployment: {
+    currentEmployerName: string;
+    startDate: Date;
+    endDate: Date;
+    positionHeld: string;
+    reasonForLeaving?: string;
+  };
+  previousEmployment: {
+    currentEmployerName: string;
+    startDate: Date;
+    endDate: Date;
+    positionHeld: string;
+    reasonForLeaving: string;
+  };
   emergencyContacts: EmergencyContact[];
   dependents: DependentsInputProp[];
   bankDetails: {

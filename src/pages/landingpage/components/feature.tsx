@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 import DriverSvg from "../../../components/svgs/driver";
+import MobileImage1 from "../../../assets/images/mobile1.png";
+import MobileImage2 from "../../../assets/images/mobile2.png";
 
 const FeaturesComponent = () => {
   return (
@@ -88,9 +90,9 @@ const FeaturesComponent = () => {
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Easy way to hire a professionally trained chauffeur
-                    to drive you in the comfort of your vehicle.
-                    Easy registering and hiring process.
+                    Easy way to hire a professionally trained chauffeur to drive
+                    you in the comfort of your vehicle. Easy registering and
+                    hiring process.
                   </dd>
                 </div>
 
@@ -118,8 +120,8 @@ const FeaturesComponent = () => {
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Chauffeurs trained to drive defensively to protect
-                    people and property. Background checks are conducted on all
+                    Chauffeurs trained to drive defensively to protect people
+                    and property. Background checks are conducted on all
                     drivers.
                   </dd>
                 </div>
@@ -147,8 +149,8 @@ const FeaturesComponent = () => {
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Chauffeurs trained to be competent and respectful
-                    in dealing with clients.
+                    Chauffeurs trained to be competent and respectful in dealing
+                    with clients.
                   </dd>
                 </div>
               </dl>
@@ -187,12 +189,20 @@ const FeaturesComponent = () => {
                   fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)"
                 />
               </svg>
-              <img
-                className="relative mx-auto"
-                width="490"
-                src="https://images.macrumors.com/t/L0TJ7AxxiLnOZvwG73ibpeF3GOU=/1600x0/article-new/2018/02/appstorescreenshots.jpg"
-                alt=""
-              />
+              <div className="flex flex-row items-center justify-center">
+                <img
+                  className="relative  mx-auto"
+                  width="220"
+                  src={MobileImage2}
+                  alt=""
+                />
+                <img
+                  className="relative  mx-auto"
+                  width="220"
+                  src={MobileImage1}
+                  alt=""
+                />
+              </div>
             </div>
           </div>
           <svg
