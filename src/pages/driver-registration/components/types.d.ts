@@ -1,5 +1,5 @@
 import React from "react";
-import { IType } from "../bones/types";
+import { DependentsInputProp, IType } from "../bones/types";
 
 export interface PersonalComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
@@ -29,6 +29,56 @@ export interface PersonalComponentProp {
   setCanUseMap: React.Dispatch<React.SetStateAction<string>>;
   handleImageUpload: (e: any) => void;
   driverImageUrl: string;
+}
+
+export interface FamilyComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  nextOfKinName: string;
+  setNextOfKinName: React.Dispatch<React.SetStateAction<string>>;
+  nexOfKinRelation: string;
+  setNextOfKinRelation: React.Dispatch<React.SetStateAction<string>>;
+  nextOfKinTelephone: string;
+  setNextOfKinTelephone: React.Dispatch<React.SetStateAction<string>>;
+  nextOfKinPhone: string;
+  setNextOfKinPhone: React.Dispatch<React.SetStateAction<string>>;
+  nextOfKinAddress: string;
+  setNextOfKinAddress: React.Dispatch<React.SetStateAction<string>>;
+  dependents: DependentsInputProp[];
+  setDependents: React.Dispatch<React.SetStateAction<DependentsInputProp[]>>;
+}
+
+export interface EmergencyComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  emergencyContact: EmergencyInputProp[];
+  setEmergencyContact: React.Dispatch<
+    React.SetStateAction<EmergencyInputProp[]>
+  >;
+}
+
+export interface CardDetailsComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  sortCode: string;
+  setSortCode: React.Dispatch<React.SetStateAction<string>>;
+  nameOfBank: string;
+  setNameOfBank: React.Dispatch<React.SetStateAction<string>>;
+  nameOfBankBranch: string;
+  setNameOfBankBranch: React.Dispatch<React.SetStateAction<string>>;
+  accountNumber: string;
+  setAccoutNumber: React.Dispatch<React.SetStateAction<string>>;
+  ssnitNumber: string;
+  setSsnitNumber: React.Dispatch<React.SetStateAction<string>>;
+  momoNumber: string;
+  setMomoNumber: React.Dispatch<React.SetStateAction<string>>;
+  ghanaCardId: string;
+  setGhanaCardId: React.Dispatch<React.SetStateAction<string>>;
+  ghanaCardIssueDate: string;
+  setGhanaCardIssueDate: React.Dispatch<React.SetStateAction<string>>;
+  ghanaCardExpiryDate: string;
+  setGhanaCardExpiryDate: React.Dispatch<React.SetStateAction<string>>;
+  handleGhanaCardFrontImageUpload: (e: any) => void;
+  ghanaCardFrontImageUrl: string;
+  handleGhanaCardBackImageUpload: (e: any) => void;
+  ghanaCardBackImageUrl: string;
 }
 
 export interface ExperienceComponentProp {

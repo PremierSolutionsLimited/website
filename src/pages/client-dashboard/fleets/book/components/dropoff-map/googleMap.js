@@ -35,6 +35,8 @@ class MyGoogleMap extends Component {
       lat: mouse.lat,
       lng: mouse.lng,
     });
+    this.props.setLat(mouse.lat);
+    this.props.setLng(mouse.lng);
   };
   onMarkerInteractionMouseUp = (childKey, childProps, mouse) => {
     this.setState({ draggable: true });
@@ -53,6 +55,8 @@ class MyGoogleMap extends Component {
       lat: value.lat,
       lng: value.lng,
     });
+    this.props.setLat(value.lat);
+    this.props.setLng(value.lng);
   };
 
   apiHasLoaded = (map, maps) => {
@@ -71,6 +75,8 @@ class MyGoogleMap extends Component {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng(),
     });
+    this.props.setLat(place.geometry.location.lat());
+    this.props.setLng(place.geometry.location.lng());
     this._generateAddress();
   };
 
@@ -87,6 +93,7 @@ class MyGoogleMap extends Component {
         if (status === "OK") {
           if (results[0]) {
             this.zoom = 12;
+            this.props.setAddress(results[0].formatted_address);
             this.setState({ address: results[0].formatted_address });
           } else {
             window.alert("No results found");
@@ -107,6 +114,8 @@ class MyGoogleMap extends Component {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
+        this.props.setLat(position.coords.latitude);
+        this.props.setLng(position.coords.longitude);
       });
     }
   }

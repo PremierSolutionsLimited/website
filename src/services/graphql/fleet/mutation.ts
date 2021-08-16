@@ -55,3 +55,39 @@ export const updateVehicle = gql`
     }
   }
 `;
+
+export const createTripRequest = gql`
+  mutation (
+    $client: ID
+    $vehicle: ID
+    $tripType: ID
+    $expectedStartTime: Date
+    $expectedEndTime: Date
+    $pickUpLocation: LocationInput
+    $dropOffLocation: LocationInput
+    $pickUpLocationName: String
+    $dropOffLocationName: String
+    $passengerAges: [PassengerAge]
+    $extraPassenger: Boolean
+    $notes: String
+  ) {
+    createTripRequest(
+      input: {
+        client: $client
+        vehicle: $vehicle
+        tripType: $tripType
+        expectedStartTime: $expectedStartTime
+        expectedEndTime: $expectedEndTime
+        pickUpLocation: $pickUpLocation
+        pickUpLocationName: $pickUpLocationName
+        dropOffLocation: $dropOffLocation
+        dropOffLocationName: $dropOffLocationName
+        passengerAges: $passengerAges
+        notes: $notes
+        extraPassenger: $extraPassenger
+      }
+    ) {
+      _id
+    }
+  }
+`;

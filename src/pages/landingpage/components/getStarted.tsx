@@ -67,9 +67,9 @@ export default function GetStartedComponent() {
                         data-aos-delay="150"
                       >
                         We provide you the comfort of travelling in your own
-                        vehicle, while our professionally trained chauffeur /
-                        driver, drives you. You do not have to worry about
-                        traffic and delays.
+                        vehicle, while our professionally trained chauffeur or
+                        driver, drives you. Catch up on your day while in
+                        transit.
                       </p>
                       <div className={"block sm:block md:hidden"}>
                         <Link to="/driver-signup">

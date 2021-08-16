@@ -37,7 +37,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
     if (!driverImageUrl) {
       return toast.error("Please add a profile image");
     }
-    return setTab("experience");
+    return setTab("family");
   };
   return (
     <Fragment>
@@ -319,7 +319,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 When did you graduate?
               </label>
               <input
-                type="text"
+                type="number"
                 name="url"
                 id="url"
                 required

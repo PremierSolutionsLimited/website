@@ -1,5 +1,7 @@
 export const getImage = (
   driverFile: any,
+  ghanaCardFrontFile: any,
+  ghanaCardBackFile: any,
   driverLicenseFrontFile: any,
   driverLicenseBackFile: any
 ) => {
@@ -7,6 +9,13 @@ export const getImage = (
 
   files.push({
     value: driverFile,
+  });
+  files.push({
+    value: ghanaCardFrontFile,
+  });
+
+  files.push({
+    value: ghanaCardBackFile,
   });
   files.push({
     value: driverLicenseFrontFile,

@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 import DriverSvg from "../../../components/svgs/driver";
+import MobileImage1 from "../../../assets/images/mobile1.png";
+import MobileImage2 from "../../../assets/images/mobile2.png";
 
 const FeaturesComponent = () => {
   return (
@@ -88,9 +90,9 @@ const FeaturesComponent = () => {
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Easy way to hire a professionally trained chauffeur
-                    to drive you in the comfort of your vehicle.
-                    Easy registering and hiring process.
+                    Easy way to hire a professionally trained chauffeur to drive
+                    you in the comfort of your vehicle. Easy registering and
+                    hiring process.
                   </dd>
                 </div>
 
@@ -118,8 +120,8 @@ const FeaturesComponent = () => {
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Chauffeurs trained to drive defensively to protect
-                    people and property. Background checks are conducted on all
+                    Chauffeurs trained to drive defensively to protect people
+                    and property. Background checks are conducted on all
                     drivers.
                   </dd>
                 </div>
@@ -147,8 +149,8 @@ const FeaturesComponent = () => {
                     </p>
                   </dt>
                   <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Chauffeurs trained to be competent and respectful
-                    in dealing with clients.
+                    Chauffeurs trained to be competent and respectful in dealing
+                    with clients.
                   </dd>
                 </div>
               </dl>
@@ -187,12 +189,20 @@ const FeaturesComponent = () => {
                   fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)"
                 />
               </svg>
-              <img
-                className="relative mx-auto"
-                width="490"
-                src="https://images.macrumors.com/t/L0TJ7AxxiLnOZvwG73ibpeF3GOU=/1600x0/article-new/2018/02/appstorescreenshots.jpg"
-                alt=""
-              />
+              <div className="flex flex-row items-center justify-center">
+                <img
+                  className="relative  mx-auto"
+                  width="220"
+                  src={MobileImage2}
+                  alt=""
+                />
+                <img
+                  className="relative  mx-auto"
+                  width="220"
+                  src={MobileImage1}
+                  alt=""
+                />
+              </div>
             </div>
           </div>
           <svg
@@ -274,18 +284,17 @@ const FeaturesComponent = () => {
                     <dt>
                       <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                         <svg
-                          className="h-6 w-6"
                           xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          aria-hidden="true"
                         >
                           <path
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                           />
                         </svg>
                       </div>
@@ -302,18 +311,17 @@ const FeaturesComponent = () => {
                     <dt>
                       <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
                         <svg
-                          className="h-6 w-6"
                           xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          aria-hidden="true"
                         >
                           <path
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                           />
                         </svg>
                       </div>

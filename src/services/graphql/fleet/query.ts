@@ -60,3 +60,13 @@ export const getMyFleet = gql`
     vehiclesLength(filter: $filter)
   }
 `;
+
+export const getTripType = gql`
+  query {
+    tripTypes {
+      _id
+      name
+    }
+    tripTypesLength
+  }
+`;
