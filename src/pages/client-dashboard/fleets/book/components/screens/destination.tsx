@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { DestinationComponentProp } from "./types";
+import { CircleSpinner } from "react-spinners-kit";
 import GoogleMap from "../dropoff-map";
 
 export default function Destination({
@@ -7,6 +8,8 @@ export default function Destination({
   setAddress,
   setLng,
   setLat,
+  handleSubmit,
+  loading,
 }: DestinationComponentProp) {
   return (
     <Fragment>
@@ -29,9 +32,19 @@ export default function Destination({
         <span className="inline-flex rounded-none shadow-sm ">
           <button
             type="button"
+            disabled={loading}
+            onClick={handleSubmit}
             className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
           >
-            <span className="mx-1">Submit</span>
+            {loading ? (
+              <Fragment>
+                <CircleSpinner loading color="#fff" size={13} />
+              </Fragment>
+            ) : (
+              <Fragment>
+                <span className="mx-1">Submit</span>
+              </Fragment>
+            )}
           </button>
         </span>
       </div>

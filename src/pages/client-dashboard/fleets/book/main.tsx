@@ -18,6 +18,18 @@ import StepComponent from "./components/bones";
 import toast from "react-hot-toast";
 import _ from "lodash";
 
+// get ids of selected regions in array
+export const getPassengers = (selectedAgeGroup: IGroupType[]) => {
+  return selectedAgeGroup.reduce(
+    (accumulator: string[], currentValue: IGroupType) => {
+      let ids = currentValue?.group;
+      accumulator.push(ids);
+      return accumulator;
+    },
+    []
+  );
+};
+
 const MainComponent: React.FC<BookTripComponentProp> = ({
   show,
   setShow,
@@ -30,9 +42,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const currentClient = useCurrentClient();
   const { push } = useHistory();
   const [tab, setTab] = useState<string>("trip");
-  const [selectedAgeGroup, setSelectedAgeGroup] = useState<
-    IGroupType | undefined
-  >();
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState<IGroupType[]>([]);
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
   const [durationTypeSelected, setDurationTypeSelected] =
     useState<string>("Hours");
@@ -56,6 +66,9 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    let passengerAges: string[] = getPassengers(selectedAgeGroup);
+
     invokeBookTripRequest({
       variables: {
         client: currentClient?._id as string,
@@ -64,16 +77,16 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
         expectedStartTime: new Date(tripStartDate),
         expectedEndTime: endTime as Date,
         pickUpLocation: {
-          pickupType: "Point",
-          pickupCordinates: [parseFloat(pickupLat), parseFloat(pickupLng)],
+          type: "Point",
+          coordinates: [+pickupLng, +pickupLat],
         },
         pickUpLocationName: pickupAddress,
         dropOffLocation: {
-          dropOffType: "Point",
-          dropOffCordinates: [parseFloat(dropOffLat), parseFloat(dropOffLng)],
+          type: "Point",
+          coordinates: [+dropOffLng, +dropOffLat],
         },
         dropOffLocationName: dropOffAddress,
-        passengerAges: selectedAgeGroup?.group as string,
+        passengerAges: passengerAges,
       },
     })
       .then(() => {
@@ -82,6 +95,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
         return push("/app/history");
       })
       .catch((e: ApolloError) => {
+        console.log("error", e);
+
         toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)));
       });
   };

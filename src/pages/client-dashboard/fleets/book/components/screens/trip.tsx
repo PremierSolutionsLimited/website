@@ -5,6 +5,9 @@ import {
   getFinalDateWithDateInput,
 } from "../utils/switch";
 import { IDurationType } from "../data/types";
+import { useQuery } from "@apollo/client";
+import { GetTypesInput, GetTypesOutput } from "./types";
+import { GET_TRIP_TYPE } from "../../../../../../services/graphql/fleet";
 import DurationType from "../bones/durationType";
 import AgeGroup1 from "../bones/ageGroup1";
 import AgeGroup2 from "../bones/ageGroup2";
@@ -25,7 +28,12 @@ export default function Trip({
   endTime,
   setShow,
   setTab,
+  requestType,
+  setRequestType,
 }: TripComponentProp) {
+  const { data, loading } = useQuery<GetTypesOutput, GetTypesInput>(
+    GET_TRIP_TYPE
+  );
   return (
     <Fragment>
       <div className="grid grid-cols-12 gap-3">
@@ -114,10 +122,49 @@ export default function Trip({
               id="location"
               name="location"
               required
+              value={requestType}
+              onChange={(e) => setRequestType(e.target.value)}
               className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
               defaultValue="Canada"
             >
               <option>Please Choose</option>
+              {loading ? (
+                <Fragment>
+                  <option>Loading ...</option>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  {data ? (
+                    <Fragment>
+                      {data?.tripTypesLength === 0 ? (
+                        <Fragment>
+                          <option>No request time found</option>
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          {data?.tripTypes?.map(
+                            (
+                              item: {
+                                name: string;
+                                _id: string;
+                              },
+                              itemIdx: number
+                            ) => (
+                              <Fragment key={itemIdx}>
+                                <option value={item?._id}>{item?.name}</option>
+                              </Fragment>
+                            )
+                          )}
+                        </Fragment>
+                      )}
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <option>An error occured</option>
+                    </Fragment>
+                  )}
+                </Fragment>
+              )}
             </select>
           </div>
         </div>

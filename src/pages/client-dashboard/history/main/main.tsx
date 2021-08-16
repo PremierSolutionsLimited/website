@@ -15,15 +15,12 @@ import {
   TripHistory,
 } from "./types";
 import { GET_TRIP_HISTORY } from "../../../../services/graphql/history";
-import { useCurrentClient } from "../../../../services/context/currentClient";
 import DataView from "../data-view";
 
 const ViewTripComponent = lazy(() => import("../view"));
 const pages: BreadCrumbProp[] = [{ name: "Trip History ", href: HISTORY }];
 
 const MainComponent = () => {
-  const currentClient = useCurrentClient();
-
   const [viewTrip, setViewTrip] = useState<boolean>(false);
   const [selectedTrip, setSelectedTrip] = useState<TripHistory>();
   const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
@@ -32,14 +29,7 @@ const MainComponent = () => {
     TripHistoryInputProp
   >(GET_TRIP_HISTORY, {
     variables: {
-      filter: {
-        client: currentClient?._id
-          ? {
-              eq: currentClient?._id,
-            }
-          : undefined,
-      },
-      populate: ["vehicle", "class"],
+      populate: ["vehicle", "class", "tripType"],
       pagination: {
         skip,
         limit,

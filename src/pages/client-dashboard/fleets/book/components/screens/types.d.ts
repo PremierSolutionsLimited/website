@@ -2,10 +2,8 @@ import React from "react";
 import { IDurationType, IGroupType } from "../data/types";
 
 export interface TripComponentProp {
-  selectedAgeGroup: IGroupType | undefined;
-  setSelectedAgeGroup: React.Dispatch<
-    React.SetStateAction<IGroupType | undefined>
-  >;
+  selectedAgeGroup: IGroupType[];
+  setSelectedAgeGroup: React.Dispatch<React.SetStateAction<IGroupType[]>>;
   selectedDuration: IDurationType | undefined;
   setSelectedDuration: React.Dispatch<
     React.SetStateAction<IDurationType | undefined>
@@ -22,6 +20,22 @@ export interface TripComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
   setEndTime: React.Dispatch<React.SetStateAction<Date | undefined>>;
   endTime: Date | undefined;
+}
+
+export interface GetTypesInput {
+  filter: {
+    deleted: {
+      eq: boolean;
+    };
+  };
+}
+
+export interface GetTypesOutput {
+  tripTypes: {
+    name: string;
+    _id: string;
+  }[];
+  tripTypesLength: number;
 }
 
 export interface OriginComponentProp {

@@ -165,7 +165,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   ) : (
                     <Fragment>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        Not Specified
+                        Trip is yet to start
                       </dd>
                     </Fragment>
                   )}
@@ -185,17 +185,24 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   ) : (
                     <Fragment>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        Not Specified
+                        Trip is yet to start
                       </dd>
                     </Fragment>
                   )}
                 </div>
-                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">Notes</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {trip?.notes || "Not Specified"}
-                  </dd>
-                </div>
+
+                {trip?.notes && (
+                  <Fragment>
+                    <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <dt className="text-sm font-medium text-gray-500">
+                        Notes
+                      </dt>
+                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        {trip?.notes || "Not Specified"}
+                      </dd>
+                    </div>
+                  </Fragment>
+                )}
 
                 {trip?.driverRated && (
                   <Fragment>

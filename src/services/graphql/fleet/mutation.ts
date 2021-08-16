@@ -61,13 +61,11 @@ export const createTripRequest = gql`
     $client: ID
     $vehicle: ID
     $tripType: ID
-    $expectedStarTime: Date
+    $expectedStartTime: Date
     $expectedEndTime: Date
-    $pickupType: LocationType!
-    $pickupCordinates: [Float!]!
-    $pickupLocationName: String
-    $dropOffType: LocationType!
-    $dropOffCordinates: [Float!]!
+    $pickUpLocation: LocationInput
+    $dropOffLocation: LocationInput
+    $pickUpLocationName: String
     $dropOffLocationName: String
     $passengerAges: [PassengerAge]
     $extraPassenger: Boolean
@@ -78,11 +76,11 @@ export const createTripRequest = gql`
         client: $client
         vehicle: $vehicle
         tripType: $tripType
-        expectedStartTime: $expectedStarTime
+        expectedStartTime: $expectedStartTime
         expectedEndTime: $expectedEndTime
-        pickUpLocation: { type: $pickupType, coordinates: $pickupCordinates }
-        pickUpLocationName: $pickupLocationName
-        dropOffLocation: { type: $dropOffType, coordinates: $dropOffCordinates }
+        pickUpLocation: $pickUpLocation
+        pickUpLocationName: $pickUpLocationName
+        dropOffLocation: $dropOffLocation
         dropOffLocationName: $dropOffLocationName
         passengerAges: $passengerAges
         notes: $notes

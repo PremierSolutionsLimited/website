@@ -14,16 +14,16 @@ export interface BookTripInputProp {
   expectedStartTime: Date;
   expectedEndTime: Date;
   pickUpLocation: {
-    pickupType: string;
-    pickupCordinates: number[];
+    type: string;
+    coordinates: number[];
   };
   pickUpLocationName: $pickupLocationName;
   dropOffLocation: {
-    dropOffType: string;
-    dropOffCordinates: number[];
+    type: string;
+    coordinates: number[];
   };
   dropOffLocationName: string;
-  passengerAges: string;
+  passengerAges: string[];
   notes?: string;
   extraPassenger?: boolean;
 }
