@@ -51,8 +51,8 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   Trip Information
                 </h3>
                 <p className="text-sm flex items-start font-light leading-5 text-gray-500">
-                  Provide basuc information about your trip so that we can set
-                  you up with an appropraite driver.
+                  Provide basic information about your trip so that we can set
+                  you up with an appropriate driver.
                 </p>
               </div>
             </div>

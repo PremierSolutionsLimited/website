@@ -1,12 +1,17 @@
 import { Fragment } from "react";
-import { ScaleIcon, CheckCircleIcon, StarIcon } from "@heroicons/react/outline";
+import {
+  ScaleIcon,
+  CheckCircleIcon,
+  StarIcon,
+  MapIcon,
+} from "@heroicons/react/outline";
 import { BarChart } from "../chart";
 const cards = [
   { name: " Trips Requested", href: "#", icon: CheckCircleIcon, amount: "200" },
   { name: " Trips Completed", href: "#", icon: ScaleIcon, amount: "100" },
-  { name: "Vehicles in Fleet", href: "#", icon: StarIcon, amount: "40" },
+  { name: "Vehicles in Fleet", href: "#", icon: MapIcon, amount: "40" },
   { name: "Average Rating", href: "#", icon: StarIcon, amount: "4.4" },
-  // More items...
+  // More items...T
 ];
 const MainComponent = () => {
   return (
