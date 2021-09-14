@@ -31,6 +31,22 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
         />
       </div>
+      <div className="col-span-12 sm:col-span-12">
+        <label
+          htmlFor="url"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Address
+        </label>
+        <input
+          type="text"
+          name="url"
+          id="url"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+        />
+      </div>
       <div className="col-span-12 sm:col-span-6">
         <label
           htmlFor="url"
@@ -47,7 +63,7 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
         />
       </div>
-      <div className="col-span-12 sm:col-span-6">
+      {/* <div className="col-span-12 sm:col-span-6">
         <label
           htmlFor="url"
           className="block text-sm font-medium text-gray-700"
@@ -62,7 +78,7 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           onChange={(e) => setTelephone(e.target.value)}
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
         />
-      </div>
+      </div> */}
       <div className="col-span-12 sm:col-span-6">
         <label
           htmlFor="url"
@@ -71,27 +87,19 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           Phone
         </label>
         <input
-          type="number"
+          type="tel"
           name="url"
           id="url"
+          min="0"
+          maxLength={10}
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
-        />
-      </div>
-      <div className="col-span-12 sm:col-span-6">
-        <label
-          htmlFor="url"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Address
-        </label>
-        <input
-          type="text"
-          name="url"
-          id="url"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            if (/[a-zA-Z]/.test(e.target.value)) {
+              return setPhone("");
+            } else {
+              setPhone(e.target.value);
+            }
+          }}
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
         />
       </div>

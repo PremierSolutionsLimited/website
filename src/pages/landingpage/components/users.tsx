@@ -4,7 +4,7 @@ import HeaderSvg from "../../../components/svgs/header";
 const UsersComponent = () => {
   return (
     <Fragment>
-      <div className="bg-white">
+      <div id={"offers"} className="bg-white">
         <div className="-mt-20">
           <HeaderSvg />
         </div>

@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { FleetCardComponentProp } from "./types";
-import NoImage from "../../../../assets/images/no-image.png";
+// import NoImage from "../../../../assets/images/no-image.png";
 import ReactTooltip from "react-tooltip";
 
 const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
@@ -13,7 +13,7 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
               <Fragment>
                 <div className=" h-full w-full lg:h-full lg:w-full   lg:mb-0 mb-3">
                   <img
-                    src={data?.class?.icon || NoImage}
+                    src={data?.class?.icon}
                     alt="Just a flower"
                     className=" w-full  object-scale-down lg:object-cover  lg:h-full rounded-2xl"
                   />
@@ -21,12 +21,24 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
               </Fragment>
             ) : (
               <Fragment>
-                <div className=" h-40 w-44 lg:h-40 lg:w-44   lg:mb-0 mb-3">
-                  <img
-                    src={NoImage}
-                    alt="Just a flower"
-                    className=" w-full  object-scale-down lg:object-cover  lg:h-full rounded-2xl"
-                  />
+                <div className=" h-40 w-44 lg:h-40 lg:w-44  flex items-center justify-center  lg:mb-0 mb-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-car"
+                    width="94"
+                    height="94"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.3"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <circle cx="7" cy="17" r="2"></circle>
+                    <circle cx="17" cy="17" r="2"></circle>
+                    <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+                  </svg>
                 </div>
               </Fragment>
             )}

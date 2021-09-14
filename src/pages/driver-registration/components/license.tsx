@@ -140,7 +140,7 @@ export default function LicenseComponent({
                 type="text"
                 name="company"
                 id="company"
-                required
+                required={false}
                 value={licenseId}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setLicenseId(e.target.value)
