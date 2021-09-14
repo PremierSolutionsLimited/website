@@ -51,8 +51,8 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   Trip Information
                 </h3>
                 <p className="text-sm flex items-start font-light leading-5 text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  nostrum voluptate, sed officia blanditiis vero dolore, alias
+                  Provide basuc information about your trip so that we can set
+                  you up with an appropraite driver.
                 </p>
               </div>
             </div>
@@ -107,8 +107,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   Location Origin
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  nostrum voluptate, sed officia blanditiis vero dolore, alias
+                  Enter or select your pickup location of your trip
                 </p>
               </div>
             </div>
@@ -158,7 +157,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   Location Destination
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+                  Enter or select your drop off location of your trip
                 </p>
               </div>
             </div>
