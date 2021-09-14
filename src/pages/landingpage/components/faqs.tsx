@@ -3,7 +3,7 @@ import { Fragment } from "react";
 const FrequentlyAskedQuestions = () => {
   return (
     <Fragment>
-      <div className="h:0 md:h-96 sm:h-0">
+      <div id="faq" className="h:0 md:h-faq-height sm:h-0">
         <section className="text-gray-700">
           <div className="container px-5 py-24 mx-auto">
             <div className="text-center mb-20">
@@ -15,75 +15,88 @@ const FrequentlyAskedQuestions = () => {
                 can do for you.
               </p>
             </div>
-            <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+            <div className="flex flex-wrap lg:w-5/6 sm:mx-auto sm:mb-2 -mx-2">
               <div className="w-full lg:w-1/2 px-4 py-2">
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-100 rounded-md py-2 px-4">
-                    How Long is this site live?
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                    What is Premier Chauffeur?
                   </summary>
 
-                  <span className="transition duration-500 ease-in-out ">
-                    Laboris qui labore cillum culpa in sunt quis sint veniam.
-                    Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                    minim velit nostrud pariatur culpa magna in aute.
+                  <span className="py-5">
+                    We provide you with professionally trained and certified
+                    chauffeur or drivers, whilst you travel around in the
+                    comfort of your own vehicle. You do not have to worry about
+                    traffic, leaving the office to pick your children or driving
+                    around.
                   </span>
                 </details>
                 <details className="mb-4">
-                  <summary className="font-semibold bg-gray-100 rounded-md py-2 px-4">
-                    Can I install/upload anything I want on there?
+                  <summary className="font-medium bg-gray-100 rounded-md py-2 px-4">
+                    How does one become a driver on the app?
                   </summary>
 
                   <span>
-                    Laboris qui labore cillum culpa in sunt quis sint veniam.
-                    Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                    minim velit nostrud pariatur culpa magna in aute.
+                    You become a driver on the app after successfully going
+                    through our structured assessment and defensive driving
+                    training process.
                   </span>
                 </details>
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-100 rounded-md py-2 px-4">
-                    How can I migrate to another site?
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                    What are the requirements?
                   </summary>
 
                   <span>
-                    Laboris qui labore cillum culpa in sunt quis sint veniam.
-                    Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                    minim velit nostrud pariatur culpa magna in aute.
+                    You must have a valid driver licence.You must have at least
+                    5 years of driving experience.
+                  </span>
+                </details>
+                <details className="mb-4">
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                    How does Premier Chauffeur work?
+                  </summary>
+
+                  <span>
+                    Client request for a driver and we assign client to an
+                    available driver.
                   </span>
                 </details>
               </div>
               <div className="w-full lg:w-1/2 px-4 py-2">
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-100 rounded-md py-2 px-4">
-                    Can I change the domain you give me?
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                    Do I need a car as a driver to register on Premier
+                    Chauffeur?
                   </summary>
 
                   <span className="px-4 py-2">
-                    Laboris qui labore cillum culpa in sunt quis sint veniam.
-                    Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                    minim velit nostrud pariatur culpa magna in aute.
+                    No, you must not have a car to register as a driver.
                   </span>
                 </details>
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-100 rounded-md py-2 px-4">
-                    How many sites I can create at once?
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                    Do I need a car as a client to register on Premier
+                    Chauffeur?
                   </summary>
 
                   <span className="px-4 py-2">
-                    Laboris qui labore cillum culpa in sunt quis sint veniam.
-                    Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                    minim velit nostrud pariatur culpa magna in aute.
+                    Yes, you must have your own car or access to a car that a
+                    PSL chauffeur will drive on your behalf.
                   </span>
                 </details>
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-100 rounded-md py-2 px-4">
-                    How can I communicate with you?
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                    Is the Chauffeur for iPhone app free?
                   </summary>
 
-                  <span className="px-4 py-2">
-                    Laboris qui labore cillum culpa in sunt quis sint veniam.
-                    Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                    minim velit nostrud pariatur culpa magna in aute.
-                  </span>
+                  <span className="px-4 py-2">Yes, absolutely.</span>
+                </details>
+                <details className="mb-4">
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                    Is the Premier Chauffeur for Android app free?
+                  </summary>
+
+                  <span className="px-4 py-2">Yes, absolutely.</span>
                 </details>
               </div>
             </div>

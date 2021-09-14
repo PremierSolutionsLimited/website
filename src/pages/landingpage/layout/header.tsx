@@ -79,7 +79,7 @@ const MainHeader = () => {
                   Key Features
                 </a>
                 <a
-                  href="#"
+                  href="#faq"
                   className="text-base text-black dark:text-gray-100 hover:text-black"
                 >
                   FAQs

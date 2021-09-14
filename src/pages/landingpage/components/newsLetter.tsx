@@ -65,32 +65,24 @@ export default function NewsLetter() {
             <div className="relative">
               <div className="sm:text-center">
                 <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
-                  Get notified when we&rsquo;re launching.
+                  Help and Support Information
                 </h2>
                 <p className="mt-6 mx-auto max-w-2xl text-lg text-pink-200">
-                  Sagittis scelerisque nulla cursus in enim consectetur quam.
-                  Dictum urna sed consectetur neque tristique pellentesque.
+                  To speak with a certified life and leadership coach, contact
+                  us on… Telephone: +233 303306541 or +233 246900037
                 </p>
               </div>
-              <form action="#" className="mt-12 sm:mx-auto sm:max-w-lg sm:flex">
-                <div className="min-w-0 flex-1">
-                  <label htmlFor="cta_email" className="sr-only">
-                    Email address
-                  </label>
-                  <input
-                    id="cta_email"
-                    type="email"
-                    className="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-pink-600"
-                    placeholder="Enter your email"
-                  />
-                </div>
+              <form
+                action="#"
+                className="mt-12 items-center justify-center sm:mx-auto sm:max-w-lg sm:flex"
+              >
                 <div className="mt-4 sm:mt-0 sm:ml-3">
-                  <button
-                    type="submit"
+                  <a
+                    href="mailto: info@premiersolutionsgh.com                   "
                     className="block w-full rounded-md border border-transparent px-5 py-3 bg-pink-500 text-base font-medium text-white shadow hover:bg-pink-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-pink-600 sm:px-10"
                   >
-                    Notify me
-                  </button>
+                    Send us an email
+                  </a>
                 </div>
               </form>
             </div>
