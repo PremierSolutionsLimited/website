@@ -51,8 +51,8 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   Personal Information
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  nostrum voluptate, sed officia blanditiis vero dolore, alias
+                  Provide information concerning yourself, where you live and
+                  set up your account.
                 </p>
               </div>
             </div>
@@ -107,8 +107,8 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   Other Information
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  nostrum voluptate, sed officia blanditiis vero dolore, alias
+                  Provide your identity card information and bank details to
+                  verify your identity.
                 </p>
               </div>
             </div>
@@ -158,8 +158,8 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   Emergency Contacts
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  nostrum voluptate, sed officia blanditiis vero dolore, alias
+                  In case of any emergency, who do we contact? Let us know who
+                  to contact by adding your emergency contacts.
                 </p>
               </div>
             </div>

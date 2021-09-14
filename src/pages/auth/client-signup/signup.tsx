@@ -297,9 +297,9 @@ const Signup = () => {
             </Link>
           </div>
           <div className={"flex flex-col items-center w-full"}>
-            <i className="mt-2 text-sm font-light sm:text-sm md:text-base text-gray-700">
+            <div className="mt-2 text-sm font-light sm:text-sm md:text-base text-gray-700">
               Powered by Polymorph Labs Ghana Limited
-            </i>
+            </div>
             <span className="mt-1 text-sm font-light text-gray-400">
               Copyright 2021. All Rights Reserved
             </span>

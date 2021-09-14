@@ -45,26 +45,7 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Relationship
-              </label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                autoComplete="organization"
-                value={nexOfKinRelation}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setNextOfKinRelation(e.target.value)
-                }
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
+            <div className="col-span-12 sm:col-span-12">
               <label
                 htmlFor="company"
                 className="block text-sm pb-1 font-medium text-gray-700"
@@ -88,21 +69,47 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm pb-1 font-medium text-gray-700"
               >
+                Relationship
+              </label>
+              <input
+                type="text"
+                name="company"
+                id="company"
+                autoComplete="organization"
+                value={nexOfKinRelation}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setNextOfKinRelation(e.target.value)
+                }
+                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-1 font-medium text-gray-700"
+              >
                 Phone
               </label>
               <input
-                type="number"
+                type="tel"
                 name="company"
                 id="company"
+                min="0"
+                maxLength={10}
                 value={nextOfKinPhone}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setNextOfKinPhone(e.target.value)
-                }
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (/[a-zA-Z]/.test(e.target.value)) {
+                    return setNextOfKinPhone("");
+                  } else {
+                    setNextOfKinPhone(e.target.value);
+                  }
+                }}
                 autoComplete="organization"
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
-            <div className="col-span-12 sm:col-span-6">
+            {/* <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
                 className="block text-sm pb-1 font-medium text-gray-700"
@@ -120,7 +127,7 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
                 }
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
-            </div>
+            </div> */}
             <div className="col-span-12 sm:col-span-12">
               <DependentsComponentSelect
                 dependDents={dependents}

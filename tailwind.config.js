@@ -8,6 +8,9 @@ module.exports = {
           800: "#5eb3b1",
         },
       },
+      height: {
+        "faq-height": "70vh",
+      },
     },
   },
   variants: {
@@ -16,5 +19,6 @@ module.exports = {
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/typography"),
   ],
 };
