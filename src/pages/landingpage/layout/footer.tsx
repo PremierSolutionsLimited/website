@@ -14,25 +14,13 @@ const Footer = () => {
           Footer
         </h2>
         <div className="max-w-7xl mx-auto py-0 px-4 sm:px-6 lg:py-0 lg:px-8">
-          <div className="xl:grid xl:grid-cols-4 xl:gap-8">
-            <div className="space-y-4 xl:col-span-1 ">
-              <img className="h-12 w-auto" src={Picture} alt="Workflow" />
-              <div>
-                <p className="text-gray-800 text-base ">
-                  Making Dreams Reality
-                </p>
-                <p className="text-gray-800 text-sm mt-1 ">
-                  A service provider partnering with individuals and teams to
-                  transform lives.
-                </p>
-              </div>
-
-              <div>
-                <p className="text-gray-800 text-base ">Our Mission & Vision</p>
-                <p className="text-gray-800 text-sm mt-1 ">
-                  Equip people to achieve their dreams & Change Lives
-                </p>
-              </div>
+          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+            <div className="space-y-8 xl:col-span-1">
+              <img className="h-16" src={Picture} alt="Company name" />
+              <p className="text-gray-500 text-base">
+                A service provider partnering with individuals and teams to
+                transform lives.
+              </p>
               <div className="flex space-x-6">
                 <a href="#" className="text-gray-400 hover:text-gray-500">
                   <span className="sr-only">Facebook</span>
@@ -79,66 +67,19 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-
-            <div className="space-y-4 xl:col-span-1 ">
-              <div className="h-12 w-auto" />
-              <div>
-                <p className="text-gray-800 text-base font-bold ">Our Offer</p>
-                <p className="text-gray-800 text-sm mt-1 ">
-                  • Life and Leadership Coaching
-                </p>
-                <p className="text-gray-800 text-sm mt-1 ">
-                  • Project Management Professional Services & Training
-                </p>
-                <p className="text-gray-800 text-sm mt-1 ">
-                  • Service Offer Platforms (“Premier Chauffeur” Platform etc.)
-                </p>
-                <p className="text-gray-800 text-sm mt-1 ">• Agroforestry</p>
-              </div>
-            </div>
-            <div className="space-y-4 xl:col-span-1 ">
-              <div className="h-12 w-auto" />
-              <div>
-                <p className="text-gray-800 text-base font-bold ">Our Values</p>
-                <p className="text-gray-800 text-sm mt-1 ">‘DELI’ Values</p>
-                <p className="text-gray-800 text-sm mt-1 ">• Diligence</p>
-                <p className="text-gray-800 text-sm mt-1 ">• Excellence</p>
-                <p className="text-gray-800 text-sm mt-1 ">• Love</p>
-                <p className="text-gray-800 text-sm mt-1 ">• Integrity</p>
-              </div>
-            </div>
-            <div className="space-y-4 xl:col-span-1 ">
-              <div className="h-12 w-auto" />
-              <div>
-                <p className="text-gray-800 text-base font-bold ">CONTACT US</p>
-                <p className="text-gray-800 text-sm mt-1 ">
-                  To speak with a certified life and leadership coach, contact
-                  us on…
-                </p>
-                <p className="text-gray-800 text-sm mt-1 ">
-                  Telephone: +233 303306541 / 0246900037
-                </p>
-                <p className="text-gray-800 text-sm mt-1 ">
-                  E-Mail Address: info@premiersolutionsgh.com
-                </p>
-              </div>
-            </div>
             <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-              <div className="md:grid md:grid-cols-2 md:gap-8"></div>
-              {/* <div>
+              <div className="md:grid md:grid-cols-2 md:gap-8">
+                <div>
                   <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                    OUR OFFER
+                    Solutions
                   </h3>
                   <ul className="mt-4 space-y-4">
                     <li>
-                      <a href="#" className="text-sm text-gray-500 ">
-                        Life and Leadership Coaching
-                      </a>
-                    </li>
-
-                    <li>
-                      <a href="#" className="text-sm text-gray-500 ">
-                        Project Management Professional Services & Training
+                      <a
+                        href="#"
+                        className="text-base text-gray-500 hover:text-gray-900"
+                      >
+                        Marketing
                       </a>
                     </li>
 
@@ -147,7 +88,7 @@ const Footer = () => {
                         href="#"
                         className="text-base text-gray-500 hover:text-gray-900"
                       >
-                        Commerce
+                        Analytics
                       </a>
                     </li>
 
@@ -192,19 +133,10 @@ const Footer = () => {
                         Guides
                       </a>
                     </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        API Status
-                      </a>
-                    </li>
                   </ul>
                 </div>
-              </div> */}
-              {/* <div className="md:grid md:grid-cols-2 md:gap-8">
+              </div>
+              <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
                   <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
                     Company
@@ -234,24 +166,6 @@ const Footer = () => {
                         className="text-base text-gray-500 hover:text-gray-900"
                       >
                         Jobs
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Press
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Partners
                       </a>
                     </li>
                   </ul>
@@ -289,10 +203,10 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
-          <div className="mt-12 border-t border-gray-600 pt-8">
+          <div className="mt-12 border-t border-gray-300 pt-8">
             <p className="text-base text-gray-400 xl:text-center">
               &copy; {new Date().getFullYear()} Polymorph Labs, Inc. All rights
               reserved.

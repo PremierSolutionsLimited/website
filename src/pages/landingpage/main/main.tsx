@@ -4,6 +4,7 @@ import GetStartedComponent from "../components/getStarted";
 import UsersComponent from "../components/users";
 import FeaturesComponent from "../components/feature";
 import NewsLetter from "../components/newsLetter";
+import FrequentlyAsked from "../components/faqs";
 
 const MainComponent = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const MainComponent = () => {
         <FeaturesComponent />
         {/* pricing */}
         {/*  newsletter */}
+        <FrequentlyAsked />
         <NewsLetter />
         {/* <PricingComponent /> */}
       </Layout>
