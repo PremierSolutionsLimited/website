@@ -25,6 +25,8 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   setCurrentPostionEndDate,
   currentPositionHeld,
   setCurrentPositionHeld,
+  isEmployed,
+  setIsEmployed,
 
   // yearsOfDrivingExperience,
   // setYearsOfDrivingExperience,
@@ -182,97 +184,84 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
+                className="block text-sm font-medium pb-2 text-gray-700"
               >
-                Current Employer Name
+                Are you employed?
               </label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                value={currentEmployerName}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setCurrentEmployerName(e.target.value)
+              <select
+                id="location"
+                name="location"
+                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                value={isEmployed}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setIsEmployed(e.target.value)
                 }
-                autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
+              >
+                <option>Please Choose</option>
+                <option value={"yes"}>Yes</option>
+                <option value={"no"}>No</option>
+              </select>
             </div>
+            {isEmployed === "yes" && (
+              <Fragment>
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm pb-2 font-medium text-gray-700"
+                  >
+                    Current Employer Name
+                  </label>
+                  <input
+                    type="text"
+                    name="company"
+                    id="company"
+                    value={currentEmployerName}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setCurrentEmployerName(e.target.value)
+                    }
+                    autoComplete="organization"
+                    className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                  />
+                </div>
 
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                Position Held
-              </label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                value={currentPositionHeld}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setCurrentPositionHeld(e.target.value)
-                }
-                autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                Start Date
-              </label>
-              <input
-                type={"date"}
-                id={"dob"}
-                value={currentPositionStartDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setCurrentPostionStartDate(e.target.value)
-                }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                End Date
-              </label>
-              <input
-                type={"date"}
-                id={"dob"}
-                value={currentPositionEndDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setCurrentPostionEndDate(e.target.value)
-                }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-              />
-            </div>
-
-            {/* <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                Years of Driving Experience
-              </label>
-              <input
-                required
-                type="text"
-                name="company"
-                id="company"
-                value={yearsOfDrivingExperience}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setYearsOfDrivingExperience(e.target.value)
-                }
-                autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div> */}
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm pb-2 font-medium text-gray-700"
+                  >
+                    Position Held
+                  </label>
+                  <input
+                    type="text"
+                    name="company"
+                    id="company"
+                    value={currentPositionHeld}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setCurrentPositionHeld(e.target.value)
+                    }
+                    autoComplete="organization"
+                    className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                  />
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm pb-2 font-medium text-gray-700"
+                  >
+                    Start Date
+                  </label>
+                  <input
+                    type={"date"}
+                    id={"dob"}
+                    value={currentPositionStartDate}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setCurrentPostionStartDate(e.target.value)
+                    }
+                    className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+                  />
+                </div>
+              </Fragment>
+            )}
           </div>
 
           <div className="pt-6 divide-y divide-gray-200">

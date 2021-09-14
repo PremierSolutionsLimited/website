@@ -210,14 +210,20 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 Telephone
               </label>
               <input
-                type="number"
+                type="tel"
                 name="company"
                 id="company"
                 required
+                min="0"
+                maxLength={10}
                 value={telephone}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setTelephone(e.target.value)
-                }
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (/[a-zA-Z]/.test(e.target.value)) {
+                    return setTelephone("");
+                  } else {
+                    setTelephone(e.target.value);
+                  }
+                }}
                 autoComplete="organization"
                 className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />

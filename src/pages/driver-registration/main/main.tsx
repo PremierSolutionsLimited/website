@@ -72,6 +72,7 @@ const MainComponent = () => {
   const [currentPositionEndDate, setCurrentPostionEndDate] =
     useState<string>("");
   const [currentPositionHeld, setCurrentPositionHeld] = useState<string>("");
+  const [isEmployed, setIsEmployed] = useState<string>("");
 
   // states for driver family information
   const [nextOfKinName, setNextOfKinName] = useState<string>("");
@@ -440,6 +441,8 @@ const MainComponent = () => {
                 {tab === "experience" && (
                   <Fragment>
                     <ExperienceComponent
+                      isEmployed={isEmployed}
+                      setIsEmployed={setIsEmployed}
                       setTab={setTab}
                       hadAccidents={hadAccidents}
                       setHadAccidents={setHadAccidents}
