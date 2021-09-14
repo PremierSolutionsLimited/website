@@ -2,9 +2,10 @@ import { Fragment } from "react";
 import { ScaleIcon, CheckCircleIcon, StarIcon } from "@heroicons/react/outline";
 import { BarChart } from "../chart";
 const cards = [
-  { name: "Active Requests", href: "#", icon: CheckCircleIcon, amount: "200" },
-  { name: "Total Number of Trips", href: "#", icon: ScaleIcon, amount: "100" },
-  { name: "Reviews", href: "#", icon: StarIcon, amount: "4.4" },
+  { name: " Trips Requested", href: "#", icon: CheckCircleIcon, amount: "200" },
+  { name: " Trips Completed", href: "#", icon: ScaleIcon, amount: "100" },
+  { name: "Vehicles in Fleet", href: "#", icon: StarIcon, amount: "40" },
+  { name: "Average Rating", href: "#", icon: StarIcon, amount: "4.4" },
   // More items...
 ];
 const MainComponent = () => {
@@ -16,7 +17,7 @@ const MainComponent = () => {
             <h2 className="text-lg leading-6 font-medium text-gray-900">
               Overview
             </h2>
-            <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {/* Card */}
               {cards.map((card) => (
                 <div
@@ -51,7 +52,7 @@ const MainComponent = () => {
                         href={card.href}
                         className="font-medium text-cyan-700 hover:text-cyan-900"
                       >
-                        View all
+                        {/* View all */}
                       </a>
                     </div>
                   </div>
@@ -65,7 +66,7 @@ const MainComponent = () => {
               className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-1"
             >
               <h2 className="text-lg leading-6 font-medium text-gray-900">
-                Weekly Summary
+                Monthly Summary of Trips Completed
               </h2>
               <div className="bg-white p-10 overflow-hidden shadow rounded-lg">
                 <BarChart />
