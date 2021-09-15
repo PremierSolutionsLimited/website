@@ -1,8 +1,9 @@
 import { Fragment } from "react";
 import { CircleSpinner } from "react-spinners-kit";
 import { PreviewComponentProp } from "./types";
-import moment from "moment";
 import { IGroupType } from "../data/types";
+import { getMoney } from "../../../../../../shared/ui-modules/broker";
+import moment from "moment";
 
 const PreviewComponent = ({
   handleSubmit,
@@ -27,13 +28,17 @@ const PreviewComponent = ({
   otherDamages,
   otherDamagesDescription,
   clientComments,
+  totalTripCost,
+  registeredVehicle,
 }: PreviewComponentProp) => {
   return (
     <Fragment>
       <dl className="grid grid-cols-1  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto gap-x-4 gap-y-8 sm:grid-cols-3">
         <div className="sm:col-span-1">
           <dt className="text-sm font-light text-gray-700">Trip Cost</dt>
-          <dd className="mt-1 text-sm text-gray-900">2,000.00</dd>
+          <dd className="mt-1 text-sm text-gray-900">
+            GH₵ {getMoney(totalTripCost)}
+          </dd>
         </div>
         <div className="sm:col-span-2">
           <dt className="text-sm font-light text-gray-700">Trip Start Date</dt>
@@ -89,6 +94,14 @@ const PreviewComponent = ({
           <dd className="mt-1 text-sm text-gray-900">{destinationAddress}</dd>
         </div>
 
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-light text-gray-700">
+            Registered Vehicle
+          </dt>
+          <dd className="mt-1 text-sm text-gray-900">
+            {registeredVehicle ? "Yes" : "No"}{" "}
+          </dd>
+        </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-light text-gray-700">
             Road Worthy Sticker
@@ -189,7 +202,7 @@ const PreviewComponent = ({
             type="button"
             disabled={loading}
             onClick={handleSubmit}
-            className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
+            className="inline-flex w-20 flex-row justify-center items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
           >
             {loading ? (
               <Fragment>

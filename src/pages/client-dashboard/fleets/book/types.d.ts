@@ -22,6 +22,7 @@ export interface BookTripInputProp {
     type: string;
     coordinates: number[];
   };
+  checklist: Checklist;
   dropOffLocationName: string;
   passengerAges: string[];
   notes?: string;
@@ -30,6 +31,54 @@ export interface BookTripInputProp {
 
 export interface BookTripOutputProp {
   createTripRequest: {
-    _id: string;
+    payment: {
+      authorizationUrl: string;
+    };
   };
+}
+
+export interface GetTripQuoteInputProp {
+  client: string;
+  vehicle: string;
+  tripType: string;
+  expectedStartTime: Date;
+  expectedEndTime: Date;
+  pickUpLocation: {
+    type: string;
+    coordinates: number[];
+  };
+  pickUpLocationName: $pickupLocationName;
+  dropOffLocation: {
+    type: string;
+    coordinates: number[];
+  };
+  dropOffLocationName: string;
+  passengerAges: string[];
+  notes?: string;
+  extraPassenger?: boolean;
+  checklist: Checklist;
+}
+
+export interface GetTripQuotepOutputProp {
+  getTripQuote: {
+    totalCost: string;
+  };
+}
+
+interface Checklist {
+  registeredVehicle: boolean;
+  validRoadWorthySticker: boolean;
+  validInsurance: boolean;
+  emergencyTriangle: boolean;
+  fireExtinguisher: boolean;
+  spareTyre: boolean;
+  clientComments: string;
+  damagesOnVehicle: DamagesInput[];
+  crackedWindScreens: DamagesInput[];
+  otherDamages: DamagesInput[];
+}
+export interface DamagesInput {
+  hasDamage: boolean;
+  description?: string;
+  image?: string;
 }

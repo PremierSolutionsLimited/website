@@ -54,7 +54,11 @@ export interface DestinationComponentProp {
 
 export interface ChecklistComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
+  handleSubmitTripQuote: (e: React.FormEvent<HTMLButtonElement>) => void;
+  loading: boolean;
   valuableItems: string[];
+  registeredVehicle: boolean;
+  setRegisteredVehicle: React.Dispatch<React.SetStateAction<boolean>>;
   dvlaRoadWorthy: boolean;
   setDVLARoadWorthy: React.Dispatch<React.SetStateAction<boolean>>;
   insurance: boolean;
@@ -81,6 +85,7 @@ export interface PreviewComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
   loading: boolean;
   handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
+  totalTripCost: string;
   selectedAgeGroup: IGroupType[];
   selectedDuration: IDurationType | undefined;
   durationTypeSelected: string;
@@ -90,6 +95,7 @@ export interface PreviewComponentProp {
   tripEndDate?: Date;
   originAddress: string;
   destinationAddress: string;
+  registeredVehicle: boolean;
   dvlaRoadWorthy: boolean;
   insurance: boolean;
   emergencyTriangle: boolean;

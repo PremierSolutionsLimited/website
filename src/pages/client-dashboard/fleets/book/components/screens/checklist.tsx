@@ -9,6 +9,8 @@ function classNames(...classes: any) {
 export default function CheckList({
   setTab,
   valuableItems,
+  registeredVehicle,
+  setRegisteredVehicle,
   dvlaRoadWorthy,
   setDVLARoadWorthy,
   insurance,
@@ -29,12 +31,45 @@ export default function CheckList({
   setOtherDamagesDescription,
   clientComments,
   setClientComments,
+  handleSubmitTripQuote,
+  loading,
 }: ChecklistComponentProp) {
   return (
     <Fragment>
       <div className="pt-0  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
         <div className="px-4 sm:px-6">
           <ul className="mt-2 divide-y divide-gray-200">
+            <Switch.Group
+              as="li"
+              className="py-3 flex items-center justify-between"
+            >
+              <div className="flex flex-col">
+                <Switch.Label
+                  as="p"
+                  className="text-sm font-medium text-gray-900"
+                  passive
+                >
+                  Registered Vehicle
+                </Switch.Label>
+              </div>
+              <Switch
+                checked={registeredVehicle}
+                onChange={setRegisteredVehicle}
+                className={classNames(
+                  registeredVehicle ? "bg-green-500" : "bg-gray-200",
+                  "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
+                )}
+              >
+                <span className="sr-only">Use setting</span>
+                <span
+                  aria-hidden="true"
+                  className={classNames(
+                    registeredVehicle ? "translate-x-5" : "translate-x-0",
+                    "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                  )}
+                />
+              </Switch>
+            </Switch.Group>
             <Switch.Group
               as="li"
               className="py-3 flex items-center justify-between"
@@ -351,10 +386,14 @@ export default function CheckList({
         <span className="inline-flex rounded-none shadow-sm ">
           <button
             type="button"
-            onClick={() => setTab("preview")}
+            onClick={handleSubmitTripQuote}
+            disabled={loading}
             className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
           >
-            <span className="mx-1">Next</span>
+            <span className="mx-1">
+              {" "}
+              {loading ? "Processing..." : "Preview & Pay"}
+            </span>
           </button>
         </span>
       </div>
