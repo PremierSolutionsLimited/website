@@ -52,7 +52,29 @@ export interface DestinationComponentProp {
   setAddress: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export interface ChecklistComponentProp {}
+export interface ChecklistComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  dvlaRoadWorthy: boolean;
+  setDVLARoadWorthy: React.Dispatch<React.SetStateAction<boolean>>;
+  insurance: boolean;
+  setInsurance: React.Dispatch<React.SetStateAction<boolean>>;
+  emergencyTriangle: boolean;
+  setEmergencyTriangle: React.Dispatch<React.SetStateAction<boolean>>;
+  fireExtinguisher: boolean;
+  setFireExtinguisher: React.Dispatch<React.SetStateAction<boolean>>;
+  spareTyre: boolean;
+  setSpareTyre: React.Dispatch<React.SetStateAction<boolean>>;
+  damageOnVehicle: boolean;
+  setDamageOnVehicle: React.Dispatch<React.SetStateAction<boolean>>;
+  crackedWindScreens: boolean;
+  setCrackedWindScreens: React.Dispatch<React.SetStateAction<boolean>>;
+  otherDamages: boolean;
+  setOtherDamages: React.Dispatch<React.SetStateAction<boolean>>;
+  otherDamagesDescription: string;
+  setOtherDamagesDescription: React.Dispatch<React.SetStateAction<string>>;
+  clientComments: string;
+  setClientComments: React.Dispatch<React.SetStateAction<string>>;
+}
 
 export interface PreviewComponentProp {
   loading: boolean;

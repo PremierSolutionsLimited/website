@@ -222,10 +222,10 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                     tab === "checklist" ? "text-pink-600" : "text-gray-500"
                   } `}
                 >
-                  CheckList
+                  Vehicle CheckList
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
-                  Provide your checklist so our driver can verify.
+                  Provide your vehicle checklist so our driver can verify.
                 </p>
               </div>
             </div>
@@ -275,7 +275,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                   Preview
                 </h3>
                 <p className="text-sm font-light leading-5 text-gray-500">
-                  Confirm your trip details.
+                  Confirm your trip details and pay.
                 </p>
               </div>
             </div>

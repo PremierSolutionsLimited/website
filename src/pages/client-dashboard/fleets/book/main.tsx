@@ -14,6 +14,7 @@ import { useHistory } from "react-router-dom";
 import TripComponent from "./components/screens/trip";
 import OriginComponent from "./components/screens/origin";
 import DestinationComponent from "./components/screens/destination";
+import CheckListComponent from "./components/screens/checklist";
 import StepComponent from "./components/bones";
 import toast from "react-hot-toast";
 import _ from "lodash";
@@ -58,6 +59,19 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [dropOffLat, setDropOffLat] = useState<string>("");
   const [dropOffLng, setDropOffLng] = useState<string>("");
   const [dropOffAddress, setDropOffAddress] = useState<string>("");
+
+  // states for check list
+  const [dvlaRoadWorthy, setDVLARoadWorthy] = useState<boolean>(false);
+  const [insurance, setInsurance] = useState<boolean>(false);
+  const [emergencyTriangle, setEmergencyTriangle] = useState<boolean>(false);
+  const [fireExtinguisher, setFireExtinguisher] = useState<boolean>(false);
+  const [spareTyre, setSpareTyre] = useState<boolean>(false);
+  const [damageOnVehicle, setDamageOnVehicle] = useState<boolean>(false);
+  const [crackedWindScreens, setCrackedWindScreens] = useState<boolean>(false);
+  const [otherDamages, setOtherDamages] = useState<boolean>(false);
+  const [otherDamagesDescription, setOtherDamagesDescription] =
+    useState<string>("");
+  const [clientComments, setClientComments] = useState<string>("");
 
   const [invokeBookTripRequest, { loading }] = useMutation<
     BookTripOutputProp,
@@ -141,7 +155,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                 <StepComponent tab={tab} />
               </div>
             </div>
-            <div className="sm:col-span-5 md:col-span-3 ml-0 sm:ml-0 md:ml-5 ">
+            <div className="sm:col-span-5 md:col-span-3 ml-0 sm:ml-0 md:ml-5  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto ">
               {tab === "trip" && (
                 <Fragment>
                   <TripComponent
@@ -181,6 +195,33 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setLat={setDropOffLat}
                     setLng={setDropOffLng}
                     setAddress={setDropOffAddress}
+                  />
+                </Fragment>
+              )}
+              {tab === "checklist" && (
+                <Fragment>
+                  <CheckListComponent
+                    setTab={setTab}
+                    dvlaRoadWorthy={dvlaRoadWorthy}
+                    setDVLARoadWorthy={setDVLARoadWorthy}
+                    insurance={insurance}
+                    setInsurance={setInsurance}
+                    emergencyTriangle={emergencyTriangle}
+                    setEmergencyTriangle={setEmergencyTriangle}
+                    fireExtinguisher={fireExtinguisher}
+                    setFireExtinguisher={setFireExtinguisher}
+                    spareTyre={spareTyre}
+                    setSpareTyre={setSpareTyre}
+                    damageOnVehicle={damageOnVehicle}
+                    setDamageOnVehicle={setDamageOnVehicle}
+                    crackedWindScreens={crackedWindScreens}
+                    setCrackedWindScreens={setCrackedWindScreens}
+                    otherDamages={otherDamages}
+                    setOtherDamages={setOtherDamages}
+                    otherDamagesDescription={otherDamagesDescription}
+                    setOtherDamagesDescription={setOtherDamagesDescription}
+                    clientComments={clientComments}
+                    setClientComments={setClientComments}
                   />
                 </Fragment>
               )}
