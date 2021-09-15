@@ -36,7 +36,7 @@ export default function Trip({
   );
   return (
     <Fragment>
-      <div className="grid grid-cols-12 gap-3">
+      <div className="grid grid-cols-12 gap-3  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto">
         <div className="col-span-12 sm:col-span-12 md:col-span-12">
           <label
             htmlFor="url"

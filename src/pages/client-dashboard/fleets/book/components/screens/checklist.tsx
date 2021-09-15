@@ -8,6 +8,7 @@ function classNames(...classes: any) {
 
 export default function CheckList({
   setTab,
+  valuableItems,
   dvlaRoadWorthy,
   setDVLARoadWorthy,
   insurance,
@@ -31,12 +32,12 @@ export default function CheckList({
 }: ChecklistComponentProp) {
   return (
     <Fragment>
-      <div className="pt-0 divide-y divide-gray-200">
+      <div className="pt-0  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
         <div className="px-4 sm:px-6">
           <ul className="mt-2 divide-y divide-gray-200">
             <Switch.Group
               as="li"
-              className="py-4 flex items-center justify-between"
+              className="py-3 flex items-center justify-between"
             >
               <div className="flex flex-col">
                 <Switch.Label
@@ -67,7 +68,7 @@ export default function CheckList({
             </Switch.Group>
             <Switch.Group
               as="li"
-              className="py-4 flex items-center justify-between"
+              className="py-3 flex items-center justify-between"
             >
               <div className="flex flex-col">
                 <Switch.Label
@@ -98,7 +99,7 @@ export default function CheckList({
             </Switch.Group>
             <Switch.Group
               as="li"
-              className="py-4 flex items-center justify-between"
+              className="py-3 flex items-center justify-between"
             >
               <div className="flex flex-col">
                 <Switch.Label
@@ -129,7 +130,7 @@ export default function CheckList({
             </Switch.Group>
             <Switch.Group
               as="li"
-              className="py-4 flex items-center justify-between"
+              className="py-3 flex items-center justify-between"
             >
               <div className="flex flex-col">
                 <Switch.Label
@@ -160,7 +161,7 @@ export default function CheckList({
             </Switch.Group>
             <Switch.Group
               as="li"
-              className="py-4 flex items-center justify-between"
+              className="py-3 flex items-center justify-between"
             >
               <div className="flex flex-col">
                 <Switch.Label
@@ -191,7 +192,7 @@ export default function CheckList({
             </Switch.Group>
             <Switch.Group
               as="li"
-              className="py-4 flex items-center justify-between"
+              className="py-3 flex items-center justify-between"
             >
               <div className="flex flex-col">
                 <Switch.Label
@@ -222,7 +223,7 @@ export default function CheckList({
             </Switch.Group>
             <Switch.Group
               as="li"
-              className="py-4 flex items-center justify-between"
+              className="py-3 flex items-center justify-between"
             >
               <div className="flex flex-col">
                 <Switch.Label
@@ -253,7 +254,7 @@ export default function CheckList({
             </Switch.Group>
             <Switch.Group
               as="li"
-              className="py-4 flex items-center justify-between"
+              className="py-3 flex items-center justify-between"
             >
               <div className="flex flex-col">
                 <Switch.Label

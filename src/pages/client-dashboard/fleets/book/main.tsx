@@ -15,6 +15,7 @@ import TripComponent from "./components/screens/trip";
 import OriginComponent from "./components/screens/origin";
 import DestinationComponent from "./components/screens/destination";
 import CheckListComponent from "./components/screens/checklist";
+import PreviewComponent from "./components/screens/preview";
 import StepComponent from "./components/bones";
 import toast from "react-hot-toast";
 import _ from "lodash";
@@ -61,6 +62,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [dropOffAddress, setDropOffAddress] = useState<string>("");
 
   // states for check list
+  const [valuableItems, setValuableItems] = useState<string[]>([]);
   const [dvlaRoadWorthy, setDVLARoadWorthy] = useState<boolean>(false);
   const [insurance, setInsurance] = useState<boolean>(false);
   const [emergencyTriangle, setEmergencyTriangle] = useState<boolean>(false);
@@ -155,7 +157,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                 <StepComponent tab={tab} />
               </div>
             </div>
-            <div className="sm:col-span-5 md:col-span-3 ml-0 sm:ml-0 md:ml-5  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto ">
+            <div className="sm:col-span-5 md:col-span-3 ml-0 sm:ml-0 md:ml-5  ">
               {tab === "trip" && (
                 <Fragment>
                   <TripComponent
@@ -202,6 +204,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                 <Fragment>
                   <CheckListComponent
                     setTab={setTab}
+                    valuableItems={valuableItems}
                     dvlaRoadWorthy={dvlaRoadWorthy}
                     setDVLARoadWorthy={setDVLARoadWorthy}
                     insurance={insurance}
@@ -222,6 +225,35 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setOtherDamagesDescription={setOtherDamagesDescription}
                     clientComments={clientComments}
                     setClientComments={setClientComments}
+                  />
+                </Fragment>
+              )}
+
+              {tab === "preview" && (
+                <Fragment>
+                  <PreviewComponent
+                    handleSubmit={handleSubmit}
+                    loading={loading}
+                    setTab={setTab}
+                    tripEndDate={endTime}
+                    selectedAgeGroup={selectedAgeGroup}
+                    selectedDuration={durationType}
+                    durationTypeSelected={durationTypeSelected}
+                    duration={duration}
+                    requestType={requestType}
+                    tripStartDate={tripStartDate}
+                    originAddress={pickupAddress}
+                    destinationAddress={dropOffAddress}
+                    dvlaRoadWorthy={dvlaRoadWorthy}
+                    insurance={insurance}
+                    emergencyTriangle={emergencyTriangle}
+                    fireExtinguisher={fireExtinguisher}
+                    spareTyre={spareTyre}
+                    damageOnVehicle={damageOnVehicle}
+                    crackedWindScreens={crackedWindScreens}
+                    otherDamages={otherDamages}
+                    otherDamagesDescription={otherDamagesDescription}
+                    clientComments={clientComments}
                   />
                 </Fragment>
               )}

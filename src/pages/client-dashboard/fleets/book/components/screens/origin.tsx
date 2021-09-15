@@ -10,10 +10,7 @@ export default function Origin({
 }: OriginComponentProp) {
   return (
     <Fragment>
-      <div
-        style={{ height: "57vh" }}
-        className="mt-0 overflow-y-scroll scrollContainer "
-      >
+      <div className="mt-0  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto  scrollContainer ">
         <GoogleMap setLng={setLng} setLat={setLat} setAddress={setAddress} />
       </div>
       <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">
