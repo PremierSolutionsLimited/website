@@ -106,7 +106,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
       <BasicModal
         show={show}
         setShow={setShow}
-        size={isTabletOrMobile ? 100 : 55}
+        size={isTabletOrMobile ? 100 : 58}
         canClose={false}
       >
         <div className="p-8 ">
@@ -181,8 +181,6 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setLat={setDropOffLat}
                     setLng={setDropOffLng}
                     setAddress={setDropOffAddress}
-                    handleSubmit={handleSubmit}
-                    loading={loading}
                   />
                 </Fragment>
               )}

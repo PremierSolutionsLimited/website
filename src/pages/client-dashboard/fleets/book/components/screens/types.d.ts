@@ -50,6 +50,11 @@ export interface DestinationComponentProp {
   setLng: React.Dispatch<React.SetStateAction<string>>;
   setLat: React.Dispatch<React.SetStateAction<string>>;
   setAddress: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface ChecklistComponentProp {}
+
+export interface PreviewComponentProp {
   loading: boolean;
-  handleSubmit: any;
+  handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
 }
