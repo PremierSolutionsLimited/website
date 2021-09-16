@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { StageSpinner } from "react-spinners-kit";
 import { useRegistrationProvider } from "../../../services/context";
 import { differenceInCalendarYears } from "date-fns";
+import { DatePicker } from "antd";
 import Logo from "../../../assets/images/logo.png";
 
 const bgImage =
@@ -236,7 +237,16 @@ const DriverSignup = () => {
                       Date of Birth
                     </label>
                     <div className={" bg-gray-100 p-1.5"}>
-                      <input
+                      <DatePicker
+                        // value={value}
+                        onChange={(data: any) => {
+                          setDob(data);
+                        }}
+                        className={
+                          "border border-none w-full bg-gray-100 focus:border-none"
+                        }
+                      />
+                      {/* <input
                         required
                         type={"date"}
                         id={"dob"}
@@ -246,7 +256,7 @@ const DriverSignup = () => {
                           setDob(e.target.value)
                         }
                         className="mt-1 block w-full pl-1 pr-1 py-1 text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-                      />
+                      /> */}
                     </div>
                     {isDriverBelowAge && (
                       <Fragment>

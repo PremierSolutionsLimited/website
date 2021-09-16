@@ -12,8 +12,6 @@ import { GET_SUMMARY } from "../../../../services/graphql/dashboard/query";
 const MainComponent = () => {
   const { data, loading } = useQuery(GET_SUMMARY);
 
-  console.log("data", data);
-
   return (
     <Fragment>
       <div className="max-w-7xl mx-auto items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 ">
