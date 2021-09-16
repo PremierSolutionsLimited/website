@@ -8,6 +8,7 @@ import { IDurationType } from "../data/types";
 import { useQuery } from "@apollo/client";
 import { GetTypesInput, GetTypesOutput } from "./types";
 import { GET_TRIP_TYPE } from "../../../../../../services/graphql/fleet";
+import { DatePicker } from "antd";
 import DurationType from "../bones/durationType";
 import AgeGroup1 from "../bones/ageGroup1";
 import AgeGroup2 from "../bones/ageGroup2";
@@ -38,7 +39,7 @@ export default function Trip({
 
   const handleNext = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (tripStartDate.trim() === "") {
+    if (!tripStartDate) {
       return toast.error("Please select trip start date");
     }
     if (durationTypeSelected.trim() === "") {
@@ -67,7 +68,24 @@ export default function Trip({
             Trip Start Date <span className={"text-red-600"}>*</span>
           </label>
           <div className="mt-1 rounded-none shadow-none">
-            <input
+            <DatePicker
+              // value={value}
+              onChange={(data: any) => {
+                setTripStartDate(data);
+                if (duration && selectedDuration) {
+                  getFinalDateWithDateInput(
+                    durationTypeSelected,
+                    duration,
+                    (tripStartDate = data),
+                    setEndTime
+                  );
+                }
+              }}
+              showTime
+              className={"border"}
+            />
+
+            {/* <input
               required
               type={"datetime-local"}
               id={"dob"}
@@ -84,7 +102,7 @@ export default function Trip({
                 }
               }}
               className="mt-1 block w-full pl-3 pr-4 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
-            />
+            /> */}
           </div>
         </div>
 

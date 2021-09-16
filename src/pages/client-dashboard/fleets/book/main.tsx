@@ -7,7 +7,7 @@ import {
   GetTripQuotepOutputProp,
   DamagesInput,
 } from "./types";
-import { BasicModal } from "../../../../components/modal";
+import { Modal } from "../../../../components/modal/custom";
 import { useMediaQuery } from "react-responsive";
 import { IDurationType, IGroupType } from "./components/data/types";
 import { ApolloError, useMutation } from "@apollo/client";
@@ -54,7 +54,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [durationTypeSelected, setDurationTypeSelected] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
   const [requestType, setRequesType] = useState<string>("");
-  const [tripStartDate, setTripStartDate] = useState<string>("");
+  const [tripStartDate, setTripStartDate] = useState<any>("");
   const [endTime, setEndTime] = useState<Date | undefined>();
 
   const [pickupLat, setPickupLat] = useState<string>("");
@@ -207,13 +207,13 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   return (
     <Fragment>
-      <BasicModal
+      <Modal
         show={show}
         setShow={setShow}
         size={isTabletOrMobile ? 100 : 58}
         canClose={false}
       >
-        <div className="p-8 ">
+        <div className="p-2 ">
           <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
             <button
               onClick={() => setShow(false)}
@@ -354,7 +354,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
             </div>
           </div>
         </div>
-      </BasicModal>
+      </Modal>
     </Fragment>
   );
 };
