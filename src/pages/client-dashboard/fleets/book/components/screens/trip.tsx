@@ -8,10 +8,12 @@ import { IDurationType } from "../data/types";
 import { useQuery } from "@apollo/client";
 import { GetTypesInput, GetTypesOutput } from "./types";
 import { GET_TRIP_TYPE } from "../../../../../../services/graphql/fleet";
+import { DatePicker } from "antd";
 import DurationType from "../bones/durationType";
 import AgeGroup1 from "../bones/ageGroup1";
 import AgeGroup2 from "../bones/ageGroup2";
 import moment from "moment";
+import toast from "react-hot-toast";
 
 export default function Trip({
   selectedAgeGroup,
@@ -34,18 +36,56 @@ export default function Trip({
   const { data, loading } = useQuery<GetTypesOutput, GetTypesInput>(
     GET_TRIP_TYPE
   );
+
+  const handleNext = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!tripStartDate) {
+      return toast.error("Please select trip start date");
+    }
+    if (durationTypeSelected.trim() === "") {
+      return toast.error("Please select duration type");
+    }
+    if (duration?.trim() === "") {
+      return toast.error("Please specify the duration of your trip");
+    }
+    if (requestType?.trim() === "") {
+      return toast.error("Please specify the request type");
+    }
+    if (selectedAgeGroup?.length < 1) {
+      return toast.error("Please select age group or groups");
+    }
+
+    setTab("origin");
+  };
   return (
     <Fragment>
-      <div className="grid grid-cols-12 gap-3">
+      <div className="grid grid-cols-12 gap-3  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto">
         <div className="col-span-12 sm:col-span-12 md:col-span-12">
           <label
             htmlFor="url"
             className="block text-sm pb-1 font-medium text-gray-700"
           >
-            Trip Start Date
+            Trip Start Date <span className={"text-red-600"}>*</span>
           </label>
           <div className="mt-1 rounded-none shadow-none">
-            <input
+            <DatePicker
+              // value={value}
+              onChange={(data: any) => {
+                setTripStartDate(data);
+                if (duration && selectedDuration) {
+                  getFinalDateWithDateInput(
+                    durationTypeSelected,
+                    duration,
+                    (tripStartDate = data),
+                    setEndTime
+                  );
+                }
+              }}
+              showTime
+              className={"border"}
+            />
+
+            {/* <input
               required
               type={"datetime-local"}
               id={"dob"}
@@ -62,7 +102,7 @@ export default function Trip({
                 }
               }}
               className="mt-1 block w-full pl-3 pr-4 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
-            />
+            /> */}
           </div>
         </div>
 
@@ -71,7 +111,7 @@ export default function Trip({
             htmlFor="url"
             className="block text-sm pb-1 font-medium text-gray-700"
           >
-            Duration Type
+            Duration Type <span className={"text-red-600"}>*</span>
           </label>
           <div className="mt-1 rounded-none shadow-none ">
             <DurationType
@@ -89,11 +129,13 @@ export default function Trip({
             htmlFor="url"
             className="block text-sm pb-1 font-medium text-gray-700"
           >
-            Number of {durationTypeSelected}
+            Number of {durationTypeSelected}{" "}
+            <span className={"text-red-600"}>*</span>
           </label>
           <input
-            type="text"
+            type="number"
             required
+            min="0"
             value={duration}
             onChange={(e) => {
               setDuration(e.target.value);
@@ -115,7 +157,7 @@ export default function Trip({
             htmlFor="url"
             className="block text-sm pb-0 font-medium text-gray-700"
           >
-            Request Type
+            Request Type <span className={"text-red-600"}>*</span>
           </label>
           <div className="mt-1 rounded-none shadow-none">
             <select
@@ -188,7 +230,7 @@ export default function Trip({
             htmlFor="url"
             className="block text-sm pb-1 font-medium text-gray-700"
           >
-            Age Group
+            Age Group <span className={"text-red-600"}>*</span>
           </label>
           <div className="mt-1 rounded-none shadow-none">
             <AgeGroup1
@@ -224,7 +266,7 @@ export default function Trip({
         <span className="inline-flex rounded-none shadow-sm ">
           <button
             type="button"
-            onClick={() => setTab("origin")}
+            onClick={handleNext}
             className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
           >
             <span className="mx-1">Next</span>

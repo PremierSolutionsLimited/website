@@ -61,3 +61,27 @@ export const resetClientCode = gql`
     }
   }
 `;
+
+export const updateCurrentClient = gql`
+  mutation (
+    $firstName: String
+    $lastName: String
+    $otherNames: String
+    $username: String
+    $email: String
+    $phone: String
+  ) {
+    updateCurrentClient(
+      input: {
+        username: $username
+        lastName: $lastName
+        firstName: $firstName
+        email: $email
+        phone: $phone
+        otherNames: $otherNames
+      }
+    ) {
+      token
+    }
+  }
+`;

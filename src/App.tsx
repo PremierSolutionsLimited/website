@@ -24,6 +24,9 @@ const App = () => {
           // Default options for specific types
           success: {
             duration: 8000,
+            style: {
+              textAlign: "center",
+            },
             theme: {
               primary: "green",
               secondary: "black",
@@ -31,6 +34,7 @@ const App = () => {
           },
           error: {
             style: {
+              textAlign: "center",
               background: "#f44336",
             },
             duration: 8000,
