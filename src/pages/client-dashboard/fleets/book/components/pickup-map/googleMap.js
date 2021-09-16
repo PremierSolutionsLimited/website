@@ -1,5 +1,6 @@
 // MyGoogleMaps.js
 import React, { Component } from "react";
+import { truncateText } from "../../../../../../shared/ui-modules/truncateText";
 import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
 import AutoComplete from "./autoComplete";
@@ -88,8 +89,8 @@ class MyGoogleMap extends Component {
     geocoder.geocode(
       { location: { lat: this.state.lat, lng: this.state.lng } },
       (results, status) => {
-        console.log(results);
-        console.log(status);
+        // console.log(results);
+        // console.log(status);
         if (status === "OK") {
           if (results[0]) {
             this.zoom = 12;
@@ -138,7 +139,7 @@ class MyGoogleMap extends Component {
             <div className="sm:col-span-3 mt-0 ">
               <div className="bg-gray-800 w-full p-3 rounded-md my-4">
                 <div className="font-medium text-sm mt-0 text-white">
-                  <span>{this.state.address}</span>
+                  <span>{truncateText(this.state.address, 20)}</span>
                 </div>
                 <div className="flex flex-row items-center my-0.5">
                   <svg

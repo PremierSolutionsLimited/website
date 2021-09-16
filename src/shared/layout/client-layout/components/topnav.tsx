@@ -51,7 +51,7 @@ const TopNav = () => {
                           to={item?.href}
                           className={classNames(
                             item.href === pathname
-                              ? "border-pink-500 text-pink-500"
+                              ? "border-pink-500 text-pink-500 hover:text-pink-500 "
                               : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
                             "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                           )}
@@ -178,7 +178,7 @@ const TopNav = () => {
                     to={item.href}
                     className={classNames(
                       item.href === pathname
-                        ? "bg-pink-50 border-pink-500 text-pink-500"
+                        ? "bg-pink-50 border-pink-500 hover:text-pink-500 text-pink-500"
                         : "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800",
                       "block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                     )}

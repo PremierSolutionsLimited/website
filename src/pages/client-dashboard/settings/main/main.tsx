@@ -1,7 +1,17 @@
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useCurrentClient } from "../../../../services/context/currentClient";
+import {
+  UpdateCurrentClientInputProp,
+  UpdateCurrentClientOutputProp,
+} from "./types";
+
+import { ApolloError, useMutation } from "@apollo/client";
+import { UPDATE_CURRENT_CLIENT } from "../../../../services/graphql/auth";
+import { v4 } from "uuid";
+import { storage } from "../../../../services/firebase";
 import ProfileImage from "../../../../assets/images/male.jpeg";
 import moment from "moment";
+import toast from "react-hot-toast";
 
 const MainComponent = () => {
   const [firstName, setFirstName] = useState<string>("");
@@ -12,7 +22,17 @@ const MainComponent = () => {
   const [phone, setPhone] = useState<string>("");
   const [photograph, setPhotograph] = useState<string>("");
 
+  // for clients's image
+  const [clientFile, setClientFile] = useState<any>(null);
+  const [clientImageUrl, setClientImageUrl] = useState<string>("");
+  const [uploadingToFirebase, setUploadingToFirebase] =
+    useState<boolean>(false);
+
   const currentClient = useCurrentClient();
+  const [invokeUpdateClient, { loading }] = useMutation<
+    UpdateCurrentClientOutputProp,
+    UpdateCurrentClientInputProp
+  >(UPDATE_CURRENT_CLIENT);
 
   useEffect(() => {
     if (currentClient) {
@@ -25,6 +45,80 @@ const MainComponent = () => {
       setPhotograph(currentClient?.photograph);
     }
   }, [currentClient]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (clientFile) {
+      setUploadingToFirebase(true);
+      let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
+      const uploadTask = storage.ref(`/clients/${fileName}`).put(clientFile);
+      uploadTask.on(
+        "state_changed",
+        (snapShot: any) => {},
+        (err: any) => {
+          setUploadingToFirebase(false);
+          return toast.error(err?.message);
+        },
+        () => {
+          storage
+            .ref("clients")
+            .child(fileName)
+            .getDownloadURL()
+            .then((fireBaseUrl: string) => {
+              invokeUpdateClient({
+                variables: {
+                  phone,
+                  lastName,
+                  otherNames,
+                  firstName,
+                  username,
+                  photograph: fireBaseUrl,
+                  email,
+                },
+              })
+                .then(() => {
+                  toast.success("Profile updated successfully");
+                  setUploadingToFirebase(false);
+                })
+                .catch((e: ApolloError) => {
+                  console.log("error", e);
+                  return toast.error(e.graphQLErrors[0].message);
+                });
+            });
+        }
+      );
+    } else {
+      invokeUpdateClient({
+        variables: {
+          phone,
+          lastName,
+          otherNames,
+          firstName,
+          username,
+          photograph,
+          email,
+        },
+      })
+        .then(() => {
+          toast.success("Profile updated successfully");
+          setUploadingToFirebase(false);
+        })
+        .catch((e: ApolloError) => {
+          return toast.error(e.graphQLErrors[0].message);
+        });
+    }
+  };
+
+  // function to handle image upload from client's pc
+  const handleImageUpload = (e: any) => {
+    if (e.target.files[0] !== undefined) {
+      setClientImageUrl(URL.createObjectURL(e.target.files[0]));
+      setClientFile(e.target.files[0]);
+    } else {
+      setClientImageUrl(URL.createObjectURL(clientFile));
+      setClientFile(clientFile);
+    }
+  };
   return (
     <Fragment>
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
@@ -35,7 +129,10 @@ const MainComponent = () => {
               Account Settings
             </h1>
 
-            <form className="mt-6 space-y-8 divide-y divide-y-gray-200">
+            <form
+              onSubmit={handleSubmit}
+              className="mt-6 space-y-8 divide-y divide-y-gray-200"
+            >
               <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-6 sm:gap-x-4">
                 <div className="sm:col-span-6">
                   <h2 className="text-xl font-medium text-gray-900">Profile</h2>
@@ -127,11 +224,24 @@ const MainComponent = () => {
                     Photo
                   </label>
                   <div className="mt-1 flex items-center">
-                    <img
-                      className="inline-block h-14 w-14 rounded-full"
-                      src={photograph || ProfileImage}
-                      alt=""
-                    />
+                    {clientImageUrl ? (
+                      <Fragment>
+                        <img
+                          className="inline-block h-14 w-14 rounded-full"
+                          src={clientImageUrl || ProfileImage}
+                          alt=""
+                        />
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        <img
+                          className="inline-block h-14 w-14 rounded-full"
+                          src={photograph || ProfileImage}
+                          alt=""
+                        />
+                      </Fragment>
+                    )}
+
                     <div className="ml-4 flex">
                       <div className="relative bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm flex items-center cursor-pointer hover:bg-gray-50 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-50 focus-within:ring-blue-500">
                         <label
@@ -145,10 +255,11 @@ const MainComponent = () => {
                           id="user-photo"
                           name="user-photo"
                           type="file"
+                          onChange={handleImageUpload}
                           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
                         />
                       </div>
-                      {photograph && (
+                      {/* {photograph && (
                         <Fragment>
                           <button
                             type="button"
@@ -157,7 +268,7 @@ const MainComponent = () => {
                             Remove
                           </button>
                         </Fragment>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>
@@ -219,9 +330,10 @@ const MainComponent = () => {
                 </button>
                 <button
                   type="submit"
+                  disabled={uploadingToFirebase || loading}
                   className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-600"
                 >
-                  Save
+                  {uploadingToFirebase || loading ? "Saving..." : "Save"}
                 </button>
               </div>
             </form>

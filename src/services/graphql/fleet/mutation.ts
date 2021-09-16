@@ -70,6 +70,7 @@ export const createTripRequest = gql`
     $passengerAges: [PassengerAge]
     $extraPassenger: Boolean
     $notes: String
+    $checklist: TripChecklistInput
   ) {
     createTripRequest(
       input: {
@@ -85,9 +86,50 @@ export const createTripRequest = gql`
         passengerAges: $passengerAges
         notes: $notes
         extraPassenger: $extraPassenger
+        checklist: $checklist
       }
     ) {
-      _id
+      payment {
+        authorizationUrl
+      }
+    }
+  }
+`;
+
+export const getTripQuote = gql`
+  mutation (
+    $client: ID
+    $vehicle: ID
+    $tripType: ID
+    $expectedStartTime: Date
+    $expectedEndTime: Date
+    $pickUpLocation: LocationInput
+    $dropOffLocation: LocationInput
+    $pickUpLocationName: String
+    $dropOffLocationName: String
+    $passengerAges: [PassengerAge]
+    $extraPassenger: Boolean
+    $notes: String
+    $checklist: TripChecklistInput
+  ) {
+    getTripQuote(
+      input: {
+        client: $client
+        vehicle: $vehicle
+        tripType: $tripType
+        expectedStartTime: $expectedStartTime
+        expectedEndTime: $expectedEndTime
+        pickUpLocation: $pickUpLocation
+        pickUpLocationName: $pickUpLocationName
+        dropOffLocation: $dropOffLocation
+        dropOffLocationName: $dropOffLocationName
+        passengerAges: $passengerAges
+        notes: $notes
+        extraPassenger: $extraPassenger
+        checklist: $checklist
+      }
+    ) {
+      totalCost
     }
   }
 `;
