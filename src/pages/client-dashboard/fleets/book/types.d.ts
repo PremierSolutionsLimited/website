@@ -12,13 +12,13 @@ export interface BookTripInputProp {
   vehicle: string;
   tripType: string;
   expectedStartTime: Date;
-  expectedEndTime: Date;
-  pickUpLocation: {
+  expectedEndTime?: Date;
+  pickUpLocation?: {
     type: string;
     coordinates: number[];
   };
-  pickUpLocationName: $pickupLocationName;
-  dropOffLocation: {
+  pickUpLocationName: string;
+  dropOffLocation?: {
     type: string;
     coordinates: number[];
   };
@@ -47,7 +47,7 @@ export interface GetTripQuoteInputProp {
     type: string;
     coordinates: number[];
   };
-  pickUpLocationName: $pickupLocationName;
+  pickUpLocationName: string;
   dropOffLocation: {
     type: string;
     coordinates: number[];
@@ -74,11 +74,11 @@ interface Checklist {
   spareTyre: boolean;
   clientComments: string;
   damagesOnVehicle: DamagesInput[];
-  crackedWindScreens: DamagesInput[];
+  crackedWindscreens: DamagesInput[];
   otherDamages: DamagesInput[];
 }
 export interface DamagesInput {
   hasDamage: boolean;
-  description?: string;
-  image?: string;
+  description: string;
+  image: string;
 }

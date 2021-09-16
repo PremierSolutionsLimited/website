@@ -10,7 +10,7 @@ export default function Destination({
 }: DestinationComponentProp) {
   return (
     <Fragment>
-      <div className="mt-0  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto scrollContainer ">
+      <div className="mt-0  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto scrollContainer ">
         <GoogleMap setLng={setLng} setLat={setLat} setAddress={setAddress} />
       </div>
       <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">

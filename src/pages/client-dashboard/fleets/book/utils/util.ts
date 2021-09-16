@@ -4,8 +4,8 @@ export const getDamages = (status: boolean, description?: string) => {
   let result: DamagesInput[] = [];
   result.push({
     hasDamage: status,
-    description: description || undefined,
-    image: undefined,
+    description: description || "",
+    image: "",
   });
 
   return result;

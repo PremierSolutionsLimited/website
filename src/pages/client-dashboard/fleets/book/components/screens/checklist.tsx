@@ -36,7 +36,7 @@ export default function CheckList({
 }: ChecklistComponentProp) {
   return (
     <Fragment>
-      <div className="pt-0  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
+      <div className="pt-0  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
         <div className="px-4 sm:px-6">
           <ul className="mt-2 divide-y divide-gray-200">
             <Switch.Group

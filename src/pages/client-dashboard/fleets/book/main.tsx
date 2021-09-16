@@ -16,7 +16,6 @@ import {
   GET_TRIP_QUOTE,
 } from "../../../../services/graphql/fleet";
 import { useCurrentClient } from "../../../../services/context/currentClient";
-import { useHistory } from "react-router-dom";
 import { getDamages } from "./utils/util";
 import TripComponent from "./components/screens/trip";
 import OriginComponent from "./components/screens/origin";
@@ -49,12 +48,10 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   });
 
   const currentClient = useCurrentClient();
-  const { push } = useHistory();
   const [tab, setTab] = useState<string>("trip");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<IGroupType[]>([]);
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
-  const [durationTypeSelected, setDurationTypeSelected] =
-    useState<string>("Hours");
+  const [durationTypeSelected, setDurationTypeSelected] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
   const [requestType, setRequesType] = useState<string>("");
   const [tripStartDate, setTripStartDate] = useState<string>("");
@@ -108,7 +105,6 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
       otherDamagesDescription
     );
     let passengerAges: string[] = getPassengers(selectedAgeGroup);
-
     invokeGetTripRequest({
       variables: {
         client: currentClient?._id as string,
@@ -134,7 +130,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
           spareTyre: spareTyre,
           clientComments: clientComments,
           damagesOnVehicle: damagesVehicle,
-          crackedWindScreens: damagesWindScreen,
+          crackedWindscreens: damagesWindScreen,
           otherDamages: otherDamagesInput,
         },
         dropOffLocationName: dropOffAddress,
@@ -188,17 +184,20 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
           spareTyre: spareTyre,
           clientComments: clientComments,
           damagesOnVehicle: damagesVehicle,
-          crackedWindScreens: damagesWindScreen,
+          crackedWindscreens: damagesWindScreen,
           otherDamages: otherDamagesInput,
         },
         dropOffLocationName: dropOffAddress,
         passengerAges: passengerAges,
       },
     })
-      .then(() => {
-        toast.success("Trip booked successfully");
-        setShow(false);
-        return push("/app/history");
+      .then(({ data }) => {
+        if (data) {
+          toast.success("Trip booked successfully");
+          return window.location.replace(
+            data?.createTripRequest?.payment?.authorizationUrl
+          );
+        }
       })
       .catch((e: ApolloError) => {
         // console.log("error", e);

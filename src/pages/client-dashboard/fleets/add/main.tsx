@@ -98,8 +98,15 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
       return toast.error("Please choose the colour of your vehicle ");
     }
 
-    if (color.trim() === "") {
-      return toast.error("Please chose the model of your vehicle ");
+    if (model.trim() === "") {
+      return toast.error("Please enter the model of your vehicle ");
+    }
+    if (make.trim() === "") {
+      return toast.error("Please enter your vehicle's make ");
+    }
+
+    if (registrationNumber.trim() === "") {
+      return toast.error("Please enter your vehicle's registration number ");
     }
     let imageUrls: string[] = [];
     let imageFiles = getImage(image1File1, image1File2, image1File3);
@@ -199,7 +206,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                 htmlFor="url"
                 className="block text-sm pb-1 font-medium text-gray-700"
               >
-                Class of Vehicle
+                Class of Vehicle <span className={"text-red-600"}>*</span>
               </label>
               <div className="mt-1 rounded-none shadow-none">
                 <select
@@ -281,7 +288,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                 htmlFor="url"
                 className="block text-sm pb-1 font-medium text-gray-700"
               >
-                Transmission Type
+                Transmission Type <span className={"text-red-600"}>*</span>
               </label>
               <div className="mt-1 rounded-none shadow-none">
                 <select
@@ -306,7 +313,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                 htmlFor="url"
                 className="block text-sm pb-1 font-medium text-gray-700"
               >
-                Car Make
+                Car Make <span className={"text-red-600"}>*</span>
               </label>
               <input
                 type="text"
@@ -324,7 +331,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                 htmlFor="url"
                 className="block text-sm pb-1 font-medium text-gray-700"
               >
-                Car Model
+                Car Model <span className={"text-red-600"}>*</span>
               </label>
               <input
                 type="text"
@@ -342,7 +349,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                 htmlFor="url"
                 className="block text-sm pb-1 font-medium text-gray-700"
               >
-                Registration Number
+                Registration Number <span className={"text-red-600"}>*</span>
               </label>
               <input
                 type="text"

@@ -33,7 +33,7 @@ const PreviewComponent = ({
 }: PreviewComponentProp) => {
   return (
     <Fragment>
-      <dl className="grid grid-cols-1  h-0 sm:h-0 md:h-book-trip-height overflow-y-auto gap-x-4 gap-y-8 sm:grid-cols-3">
+      <dl className="grid grid-cols-1  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto gap-x-4 gap-y-8 sm:grid-cols-3">
         <div className="sm:col-span-1">
           <dt className="text-sm font-light text-gray-700">Trip Cost</dt>
           <dd className="mt-1 text-sm text-gray-900">
