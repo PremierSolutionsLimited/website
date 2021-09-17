@@ -19,10 +19,13 @@ import { useCurrentClient } from "../../../../services/context/currentClient";
 import DataView from "../data-view";
 
 const ViewTripComponent = lazy(() => import("../view"));
+const RateDriverComponent = lazy(() => import("../rate-driver"));
+
 const pages: BreadCrumbProp[] = [{ name: "Trip History ", href: HISTORY }];
 
 const MainComponent = () => {
   const [viewTrip, setViewTrip] = useState<boolean>(false);
+  const [rateDriver, setRateDriver] = useState<boolean>(false);
   const [selectedTrip, setSelectedTrip] = useState<TripHistory>();
   const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
 
@@ -92,6 +95,10 @@ const MainComponent = () => {
                           setSelectedTrip(dataFromCard);
                           setViewTrip(!viewTrip);
                         }}
+                        onRateDriver={(dataFromCard: TripHistory) => {
+                          setSelectedTrip(dataFromCard);
+                          setRateDriver(!rateDriver);
+                        }}
                       />
                     </Fragment>
                   )}
@@ -114,6 +121,11 @@ const MainComponent = () => {
         <ViewTripComponent
           show={viewTrip}
           setShow={setViewTrip}
+          trip={selectedTrip}
+        />
+        <RateDriverComponent
+          show={rateDriver}
+          setShow={setRateDriver}
           trip={selectedTrip}
         />
       </Suspense>
