@@ -141,13 +141,21 @@ const CardComponent = ({
         >
           View
         </button>
-        <button
-          onClick={onRateDriver}
-          type="button"
-          className="text-pink-600 ml-3 hover:text-pink-700 hover:underline cursor-pointer focus:outline-none "
-        >
-          Rate Driver
-        </button>
+        {history?.status === "COMPLETED" && (
+          <Fragment>
+            {!history?.clientRated && (
+              <Fragment>
+                <button
+                  onClick={onRateDriver}
+                  type="button"
+                  className="text-pink-600 ml-3 hover:text-pink-700 hover:underline cursor-pointer focus:outline-none "
+                >
+                  Rate Driver
+                </button>
+              </Fragment>
+            )}
+          </Fragment>
+        )}
       </td>
     </tr>
   );

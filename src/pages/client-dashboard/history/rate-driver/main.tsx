@@ -1,14 +1,23 @@
 import React, { FC, Fragment, useState } from "react";
-import { RateDriverComponentProp } from "./types";
+import {
+  RateDriverComponentProp,
+  RateDriverInputProp,
+  RateDriverOutputProp,
+} from "./types";
 import { BasicModal } from "../../../../components/modal";
 import { CircleSpinner } from "react-spinners-kit";
 import { useMediaQuery } from "react-responsive";
+import { ApolloError, useMutation } from "@apollo/client";
+import { RATE_DRIVER } from "../../../../services/graphql/history";
 import ReactStars from "react-rating-stars-component";
+import toast from "react-hot-toast";
+import _ from "lodash";
 
 const MainComponent: FC<RateDriverComponentProp> = ({
   show,
   setShow,
   trip,
+  refetch,
 }) => {
   const [tripRating, setTripRating] = useState<string>("");
   const [review, setReview] = useState<string>("");
@@ -16,16 +25,43 @@ const MainComponent: FC<RateDriverComponentProp> = ({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
 
-  let loading;
-
-  console.log(tripRating);
+  const [invokeRateDriver, { loading }] = useMutation<
+    RateDriverOutputProp,
+    RateDriverInputProp
+  >(RATE_DRIVER);
 
   const ratingChanged = (newRating: any) => {
     setTripRating(newRating);
   };
 
+  const reset = () => {
+    setTripRating("");
+    setReview("");
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    if (!tripRating) {
+      return toast.error("Please choose rating");
+    }
+    invokeRateDriver({
+      variables: {
+        tripId: trip?._id as string,
+        rating: parseFloat(tripRating),
+        review: review,
+      },
+    })
+      .then(() => {
+        refetch();
+        setShow(false);
+        reset();
+        toast.success("Driver rated successfully");
+      })
+      .catch((e: ApolloError) => {
+        return toast.error(
+          _.startCase(_.lowerCase(e.graphQLErrors[0]?.message))
+        );
+      });
   };
   return (
     <Fragment>
@@ -119,7 +155,7 @@ const MainComponent: FC<RateDriverComponentProp> = ({
                 type="button"
                 onClick={handleSubmit}
                 disabled={loading}
-                className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
+                className="inline-flex flex-row w-32 justify-center items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
               >
                 {loading ? (
                   <Fragment>

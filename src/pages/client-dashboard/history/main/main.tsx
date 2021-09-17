@@ -124,6 +124,7 @@ const MainComponent = () => {
           trip={selectedTrip}
         />
         <RateDriverComponent
+          refetch={refetch}
           show={rateDriver}
           setShow={setRateDriver}
           trip={selectedTrip}
