@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { FleetCardComponentProp } from "./types";
 // import NoImage from "../../../../assets/images/no-image.png";
 import ReactTooltip from "react-tooltip";
+import { truncateText } from "../../../../shared/ui-modules/truncateText";
 
 const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
   return (
@@ -9,13 +10,14 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
       <div className="flex flex-col">
         <div className="bg-white shadow-md  rounded-2xl p-4">
           <div className="flex-none lg:flex">
-            {data?.class?.icon ? (
+            {data?.images?.length > 0 ? (
               <Fragment>
-                <div className=" h-full w-full lg:h-full lg:w-full   lg:mb-0 mb-3">
+                <div className="  h-full w-full lg:h-full lg:w-full   lg:mb-0 ">
                   <img
-                    src={data?.class?.icon}
+                    src={data?.images[0]}
                     alt="Just a flower"
-                    className=" w-full  object-scale-down lg:object-cover  lg:h-full rounded-2xl"
+                    // style={{ maxHeight: "22vh" }}
+                    className=" lg:w-4/5 mt-3 h-full w-full sm:w-full sm:h-full object-scale-down lg:object-cover  lg:h-card-height rounded-2xl"
                   />
                 </div>
               </Fragment>
@@ -96,7 +98,7 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
                       d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     />
                   </svg>
-                  <p className="">{data?.make}</p>
+                  <p className="">{truncateText(data?.make, 10)}</p>
                 </div>
                 <div className="flex-1 inline-flex items-center">
                   <svg

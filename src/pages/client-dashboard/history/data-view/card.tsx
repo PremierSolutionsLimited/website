@@ -3,7 +3,11 @@ import { HistoryCardComponentProp } from "./types";
 import moment from "moment";
 // import CarImage from "../../../../assets/images/bmw.png";
 
-const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
+const CardComponent = ({
+  history,
+  onView,
+  onRateDriver,
+}: HistoryCardComponentProp) => {
   return (
     <tr>
       <td className="px-6 py-3 whitespace-nowrap">
@@ -115,7 +119,7 @@ const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
         </Fragment>
       )}
 
-      {history?.endTime ? (
+      {/* {history?.endTime ? (
         <Fragment>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             {moment(history?.endTime).format("MMMM Do YYYY, h:mm:ss a")}
@@ -127,16 +131,31 @@ const CardComponent = ({ history, onView }: HistoryCardComponentProp) => {
             Trip is yet to start
           </td>
         </Fragment>
-      )}
+      )} */}
 
       <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
         <button
           onClick={onView}
           type="button"
-          className="text-pink-600 hover:text-pink-700 cursor-pointer focus:outline-none "
+          className="text-pink-600 hover:text-pink-700 hover:underline cursor-pointer focus:outline-none "
         >
           View
         </button>
+        {history?.status === "COMPLETED" && (
+          <Fragment>
+            {!history?.clientRated && (
+              <Fragment>
+                <button
+                  onClick={onRateDriver}
+                  type="button"
+                  className="text-pink-600 ml-3 hover:text-pink-700 hover:underline cursor-pointer focus:outline-none "
+                >
+                  Rate Driver
+                </button>
+              </Fragment>
+            )}
+          </Fragment>
+        )}
       </td>
     </tr>
   );

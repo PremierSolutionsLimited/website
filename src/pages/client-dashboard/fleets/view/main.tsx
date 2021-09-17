@@ -108,13 +108,13 @@ const MainComponent: React.FC<ViewFleetComponentProp> = ({
                     {vehicle?.transmissionType || "Not Specified"}
                   </dd>
                 </div>
-                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ">
                   <dt className="text-sm font-medium text-gray-500">
                     {vehicle?.images[0] ? (
                       <Fragment>
                         <img
                           src={vehicle?.images[0]}
-                          className="h-full w-full"
+                          className="h-full w-full max-h-48"
                           alt="vehicle 1"
                         />
                       </Fragment>
@@ -129,7 +129,7 @@ const MainComponent: React.FC<ViewFleetComponentProp> = ({
                       <Fragment>
                         <img
                           src={vehicle?.images[1]}
-                          className="h-full w-full"
+                          className="h-full w-full max-h-48"
                           alt="vehicle 1"
                         />
                       </Fragment>
@@ -144,7 +144,7 @@ const MainComponent: React.FC<ViewFleetComponentProp> = ({
                       <Fragment>
                         <img
                           src={vehicle?.images[2]}
-                          className="h-full w-full"
+                          className="h-full w-full max-h-48"
                           alt="vehicle 1"
                         />
                       </Fragment>

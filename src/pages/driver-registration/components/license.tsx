@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { LicenseComponentProp } from "./types";
 import { CameraIcon } from "@heroicons/react/outline";
+import { DatePicker } from "antd";
 import SelectTypeOfCars from "../bones/typeMultiSelect";
 import toast from "react-hot-toast";
 
@@ -100,7 +101,7 @@ export default function LicenseComponent({
               >
                 License Issue Date
               </label>
-              <input
+              {/* <input
                 required
                 type={"date"}
                 id={"expiry"}
@@ -109,6 +110,17 @@ export default function LicenseComponent({
                   setLicenseIssueDate(e.target.value)
                 }
                 className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+              /> */}
+
+              <DatePicker
+                // value={value}
+                onChange={(data: any) => {
+                  setLicenseIssueDate(data);
+                }}
+                value={licenseIssueDate as any}
+                className={
+                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                }
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -118,7 +130,17 @@ export default function LicenseComponent({
               >
                 License Expiry Date
               </label>
-              <input
+              <DatePicker
+                // value={value}
+                onChange={(data: any) => {
+                  setLicenseExpiryDate(data);
+                }}
+                value={licenseExpiryDate as any}
+                className={
+                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                }
+              />
+              {/* <input
                 required
                 type={"date"}
                 id={"expiry"}
@@ -127,7 +149,7 @@ export default function LicenseComponent({
                   setLicenseExpiryDate(e.target.value)
                 }
                 className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-              />
+              /> */}
             </div>
             <div className="col-span-12 sm:col-span-6">
               <label
@@ -190,7 +212,7 @@ export default function LicenseComponent({
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="url"
-                className="block text-sm font-medium pb-2 text-gray-700"
+                className="block text-sm font-medium pb-3 text-gray-700"
               >
                 What type of vehicle can you drive?
               </label>

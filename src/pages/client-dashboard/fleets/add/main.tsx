@@ -84,6 +84,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
     setMake("");
     setModel("");
     setRegistrationNumber("");
+    setColor("");
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {

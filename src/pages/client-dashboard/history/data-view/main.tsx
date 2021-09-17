@@ -7,6 +7,7 @@ import Pagination from "../../../../shared/ui-modules/pagination/pagination";
 const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
   data,
   onView,
+  onRateDriver,
   limit,
   total,
   skip,
@@ -51,12 +52,12 @@ const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
                   >
                     Expected Start Time
                   </th>
-                  <th
+                  {/* <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     Expected End Time
-                  </th>
+                  </th> */}
 
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">Edit</span>
@@ -69,6 +70,7 @@ const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
                     <CardComponent
                       history={history}
                       onView={() => onView(history)}
+                      onRateDriver={() => onRateDriver(history)}
                     />
                   </Fragment>
                 ))}
