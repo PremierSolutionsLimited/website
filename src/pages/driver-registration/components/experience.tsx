@@ -186,7 +186,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm font-medium pb-2 text-gray-700"
               >
-                Are you employed?
+                Are you currently employed?
               </label>
               <select
                 id="location"

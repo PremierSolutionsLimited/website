@@ -10,7 +10,7 @@ export const ageGroup1: IGroupType[] = [
 export const ageGroup2: IGroupType[] = [
   { name: "35-44 years ", group: "GROUP5" },
   { name: "45-54 years ", group: "GROUP6" },
-  { name: "55-64 years old", group: "GROUP6" },
+  { name: "55-64 years ", group: "GROUP6" },
   { name: "65 and over", group: "GROUP6" },
 ];
 

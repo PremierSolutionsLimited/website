@@ -82,7 +82,7 @@ export default function Trip({
                 }
               }}
               showTime
-              className={"border"}
+              className={"border w-full"}
             />
 
             {/* <input

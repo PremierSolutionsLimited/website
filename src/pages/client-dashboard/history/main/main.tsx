@@ -15,6 +15,7 @@ import {
   TripHistory,
 } from "./types";
 import { GET_TRIP_HISTORY } from "../../../../services/graphql/history";
+import { useCurrentClient } from "../../../../services/context/currentClient";
 import DataView from "../data-view";
 
 const ViewTripComponent = lazy(() => import("../view"));
@@ -24,12 +25,19 @@ const MainComponent = () => {
   const [viewTrip, setViewTrip] = useState<boolean>(false);
   const [selectedTrip, setSelectedTrip] = useState<TripHistory>();
   const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
+
+  const currentUser = useCurrentClient();
   const { data, loading, refetch } = useQuery<
     TripHistoryOutputProp,
     TripHistoryInputProp
   >(GET_TRIP_HISTORY, {
     variables: {
       populate: ["vehicle", "class", "tripType"],
+      filter: {
+        client: {
+          eq: currentUser?._id as string,
+        },
+      },
       pagination: {
         skip,
         limit,

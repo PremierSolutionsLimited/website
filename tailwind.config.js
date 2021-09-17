@@ -11,6 +11,7 @@ module.exports = {
       height: {
         "faq-height": "70vh",
         "book-trip-height": "70vh",
+        "card-height": "22vh",
       },
     },
   },
