@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { ExperienceComponentProp } from "./types";
+import { DatePicker } from "antd";
 
 const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   setTab,
@@ -132,15 +133,16 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
               >
                 Start Date
               </label>
-              <input
-                required
-                type={"date"}
-                id={"dob"}
-                value={previousPostionStartDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPreviousPositionStartDate(e.target.value)
+
+              <DatePicker
+                // value={value}
+                onChange={(data: any) => {
+                  setPreviousPositionStartDate(data);
+                }}
+                value={previousPostionStartDate as any}
+                className={
+                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
                 }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -150,15 +152,16 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
               >
                 End Date
               </label>
-              <input
-                required
-                type={"date"}
-                id={"dob"}
-                value={previousPositionEndDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPreviousPositionEndDate(e.target.value)
+
+              <DatePicker
+                // value={value}
+                onChange={(data: any) => {
+                  setPreviousPositionEndDate(data);
+                }}
+                value={previousPositionEndDate as any}
+                className={
+                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
                 }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
               />
             </div>
             <div className="col-span-12 sm:col-span-12">
@@ -250,7 +253,18 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                   >
                     Start Date
                   </label>
-                  <input
+
+                  <DatePicker
+                    // value={value}
+                    onChange={(data: any) => {
+                      setCurrentPostionStartDate(data);
+                    }}
+                    value={currentPositionStartDate as any}
+                    className={
+                      "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                    }
+                  />
+                  {/* <input
                     type={"date"}
                     id={"dob"}
                     value={currentPositionStartDate}
@@ -258,7 +272,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                       setCurrentPostionStartDate(e.target.value)
                     }
                     className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-                  />
+                  /> */}
                 </div>
               </Fragment>
             )}

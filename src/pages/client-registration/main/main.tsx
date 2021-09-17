@@ -6,7 +6,7 @@ import { ApolloError, useMutation } from "@apollo/client";
 import { CREATE_CLIENT } from "../../../services/graphql/applications";
 import { useRegistrationProvider } from "../../../services/context";
 import { v4 } from "uuid";
-import { ContextLoader } from "../../../shared/loaders";
+import { CustomContextLoader } from "../../../shared/loaders";
 import { storage } from "../../../services/firebase";
 import toast from "react-hot-toast";
 import Header from "../../../shared/layout/registration";
@@ -185,8 +185,8 @@ const MainComponent = () => {
                 <StepComponent tab={tab} />
               </div>
             </div>
-            <Suspense fallback={ContextLoader()}>
-              <div className="sm:col-span-3 ml-10 ">
+            <div className="sm:col-span-3 ml-5 ">
+              <Suspense fallback={CustomContextLoader()}>
                 {tab === "personal" && (
                   <Fragment>
                     <PersonalComponent
@@ -241,12 +241,12 @@ const MainComponent = () => {
                     />
                   </Fragment>
                 )}
-              </div>
-              <SucessComponent
-                show={showSuccessComponent}
-                setShow={setShowSucessComponent}
-              />
-            </Suspense>
+                <SucessComponent
+                  show={showSuccessComponent}
+                  setShow={setShowSucessComponent}
+                />
+              </Suspense>
+            </div>
           </div>
         </div>
       </div>

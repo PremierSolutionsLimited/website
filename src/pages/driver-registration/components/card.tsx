@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { CardDetailsComponentProp } from "./types";
 import { CameraIcon } from "@heroicons/react/outline";
+import { DatePicker } from "antd";
 import toast from "react-hot-toast";
 
 export default function CardDetailsComponent({
@@ -119,25 +120,7 @@ export default function CardDetailsComponent({
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
-            {/* <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                Sort Code
-              </label>
-              <input
-                type="number"
-                name="company"
-                id="company"
-                required
-                value={sortCode}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setSortCode(e.target.value)
-                }
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div> */}
+
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
@@ -163,42 +146,6 @@ export default function CardDetailsComponent({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                Ghana Card Issue Date
-              </label>
-              <input
-                required
-                type={"date"}
-                id={"expiry"}
-                value={ghanaCardIssueDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setGhanaCardIssueDate(e.target.value)
-                }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                Ghana Card Expiry Date
-              </label>
-              <input
-                required
-                type={"date"}
-                id={"expiry"}
-                value={ghanaCardExpiryDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setGhanaCardExpiryDate(e.target.value)
-                }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
                 Ghana Card ID
               </label>
               <input
@@ -211,6 +158,62 @@ export default function CardDetailsComponent({
                   setGhanaCardId(e.target.value)
                 }
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Ghana Card Issue Date
+              </label>
+              <DatePicker
+                // value={value}
+                onChange={(data: any) => {
+                  setGhanaCardIssueDate(data);
+                }}
+                value={ghanaCardIssueDate as any}
+                className={
+                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                }
+              />
+              {/* <input
+                required
+                type={"date"}
+                id={"expiry"}
+                value={ghanaCardIssueDate}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setGhanaCardIssueDate(e.target.value)
+                }
+                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+              /> */}
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="company"
+                className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Ghana Card Expiry Date
+              </label>
+              {/* <input
+                required
+                type={"date"}
+                id={"expiry"}
+                value={ghanaCardExpiryDate}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setGhanaCardExpiryDate(e.target.value)
+                }
+                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+              /> */}
+              <DatePicker
+                // value={value}
+                onChange={(data: any) => {
+                  setGhanaCardExpiryDate(data);
+                }}
+                value={ghanaCardExpiryDate as any}
+                className={
+                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                }
               />
             </div>
 

@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { OtherInfoComponentProp } from "./types";
+import { DatePicker } from "antd";
 
 import SelectGenderPreference from "../bones/gender";
 
@@ -59,23 +60,27 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 Phone
               </label>
               <input
-                type="number"
+                type="tel"
                 name="url"
                 id="url"
                 value={phone}
                 required
+                min="0"
                 maxLength={10}
-                minLength={10}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPhone(e.target.value)
-                }
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (/[a-zA-Z]/.test(e.target.value)) {
+                    return setPhone("");
+                  } else {
+                    setPhone(e.target.value);
+                  }
+                }}
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
-                className="block text-sm font-medium pb-2  text-gray-700"
+                className="block text-sm font-medium pb-3  text-gray-700"
               >
                 ID Type
               </label>
@@ -126,7 +131,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
               >
                 ID Issue Date
               </label>
-              <input
+              {/* <input
                 type="date"
                 name="company"
                 id="company"
@@ -137,6 +142,16 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 }
                 autoComplete="organization"
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              /> */}
+              <DatePicker
+                // value={value}
+                onChange={(data: any) => {
+                  setIdIssueDate(data);
+                }}
+                value={idIssueDate as any}
+                className={
+                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                }
               />
             </div>
 
@@ -147,17 +162,16 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
               >
                 ID Expiry Date
               </label>
-              <input
-                type="date"
-                name="company"
-                id="company"
-                required
-                value={idExpiryDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setIdExpiryDate(e.target.value)
+
+              <DatePicker
+                // value={value}
+                onChange={(data: any) => {
+                  setIdExpiryDate(data);
+                }}
+                value={idExpiryDate as any}
+                className={
+                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
                 }
-                autoComplete="organization"
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
 
