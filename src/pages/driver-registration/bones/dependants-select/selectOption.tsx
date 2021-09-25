@@ -27,7 +27,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
           type="text"
           name="url"
           id="url"
-          placeholder="Eg. Chritopher"
+          placeholder="Eg. Christopher"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
