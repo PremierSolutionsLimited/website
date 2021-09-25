@@ -98,6 +98,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                placeholder={"Uber"}
                 value={previousEmployerName}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPreviousEmployerName(e.target.value)
@@ -117,6 +118,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 required
                 type="text"
                 name="company"
+                placeholder={"Driver"}
                 id="company"
                 autoComplete="organization"
                 value={previousPositionHeld}
@@ -175,6 +177,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 required
                 type="text"
                 name="company"
+                placeholder={"Eg. Needed a change of environment"}
                 id="company"
                 value={reasonForLeavingPreviousWork}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -218,6 +221,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                     type="text"
                     name="company"
                     id="company"
+                    placeholder="Bolt"
                     value={currentEmployerName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setCurrentEmployerName(e.target.value)
@@ -238,6 +242,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                     type="text"
                     name="company"
                     id="company"
+                    placeholder="Driver"
                     value={currentPositionHeld}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setCurrentPositionHeld(e.target.value)

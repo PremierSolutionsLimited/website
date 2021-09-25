@@ -1,4 +1,11 @@
-import React, { Fragment, useState, lazy, Suspense, useEffect } from "react";
+import React, {
+  Fragment,
+  useState,
+  useCallback,
+  lazy,
+  Suspense,
+  useEffect,
+} from "react";
 import { ApolloError, useMutation } from "@apollo/client";
 import { CREATE_DRIVER_APPLICATION } from "../../../services/graphql/applications";
 import { CustomContextLoader } from "../../../shared/loaders";
@@ -16,6 +23,8 @@ import { EmergencyInputProp } from "../../client-registration/bones/types";
 import Header from "../../../shared/layout/registration";
 import StepComponent from "../../../shared/driver-steps";
 import toast from "react-hot-toast";
+import getCroppedImg from "../components/utils/getCroppedImage";
+import Cropper from "react-easy-crop";
 
 const PersonalComponent = lazy(() => import("../components/personal"));
 const FamilyComponent = lazy(() => import("../components/family"));
@@ -152,16 +161,65 @@ const MainComponent = () => {
   const [showSuccessComponent, setShowSucessComponent] =
     useState<boolean>(false);
 
-  // function to handle image upload from user's pc
-  const handleImageUpload = (e: any) => {
+  // For handling image from local pc
+  const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+
+  const [imageUrl, setImageUrl] = useState<any>(null);
+  // For handling image crop
+  const [showCropper, setShowCropper] = useState(false);
+  const [imageCropLoad, setImageCropLoad] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  const [zoom, setZoom] = useState(1);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
+  const [croppedImage, setCroppedImage] = useState<any>(null);
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const showCroppedImage = useCallback(async () => {
+    setImageCropLoad(true);
+    try {
+      const croppedImage = await getCroppedImg(
+        imageUrl,
+        croppedAreaPixels,
+        rotation
+      );
+      setCroppedImage(croppedImage);
+      setShowCropper(false);
+      setImageCropLoad(false);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [croppedAreaPixels, rotation]);
+
+  // Function to pick image
+  const handleProfileImage = (e: any) => {
     if (e.target.files[0] !== undefined) {
-      setDriverImageUrl(URL.createObjectURL(e.target.files[0]));
+      setImageUrl(URL.createObjectURL(e.target.files[0]));
+      setFile(e.target.files[0]);
       setDriverFile(e.target.files[0]);
     } else {
-      setDriverImageUrl(URL.createObjectURL(driverFile));
+      setImageUrl(URL.createObjectURL(file));
+      setFile(file);
       setDriverFile(driverFile);
     }
+
+    return setShowCropper(true);
   };
+
+  // function to handle image upload from user's pc
+  // const handleImageUpload = (e: any) => {
+  //   if (e.target.files[0] !== undefined) {
+  //     setDriverImageUrl(URL.createObjectURL(e.target.files[0]));
+  //     setDriverFile(e.target.files[0]);
+  //   } else {
+  //     setDriverImageUrl(URL.createObjectURL(driverFile));
+  //     setDriverFile(driverFile);
+  //   }
+  // };
 
   // function to handle cardFront upload from user's pc
   const handleGhanaCardFrontImageUpload = (e: any) => {
@@ -333,9 +391,41 @@ const MainComponent = () => {
       <Header />
       <div className=" bg-white ">
         <div className="max-w-7xl mx-auto pt-6 pb-0 px-4 sm:px-6 lg:px-8">
+          <div className={``}>
+            {showCropper && (
+              <Fragment>
+                <div>
+                  <Cropper
+                    image={imageUrl}
+                    crop={crop}
+                    rotation={rotation}
+                    zoom={zoom}
+                    aspect={4 / 4}
+                    onCropChange={setCrop}
+                    onRotationChange={setRotation}
+                    onCropComplete={onCropComplete}
+                    onZoomChange={setZoom}
+                  />
+                  <span className="flex absolute bottom-0 right-0 mb-4 rounded-none shadow-sm mr-2 ">
+                    <button
+                      type="button"
+                      onClick={showCroppedImage}
+                      className="inline-flex rounded-none items-center px-13 py-3 border border-purple-600 text-sm leading-5 font-light text-white hover:text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
+                    >
+                      {imageCropLoad ? "One sec..." : "Show Result"}
+                    </button>
+                  </span>
+                </div>
+              </Fragment>
+            )}{" "}
+          </div>
           <div className=" grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5">
             <div className="sm:col-span-2 ">
-              <div className={"mt-5 top-20 sticky overflow-y-none"}>
+              <div
+                className={`mt-5 top-20 sticky overflow-y-none ${
+                  showCropper && "hidden"
+                }`}
+              >
                 <StepComponent tab={tab} />
               </div>
             </div>
@@ -369,8 +459,8 @@ const MainComponent = () => {
                       setHasSmartPhone={setHasSmartPhone}
                       canUseMap={canUseMap}
                       setCanUseMap={setCanUseMap}
-                      handleImageUpload={handleImageUpload}
-                      driverImageUrl={driverImageUrl}
+                      handleImageUpload={handleProfileImage}
+                      driverImageUrl={croppedImage}
                     />
                   </Fragment>
                 )}
