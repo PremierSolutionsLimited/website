@@ -6,8 +6,6 @@ import toast from "react-hot-toast";
 
 export default function CardDetailsComponent({
   setTab,
-  sortCode,
-  setSortCode,
   nameOfBank,
   setNameOfBank,
   nameOfBankBranch,
@@ -54,6 +52,7 @@ export default function CardDetailsComponent({
                 name="company"
                 id="company"
                 required
+                placeholder={"Eg. Ecobank"}
                 value={nameOfBank}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setNameOfBank(e.target.value)
@@ -73,6 +72,7 @@ export default function CardDetailsComponent({
                 name="company"
                 id="company"
                 autoComplete="organization"
+                placeholder={"Eg. Spintex"}
                 required
                 value={nameOfBankBranch}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -93,6 +93,7 @@ export default function CardDetailsComponent({
                 name="company"
                 id="company"
                 required
+                placeholder={"Eg. 2398378 73838 737"}
                 value={accountNumber}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setAccoutNumber(e.target.value)
@@ -113,6 +114,7 @@ export default function CardDetailsComponent({
                 id="company"
                 autoComplete="organization"
                 required
+                placeholder={"Eg. 84899383"}
                 value={ssnitNumber}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setSsnitNumber(e.target.value)
@@ -134,6 +136,7 @@ export default function CardDetailsComponent({
                 id="company"
                 autoComplete="organization"
                 required
+                placeholder={"Eg. 0542781001"}
                 value={momoNumber}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setMomoNumber(e.target.value)
@@ -146,13 +149,14 @@ export default function CardDetailsComponent({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                Ghana Card ID
+                Ghana Card ID Number
               </label>
               <input
                 type="text"
                 name="company"
                 id="company"
                 required
+                placeholder={"Eg. 93008132"}
                 value={ghanaCardId}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setGhanaCardId(e.target.value)
@@ -177,16 +181,6 @@ export default function CardDetailsComponent({
                   "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
                 }
               />
-              {/* <input
-                required
-                type={"date"}
-                id={"expiry"}
-                value={ghanaCardIssueDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setGhanaCardIssueDate(e.target.value)
-                }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-              /> */}
             </div>
             <div className="col-span-12 sm:col-span-6">
               <label
@@ -195,16 +189,7 @@ export default function CardDetailsComponent({
               >
                 Ghana Card Expiry Date
               </label>
-              {/* <input
-                required
-                type={"date"}
-                id={"expiry"}
-                value={ghanaCardExpiryDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setGhanaCardExpiryDate(e.target.value)
-                }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-              /> */}
+
               <DatePicker
                 // value={value}
                 onChange={(data: any) => {
