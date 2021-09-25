@@ -62,7 +62,6 @@ const MainComponent = () => {
   const [canUseMap, setCanUseMap] = useState<string>("");
   // for driver's image
   const [driverFile, setDriverFile] = useState<any>(null);
-  const [driverImageUrl, setDriverImageUrl] = useState<string>("");
 
   // states for driver's personal experience
   const [hadAccidents, setHadAccidents] = useState<string>("");
@@ -163,7 +162,6 @@ const MainComponent = () => {
 
   // For handling image from local pc
   const [file, setFile] = useState(null);
-  const [uploading, setUploading] = useState(false);
 
   const [imageUrl, setImageUrl] = useState<any>(null);
   // For handling image crop
@@ -193,7 +191,7 @@ const MainComponent = () => {
     } catch (e) {
       console.error(e);
     }
-  }, [croppedAreaPixels, rotation]);
+  }, [croppedAreaPixels, rotation, imageUrl]);
 
   // Function to pick image
   const handleProfileImage = (e: any) => {

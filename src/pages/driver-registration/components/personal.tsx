@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState } from "react";
+import React, { Fragment } from "react";
 import { PersonalComponentProp } from "./types";
 import ProfileImage from "../../../assets/images/male.jpeg";
 import toast from "react-hot-toast";
