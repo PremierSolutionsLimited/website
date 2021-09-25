@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { SingleDependentsSelectProps } from "../types";
+import { DatePicker } from "antd";
 
 const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
   firstName,
@@ -26,6 +27,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
           type="text"
           name="url"
           id="url"
+          placeholder="Eg. Christopher"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
@@ -42,6 +44,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
           type="text"
           name="url"
           id="url"
+          placeholder={"Eg. Owusu"}
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
@@ -58,6 +61,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
           type="text"
           name="url"
           id="url"
+          placeholder="Eg. Brother"
           value={relationship}
           onChange={(e) => setRelationShip(e.target.value)}
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
@@ -91,14 +95,12 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
         >
           Date of Birth
         </label>
-        <input
-          type={"date"}
-          id={"dob"}
-          value={dob}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setDob(e.target.value)
-          }
-          className="mt-1 block w-full pl-1 pr-1 py-2 text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+        <DatePicker
+          // value={value}
+          onChange={(data: any) => {
+            setDob(data);
+          }}
+          className={"border border-none w-full bg-gray-100 focus:border-none"}
         />
       </div>
     </Fragment>

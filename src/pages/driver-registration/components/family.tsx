@@ -37,6 +37,7 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                placeholder={"Edward Ajugurajah"}
                 value={nextOfKinName}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setNextOfKinName(e.target.value)
@@ -55,6 +56,7 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
               <input
                 type="text"
                 name="company"
+                placeholder={"24th Street, Boudary road - American house"}
                 id="company"
                 autoComplete="organization"
                 value={nextOfKinAddress}
@@ -96,6 +98,7 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
                 name="company"
                 id="company"
                 min="0"
+                placeholder={"Eg. 0541872313"}
                 maxLength={10}
                 value={nextOfKinPhone}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -109,25 +112,7 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>
-            {/* <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Telephone
-              </label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                autoComplete="organization"
-                value={nextOfKinTelephone}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setNextOfKinTelephone(e.target.value)
-                }
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div> */}
+
             <div className="col-span-12 sm:col-span-12">
               <DependentsComponentSelect
                 dependDents={dependents}

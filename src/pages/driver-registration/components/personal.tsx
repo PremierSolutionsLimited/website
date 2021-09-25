@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 import { PersonalComponentProp } from "./types";
 import ProfileImage from "../../../assets/images/male.jpeg";
 import toast from "react-hot-toast";
@@ -39,6 +39,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
     }
     return setTab("family");
   };
+
   return (
     <Fragment>
       <form
@@ -62,6 +63,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     name="last_name"
                     id="last_name"
                     required
+                    placeholder={"Eg. No 2, Kinbu road - Accra"}
                     value={currentAddress}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setCurrentAddress(e.target.value)
@@ -174,6 +176,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
+                placeholder={"Eg. Dome"}
                 required
                 value={city}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -216,6 +219,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 required
                 min="0"
                 maxLength={10}
+                placeholder={"Eg. 0542781934"}
                 value={telephone}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   if (/[a-zA-Z]/.test(e.target.value)) {
@@ -264,6 +268,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 name="company"
                 id="company"
                 min="0"
+                placeholder={"Eg. 12"}
                 value={numberOfChildren}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setNumberOfChildren(e.target.value)
@@ -309,6 +314,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 name="company"
                 id="company"
                 required
+                placeholder={"Eg. Kimbu senior high"}
                 value={nameOfSchoolCompleted}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setNameOfSchoolCompleted(e.target.value)
@@ -328,6 +334,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="number"
                 name="url"
                 id="url"
+                placeholder={"Eg. 2010"}
                 required
                 value={yearOfGraduation}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

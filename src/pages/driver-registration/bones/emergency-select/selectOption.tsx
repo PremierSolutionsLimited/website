@@ -26,6 +26,7 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           type="text"
           name="url"
           id="url"
+          placeholder={"Eg. Edwin Alasah"}
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
@@ -42,6 +43,7 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           type="text"
           name="url"
           id="url"
+          placeholder={"Eg. 24, boundary street"}
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
@@ -58,6 +60,7 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           type="text"
           name="url"
           id="url"
+          placeholder={"Eg. Brother"}
           value={relationship}
           onChange={(e) => setRelationShip(e.target.value)}
           className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
@@ -91,6 +94,7 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
           name="url"
           id="url"
           min="0"
+          placeholder={"Eg. 0542332322"}
           maxLength={10}
           value={phone}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
