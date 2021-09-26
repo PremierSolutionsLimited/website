@@ -52,6 +52,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     name="last_name"
                     id="last_name"
                     value={username}
+                    placeholder={"Eg. Micheal"}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setUsername(e.target.value)
                     }
@@ -75,6 +76,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     name="last_name"
                     id="last_name"
                     value={nationality}
+                    placeholder={"Eg. Ghanaian"}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setNationality(e.target.value)
                     }
@@ -162,9 +164,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               </label>
               <input
                 type="text"
-                name="url"
-                id="url"
+                name="residence"
+                id="residence"
                 required
+                placeholder={"Eg. Adenta - Accra"}
                 value={placeOfResidence}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPlaceOfResidence(e.target.value)
@@ -183,6 +186,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="password"
                 name="url"
                 id="url"
+                placeholder="*********"
                 value={password}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPassword(e.target.value)
@@ -202,6 +206,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="password"
                 name="url"
                 id="url"
+                placeholder="*********"
                 value={confirmPassword}
                 required
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

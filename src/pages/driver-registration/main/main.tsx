@@ -408,14 +408,14 @@ const MainComponent = () => {
                     <button
                       type="button"
                       onClick={showCroppedImage}
-                      className="inline-flex rounded-none items-center px-13 py-3 border border-purple-600 text-sm leading-5 font-light text-white hover:text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
+                      className="inline-flex rounded-none items-center w-20 flex justify-center px-13 py-3 border border-pink-600 text-sm leading-5 font-light text-white hover:text-white bg-pink-600 hover:bg-pink-500 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
                     >
-                      {imageCropLoad ? "One sec..." : "Show Result"}
+                      {imageCropLoad ? "One sec..." : "Done"}
                     </button>
                   </span>
                 </div>
               </Fragment>
-            )}{" "}
+            )}
           </div>
           <div className=" grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5">
             <div className="sm:col-span-2 ">

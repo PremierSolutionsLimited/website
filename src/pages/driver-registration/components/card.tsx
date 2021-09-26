@@ -215,7 +215,7 @@ export default function CardDetailsComponent({
                     <img
                       className="h-28 w-full object-cover lg:h-44"
                       src={ghanaCardFrontImageUrl}
-                      alt=""
+                      alt="ghanacardFront"
                     />
                     <label
                       htmlFor="user-photo"
@@ -287,7 +287,7 @@ export default function CardDetailsComponent({
                     <img
                       className="h-28 w-full object-cover lg:h-44"
                       src={ghanaCardBackImageUrl}
-                      alt=""
+                      alt="ghanaCardBack"
                     />
 
                     <label
