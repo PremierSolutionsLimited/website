@@ -43,8 +43,7 @@ const MainComponent = ({ show, setShow }: SucessComponentProp) => {
                 </div>
                 <div className="mt-2">
                   <p className="text-md text-gray-800 font-light">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-                    laborum corporis consequatur vero eius eveniet officiis sed
+                    Sign in to begin your premiere chauffeur journey
                   </p>
                 </div>
               </div>
