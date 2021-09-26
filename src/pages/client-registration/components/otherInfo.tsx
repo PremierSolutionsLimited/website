@@ -45,6 +45,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
+                placeholder="Eg. GA-34898-48"
                 value={digitalAddress}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setDigitalAddress(e.target.value)
@@ -63,6 +64,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 type="tel"
                 name="url"
                 id="url"
+                placeholder="Eg. 0541879515"
                 value={phone}
                 required
                 min="0"
@@ -88,6 +90,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 id="location"
                 name="location"
                 value={idType}
+                placeholder="Eg. 0541879515"
                 required
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setIdType(e.target.value)
@@ -115,6 +118,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 name="company"
                 id="company"
                 required
+                placeholder="Eg. 909879086"
                 value={idNumber}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setIdNumber(e.target.value)

@@ -46,7 +46,9 @@ const Login = () => {
         return push("/app/");
       })
       .catch((e: ApolloError) => {
-        toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)));
+        toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)), {
+          id: "loginError",
+        });
       });
   };
 

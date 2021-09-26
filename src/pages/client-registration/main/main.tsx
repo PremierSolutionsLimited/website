@@ -1,4 +1,11 @@
-import React, { Fragment, useEffect, useState, Suspense, lazy } from "react";
+import React, {
+  Fragment,
+  useEffect,
+  useState,
+  Suspense,
+  lazy,
+  useCallback,
+} from "react";
 import { CreateClientInputProp, CreateClientOutputProp } from "./types";
 import { EmergencyInputProp, IGenderPreference } from "../bones/types";
 import { getGenderPreference } from "../util/defaultGender";
@@ -11,6 +18,8 @@ import { storage } from "../../../services/firebase";
 import toast from "react-hot-toast";
 import Header from "../../../shared/layout/registration";
 import StepComponent from "../../../shared/client-steps";
+import getCroppedImg from "../../driver-registration/components/utils/getCroppedImage";
+import Cropper from "react-easy-crop";
 
 const PersonalComponent = lazy(() => import("../components/personal"));
 const OtherInformationComponent = lazy(() => import("../components/otherInfo"));
@@ -35,7 +44,6 @@ const MainComponent = () => {
 
   // for clients's image
   const [clientFile, setClientFile] = useState<any>(null);
-  const [clientImageUrl, setClientImageUrl] = useState<string>("");
   const [uploadingToFirebase, setUploadingToFirebase] =
     useState<boolean>(false);
 
@@ -164,24 +172,104 @@ const MainComponent = () => {
     }
   };
 
-  // function to handle image upload from client's pc
-  const handleImageUpload = (e: any) => {
+  // // function to handle image upload from client's pc
+  // const handleImageUpload = (e: any) => {
+  //   if (e.target.files[0] !== undefined) {
+  //     setClientImageUrl(URL.createObjectURL(e.target.files[0]));
+  //     setClientFile(e.target.files[0]);
+  //   } else {
+  //     setClientImageUrl(URL.createObjectURL(clientFile));
+  //     setClientFile(clientFile);
+  //   }
+  // };
+
+  // For handling image from local pc
+  const [file, setFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState<any>(null);
+  // For handling image crop
+  const [showCropper, setShowCropper] = useState(false);
+  const [imageCropLoad, setImageCropLoad] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  const [zoom, setZoom] = useState(1);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
+  const [croppedImage, setCroppedImage] = useState<any>(null);
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const showCroppedImage = useCallback(async () => {
+    setImageCropLoad(true);
+    try {
+      const croppedImage = await getCroppedImg(
+        imageUrl,
+        croppedAreaPixels,
+        rotation
+      );
+      setCroppedImage(croppedImage);
+      setShowCropper(false);
+      setImageCropLoad(false);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [croppedAreaPixels, rotation, imageUrl]);
+
+  // Function to pick image
+  const handleProfileImage = (e: any) => {
     if (e.target.files[0] !== undefined) {
-      setClientImageUrl(URL.createObjectURL(e.target.files[0]));
+      setImageUrl(URL.createObjectURL(e.target.files[0]));
+      setFile(e.target.files[0]);
       setClientFile(e.target.files[0]);
     } else {
-      setClientImageUrl(URL.createObjectURL(clientFile));
+      setImageUrl(URL.createObjectURL(file));
+      setFile(file);
       setClientFile(clientFile);
     }
+
+    return setShowCropper(true);
   };
+
   return (
     <Fragment>
       <Header />
       <div className=" bg-white ">
         <div className="max-w-7xl mx-auto pt-12 pb-0 px-4 sm:px-6 lg:px-8">
+          <div className={``}>
+            {showCropper && (
+              <Fragment>
+                <div>
+                  <Cropper
+                    image={imageUrl}
+                    crop={crop}
+                    rotation={rotation}
+                    zoom={zoom}
+                    aspect={4 / 4}
+                    onCropChange={setCrop}
+                    onRotationChange={setRotation}
+                    onCropComplete={onCropComplete}
+                    onZoomChange={setZoom}
+                  />
+                  <span className="flex absolute bottom-0 right-0 mb-4 rounded-none shadow-sm mr-2 ">
+                    <button
+                      type="button"
+                      onClick={showCroppedImage}
+                      className="inline-flex rounded-none items-center w-20 flex justify-center px-13 py-3 border border-pink-600 text-sm leading-5 font-light text-white hover:text-white bg-pink-600 hover:bg-pink-500 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
+                    >
+                      {imageCropLoad ? "One sec..." : "Done"}
+                    </button>
+                  </span>
+                </div>
+              </Fragment>
+            )}
+          </div>
           <div className=" grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5">
             <div className="sm:col-span-2 ">
-              <div className={"mt-5 top-20 sticky overflow-y-none"}>
+              <div
+                className={`mt-5 top-20 sticky overflow-y-none ${
+                  showCropper && "hidden"
+                }`}
+              >
                 <StepComponent tab={tab} />
               </div>
             </div>
@@ -197,8 +285,8 @@ const MainComponent = () => {
                       setNationality={setNationality}
                       placeOfResidence={placeOfResdience}
                       setPlaceOfResidence={setPlaceOfResidence}
-                      handleImageUpload={handleImageUpload}
-                      clientImageUrl={clientImageUrl}
+                      handleImageUpload={handleProfileImage}
+                      clientImageUrl={croppedImage}
                       password={password}
                       setPassword={setPassword}
                       confirmPassword={confirmPassword}
