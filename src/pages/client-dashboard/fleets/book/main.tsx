@@ -210,7 +210,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
       <Modal
         show={show}
         setShow={setShow}
-        size={isTabletOrMobile ? 100 : 58}
+        size={isTabletOrMobile ? 100 : 70}
         canClose={false}
       >
         <div className="p-2 ">
@@ -239,9 +239,9 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
           <span className={"font-medium text-md mt-5"}>
             Book a trip with your "{selectedCar?.make}"
           </span>
-          <div className=" grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5 md:grid-cols-5">
+          <div className=" grid gap-4 grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5 md:grid-cols-5">
             <div className="sm:col-span-2 md:col-span-2 hidden sm:hidden md:block ">
-              <div className={"mt-5 top-20 sticky overflow-y-none"}>
+              <div className={"top-10 sticky overflow-y-none"}>
                 <StepComponent tab={tab} />
               </div>
             </div>

@@ -200,214 +200,222 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
               </svg>
             </button>
           </div>
-          <span className={"font-medium text-md mt-5"}>Add New Car</span>
-          <div className="mt-5 grid grid-cols-12 gap-3">
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Class of Vehicle <span className={"text-red-600"}>*</span>
-              </label>
-              <div className="mt-1 rounded-none shadow-none">
-                <select
-                  id="location"
-                  name="location"
-                  required
-                  value={vehicleClass}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                    setVehicleClass(e.target.value);
-                  }}
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
-                  defaultValue="Canada"
+          <form
+            onSubmit={(e: any) => {
+              handleSubmit(e);
+            }}
+          >
+            <span className={"font-medium text-md mt-5"}>Add New Car</span>
+            <div className="mt-5 grid grid-cols-12 gap-3">
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700"
                 >
-                  <option>Please Choose</option>
-                  {loadingVehicleClasses ? (
-                    <Fragment>
-                      <option>Loading...</option>
-                    </Fragment>
-                  ) : (
-                    <Fragment>
-                      {vehicleClasses ? (
-                        <Fragment>
-                          {vehicleClasses?.vehicleClassesLength === 0 ? (
-                            <Fragment>
-                              <option>No vehicle classes found</option>
-                            </Fragment>
-                          ) : (
-                            <Fragment>
-                              {vehicleClasses?.vehicleClasses?.map(
-                                (item: VehicleClasses, itemIdx: number) => (
-                                  <Fragment key={itemIdx}>
-                                    <option value={item?._id}>
-                                      {item?.name}
-                                    </option>
-                                  </Fragment>
-                                )
-                              )}
-                            </Fragment>
-                          )}
-                        </Fragment>
-                      ) : (
-                        <Fragment>
-                          <option>
-                            An error occured trying to load the data
-                          </option>
-                        </Fragment>
-                      )}
-                    </Fragment>
-                  )}
-                </select>
-              </div>
-            </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <div className={"relative"}>
-                <label htmlFor="email" className="">
-                  Color <span className={"text-red-600"}>*</span>
+                  Class of Vehicle <span className={"text-red-600"}>*</span>
                 </label>
-                <div
-                  onClick={() => setShowColorPicker(true)}
-                  style={{ backgroundColor: color || "#fff" }}
-                  className={
-                    "bg-white mt-1 rounded-md border border-gray-300 flex py-2 cursor-pointer justify-center"
-                  }
-                >
-                  <span className={"text-gray-600 text-sm"}>
-                    Click Here To Change Color
-                  </span>
+                <div className="mt-1 rounded-none shadow-none">
+                  <select
+                    id="location"
+                    name="location"
+                    required
+                    value={vehicleClass}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      setVehicleClass(e.target.value);
+                    }}
+                    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
+                    defaultValue="Canada"
+                  >
+                    <option>Please Choose</option>
+                    {loadingVehicleClasses ? (
+                      <Fragment>
+                        <option>Loading...</option>
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        {vehicleClasses ? (
+                          <Fragment>
+                            {vehicleClasses?.vehicleClassesLength === 0 ? (
+                              <Fragment>
+                                <option>No vehicle classes found</option>
+                              </Fragment>
+                            ) : (
+                              <Fragment>
+                                {vehicleClasses?.vehicleClasses?.map(
+                                  (item: VehicleClasses, itemIdx: number) => (
+                                    <Fragment key={itemIdx}>
+                                      <option value={item?._id}>
+                                        {item?.name}
+                                      </option>
+                                    </Fragment>
+                                  )
+                                )}
+                              </Fragment>
+                            )}
+                          </Fragment>
+                        ) : (
+                          <Fragment>
+                            <option>
+                              An error occured trying to load the data
+                            </option>
+                          </Fragment>
+                        )}
+                      </Fragment>
+                    )}
+                  </select>
                 </div>
-                <SketchPickerComponent
-                  show={showColorPicker}
-                  setShow={setShowColorPicker}
-                  color={color}
-                  setColor={setColor}
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <div className={"relative"}>
+                  <label htmlFor="email" className="">
+                    Color <span className={"text-red-600"}>*</span>
+                  </label>
+                  <div
+                    onClick={() => setShowColorPicker(true)}
+                    className={
+                      "bg-white mt-1 rounded-md relative border border-gray-300 flex py-2 items-center cursor-pointer justify-center"
+                    }
+                  >
+                    <span
+                      className={`w-5 h-5 rounded-full border absolute left-0 ml-4`}
+                      style={{ backgroundColor: color || "#fff" }}
+                    />
+                    <span className={"text-gray-600 text-sm"}>
+                      Click Here To Change Color
+                    </span>
+                  </div>
+                  <SketchPickerComponent
+                    show={showColorPicker}
+                    setShow={setShowColorPicker}
+                    color={color}
+                    setColor={setColor}
+                  />
+                </div>
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700"
+                >
+                  Transmission Type <span className={"text-red-600"}>*</span>
+                </label>
+                <div className="mt-1 rounded-none shadow-none">
+                  <select
+                    id="location"
+                    name="location"
+                    required
+                    value={transmissionType}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      setTransmissionType(e.target.value);
+                    }}
+                    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
+                    defaultValue="Canada"
+                  >
+                    <option>Please Choose</option>
+                    <option value="MANUAL">Manual</option>
+                    <option value="AUTOMATIC">Automatic</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700"
+                >
+                  Car Make <span className={"text-red-600"}>*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={make}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setMake(e.target.value);
+                  }}
+                  className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                  placeholder="Eg. Toyota"
+                />
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700"
+                >
+                  Car Model <span className={"text-red-600"}>*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={model}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setModel(e.target.value);
+                  }}
+                  className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                  placeholder="Eg. Camry"
+                />
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700"
+                >
+                  Registration Number <span className={"text-red-600"}>*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={registrationNumber}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setRegistrationNumber(e.target.value);
+                  }}
+                  className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                  placeholder="Eg. GE-320-20"
+                />
+              </div>
+
+              {/* upload cars */}
+              <div
+                style={{ height: "25vh" }}
+                className="col-span-12 sm:col-span-12 md:col-span-12 overflow-scroll scrollContainer"
+              >
+                <UploadCarsComponent
+                  imageUrl1={imageUrl1}
+                  handleUploadImage1={handleUploadImage1}
+                  imageUrl2={imageUrl2}
+                  handleUploadImage2={handleUploadImage2}
+                  imageUrl3={imageUrl3}
+                  handleUploadImage3={handleUploadImage3}
                 />
               </div>
             </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Transmission Type <span className={"text-red-600"}>*</span>
-              </label>
-              <div className="mt-1 rounded-none shadow-none">
-                <select
-                  id="location"
-                  name="location"
-                  required
-                  value={transmissionType}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                    setTransmissionType(e.target.value);
-                  }}
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-600 focus:border-pink-600 sm:text-sm rounded-md"
-                  defaultValue="Canada"
+            <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">
+              <span className="inline-flex rounded-none shadow-sm mr-2 ">
+                <button
+                  type="button"
+                  onClick={() => setShow(false)}
+                  className="inline-flex rounded-lg items-center px-6 py-2 border border-pink-600 text-sm leading-5 font-light text-pink-600 hover:text-pink-600 bg-white hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
                 >
-                  <option>Please Choose</option>
-                  <option value="MANUAL">Manual</option>
-                  <option value="AUTOMATIC">Automatic</option>
-                </select>
-              </div>
+                  <span className="mx-1">Close</span>
+                </button>
+              </span>
+              <span className="inline-flex rounded-none shadow-sm ">
+                <button
+                  type="submit"
+                  disabled={uploadLoadings || loading}
+                  className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
+                >
+                  {uploadLoadings || loading ? (
+                    <Fragment>
+                      <CircleSpinner loading color="#fff" size={13} />
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <span className="mx-1">Save</span>
+                    </Fragment>
+                  )}
+                </button>
+              </span>
             </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Car Make <span className={"text-red-600"}>*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={make}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setMake(e.target.value);
-                }}
-                className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. Toyota"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Car Model <span className={"text-red-600"}>*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={model}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setModel(e.target.value);
-                }}
-                className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. Camry"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Registration Number <span className={"text-red-600"}>*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={registrationNumber}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setRegistrationNumber(e.target.value);
-                }}
-                className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
-                placeholder="Eg. GE-320-20"
-              />
-            </div>
-
-            {/* upload cars */}
-            <div
-              style={{ height: "25vh" }}
-              className="col-span-12 sm:col-span-12 md:col-span-12 overflow-scroll scrollContainer"
-            >
-              <UploadCarsComponent
-                imageUrl1={imageUrl1}
-                handleUploadImage1={handleUploadImage1}
-                imageUrl2={imageUrl2}
-                handleUploadImage2={handleUploadImage2}
-                imageUrl3={imageUrl3}
-                handleUploadImage3={handleUploadImage3}
-              />
-            </div>
-          </div>
-          <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">
-            <span className="inline-flex rounded-none shadow-sm mr-2 ">
-              <button
-                type="button"
-                onClick={() => setShow(false)}
-                className="inline-flex rounded-lg items-center px-6 py-2 border border-pink-600 text-sm leading-5 font-light text-pink-600 hover:text-pink-600 bg-white hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
-              >
-                <span className="mx-1">Close</span>
-              </button>
-            </span>
-            <span className="inline-flex rounded-none shadow-sm ">
-              <button
-                type="button"
-                onClick={handleSubmit}
-                disabled={uploadLoadings || loading}
-                className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
-              >
-                {uploadLoadings || loading ? (
-                  <Fragment>
-                    <CircleSpinner loading color="#fff" size={13} />
-                  </Fragment>
-                ) : (
-                  <Fragment>
-                    <span className="mx-1">Save</span>
-                  </Fragment>
-                )}
-              </button>
-            </span>
-          </div>
+          </form>
         </div>
       </BasicModal>
     </Fragment>

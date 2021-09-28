@@ -57,6 +57,12 @@ export default function Trip({
 
     setTab("origin");
   };
+  const disabledDate = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(1, "days");
+    return current < start;
+  };
+
   return (
     <Fragment>
       <div className="grid grid-cols-12 gap-3  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto">
@@ -70,6 +76,7 @@ export default function Trip({
           <div className="mt-1 rounded-none shadow-none">
             <DatePicker
               // value={value}
+              disabledDate={disabledDate}
               onChange={(data: any) => {
                 setTripStartDate(data);
                 if (duration && selectedDuration) {
@@ -113,7 +120,7 @@ export default function Trip({
           >
             Duration Type <span className={"text-red-600"}>*</span>
           </label>
-          <div className="mt-1 rounded-none shadow-none ">
+          <div className="mt-1 rounded-none shadow-none">
             <DurationType
               setDurationTypeSelected={setDurationTypeSelected}
               selected={selectedDuration as IDurationType}
