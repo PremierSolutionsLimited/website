@@ -1,6 +1,6 @@
 export default function NewsLetter() {
   return (
-    <div className="bg-white py-16 sm:py-24">
+    <div id={"contact"} className="bg-white py-16 sm:py-24">
       <div className="relative sm:py-16">
         <div aria-hidden="true" className="hidden sm:block">
           <div className="absolute inset-y-0 left-0 w-1/2 bg-gray-50 rounded-r-3xl" />

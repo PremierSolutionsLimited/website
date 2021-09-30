@@ -3,6 +3,7 @@ import {
   DASHBOARD,
   MY_FLEET,
   HISTORY,
+  REQUESTS,
   SETTINGS,
 } from "../navigation/constants";
 
@@ -14,6 +15,10 @@ export const ClientDashBoardNavigation: ClientDashBoardNavigationProps[] = [
   {
     name: "My Fleet",
     href: MY_FLEET,
+  },
+  {
+    name: "Trip Requests",
+    href: REQUESTS,
   },
   {
     name: "History",

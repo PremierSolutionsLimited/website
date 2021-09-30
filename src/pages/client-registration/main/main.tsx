@@ -20,6 +20,7 @@ import Header from "../../../shared/layout/registration";
 import StepComponent from "../../../shared/client-steps";
 import getCroppedImg from "../../driver-registration/components/utils/getCroppedImage";
 import Cropper from "react-easy-crop";
+import { duplicateCheck } from "../../../components/utils/duplicateCheck";
 
 const PersonalComponent = lazy(() => import("../components/personal"));
 const OtherInformationComponent = lazy(() => import("../components/otherInfo"));
@@ -131,8 +132,18 @@ const MainComponent = () => {
                   setUploadingToFirebase(false);
                 })
                 .catch((e: ApolloError) => {
-                  console.log("error", e);
-                  return toast.error(e.graphQLErrors[0].message);
+                  const message = e.graphQLErrors[0]?.message;
+
+                  setUploadingToFirebase(false);
+                  if (message?.includes("duplicate")) {
+                    return toast?.error(duplicateCheck(message), {
+                      id: "duplicate",
+                    });
+                  }
+                  return toast?.error(message, {
+                    id: "error",
+                  });
+                  // return toast.error(e.graphQLErrors[0].message);
                 });
             });
         }
