@@ -25,6 +25,7 @@ import StepComponent from "../../../shared/driver-steps";
 import toast from "react-hot-toast";
 import getCroppedImg from "../components/utils/getCroppedImage";
 import Cropper from "react-easy-crop";
+import { duplicateCheck } from "../../../components/utils/duplicateCheck";
 
 const PersonalComponent = lazy(() => import("../components/personal"));
 const FamilyComponent = lazy(() => import("../components/family"));
@@ -379,8 +380,17 @@ const MainComponent = () => {
       })
       .catch((e: ApolloError) => {
         console.log("first error", e);
+        const message = e.graphQLErrors[0]?.message;
 
-        return toast.error(e.graphQLErrors[0].message);
+        if (message?.includes("duplicate")) {
+          return toast?.error(duplicateCheck(message), {
+            id: "duplicate",
+          });
+        }
+        return toast?.error(message, {
+          id: "error",
+        });
+        // return toast.error(e.graphQLErrors[0].message);
       });
   };
 

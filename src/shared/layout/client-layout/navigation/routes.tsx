@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { RouteProp } from "./types";
-import { DASHBOARD, MY_FLEET, SETTINGS, HISTORY } from "./constants";
+import { DASHBOARD, MY_FLEET, SETTINGS, HISTORY, REQUESTS } from "./constants";
 
 const Dashboard = lazy(
   () => import("../../../../pages/client-dashboard/dashboard")
@@ -13,6 +13,9 @@ const HistoryComponent = lazy(
 );
 const SettingsComponent = lazy(
   () => import("../../../../pages/client-dashboard/settings")
+);
+const TripRequestsComponent = lazy(
+  () => import("../../../../pages/client-dashboard/triprequest")
 );
 
 const routes: RouteProp[] = [
@@ -32,6 +35,12 @@ const routes: RouteProp[] = [
     component: HistoryComponent,
     name: "History Management",
     path: HISTORY,
+    exact: true,
+  },
+  {
+    component: TripRequestsComponent,
+    name: "Trip Requests Management",
+    path: REQUESTS,
     exact: true,
   },
 
