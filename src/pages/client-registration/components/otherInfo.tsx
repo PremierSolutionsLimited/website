@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { OtherInfoComponentProp } from "./types";
 import { DatePicker } from "antd";
+import moment from "moment";
 
 import SelectGenderPreference from "../bones/gender";
 
@@ -26,6 +27,18 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
 
     return setTab("emergency");
   }
+
+  const disabledDateFuture = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(0, "days");
+    return current > start;
+  };
+
+  const disabledDate = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(1, "days");
+    return current < start;
+  };
   return (
     <Fragment>
       <form
@@ -152,6 +165,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 onChange={(data: any) => {
                   setIdIssueDate(data);
                 }}
+                disabledDate={disabledDateFuture}
                 value={idIssueDate as any}
                 className={
                   "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
@@ -172,6 +186,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 onChange={(data: any) => {
                   setIdExpiryDate(data);
                 }}
+                disabledDate={disabledDate}
                 value={idExpiryDate as any}
                 className={
                   "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"

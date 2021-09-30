@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import FooterSvg from "../../../components/svgs/footer";
-// import Logo from "../../../assets/images/logo.png";
 import Picture from "../../../assets/images/Picture.jpg";
+import toast from "react-hot-toast";
 export interface Props {}
 
 const Footer = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   return (
     <Fragment>
       <FooterSvg />
@@ -67,146 +68,107 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                    Solutions
-                  </h3>
-                  <ul className="mt-4 space-y-4">
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Marketing
-                      </a>
-                    </li>
 
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Analytics
-                      </a>
-                    </li>
+            <div className="mt-12 md:mt-0">
+              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                HyperLinks
+              </h3>
+              <ul className="mt-4 grid grid-cols-2 gap-4">
+                <li>
+                  <a
+                    href="#offers"
+                    className="text-base text-gray-500 hover:text-gray-900"
+                  >
+                    Intro
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#offers"
+                    className="text-base text-gray-500 hover:text-gray-900"
+                  >
+                    Our Offers
+                  </a>
+                </li>
 
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Insights
-                      </a>
-                    </li>
-                  </ul>
+                <li>
+                  <a
+                    href="#whoweare"
+                    className="text-base text-gray-500 hover:text-gray-900"
+                  >
+                    Who we are
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="#keyfeatures"
+                    className="text-base text-gray-500 hover:text-gray-900"
+                  >
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#faq"
+                    className="text-base text-gray-500 hover:text-gray-900"
+                  >
+                    FAQs
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    className="text-base text-gray-500 hover:text-gray-900"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-8 xl:mt-0">
+              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                Subscribe to our newsletter
+              </h3>
+              <p className="mt-4 text-base text-gray-300">
+                The latest details, news, and updates, sent to your inbox
+                weekly.
+              </p>
+              <form className="mt-4 sm:flex sm:max-w-md">
+                <label htmlFor="email-address" className="sr-only">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  name="email-address"
+                  id="email-address"
+                  autoComplete="email"
+                  required
+                  className="appearance-none font-light min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400"
+                  placeholder="Enter your email"
+                />
+                <div className="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLoading(true);
+                      setTimeout(() => {
+                        setLoading(false);
+                        toast.success("Subscribed Successfully", {
+                          id: "subscribed",
+                        });
+                      }, 2000);
+                    }}
+                    className="w-full bg-pink-500 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-pink-600 focus:outline-none"
+                  >
+                    {loading ? "Subscribing....." : "Subscribe"}
+                  </button>
                 </div>
-                <div className="mt-12 md:mt-0">
-                  <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                    Support
-                  </h3>
-                  <ul className="mt-4 space-y-4">
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Pricing
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Documentation
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Guides
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                    Company
-                  </h3>
-                  <ul className="mt-4 space-y-4">
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        About
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Blog
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Jobs
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-12 md:mt-0">
-                  <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                    Legal
-                  </h3>
-                  <ul className="mt-4 space-y-4">
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Claim
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Privacy
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-500 hover:text-gray-900"
-                      >
-                        Terms
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
-          <div className="mt-12 border-t border-gray-300 pt-8">
+
+          <div className="mt-12 border-t border-gray-300 py-8">
             <p className="text-base text-gray-400 xl:text-center">
               &copy; {new Date().getFullYear()} Polymorph Labs, Inc. All rights
               reserved.
