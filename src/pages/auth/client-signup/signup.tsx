@@ -5,6 +5,9 @@ import { useRegistrationProvider } from "../../../services/context";
 import { differenceInCalendarYears } from "date-fns";
 import { DatePicker } from "antd";
 import Logo from "../../../assets/images/logo.png";
+import { useLazyQuery } from "@apollo/client";
+import { checkClientMail } from "../../../services/graphql/checkmail/query";
+import toast from "react-hot-toast";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -19,11 +22,13 @@ const Signup = () => {
   const [title, setTitle] = useState("");
   const [dob, setDob] = useState("");
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState<boolean>(false);
   const { push } = useHistory();
   const [{ startRegistration }] = useRegistrationProvider();
 
   const [isClientBelowAge, setIsClientBelowAge] = useState<boolean>(false);
+  const [checkIfTaken, { data: isTaken, loading: checking }] =
+    useLazyQuery(checkClientMail);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // wait function
   function wait(timeout: number) {
@@ -49,25 +54,68 @@ const Signup = () => {
     }
   }, [dob]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    let data = {
-      firstName,
-      lastName,
-      dob: new Date(dob),
-      email,
-      gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
-      title,
-      otherNames,
-      typeOfRegistration: "Client",
-    };
-    setLoading(true);
-    wait(2000).then(async () => {
-      setLoading(false);
-      await startRegistration(data);
-      push("/client-registration");
-    });
-  };
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   checkIfTaken({variables:{filter:{email}}})
+  //   while(checking){
+  //     setLoading(checking)
+  //   }
+  //   if(isTaken?.checkClientMail){
+
+  //   }
+  //   let data = {
+  //     firstName,
+  //     lastName,
+  //     dob: new Date(dob),
+  //     email,
+  //     gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
+  //     title,
+  //     otherNames,
+  //     typeOfRegistration: "Client",
+  //   };
+  //   setLoading(true);
+  //   wait(2000).then(async () => {
+  //     setLoading(false);
+  //     await startRegistration(data);
+  //     push("/client-registration");
+  //   });
+  // };
+
+  useEffect(() => {
+    if (isTaken === undefined) {
+      return;
+    } else if (isTaken?.checkClientMail) {
+      toast?.error("This email is already taken", { id: "emailTaken" });
+    } else if (isTaken?.checkClientMail === false) {
+      setLoading(true);
+      let data = {
+        firstName,
+        lastName,
+        dob: new Date(dob),
+        email,
+        gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
+        title,
+        otherNames,
+        typeOfRegistration: "Client",
+      };
+      wait(2000).then(async () => {
+        setLoading(false);
+        await startRegistration(data);
+        push("/client-registration");
+      });
+    }
+  }, [
+    isTaken,
+    dob,
+    email,
+    firstName,
+    title,
+    otherNames,
+    lastName,
+    push,
+    startRegistration,
+  ]);
+  // console.log(isTaken);
 
   return (
     <Fragment>
@@ -108,7 +156,7 @@ const Signup = () => {
 
             <div className="mt-8">
               <div className="mt-6">
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form className="space-y-6">
                   <div className="flex flex-wrap -mx-2 overflow-hidden">
                     <div className="my-1 px-2 w-1/2 overflow-hidden">
                       <div>
@@ -274,11 +322,15 @@ const Signup = () => {
                     </div>
                   </div>{" "}
                   <button
-                    type="submit"
+                    type="button"
+                    onClick={(e) => {
+                      e?.preventDefault();
+                      checkIfTaken({ variables: { filter: { email } } });
+                    }}
                     disabled={isClientBelowAge}
                     className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
-                    {loading ? (
+                    {loading || checking ? (
                       <Fragment>
                         <StageSpinner color="#fff" loading size={20} />
                       </Fragment>
