@@ -5,6 +5,9 @@ import { useRegistrationProvider } from "../../../services/context";
 import { differenceInCalendarYears } from "date-fns";
 import { DatePicker } from "antd";
 import Logo from "../../../assets/images/logo.png";
+import { useLazyQuery } from "@apollo/client";
+import { checkDriverMail } from "../../../services/graphql/checkmail/query";
+import toast from "react-hot-toast";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -26,6 +29,9 @@ const DriverSignup = () => {
 
   const [usersAge, setUsersAge] = useState<string>("");
   const [isDriverBelowAge, setIsDriverBelowAge] = useState<boolean>(false);
+
+  const [checkIfTaken, { data: isTaken, loading: checking }] =
+    useLazyQuery(checkDriverMail);
 
   // wait function
   function wait(timeout: number) {
@@ -57,24 +63,63 @@ const DriverSignup = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let data = {
-      firstName,
-      lastName,
-      dob: new Date(dob),
-      email,
-      gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
-      title,
-      otherNames,
-      typeOfRegistration: "Driver",
-      age: usersAge,
-    };
-    setLoading(true);
-    wait(2000).then(async () => {
-      setLoading(false);
-      await startRegistration(data);
-      push("/driver-registration");
-    });
+    checkIfTaken({ variables: { filter: { email } } });
+    // let data = {
+    //   firstName,
+    //   lastName,
+    //   dob: new Date(dob),
+    //   email,
+    //   gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
+    //   title,
+    //   otherNames,
+    //   typeOfRegistration: "Driver",
+    //   age: usersAge,
+    // };
+    // setLoading(true);
+    // wait(2000).then(async () => {
+    //   setLoading(false);
+    //   await startRegistration(data);
+    //   push("/driver-registration");
+    // });
   };
+  console.log(isTaken);
+  useEffect(() => {
+    if (isTaken === undefined) {
+      return;
+    } else if (isTaken?.checkClientMail) {
+      toast?.error("This email is already taken", { id: "emailTaken" });
+    } else if (isTaken?.checkClientMail === false) {
+      setLoading(true);
+      let data = {
+        firstName,
+        lastName,
+        dob: new Date(dob),
+        email,
+        gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
+        title,
+        otherNames,
+        typeOfRegistration: "Driver",
+        age: usersAge,
+      };
+      setLoading(true);
+      wait(2000).then(async () => {
+        setLoading(false);
+        await startRegistration(data);
+        push("/driver-registration");
+      });
+    }
+  }, [
+    isTaken,
+    dob,
+    email,
+    firstName,
+    title,
+    otherNames,
+    lastName,
+    usersAge,
+    push,
+    startRegistration,
+  ]);
 
   return (
     <Fragment>
@@ -294,7 +339,7 @@ const DriverSignup = () => {
                     disabled={isDriverBelowAge}
                     className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
-                    {loading ? (
+                    {loading || checking ? (
                       <Fragment>
                         <StageSpinner color="#fff" loading size={20} />
                       </Fragment>
