@@ -29,6 +29,7 @@ const ClientApollo = ({ children }) => {
 
     operation.setContext({
       headers: {
+        "phoenix-origin": "CLIENT_WEB",
         ...customHeaders,
       },
     });
