@@ -77,6 +77,7 @@ const FamilyComponent: FC<FamilyComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
+                placeholder={`Eg. Brother`}
                 autoComplete="organization"
                 value={nexOfKinRelation}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { ExperienceComponentProp } from "./types";
 import { DatePicker } from "antd";
+import moment from "moment";
 
 const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   setTab,
@@ -36,6 +37,12 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
     e.preventDefault();
     return setTab("license");
   };
+  const disabledDate = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(0, "days");
+    return current > start;
+  };
+
   return (
     <Fragment>
       <form
@@ -138,6 +145,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
 
               <DatePicker
                 // value={value}
+                disabledDate={disabledDate}
                 onChange={(data: any) => {
                   setPreviousPositionStartDate(data);
                 }}
@@ -157,6 +165,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
 
               <DatePicker
                 // value={value}
+                disabledDate={disabledDate}
                 onChange={(data: any) => {
                   setPreviousPositionEndDate(data);
                 }}

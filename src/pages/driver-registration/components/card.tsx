@@ -3,6 +3,7 @@ import { CardDetailsComponentProp } from "./types";
 import { CameraIcon } from "@heroicons/react/outline";
 import { DatePicker } from "antd";
 import toast from "react-hot-toast";
+import moment from "moment";
 
 export default function CardDetailsComponent({
   setTab,
@@ -34,6 +35,18 @@ export default function CardDetailsComponent({
     }
     return setTab("experience");
   };
+
+  const disabledDate = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(0, "days");
+    return current > start;
+  };
+  const disabledDateFuture = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(0, "days");
+    return current < start;
+  };
+
   return (
     <div>
       <form className="divide-y divide-gray-200 lg:col-span-9">
@@ -173,6 +186,7 @@ export default function CardDetailsComponent({
               </label>
               <DatePicker
                 // value={value}
+                disabledDate={disabledDate}
                 onChange={(data: any) => {
                   setGhanaCardIssueDate(data);
                 }}
@@ -195,6 +209,7 @@ export default function CardDetailsComponent({
                 onChange={(data: any) => {
                   setGhanaCardExpiryDate(data);
                 }}
+                disabledDate={disabledDateFuture}
                 value={ghanaCardExpiryDate as any}
                 className={
                   "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
