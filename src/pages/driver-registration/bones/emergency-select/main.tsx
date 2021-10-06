@@ -51,8 +51,30 @@ const MainComponent = ({
       <div style={{ height: "57vh" }} className="overflow-y-auto">
         {emergencyContact.map((contact: EmergencyInputProp, index: number) => (
           <React.Fragment key={index}>
-            <div className="py-3 px-4 sm:p-6 lg:pb-8">
-              <div className="mt-2 grid grid-cols-12 gap-6">
+            <div className="py-3 px-4 sm:p-6 shadow-sm lg:pb-8">
+              <div className="mt-2 grid grid-cols-12 relative gap-6">
+                <div className={` absolute right-0`}>
+                  <svg
+                    onClick={() => {
+                      const remainder = emergencyContact?.filter(
+                        (_, id) => id !== index
+                      );
+                      setEmergencyContact(remainder);
+                    }}
+                    className="w-5 cursor-pointer text-red-500 h-5 -mt-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </div>
                 <SingleSelectOption
                   name={contact?.name}
                   setName={(newName: string) => {
