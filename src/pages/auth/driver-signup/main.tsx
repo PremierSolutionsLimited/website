@@ -8,6 +8,7 @@ import Logo from "../../../assets/images/logo.png";
 import { useLazyQuery } from "@apollo/client";
 import { checkDriverMail } from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";
+import moment from "moment";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -82,8 +83,14 @@ const DriverSignup = () => {
     //   push("/driver-registration");
     // });
   };
-  console.log(isTaken);
+  const disabledDate = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(18, "years");
+    return current > start;
+  };
+
   useEffect(() => {
+    setDob(moment()?.subtract(18, "years")?.toString());
     if (isTaken === undefined) {
       return;
     } else if (isTaken?.checkClientMail) {
@@ -279,14 +286,15 @@ const DriverSignup = () => {
                       htmlFor="password"
                       className="block text-sm pb-1  font-medium text-gray-700"
                     >
-                      Date of Birth
+                      Date of Birth (18 years +)
                     </label>
                     <div className={" bg-gray-100 p-1.5"}>
                       <DatePicker
-                        // value={value}
+                        defaultValue={moment()?.subtract(18, "years")}
                         onChange={(data: any) => {
                           setDob(data);
                         }}
+                        disabledDate={disabledDate}
                         className={
                           "border border-none w-full bg-gray-100 focus:border-none"
                         }

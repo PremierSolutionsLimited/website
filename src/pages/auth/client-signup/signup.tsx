@@ -8,6 +8,7 @@ import Logo from "../../../assets/images/logo.png";
 import { useLazyQuery } from "@apollo/client";
 import { checkClientMail } from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";
+import moment from "moment";
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -80,6 +81,12 @@ const Signup = () => {
   //     push("/client-registration");
   //   });
   // };
+
+  const disabledDate = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(18, "years");
+    return current > start;
+  };
 
   useEffect(() => {
     if (isTaken === undefined) {
@@ -281,10 +288,11 @@ const Signup = () => {
                       /> */}
 
                       <DatePicker
-                        // value={value}
+                        defaultValue={moment()?.subtract(18, "years")}
                         onChange={(data: any) => {
                           setDob(data);
                         }}
+                        disabledDate={disabledDate}
                         className={
                           "border border-none w-full bg-gray-100 focus:border-none"
                         }

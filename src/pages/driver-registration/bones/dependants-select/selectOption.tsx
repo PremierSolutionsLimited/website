@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { SingleDependentsSelectProps } from "../types";
 import { DatePicker } from "antd";
+import moment from "moment";
 
 const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
   firstName,
@@ -14,6 +15,12 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
   lastName,
   setLastName,
 }) => {
+  const disabledDate = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(0, "days");
+    return current > start;
+  };
+
   return (
     <Fragment>
       <div className="col-span-12 sm:col-span-6">
@@ -27,6 +34,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
           type="text"
           name="url"
           id="url"
+          required
           placeholder="Eg. Christopher"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
@@ -43,6 +51,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
         <input
           type="text"
           name="url"
+          required
           id="url"
           placeholder={"Eg. Owusu"}
           value={lastName}
@@ -61,6 +70,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
           type="text"
           name="url"
           id="url"
+          required
           placeholder="Eg. Brother"
           value={relationship}
           onChange={(e) => setRelationShip(e.target.value)}
@@ -77,6 +87,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
         <select
           id="location"
           name="location"
+          required
           className="mt-1 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
           value={gender}
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
@@ -97,6 +108,7 @@ const SingleSelectOption: React.FC<SingleDependentsSelectProps> = ({
         </label>
         <DatePicker
           // value={value}
+          disabledDate={disabledDate}
           onChange={(data: any) => {
             setDob(data);
           }}

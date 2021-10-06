@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { PersonalComponentProp } from "./types";
 import ProfileImage from "../../../assets/images/male.jpeg";
 import toast from "react-hot-toast";
+import { DatePicker } from "antd";
+import moment from "moment";
 
 const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setTab,
@@ -13,7 +15,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   city,
   setCity,
   age,
-  setAge,
+
   telephone,
   setTelephone,
   maritalStatus,
@@ -38,6 +40,12 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
       return toast.error("Please add a profile image");
     }
     return setTab("family");
+  };
+
+  const disabledDate = (current: any) => {
+    // Can not select yesterday and before
+    const start = moment()?.subtract(0, "days");
+    return current > start;
   };
 
   return (
@@ -87,7 +95,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     name="last_name"
                     id="last_name"
                     value={region}
-                    required
+                    placeholder={"Eg. Greater Accra"}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setRegion(e.target.value)
                     }
@@ -176,30 +184,11 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="text"
                 name="url"
                 id="url"
-                placeholder={"Eg. Dome"}
                 required
+                placeholder={"Eg. Dome"}
                 value={city}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setCity(e.target.value)
-                }
-                className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Age
-              </label>
-              <input
-                type="number"
-                name="url"
-                id="url"
-                required
-                value={age}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setAge(e.target.value)
                 }
                 className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
@@ -330,7 +319,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               >
                 When did you graduate?
               </label>
-              <input
+              {/* <input
                 type="number"
                 name="url"
                 id="url"
@@ -341,6 +330,18 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                   setYearOfGraduation(e.target.value)
                 }
                 className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+              /> */}
+
+              <DatePicker
+                defaultValue={moment()?.subtract(0, "days")}
+                onChange={(data: any) => {
+                  setYearOfGraduation(data);
+                }}
+                // picker="year"
+                disabledDate={disabledDate}
+                className={
+                  "border border-none h-11 mt-1 w-full bg-gray-100 focus:border-none"
+                }
               />
             </div>
             <div className="col-span-12 sm:col-span-6">

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { LicenseComponentProp } from "./types";
 import { CameraIcon } from "@heroicons/react/outline";
 import { DatePicker } from "antd";
@@ -37,6 +37,8 @@ export default function LicenseComponent({
     }
     return setTab("avaiabliity");
   };
+
+  const [hasLicense, setHasLicense] = useState("no");
   return (
     <div>
       <form
@@ -58,9 +60,10 @@ export default function LicenseComponent({
                 name="location"
                 required
                 value={hasALicense}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setHasALicense(e.target.value)
-                }
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                  setHasALicense(e.target.value);
+                  setHasLicense(e?.target?.value);
+                }}
                 className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
               >
                 <option>Please Choose</option>
@@ -68,40 +71,42 @@ export default function LicenseComponent({
                 <option value="no">No</option>
               </select>
             </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm font-medium pb-2 text-gray-700"
-              >
-                Driver's license class
-              </label>
-              <select
-                id="location"
-                name="location"
-                value={licenseClass}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setLicenseClass(e.target.value)
-                }
-                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
-                required
-              >
-                <option>Please Choose</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
-                <option value="F">F</option>
-              </select>
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                License Issue Date
-              </label>
-              {/* <input
+            {hasLicense === "yes" && (
+              <>
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm font-medium pb-2 text-gray-700"
+                  >
+                    Driver's license class
+                  </label>
+                  <select
+                    id="location"
+                    name="location"
+                    value={licenseClass}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setLicenseClass(e.target.value)
+                    }
+                    className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                    required
+                  >
+                    <option>Please Choose</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                  </select>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm pb-2 font-medium text-gray-700"
+                  >
+                    License Issue Date
+                  </label>
+                  {/* <input
                 required
                 type={"date"}
                 id={"expiry"}
@@ -112,35 +117,35 @@ export default function LicenseComponent({
                 className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
               /> */}
 
-              <DatePicker
-                // value={value}
-                onChange={(data: any) => {
-                  setLicenseIssueDate(data);
-                }}
-                value={licenseIssueDate as any}
-                className={
-                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
-                }
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                License Expiry Date
-              </label>
-              <DatePicker
-                // value={value}
-                onChange={(data: any) => {
-                  setLicenseExpiryDate(data);
-                }}
-                value={licenseExpiryDate as any}
-                className={
-                  "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
-                }
-              />
-              {/* <input
+                  <DatePicker
+                    // value={value}
+                    onChange={(data: any) => {
+                      setLicenseIssueDate(data);
+                    }}
+                    value={licenseIssueDate as any}
+                    className={
+                      "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                    }
+                  />
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm pb-2 font-medium text-gray-700"
+                  >
+                    License Expiry Date
+                  </label>
+                  <DatePicker
+                    // value={value}
+                    onChange={(data: any) => {
+                      setLicenseExpiryDate(data);
+                    }}
+                    value={licenseExpiryDate as any}
+                    className={
+                      "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                    }
+                  />
+                  {/* <input
                 required
                 type={"date"}
                 id={"expiry"}
@@ -150,65 +155,50 @@ export default function LicenseComponent({
                 }
                 className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
               /> */}
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                License ID
-              </label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                required={false}
-                value={licenseId}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setLicenseId(e.target.value)
-                }
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                Driver's License Number
-              </label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                required
-                value={licenseNumber}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setLicenseNumber(e.target.value)
-                }
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm pb-2 font-medium text-gray-700"
-              >
-                Years of driving experience on license ?
-              </label>
-              <input
-                type="number"
-                name="company"
-                id="company"
-                autoComplete="organization"
-                required
-                value={yearsOfExperienceOnLicense}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setYearsOfExperienceOnLicense(e.target.value)
-                }
-                className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm pb-2 font-medium text-gray-700"
+                  >
+                    License ID
+                  </label>
+                  <input
+                    type="text"
+                    name="company"
+                    id="company"
+                    required={false}
+                    value={licenseId}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setLicenseId(e.target.value)
+                    }
+                    className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                  />
+                </div>
+
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm pb-2 font-medium text-gray-700"
+                  >
+                    Years of driving experience on license ?
+                  </label>
+                  <input
+                    type="number"
+                    name="company"
+                    id="company"
+                    autoComplete="organization"
+                    required
+                    value={yearsOfExperienceOnLicense}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setYearsOfExperienceOnLicense(e.target.value)
+                    }
+                    className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                  />
+                </div>
+              </>
+            )}
+
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="url"
@@ -218,6 +208,11 @@ export default function LicenseComponent({
               </label>
               <SelectTypeOfCars type={typesOfCars} setType={setTypeOfCars} />
             </div>
+            {hasLicense === "yes" && (
+              <>
+                <div className="col-span-12 sm:col-span-6" />
+              </>
+            )}
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
               <label
                 htmlFor="url"
@@ -231,7 +226,7 @@ export default function LicenseComponent({
                     <img
                       className="h-28 w-full object-cover lg:h-44"
                       src={driverLicenseFrontImageUrl}
-                      alt=""
+                      alt="driverFront"
                     />
                     <label
                       htmlFor="user-photo"
