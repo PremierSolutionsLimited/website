@@ -4,6 +4,7 @@ import ProfileImage from "../../../assets/images/male.jpeg";
 import toast from "react-hot-toast";
 import { DatePicker } from "antd";
 import moment from "moment";
+import { CameraIcon } from "@heroicons/react/outline";
 
 const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setTab,
@@ -15,7 +16,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   city,
   setCity,
   age,
-
+  certificateImageUrl,
+  handleCertificateUpload,
   telephone,
   setTelephone,
   maritalStatus,
@@ -257,7 +259,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 name="company"
                 id="company"
                 min="0"
-                placeholder={"Eg. 12"}
+                placeholder={"Eg. 3"}
                 value={numberOfChildren}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setNumberOfChildren(e.target.value)
@@ -319,25 +321,12 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               >
                 When did you graduate?
               </label>
-              {/* <input
-                type="number"
-                name="url"
-                id="url"
-                placeholder={"Eg. 2010"}
-                required
-                value={yearOfGraduation}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setYearOfGraduation(e.target.value)
-                }
-                className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
-              /> */}
 
               <DatePicker
                 defaultValue={moment()?.subtract(0, "days")}
                 onChange={(data: any) => {
                   setYearOfGraduation(data);
                 }}
-                // picker="year"
                 disabledDate={disabledDate}
                 className={
                   "border border-none h-11 mt-1 w-full bg-gray-100 focus:border-none"
@@ -388,18 +377,83 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 <option value={"no"}>No</option>
               </select>
             </div>
+            <div className="col-span-12 sm:col-span-12 md:col-span-12">
+              <label
+                htmlFor="url"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Image of Certificate
+              </label>
+
+              {certificateImageUrl ? (
+                <Fragment>
+                  <div className="relative pt-3">
+                    <img
+                      className="h-28 w-full object-cover lg:h-44"
+                      src={certificateImageUrl}
+                      alt=""
+                    />
+
+                    <label
+                      htmlFor="user-photo"
+                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                    >
+                      <div className="">
+                        <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
+                          <CameraIcon
+                            className=" flex-shrink-0 h-6 w-6 text-gray-300"
+                            aria-hidden="true"
+                          />
+
+                          <input
+                            type="file"
+                            id="user-photo"
+                            name="user-photo"
+                            accept={"image/*"}
+                            onChange={handleCertificateUpload}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                          />
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <div className="relative pt-3">
+                    <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
+                    <label
+                      htmlFor="user-photo"
+                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                    >
+                      <div className="">
+                        <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
+                          <CameraIcon
+                            className=" flex-shrink-0 h-6 w-6 text-gray-500"
+                            aria-hidden="true"
+                          />
+
+                          {/* <span className="sr-only"> user photo</span> */}
+                          <input
+                            type="file"
+                            id="user-photo"
+                            name="user-photo"
+                            accept={"image/*"}
+                            onChange={handleCertificateUpload}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                          />
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </Fragment>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Privacy section */}
         <div className="pt-3 divide-y divide-gray-200">
           <div className="mt-2 py-4 px-4 flex justify-end sm:px-6">
-            {/* <button
-              type="button"
-              className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
-            >
-              Cancel
-            </button> */}
             <button
               type="submit"
               className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"

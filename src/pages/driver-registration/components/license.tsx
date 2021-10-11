@@ -11,14 +11,10 @@ export default function LicenseComponent({
   setHasALicense,
   licenseId,
   setLicenseId,
-  licenseType,
-  setLicenseType,
   licenseExpiryDate,
   setLicenseExpiryDate,
   licenseIssueDate,
   setLicenseIssueDate,
-  licenseNumber,
-  setLicenseNumber,
   yearsOfExperienceOnLicense,
   setYearsOfExperienceOnLicense,
   licenseClass,
@@ -70,6 +66,15 @@ export default function LicenseComponent({
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="url"
+                className="block text-sm font-medium pb-3 text-gray-700"
+              >
+                What type of vehicle can you drive?
+              </label>
+              <SelectTypeOfCars type={typesOfCars} setType={setTypeOfCars} />
             </div>
             {hasLicense === "yes" && (
               <>
@@ -145,16 +150,6 @@ export default function LicenseComponent({
                       "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
                     }
                   />
-                  {/* <input
-                required
-                type={"date"}
-                id={"expiry"}
-                value={licenseExpiryDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setLicenseExpiryDate(e.target.value)
-                }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-              /> */}
                 </div>
                 <div className="col-span-12 sm:col-span-6">
                   <label
@@ -196,167 +191,158 @@ export default function LicenseComponent({
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
                 </div>
+
+                {hasLicense === "yes" && (
+                  <>
+                    <div className="col-span-12 sm:col-span-6" />
+                  </>
+                )}
+                <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                  <label
+                    htmlFor="url"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Driver's License (Front)
+                  </label>
+                  {driverLicenseFrontImageUrl ? (
+                    <Fragment>
+                      <div className="relative pt-3">
+                        <img
+                          className="h-28 w-full object-cover lg:h-44"
+                          src={driverLicenseFrontImageUrl}
+                          alt="driverFront"
+                        />
+                        <label
+                          htmlFor="user-photo"
+                          className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                        >
+                          <div className="">
+                            <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
+                              <CameraIcon
+                                className=" flex-shrink-0 h-6 w-6 text-gray-300"
+                                aria-hidden="true"
+                              />
+
+                              {/* <span className="sr-only"> user photo</span> */}
+                              <input
+                                type="file"
+                                id="user-photo"
+                                name="user-photo"
+                                onChange={handleLicenseFrontImageUpload}
+                                accept={"image/*"}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                              />
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <div className="relative pt-3">
+                        <div className="h-28 w-full object-cover lg:h-44 border border-dashed rounded-lg border-gray-500"></div>
+                        <label
+                          htmlFor="user-photo"
+                          className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                        >
+                          <div className="">
+                            <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
+                              <CameraIcon
+                                className=" flex-shrink-0 h-6 w-6 text-gray-500"
+                                aria-hidden="true"
+                              />
+
+                              {/* <span className="sr-only"> user photo</span> */}
+                              <input
+                                type="file"
+                                id="user-photo"
+                                name="user-photo"
+                                onChange={handleLicenseFrontImageUpload}
+                                accept={"image/*"}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                              />
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </Fragment>
+                  )}
+                </div>
+                <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                  <label
+                    htmlFor="url"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Driver's License (Back)
+                  </label>
+
+                  {driverLicenseBackImageUrl ? (
+                    <Fragment>
+                      <div className="relative pt-3">
+                        <img
+                          className="h-28 w-full object-cover lg:h-44"
+                          src={driverLicenseBackImageUrl}
+                          alt=""
+                        />
+
+                        <label
+                          htmlFor="user-photo"
+                          className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                        >
+                          <div className="">
+                            <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
+                              <CameraIcon
+                                className=" flex-shrink-0 h-6 w-6 text-gray-300"
+                                aria-hidden="true"
+                              />
+
+                              {/* <span className="sr-only"> user photo</span> */}
+                              <input
+                                type="file"
+                                id="user-photo"
+                                name="user-photo"
+                                accept={"image/*"}
+                                onChange={handleLicenseBackImageUpload}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                              />
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <div className="relative pt-3">
+                        <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
+                        <label
+                          htmlFor="user-photo"
+                          className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                        >
+                          <div className="">
+                            <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
+                              <CameraIcon
+                                className=" flex-shrink-0 h-6 w-6 text-gray-500"
+                                aria-hidden="true"
+                              />
+
+                              {/* <span className="sr-only"> user photo</span> */}
+                              <input
+                                type="file"
+                                id="user-photo"
+                                name="user-photo"
+                                accept={"image/*"}
+                                onChange={handleLicenseBackImageUpload}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                              />
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </Fragment>
+                  )}
+                </div>
               </>
             )}
-
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm font-medium pb-3 text-gray-700"
-              >
-                What type of vehicle can you drive?
-              </label>
-              <SelectTypeOfCars type={typesOfCars} setType={setTypeOfCars} />
-            </div>
-            {hasLicense === "yes" && (
-              <>
-                <div className="col-span-12 sm:col-span-6" />
-              </>
-            )}
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Driver's License (Front)
-              </label>
-              {driverLicenseFrontImageUrl ? (
-                <Fragment>
-                  <div className="relative pt-3">
-                    <img
-                      className="h-28 w-full object-cover lg:h-44"
-                      src={driverLicenseFrontImageUrl}
-                      alt="driverFront"
-                    />
-                    <label
-                      htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
-                    >
-                      <div className="">
-                        <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
-                          <CameraIcon
-                            className=" flex-shrink-0 h-6 w-6 text-gray-300"
-                            aria-hidden="true"
-                          />
-
-                          {/* <span className="sr-only"> user photo</span> */}
-                          <input
-                            type="file"
-                            id="user-photo"
-                            name="user-photo"
-                            onChange={handleLicenseFrontImageUpload}
-                            accept={"image/*"}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                          />
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <div className="relative pt-3">
-                    <div className="h-28 w-full object-cover lg:h-44 border border-dashed rounded-lg border-gray-500"></div>
-                    <label
-                      htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
-                    >
-                      <div className="">
-                        <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
-                          <CameraIcon
-                            className=" flex-shrink-0 h-6 w-6 text-gray-500"
-                            aria-hidden="true"
-                          />
-
-                          {/* <span className="sr-only"> user photo</span> */}
-                          <input
-                            type="file"
-                            id="user-photo"
-                            name="user-photo"
-                            onChange={handleLicenseFrontImageUpload}
-                            accept={"image/*"}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                          />
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </Fragment>
-              )}
-            </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Driver's License (Back)
-              </label>
-
-              {driverLicenseBackImageUrl ? (
-                <Fragment>
-                  <div className="relative pt-3">
-                    <img
-                      className="h-28 w-full object-cover lg:h-44"
-                      src={driverLicenseBackImageUrl}
-                      alt=""
-                    />
-
-                    <label
-                      htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
-                    >
-                      <div className="">
-                        <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
-                          <CameraIcon
-                            className=" flex-shrink-0 h-6 w-6 text-gray-300"
-                            aria-hidden="true"
-                          />
-
-                          {/* <span className="sr-only"> user photo</span> */}
-                          <input
-                            type="file"
-                            id="user-photo"
-                            name="user-photo"
-                            accept={"image/*"}
-                            onChange={handleLicenseBackImageUpload}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                          />
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <div className="relative pt-3">
-                    <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
-                    <label
-                      htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
-                    >
-                      <div className="">
-                        <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
-                          <CameraIcon
-                            className=" flex-shrink-0 h-6 w-6 text-gray-500"
-                            aria-hidden="true"
-                          />
-
-                          {/* <span className="sr-only"> user photo</span> */}
-                          <input
-                            type="file"
-                            id="user-photo"
-                            name="user-photo"
-                            accept={"image/*"}
-                            onChange={handleLicenseBackImageUpload}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                          />
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </Fragment>
-              )}
-            </div>
           </div>
         </div>
 
