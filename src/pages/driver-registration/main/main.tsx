@@ -63,6 +63,8 @@ const MainComponent = () => {
   const [canUseMap, setCanUseMap] = useState<string>("");
   // for driver's image
   const [driverFile, setDriverFile] = useState<any>(null);
+  const [certImageFile, setCertImageFile] = useState(null);
+  const [certificateImageUrl, setCertificateImageUrl] = useState("");
 
   // states for driver's personal experience
   const [hadAccidents, setHadAccidents] = useState<string>("");
@@ -209,6 +211,17 @@ const MainComponent = () => {
     return setShowCropper(true);
   };
 
+  // function to handle upload of certificate upload
+  const handleCertificateUpload = (e: any) => {
+    if (e.target.files[0] !== undefined) {
+      setCertificateImageUrl(URL.createObjectURL(e.target.files[0]));
+      setCertImageFile(e.target.files[0]);
+    } else {
+      setCertificateImageUrl(URL.createObjectURL(driverLicenseBackFile));
+      setCertImageFile(driverLicenseBackFile);
+    }
+  };
+
   // function to handle image upload from user's pc
   // const handleImageUpload = (e: any) => {
   //   if (e.target.files[0] !== undefined) {
@@ -289,17 +302,21 @@ const MainComponent = () => {
       ghanaCardFrontFile,
       ghanaCardBackFile,
       driverLicenseFrontFile,
-      driverLicenseBackFile
+      driverLicenseBackFile,
+      certImageFile
     );
 
     // image urls generated after firebase upload
     let imageUrls: string[] = [];
-
     if (![null].includes(imageFiles)) {
       for (let i = 0; i < imageFiles.length; i++) {
         setCurrentFile(i);
-        let element = await upload(imageFiles[i]?.value as File);
-        imageUrls.push(element);
+        if (imageFiles[i]?.value === null) {
+          continue;
+        } else {
+          let element = await upload(imageFiles[i]?.value);
+          imageUrls.push(element);
+        }
       }
     }
     createApplication({
@@ -322,8 +339,8 @@ const MainComponent = () => {
         licenseId: licenseId,
         licenseIssueDate: new Date(licenseIssueDate),
         licenseExpiryDate: new Date(licenseExpiryDate),
-        licenseImageFront: imageUrls[3],
-        licenseImageBack: imageUrls[4],
+        licenseImageFront: imageUrls[3] || undefined,
+        licenseImageBack: imageUrls[4] || undefined,
         licenseClass: licenseClass,
         drivingExperience: parseInt(yearsOfExperienceOnLicense),
         // vehicleClasses: undefined,
@@ -337,6 +354,7 @@ const MainComponent = () => {
           nameOfSchool: nameOfSchoolCompleted,
           endDate: new Date(yearOfGraduation),
           level: highestLevelOfEducation,
+          certificateImage: imageUrls[5] || undefined,
         },
         currentEmployment: {
           currentEmployerName: currentEmployerName,
@@ -371,8 +389,8 @@ const MainComponent = () => {
         ghanaCardId,
         ghanaCardExpiryDate: new Date(ghanaCardExpiryDate),
         ghanaCardIssueDate: new Date(ghanaCardIssueDate),
-        ghanaCardImageFont: imageUrls[1],
-        ghanaCardImageBack: imageUrls[2],
+        ghanaCardImageFont: imageUrls[1] || undefined,
+        ghanaCardImageBack: imageUrls[2] || undefined,
       },
     })
       .then(() => {
@@ -455,6 +473,8 @@ const MainComponent = () => {
                       setTelephone={setTelephone}
                       maritalStatus={maritalStatus}
                       setMaritalStatus={setMaritalStatus}
+                      certificateImageUrl={certificateImageUrl}
+                      handleCertificateUpload={handleCertificateUpload}
                       numberOfChildren={numberOfChildren}
                       setNumberOfChildren={setNumberOfChildren}
                       highestLevelOfEducation={highestLevelOfEducation}

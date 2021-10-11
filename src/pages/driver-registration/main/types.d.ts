@@ -37,6 +37,7 @@ export interface CreateApplicationInputProp {
     level: string;
     startDate?: Date;
     endDate: Date;
+    certificateImage: string | undefined;
   };
   currentEmployment: {
     currentEmployerName: string;
@@ -72,8 +73,8 @@ export interface CreateApplicationInputProp {
   ghanaCardId: string;
   ghanaCardIssueDate: Date;
   ghanaCardExpiryDate: Date;
-  ghanaCardImageFont: string;
-  ghanaCardImageBack: string;
+  ghanaCardImageFont: string | undefined;
+  ghanaCardImageBack: string | undefined;
 }
 
 export interface CreateApplicationOuputProp {

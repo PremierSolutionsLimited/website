@@ -29,6 +29,8 @@ export interface PersonalComponentProp {
   setCanUseMap: React.Dispatch<React.SetStateAction<string>>;
   handleImageUpload: (e: any) => void;
   driverImageUrl: string;
+  certificateImageUrl: string;
+  handleCertificateUpload: (e: any) => void;
 }
 
 export interface FamilyComponentProp {
