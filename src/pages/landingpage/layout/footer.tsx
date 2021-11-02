@@ -168,11 +168,14 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="mt-12 border-t border-gray-300 py-8">
+          <div className="mt-12 border-t flex justify-center flex-col border-gray-300 py-8">
             <p className="text-base text-gray-400 xl:text-center">
               &copy; {new Date().getFullYear()} Polymorph Labs, Inc. All rights
               reserved.
             </p>
+            <i className="text-base text-gray-400 xl:text-center">
+              Powered by Insignia
+            </i>
           </div>
         </div>
       </footer>

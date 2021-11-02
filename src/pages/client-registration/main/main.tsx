@@ -241,6 +241,8 @@ const MainComponent = () => {
     return setShowCropper(true);
   };
 
+  console.log("Hello");
+
   return (
     <Fragment>
       <Header />
