@@ -7,7 +7,7 @@ import { LOGIN_CLIENT } from "../../../services/graphql/auth";
 import { ContextLoader } from "../../../shared/loaders";
 import { LoginInputProps, LoginOutputProps } from "./types";
 import { StageSpinner } from "react-spinners-kit";
-import Logo from "../../../assets/images/logo.png";
+import Logo from "../../../assets/images/logo_white.png";
 import _ from "lodash";
 import toast from "react-hot-toast";
 

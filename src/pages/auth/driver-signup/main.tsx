@@ -4,7 +4,7 @@ import { StageSpinner } from "react-spinners-kit";
 import { useRegistrationProvider } from "../../../services/context";
 import { differenceInCalendarYears } from "date-fns";
 import { DatePicker } from "antd";
-import Logo from "../../../assets/images/logo.png";
+import Logo from "../../../assets/images/logo_white.png";
 import { useLazyQuery } from "@apollo/client";
 import { checkDriverMail } from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";

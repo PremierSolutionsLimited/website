@@ -8,7 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ContextLoader } from "../../../loaders";
 import { useCurrentClient } from "../../../../services/context/currentClient";
 import ProfileImage from "../../../../assets/images/male.jpeg";
-import Logo from "../../../../assets/images/logo.png";
+import Logo from "../../../../assets/images/logo_white.png";
 
 const LogoutModal = lazy(() => import("./logout"));
 const ChangePasswordModal = lazy(() => import("./changpassword"));
@@ -30,12 +30,12 @@ const TopNav = () => {
                 <div className="flex">
                   <div className="flex-shrink-0 flex items-center">
                     <img
-                      className="block lg:hidden h-8 w-auto"
+                      className="block rounded-full lg:hidden h-12 w-auto"
                       src={Logo}
                       alt="Workflow"
                     />
                     <img
-                      className="hidden lg:block h-12 w-auto"
+                      className="hidden rounded-full lg:block h-16 w-auto"
                       src={Logo}
                       alt="Workflow"
                     />
