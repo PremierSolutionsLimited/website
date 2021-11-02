@@ -4,7 +4,7 @@ import { Transition } from "@headlessui/react";
 import { useOutsideListener } from "../../../components/hooks";
 import { Link, useHistory } from "react-router-dom";
 import SignupDropDown from "./bones/signupDropdown";
-import Logo from "../../../assets/images/logo.png";
+import Logo from "../../../assets/images/logo_white.png";
 
 const MainHeader = () => {
   const { push } = useHistory();
@@ -54,7 +54,11 @@ const MainHeader = () => {
             <Link to="/">
               <a href="#" className="flex">
                 <span className="sr-only">Logo</span>
-                <img className="h-10 w-auto" src={Logo} alt="Workflow" />
+                <img
+                  className="h-12 rounded-full w-auto"
+                  src={Logo}
+                  alt="Workflow"
+                />
               </a>
             </Link>
 

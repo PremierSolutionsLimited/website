@@ -5,7 +5,7 @@ import { ApolloError, useMutation } from "@apollo/client";
 import { ResetPasswordInput, ResetPasswordOutput } from "./types";
 import { RESET_CLIENT_CODE } from "../../../services/graphql/auth";
 import { CircleSpinner } from "react-spinners-kit";
-import Logo from "../../../assets/images/logo.png";
+import Logo from "../../../assets/images/logo_white.png";
 import toast from "react-hot-toast";
 import _ from "lodash";
 
