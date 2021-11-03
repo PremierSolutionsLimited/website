@@ -124,17 +124,6 @@ const DriverSignup = () => {
               src={bgImage}
               alt=""
             />
-            <div
-              className={"absolute top-0 bg-black bg-opacity-10 h-full w-full"}
-            >
-              {/* <div className="relative">
-                <img
-                  src={LogoFanbaseSmall}
-                  className=" h-auto absolute -top-48 w-auto"
-                  alt="logo"
-                />
-              </div> */}
-            </div>
           </div>
         </button>
 
@@ -155,15 +144,6 @@ const DriverSignup = () => {
               <h2 className="mt-6 text-3xl font-bold text-pink-600">
                 Driver Application
               </h2>
-              {/* <p className="mt-2 text-sm text-gray-600 max-w">
-                Or{" "}
-                <a
-                  href="#"
-                  className="font-medium text-pink-600 hover:text-pink-700"
-                >
-                  No card required
-                </a>
-              </p> */}
             </div>
 
             <div className="mt-8">
@@ -291,17 +271,6 @@ const DriverSignup = () => {
                           "border border-none w-full bg-gray-100 focus:border-none"
                         }
                       />
-                      {/* <input
-                        required
-                        type={"date"}
-                        id={"dob"}
-                        value={dob}
-                        min=""
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                          setDob(e.target.value)
-                        }
-                        className="mt-1 block w-full pl-1 pr-1 py-1 text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-                      /> */}
                     </div>
                     {isDriverBelowAge && (
                       <Fragment>

@@ -51,6 +51,8 @@ const MainComponent = () => {
     },
   });
 
+  console.log(data);
+
   return (
     <Fragment>
       <div className="max-w-7xl  max-h-screen mx-auto px-4 py-5 sm:px-6 sm:py-4 lg:px-8  md:space-x-10">
@@ -73,9 +75,9 @@ const MainComponent = () => {
                   {data?.tripRequestsLength === 0 ? (
                     <Fragment>
                       <EmptyAlert
-                        page="trip history"
+                        page="trip requests"
                         // buttonMessage="Add Vehicle"
-                        emptyMessage={"You have not had any trips yet"}
+                        emptyMessage={"You have not requested for trips yet"}
                         onClickButton={() => {}}
                         hideButton
                       />

@@ -69,6 +69,7 @@ export const updateCurrentClient = gql`
     $otherNames: String
     $username: String
     $email: String
+    $photograph: String
     $phone: String
   ) {
     updateCurrentClient(
@@ -78,6 +79,7 @@ export const updateCurrentClient = gql`
         firstName: $firstName
         email: $email
         phone: $phone
+        photograph: $photograph
         otherNames: $otherNames
       }
     ) {
