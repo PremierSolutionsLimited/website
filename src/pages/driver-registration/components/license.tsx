@@ -54,7 +54,7 @@ export default function LicenseComponent({
               <select
                 id="location"
                 name="location"
-                required
+                required={true}
                 value={hasALicense}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                   setHasALicense(e.target.value);
@@ -74,7 +74,11 @@ export default function LicenseComponent({
               >
                 What type of vehicle can you drive?
               </label>
-              <SelectTypeOfCars type={typesOfCars} setType={setTypeOfCars} />
+              <SelectTypeOfCars
+                placeholder={"Click to select car type"}
+                type={typesOfCars}
+                setType={setTypeOfCars}
+              />
             </div>
             {hasLicense === "yes" && (
               <>
@@ -86,16 +90,16 @@ export default function LicenseComponent({
                     Driver's license class
                   </label>
                   <select
-                    id="location"
-                    name="location"
+                    id="licence_class"
+                    name="licence_class"
+                    required={true}
                     value={licenseClass}
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                       setLicenseClass(e.target.value)
                     }
                     className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
-                    required
                   >
-                    <option>Please Choose</option>
+                    <option value={""}>Please Choose</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -111,19 +115,8 @@ export default function LicenseComponent({
                   >
                     License Issue Date
                   </label>
-                  {/* <input
-                required
-                type={"date"}
-                id={"expiry"}
-                value={licenseIssueDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setLicenseIssueDate(e.target.value)
-                }
-                className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-              /> */}
 
                   <DatePicker
-                    // value={value}
                     onChange={(data: any) => {
                       setLicenseIssueDate(data);
                     }}
@@ -141,7 +134,6 @@ export default function LicenseComponent({
                     License Expiry Date
                   </label>
                   <DatePicker
-                    // value={value}
                     onChange={(data: any) => {
                       setLicenseExpiryDate(data);
                     }}
@@ -160,10 +152,12 @@ export default function LicenseComponent({
                   </label>
                   <input
                     type="text"
-                    name="company"
-                    id="company"
+                    name="licence_id"
+                    id="licence_id"
+                    autoComplete={"licence_id"}
                     required={false}
                     value={licenseId}
+                    placeholder={"MOS-08273482-88483"}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setLicenseId(e.target.value)
                     }
@@ -180,10 +174,11 @@ export default function LicenseComponent({
                   </label>
                   <input
                     type="number"
-                    name="company"
-                    id="company"
-                    autoComplete="organization"
+                    name="years_of_experience"
+                    id="years_of_experience"
+                    autoComplete="years_of_experience"
                     required
+                    placeholder={"Eg. 6"}
                     value={yearsOfExperienceOnLicense}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setYearsOfExperienceOnLicense(e.target.value)

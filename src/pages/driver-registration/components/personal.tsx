@@ -234,13 +234,13 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 id="location"
                 name="location"
                 value={maritalStatus}
-                required
+                required={true}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setMaritalStatus(e.target.value)
                 }
                 className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
               >
-                <option>Please Choose</option>
+                <option value={""}>Please Choose</option>
                 <option value={"SINGLE"}>Single</option>
                 <option value={"MARRIED"}>Married</option>
                 <option value={"WIDOWED"}>Widowed</option>
@@ -280,13 +280,13 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 id="location"
                 name="location"
                 value={highestLevelOfEducation}
-                required
+                required={true}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setHighestLevelOfEducation(e.target.value)
                 }
                 className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
               >
-                <option>Please Choose</option>
+                <option value="">Please Choose</option>
                 <option value={"PRIMARY"}>Primary</option>
                 <option value={"MIDDLE"}>Middle</option>
                 <option value={"SECONDARY"}>Secondary</option>

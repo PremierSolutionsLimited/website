@@ -13,6 +13,7 @@ export interface IClassSelectList {
 export interface SelectTypeComponentProp {
   type: IType[];
   setType: React.Dispatch<React.SetStateAction<IType[]>>;
+  placeholder?: string;
 }
 
 export interface IType {
