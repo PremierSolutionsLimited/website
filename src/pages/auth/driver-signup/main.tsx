@@ -22,7 +22,7 @@ const DriverSignup = () => {
   const [lastName, setLastName] = useState("");
   const [otherNames, setOtherNames] = useState("");
   const [title, setTitle] = useState("");
-  const [dob, setDob] = useState("");
+  const [dob, setDob] = useState<any>(moment()?.subtract(18, "years"));
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const { push } = useHistory();
@@ -65,33 +65,15 @@ const DriverSignup = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     checkIfTaken({ variables: { filter: { email } } });
-    // let data = {
-    //   firstName,
-    //   lastName,
-    //   dob: new Date(dob),
-    //   email,
-    //   gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
-    //   title,
-    //   otherNames,
-    //   typeOfRegistration: "Driver",
-    //   age: usersAge,
-    // };
-    // setLoading(true);
-    // wait(2000).then(async () => {
-    //   setLoading(false);
-    //   await startRegistration(data);
-    //   push("/driver-registration");
-    // });
   };
   const disabledDate = (current: any) => {
-    // Can not select yesterday and before
+    // restrict to only 18 years and above
     const start = moment()?.subtract(18, "years");
     return current > start;
   };
 
   useEffect(() => {
-    setDob(moment()?.subtract(18, "years")?.toString());
-    if (isTaken === undefined) {
+    if (!email === undefined) {
       return;
     } else if (isTaken?.checkClientMail) {
       toast?.error("This email is already taken", { id: "emailTaken" });
@@ -159,7 +141,17 @@ const DriverSignup = () => {
         <div className="flex-1 relative flex flex-col justify-center py-12 md:px-0 px-5 sm:px-5 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
-              <img className="h-14 w-auto" src={Logo} alt="Workflow" />
+              <div className={`flex justify-end`}>
+                <img
+                  className="h-24 w-auto cursor-pointer"
+                  onClick={(e: any) => {
+                    e?.preventDefault();
+                    push("/");
+                  }}
+                  src={Logo}
+                  alt="Workflow"
+                />
+              </div>
               <h2 className="mt-6 text-3xl font-bold text-pink-600">
                 Driver Application
               </h2>
@@ -290,7 +282,7 @@ const DriverSignup = () => {
                     </label>
                     <div className={" bg-gray-100 p-1.5"}>
                       <DatePicker
-                        defaultValue={moment()?.subtract(18, "years")}
+                        defaultValue={dob}
                         onChange={(data: any) => {
                           setDob(data);
                         }}

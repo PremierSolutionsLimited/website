@@ -55,33 +55,6 @@ const Signup = () => {
     }
   }, [dob]);
 
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   checkIfTaken({variables:{filter:{email}}})
-  //   while(checking){
-  //     setLoading(checking)
-  //   }
-  //   if(isTaken?.checkClientMail){
-
-  //   }
-  //   let data = {
-  //     firstName,
-  //     lastName,
-  //     dob: new Date(dob),
-  //     email,
-  //     gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
-  //     title,
-  //     otherNames,
-  //     typeOfRegistration: "Client",
-  //   };
-  //   setLoading(true);
-  //   wait(2000).then(async () => {
-  //     setLoading(false);
-  //     await startRegistration(data);
-  //     push("/client-registration");
-  //   });
-  // };
-
   const disabledDate = (current: any) => {
     // Can not select yesterday and before
     const start = moment()?.subtract(18, "years");
@@ -123,10 +96,6 @@ const Signup = () => {
     startRegistration,
   ]);
 
-  useEffect(() => {
-    setDob(moment()?.subtract(18, "years")?.toString());
-  }, []);
-
   return (
     <Fragment>
       <div className="min-h-screen bg-white flex">
@@ -158,7 +127,17 @@ const Signup = () => {
         <div className="flex-1 relative flex flex-col justify-center py-12 md:px-0 px-5 sm:px-5 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
-              <img className="h-14 w-auto" src={Logo} alt="Workflow" />
+              <div className={`flex justify-end`}>
+                <img
+                  className="h-24 w-auto cursor-pointer"
+                  onClick={(e: any) => {
+                    e?.preventDefault();
+                    push("/");
+                  }}
+                  src={Logo}
+                  alt="Workflow"
+                />
+              </div>
               <h2 className="mt-6 text-3xl font-bold text-pink-600">
                 Client Registration
               </h2>
