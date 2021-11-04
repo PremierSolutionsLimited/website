@@ -48,6 +48,20 @@ const MainComponent = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (
+      firstName === currentClient?.firstName &&
+      lastName === currentClient?.lastName &&
+      otherNames === currentClient?.otherNames &&
+      email === currentClient?.email &&
+      phone === currentClient?.phone &&
+      !clientFile
+    ) {
+      return toast?.error(
+        "No changes made, please make changes before submission",
+        { id: "no changes" }
+      );
+    }
     if (clientFile) {
       setUploadingToFirebase(true);
       let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
@@ -77,6 +91,7 @@ const MainComponent = () => {
                 },
               })
                 .then(() => {
+                  console.log(fireBaseUrl);
                   toast.success("Profile updated successfully");
                   setUploadingToFirebase(false);
                 })
@@ -121,7 +136,7 @@ const MainComponent = () => {
   };
   return (
     <Fragment>
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
+      <div className="max-w-7xl  mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
         {/* Main content */}
         <div className="flex-1 max-h-screen xl:overflow-y-auto">
           <div className="max-w-3xl mx-auto py-10 px-4 sm:px-6 lg:py-12 lg:px-8">
@@ -150,7 +165,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="text"
-                    required
+                    required={true}
                     value={firstName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setFirstName(e.target.value)
@@ -169,7 +184,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="text"
-                    required
+                    required={true}
                     value={lastName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setLastName(e.target.value)
@@ -187,7 +202,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="text"
-                    required
+                    required={true}
                     value={otherNames}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setOtherNames(e.target.value)
@@ -206,7 +221,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="text"
-                    required
+                    required={true}
                     value={username}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setUsername(e.target.value)
@@ -259,16 +274,6 @@ const MainComponent = () => {
                           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
                         />
                       </div>
-                      {/* {photograph && (
-                        <Fragment>
-                          <button
-                            type="button"
-                            className="ml-3 bg-transparent py-2 px-3 border border-pink-600 rounded-md  text-sm font-light text-pink-600 hover:text-gray-700 focus:outline-none focus:border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-pink-500"
-                          >
-                            Remove
-                          </button>
-                        </Fragment>
-                      )} */}
                     </div>
                   </div>
                 </div>
@@ -282,7 +287,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="email"
-                    required
+                    required={true}
                     value={email}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setEmail(e.target.value)

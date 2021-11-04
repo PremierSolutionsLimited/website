@@ -22,7 +22,7 @@ const DriverSignup = () => {
   const [lastName, setLastName] = useState("");
   const [otherNames, setOtherNames] = useState("");
   const [title, setTitle] = useState("");
-  const [dob, setDob] = useState("");
+  const [dob, setDob] = useState<any>(moment()?.subtract(18, "years"));
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const { push } = useHistory();
@@ -65,33 +65,15 @@ const DriverSignup = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     checkIfTaken({ variables: { filter: { email } } });
-    // let data = {
-    //   firstName,
-    //   lastName,
-    //   dob: new Date(dob),
-    //   email,
-    //   gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
-    //   title,
-    //   otherNames,
-    //   typeOfRegistration: "Driver",
-    //   age: usersAge,
-    // };
-    // setLoading(true);
-    // wait(2000).then(async () => {
-    //   setLoading(false);
-    //   await startRegistration(data);
-    //   push("/driver-registration");
-    // });
   };
   const disabledDate = (current: any) => {
-    // Can not select yesterday and before
+    // restrict to only 18 years and above
     const start = moment()?.subtract(18, "years");
     return current > start;
   };
 
   useEffect(() => {
-    setDob(moment()?.subtract(18, "years")?.toString());
-    if (isTaken === undefined) {
+    if (!email === undefined) {
       return;
     } else if (isTaken?.checkClientMail) {
       toast?.error("This email is already taken", { id: "emailTaken" });
@@ -128,6 +110,8 @@ const DriverSignup = () => {
     startRegistration,
   ]);
 
+  console.log(dob);
+
   return (
     <Fragment>
       <div className="min-h-screen bg-white flex">
@@ -142,36 +126,26 @@ const DriverSignup = () => {
               src={bgImage}
               alt=""
             />
-            <div
-              className={"absolute top-0 bg-black bg-opacity-10 h-full w-full"}
-            >
-              {/* <div className="relative">
-                <img
-                  src={LogoFanbaseSmall}
-                  className=" h-auto absolute -top-48 w-auto"
-                  alt="logo"
-                />
-              </div> */}
-            </div>
           </div>
         </button>
 
         <div className="flex-1 relative flex flex-col justify-center py-12 md:px-0 px-5 sm:px-5 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
-              <img className="h-14 w-auto" src={Logo} alt="Workflow" />
+              <div className={`flex justify-end`}>
+                <img
+                  className="h-24 w-auto cursor-pointer"
+                  onClick={(e: any) => {
+                    e?.preventDefault();
+                    push("/");
+                  }}
+                  src={Logo}
+                  alt="Workflow"
+                />
+              </div>
               <h2 className="mt-6 text-3xl font-bold text-pink-600">
                 Driver Application
               </h2>
-              {/* <p className="mt-2 text-sm text-gray-600 max-w">
-                Or{" "}
-                <a
-                  href="#"
-                  className="font-medium text-pink-600 hover:text-pink-700"
-                >
-                  No card required
-                </a>
-              </p> */}
             </div>
 
             <div className="mt-8">
@@ -284,13 +258,13 @@ const DriverSignup = () => {
                   <div className="space-y-1">
                     <label
                       htmlFor="password"
-                      className="block text-sm pb-1  font-medium text-gray-700"
+                      className="block text-sm pb-1 z-10  font-medium text-gray-700"
                     >
                       Date of Birth (18 years +)
                     </label>
                     <div className={" bg-gray-100 p-1.5"}>
                       <DatePicker
-                        defaultValue={moment()?.subtract(18, "years")}
+                        defaultValue={dob}
                         onChange={(data: any) => {
                           setDob(data);
                         }}
@@ -299,17 +273,6 @@ const DriverSignup = () => {
                           "border border-none w-full bg-gray-100 focus:border-none"
                         }
                       />
-                      {/* <input
-                        required
-                        type={"date"}
-                        id={"dob"}
-                        value={dob}
-                        min=""
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                          setDob(e.target.value)
-                        }
-                        className="mt-1 block w-full pl-1 pr-1 py-1 text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-                      /> */}
                     </div>
                     {isDriverBelowAge && (
                       <Fragment>

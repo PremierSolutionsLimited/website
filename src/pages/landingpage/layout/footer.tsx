@@ -174,7 +174,7 @@ const Footer = () => {
               reserved.
             </p>
             <i className="text-base text-gray-400 xl:text-center">
-              Powered by Insignia
+              Powered by Polymorph Labs Ghana Limited
             </i>
           </div>
         </div>

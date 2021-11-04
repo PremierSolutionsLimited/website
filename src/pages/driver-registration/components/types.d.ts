@@ -26,6 +26,7 @@ export interface PersonalComponentProp {
   hasSmartPhone: string;
   setHasSmartPhone: React.Dispatch<React.SetStateAction<string>>;
   canUseMap: string;
+  showCropper: boolean;
   setCanUseMap: React.Dispatch<React.SetStateAction<string>>;
   handleImageUpload: (e: any) => void;
   driverImageUrl: string;

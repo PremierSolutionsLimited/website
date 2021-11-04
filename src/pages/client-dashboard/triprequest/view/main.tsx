@@ -53,6 +53,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trip]);
+  console.log(trip?.pickUpLocation);
 
   return (
     <Fragment>

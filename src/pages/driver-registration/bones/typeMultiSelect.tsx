@@ -19,6 +19,7 @@ const data: IType[] = [
 const SelectClassComponent: FC<SelectTypeComponentProp> = ({
   type,
   setType,
+  placeholder,
 }) => {
   const [, setSearch] = useState<string>("");
   const wrapperRef = useRef<any>(null);
@@ -59,9 +60,14 @@ const SelectClassComponent: FC<SelectTypeComponentProp> = ({
         <div
           onClick={() => setShowDropDown(true)}
           className={
-            "bg-gray-100 rounded-sm px-2 h-9 flex flex-row items-center flex-wrap"
+            "bg-gray-100  rounded-sm px-2 h-11 py-1 flex flex-row items-center flex-wrap"
           }
         >
+          {type?.length === 0 && (
+            <>
+              <span className={`text-sm text-gray-400`}>{placeholder}</span>
+            </>
+          )}
           {type?.map((list: IType, i: number) => (
             <Fragment key={i}>
               <div
@@ -182,18 +188,6 @@ const SelectClassComponent: FC<SelectTypeComponentProp> = ({
                                         {singleClass?.name}
                                       </span>{" "}
                                     </div>
-                                    {/* <div>
-                                        <span
-                                          className={
-                                            "text-gray-600 font-light text-xs"
-                                          }
-                                        >
-                                          {reduceString(
-                                            singleClass?.description,
-                                            80
-                                          )}
-                                        </span>
-                                      </div> */}
                                   </div>
                                   {isIn && (
                                     <div>

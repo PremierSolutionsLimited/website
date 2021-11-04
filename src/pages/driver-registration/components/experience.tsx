@@ -63,6 +63,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 name="location"
                 className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 value={hadAccidents}
+                required={true}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setHadAccidents(e.target.value)
                 }
@@ -82,6 +83,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
               <select
                 id="location"
                 name="location"
+                required={true}
                 className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 value={hasBeenArrested}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>

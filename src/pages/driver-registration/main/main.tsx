@@ -41,8 +41,7 @@ const MainComponent = () => {
     document.title = "Driver Registration | Hire A Driver";
   }, []);
   const [, registrationState] = useRegistrationProvider();
-  const { loading: uploadLoadings, upload } =
-    useMultipleImageUpload("driverRegistration");
+  const { upload } = useMultipleImageUpload("driverRegistration");
   // for tabs
   const [tab, setTab] = useState<string>("personal");
 
@@ -175,6 +174,7 @@ const MainComponent = () => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
   const [croppedImage, setCroppedImage] = useState<any>(null);
+  const [uploadingImages, setUploadingImages] = useState<boolean>(false);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -286,6 +286,7 @@ const MainComponent = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setUploadingImages(true);
     let availableDays = getAvailableDays(
       mondayActive,
       tuesdayActive,
@@ -319,6 +320,7 @@ const MainComponent = () => {
         }
       }
     }
+    setUploadingImages(false);
     createApplication({
       variables: {
         title: registrationState?.status?.title,
@@ -397,9 +399,8 @@ const MainComponent = () => {
         setShowSucessComponent(!showSuccessComponent);
       })
       .catch((e: ApolloError) => {
-        console.log("first error", e);
+        setUploadingImages(false);
         const message = e.graphQLErrors[0]?.message;
-
         if (message?.includes("duplicate")) {
           return toast?.error(duplicateCheck(message), {
             id: "duplicate",
@@ -408,7 +409,6 @@ const MainComponent = () => {
         return toast?.error(message, {
           id: "error",
         });
-        // return toast.error(e.graphQLErrors[0].message);
       });
   };
 
@@ -469,6 +469,7 @@ const MainComponent = () => {
                       setCity={setCity}
                       age={age}
                       setAge={setAge}
+                      showCropper={showCropper}
                       telephone={telephone}
                       setTelephone={setTelephone}
                       maritalStatus={maritalStatus}
@@ -652,7 +653,7 @@ const MainComponent = () => {
                       currentImageLoaderPrompt={currentFile as number}
                       loading={loading}
                       handleSubmit={handleSubmit}
-                      uploadingToFirebase={uploadLoadings}
+                      uploadingToFirebase={uploadingImages}
                     />
                   </Fragment>
                 )}

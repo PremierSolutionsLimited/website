@@ -116,7 +116,7 @@ const TopNav = () => {
                                 <div
                                   className={classNames(
                                     active ? "" : "",
-                                    "block px-4 pb-2 text-xs font-medium text-gray-900"
+                                    "block px-4 pb-2 truncate text-xs font-medium text-gray-900"
                                   )}
                                 >
                                   {curentClient?.email}

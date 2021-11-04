@@ -123,11 +123,11 @@ export default function CardDetailsComponent({
               </label>
               <input
                 type="text"
-                name="company"
-                id="company"
+                name="ssnt_number"
+                id="ssnt_number"
                 autoComplete="organization"
                 required
-                placeholder={"Eg. 84899383"}
+                placeholder={"Eg. E08198193 | GH78478394"}
                 value={ssnitNumber}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setSsnitNumber(e.target.value)
@@ -145,15 +145,20 @@ export default function CardDetailsComponent({
               </label>
               <input
                 type="number"
-                name="company"
-                id="company"
+                name="phone"
+                id="phone"
                 autoComplete="organization"
                 required
+                maxLength={10}
+                minLength={10}
                 placeholder={"Eg. 0542781001"}
                 value={momoNumber}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setMomoNumber(e.target.value)
-                }
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (momoNumber?.length === 10) {
+                    return null;
+                  }
+                  setMomoNumber(e.target.value);
+                }}
                 className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
             </div>

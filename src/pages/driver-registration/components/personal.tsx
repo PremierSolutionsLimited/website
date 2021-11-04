@@ -29,6 +29,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   nameOfSchoolCompleted,
   setNameOfSchoolCompleted,
   yearOfGraduation,
+  showCropper,
   setYearOfGraduation,
   hasSmartPhone,
   setHasSmartPhone,
@@ -234,13 +235,13 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 id="location"
                 name="location"
                 value={maritalStatus}
-                required
+                required={true}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setMaritalStatus(e.target.value)
                 }
                 className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
               >
-                <option>Please Choose</option>
+                <option value={""}>Please Choose</option>
                 <option value={"SINGLE"}>Single</option>
                 <option value={"MARRIED"}>Married</option>
                 <option value={"WIDOWED"}>Widowed</option>
@@ -280,13 +281,13 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 id="location"
                 name="location"
                 value={highestLevelOfEducation}
-                required
+                required={true}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setHighestLevelOfEducation(e.target.value)
                 }
                 className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
               >
-                <option>Please Choose</option>
+                <option value="">Please Choose</option>
                 <option value={"PRIMARY"}>Primary</option>
                 <option value={"MIDDLE"}>Middle</option>
                 <option value={"SECONDARY"}>Secondary</option>
@@ -327,6 +328,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 onChange={(data: any) => {
                   setYearOfGraduation(data);
                 }}
+                style={{ zIndex: showCropper ? -1 : 1 }}
                 disabledDate={disabledDate}
                 className={
                   "border border-none h-11 mt-1 w-full bg-gray-100 focus:border-none"
@@ -377,7 +379,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 <option value={"no"}>No</option>
               </select>
             </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-12">
+            <div
+              style={{ zIndex: showCropper ? -1 : 1 }}
+              className="col-span-12 sm:col-span-12 md:col-span-12"
+            >
               <label
                 htmlFor="url"
                 className="block text-sm font-medium text-gray-700"

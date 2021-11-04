@@ -70,7 +70,7 @@ export const createTripRequest = gql`
     $passengerAges: [PassengerAge]
     $extraPassenger: Boolean
     $notes: String
-    $checklist: TripChecklistInput
+    $checklist: TripRequestChecklistInput
   ) {
     createTripRequest(
       input: {
@@ -110,7 +110,7 @@ export const getTripQuote = gql`
     $passengerAges: [PassengerAge]
     $extraPassenger: Boolean
     $notes: String
-    $checklist: TripChecklistInput
+    $checklist: TripRequestChecklistInput
   ) {
     getTripQuote(
       input: {
