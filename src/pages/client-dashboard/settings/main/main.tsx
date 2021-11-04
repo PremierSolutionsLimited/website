@@ -202,7 +202,6 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="text"
-                    required={true}
                     value={otherNames}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setOtherNames(e.target.value)

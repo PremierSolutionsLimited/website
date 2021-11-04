@@ -237,29 +237,33 @@ export default function CardDetailsComponent({
                       src={ghanaCardFrontImageUrl}
                       alt="ghanacardFront"
                     />
-                    <label
-                      htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                    <div
+                      className={`w-full inset-0 absolute top-0 bg-opacity-30 bg-gray-300 flex justify-center items-center h-full`}
                     >
-                      <div className="">
-                        <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
-                          <CameraIcon
-                            className=" flex-shrink-0 h-6 w-6 text-gray-300"
-                            aria-hidden="true"
-                          />
+                      <label
+                        htmlFor="user-photo"
+                        className=" inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                      >
+                        <div className="">
+                          <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
+                            <CameraIcon
+                              className=" flex-shrink-0 h-6 w-6 text-gray-300"
+                              aria-hidden="true"
+                            />
 
-                          {/* <span className="sr-only"> user photo</span> */}
-                          <input
-                            type="file"
-                            id="user-photo"
-                            name="user-photo"
-                            onChange={handleGhanaCardFrontImageUpload}
-                            accept={"image/*"}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                          />
+                            {/* <span className="sr-only"> user photo</span> */}
+                            <input
+                              type="file"
+                              id="user-photo"
+                              name="user-photo"
+                              onChange={handleGhanaCardFrontImageUpload}
+                              accept={"image/*"}
+                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </label>
+                      </label>
+                    </div>
                   </div>
                 </Fragment>
               ) : (
@@ -268,7 +272,7 @@ export default function CardDetailsComponent({
                     <div className="h-28 w-full object-cover lg:h-44 border border-dashed rounded-lg border-gray-500"></div>
                     <label
                       htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                      className="inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
                     >
                       <div className="">
                         <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
@@ -309,30 +313,33 @@ export default function CardDetailsComponent({
                       src={ghanaCardBackImageUrl}
                       alt="ghanaCardBack"
                     />
-
-                    <label
-                      htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                    <div
+                      className={`w-full inset-0 absolute top-0 bg-opacity-30 bg-gray-300 flex justify-center items-center h-full`}
                     >
-                      <div className="">
-                        <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
-                          <CameraIcon
-                            className=" flex-shrink-0 h-6 w-6 text-gray-300"
-                            aria-hidden="true"
-                          />
+                      <label
+                        htmlFor="user-photo"
+                        className=" inset-0 bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                      >
+                        <div className="">
+                          <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
+                            <CameraIcon
+                              className=" flex-shrink-0 h-6 w-6 text-gray-300"
+                              aria-hidden="true"
+                            />
 
-                          {/* <span className="sr-only"> user photo</span> */}
-                          <input
-                            type="file"
-                            id="user-photo"
-                            name="user-photo"
-                            accept={"image/*"}
-                            onChange={handleGhanaCardBackImageUpload}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                          />
+                            {/* <span className="sr-only"> user photo</span> */}
+                            <input
+                              type="file"
+                              id="user-photo"
+                              name="user-photo"
+                              accept={"image/*"}
+                              onChange={handleGhanaCardBackImageUpload}
+                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </label>
+                      </label>
+                    </div>
                   </div>
                 </Fragment>
               ) : (
@@ -341,7 +348,7 @@ export default function CardDetailsComponent({
                     <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
                     <label
                       htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                      className=" inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
                     >
                       <div className="">
                         <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">

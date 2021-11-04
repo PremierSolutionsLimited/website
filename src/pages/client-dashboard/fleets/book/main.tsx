@@ -193,14 +193,12 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
     })
       .then(({ data }) => {
         if (data) {
-          toast.success("Trip booked successfully");
           return window.location.replace(
             data?.createTripRequest?.payment?.authorizationUrl
           );
         }
       })
       .catch((e: ApolloError) => {
-        // console.log("error", e);
         toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)));
       });
   };
