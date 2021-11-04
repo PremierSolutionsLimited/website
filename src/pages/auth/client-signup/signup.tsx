@@ -21,7 +21,7 @@ const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [otherNames, setOtherNames] = useState("");
   const [title, setTitle] = useState("");
-  const [dob, setDob] = useState("");
+  const [dob, setDob] = useState<any>(moment()?.subtract(18, "years"));
   const [email, setEmail] = useState("");
   const { push } = useHistory();
   const [{ startRegistration }] = useRegistrationProvider();
@@ -95,7 +95,7 @@ const Signup = () => {
     push,
     startRegistration,
   ]);
-
+  console.log(dob);
   return (
     <Fragment>
       <div className="min-h-screen bg-white flex">
@@ -258,19 +258,8 @@ const Signup = () => {
                       Date of Birth
                     </label>
                     <div className={" bg-gray-100 p-1.5"}>
-                      {/* <input
-                        required
-                        type={"date"}
-                        id={"dob"}
-                        value={dob}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                          setDob(e.target.value)
-                        }
-                        className="mt-1 block w-full pl-1 pr-1 py-1 text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
-                      /> */}
-
                       <DatePicker
-                        defaultValue={moment()?.subtract(18, "years")}
+                        defaultValue={dob}
                         onChange={(data: any) => {
                           setDob(data);
                         }}

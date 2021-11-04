@@ -110,6 +110,8 @@ const DriverSignup = () => {
     startRegistration,
   ]);
 
+  console.log(dob);
+
   return (
     <Fragment>
       <div className="min-h-screen bg-white flex">
@@ -256,7 +258,7 @@ const DriverSignup = () => {
                   <div className="space-y-1">
                     <label
                       htmlFor="password"
-                      className="block text-sm pb-1  font-medium text-gray-700"
+                      className="block text-sm pb-1 z-10  font-medium text-gray-700"
                     >
                       Date of Birth (18 years +)
                     </label>

@@ -29,6 +29,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   nameOfSchoolCompleted,
   setNameOfSchoolCompleted,
   yearOfGraduation,
+  showCropper,
   setYearOfGraduation,
   hasSmartPhone,
   setHasSmartPhone,
@@ -327,6 +328,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 onChange={(data: any) => {
                   setYearOfGraduation(data);
                 }}
+                style={{ zIndex: showCropper ? -1 : 1 }}
                 disabledDate={disabledDate}
                 className={
                   "border border-none h-11 mt-1 w-full bg-gray-100 focus:border-none"
@@ -377,7 +379,10 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 <option value={"no"}>No</option>
               </select>
             </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-12">
+            <div
+              style={{ zIndex: showCropper ? -1 : 1 }}
+              className="col-span-12 sm:col-span-12 md:col-span-12"
+            >
               <label
                 htmlFor="url"
                 className="block text-sm font-medium text-gray-700"

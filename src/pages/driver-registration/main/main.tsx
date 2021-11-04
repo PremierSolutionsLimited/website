@@ -469,6 +469,7 @@ const MainComponent = () => {
                       setCity={setCity}
                       age={age}
                       setAge={setAge}
+                      showCropper={showCropper}
                       telephone={telephone}
                       setTelephone={setTelephone}
                       maritalStatus={maritalStatus}

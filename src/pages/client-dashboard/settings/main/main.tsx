@@ -165,7 +165,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="text"
-                    required
+                    required={true}
                     value={firstName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setFirstName(e.target.value)
@@ -184,7 +184,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="text"
-                    required
+                    required={true}
                     value={lastName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setLastName(e.target.value)
@@ -202,7 +202,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="text"
-                    required
+                    required={true}
                     value={otherNames}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setOtherNames(e.target.value)
@@ -221,7 +221,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="text"
-                    required
+                    required={true}
                     value={username}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setUsername(e.target.value)
@@ -287,7 +287,7 @@ const MainComponent = () => {
                   </label>
                   <input
                     type="email"
-                    required
+                    required={true}
                     value={email}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setEmail(e.target.value)
