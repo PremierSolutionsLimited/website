@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { ViewTripComponentProp } from "./types";
 import { BasicModal } from "../../../../components/modal";
 import { useMediaQuery } from "react-responsive";
-import { useLocationName } from "../../../../components/hooks/useLocationName";
+// import { useLocationName } from "../../../../components/hooks/useLocationName";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
 import ReactStars from "react-rating-stars-component";
 import moment from "moment";
@@ -16,42 +16,6 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
-
-  const [pickup, setPickup] = React.useState(null);
-  const [dropoff, setDropoff] = React.useState("");
-  const { loading: loadPickup, fetchLocationName: fetchPickup } =
-    useLocationName();
-  const { loading: loadDropoff, fetchLocationName: fetchDropoff } =
-    useLocationName();
-  React.useEffect(() => {
-    const getLat = async () => {
-      return await fetchPickup(
-        trip?.pickUpLocation?.coordinates[1],
-        trip?.pickUpLocation?.coordinates[0]
-      );
-    };
-    (async () => {
-      if (trip) {
-        setPickup(await getLat());
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [trip]);
-
-  React.useEffect(() => {
-    const getLat = async () => {
-      return await fetchDropoff(
-        trip?.dropOffLocation?.coordinates[1],
-        trip?.dropOffLocation?.coordinates[0]
-      );
-    };
-    (async () => {
-      if (trip) {
-        setDropoff(await getLat());
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [trip]);
 
   return (
     <Fragment>
