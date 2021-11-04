@@ -5,7 +5,7 @@ import { ApolloError, useMutation } from "@apollo/client";
 import { ResetPasswordInput, ResetPasswordOutput } from "./types";
 import { RESET_CLIENT_CODE } from "../../../services/graphql/auth";
 import { CircleSpinner } from "react-spinners-kit";
-import Logo from "../../../assets/images/logo_white.png";
+import Logo from "../../../assets/images/logo.png";
 import toast from "react-hot-toast";
 import _ from "lodash";
 
@@ -58,7 +58,7 @@ const SendCodeComponent = () => {
               <div className="flex-shrink-0 pt-10 sm:pt-16">
                 <a href="/" className="inline-flex">
                   <span className="sr-only">Workflow</span>
-                  <img className="h-14 w-auto" src={Logo} alt="" />
+                  <img className="h-442 w-auto" src={Logo} alt="" />
                 </a>
               </div>
               <div className="flex-shrink-0 my-auto py-16 sm:py-32">

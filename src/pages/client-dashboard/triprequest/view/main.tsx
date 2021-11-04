@@ -23,7 +23,6 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
     useLocationName();
   const { loading: loadDropoff, fetchLocationName: fetchDropoff } =
     useLocationName();
-
   React.useEffect(() => {
     const getLat = async () => {
       return await fetchPickup(
@@ -53,7 +52,6 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trip]);
-  console.log(trip?.pickUpLocation);
 
   return (
     <Fragment>
@@ -100,13 +98,13 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   <div className={"col-span-2 ml-5"}>
                     <h1 className={"font-light ml-4"}>From</h1>
                     <span className={"font-medium ml-4"}>
-                      {loadPickup ? "loading..." : pickup}
+                      {trip?.pickUpLocationName}
                     </span>
                   </div>
                   <div className={"col-span-2 ml-5"}>
                     <h1 className={"font-light ml-4"}>To</h1>
                     <span className={"font-medium ml-4"}>
-                      {loadDropoff ? "loading..." : dropoff}
+                      {trip?.dropOffLocationName}
                     </span>
                   </div>
                   <div

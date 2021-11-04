@@ -5,7 +5,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useHistory } from "react-router-dom";
 import { useRegistrationProvider } from "../../../services/context";
-import Logo from "../../../assets/images/logo_white.png";
+import Logo from "../../../assets/images/logo.png";
 
 export default function Header() {
   const [{ endRegistration }, registrationState] = useRegistrationProvider();

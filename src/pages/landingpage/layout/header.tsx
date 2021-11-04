@@ -4,7 +4,7 @@ import { Transition } from "@headlessui/react";
 import { useOutsideListener } from "../../../components/hooks";
 import { Link, useHistory } from "react-router-dom";
 import SignupDropDown from "./bones/signupDropdown";
-import Logo from "../../../assets/images/logo_white.png";
+import Logo from "../../../assets/images/logo.png";
 
 const MainHeader = () => {
   const { push } = useHistory();

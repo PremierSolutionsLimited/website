@@ -28,6 +28,8 @@ export interface TripHistory {
   startTime: Date;
   expectedStartTime: Date;
   endTime: Date;
+  pickUpLocationName: string;
+  dropOffLocationName: string;
   pickUpLocation: Location;
   dropOffLocation: Location;
   status: string;

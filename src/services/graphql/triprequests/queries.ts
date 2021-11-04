@@ -26,6 +26,7 @@ export const tripRequests = gql`
         coordinates
       }
       dropOffLocationName
+      pickUpLocationName
       passengerAges
       extraPassenger
       status

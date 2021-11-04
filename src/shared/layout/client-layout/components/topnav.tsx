@@ -8,7 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ContextLoader } from "../../../loaders";
 import { useCurrentClient } from "../../../../services/context/currentClient";
 import ProfileImage from "../../../../assets/images/male.jpeg";
-import Logo from "../../../../assets/images/logo_white.png";
+import Logo from "../../../../assets/images/logo.png";
 
 const LogoutModal = lazy(() => import("./logout"));
 const ChangePasswordModal = lazy(() => import("./changpassword"));

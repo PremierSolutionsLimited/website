@@ -7,7 +7,7 @@ import { LOGIN_CLIENT } from "../../../services/graphql/auth";
 import { ContextLoader } from "../../../shared/loaders";
 import { LoginInputProps, LoginOutputProps } from "./types";
 import { StageSpinner } from "react-spinners-kit";
-import Logo from "../../../assets/images/logo_white.png";
+import Logo from "../../../assets/images/logo.png";
 import _ from "lodash";
 import toast from "react-hot-toast";
 
@@ -72,8 +72,8 @@ const Login = () => {
         <div className="flex-1 relative flex flex-col justify-center py-12 md:px-0 px-5 sm:px-5 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
-              <div className={"flex justify-end"}>
-                <img className="h-24 w-auto" src={Logo} alt="Workflow" />
+              <div className={"flex justify-center"}>
+                <img className="h-32 w-auto" src={Logo} alt="Workflow" />
               </div>
               <h2 className="mt-6 text-3xl font-bold text-pink-600">
                 Client Login
