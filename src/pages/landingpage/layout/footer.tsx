@@ -168,12 +168,11 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="mt-12 border-t flex justify-center flex-col border-gray-300 py-8">
-            <p className="text-base text-gray-400 xl:text-center">
-              &copy; {new Date().getFullYear()} Polymorph Labs, Inc. All rights
-              reserved.
-            </p>
-            <i className="text-base text-gray-400 xl:text-center">
+          <div className={"flex flex-col bottom-6 items-center w-full"}>
+            <span className="mt-1 text-xs text-center font-light text-gray-400">
+              All Rights Reserved Copyright c {new Date()?.getFullYear()}
+            </span>
+            <i className="mt-2 text-xs text-center font-light sm:text-sm md:text-base text-gray-700">
               Powered by Polymorph Labs Ghana Limited
             </i>
           </div>

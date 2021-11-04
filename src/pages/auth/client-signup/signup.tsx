@@ -338,13 +338,13 @@ const Signup = () => {
               </button>
             </Link>
           </div>
-          <div className={"flex flex-col items-center w-full"}>
-            <div className="mt-2 text-sm font-light sm:text-sm md:text-base text-gray-700">
-              Powered by Polymorph Labs Ghana Limited
-            </div>
-            <span className="mt-1 text-sm font-light text-gray-400">
-              Copyright 2021. All Rights Reserved
+          <div className={"flex flex-col bottom-6 items-center w-full"}>
+            <span className="mt-1 text-xs text-center font-light text-gray-400">
+              All Rights Reserved Copyright c {new Date()?.getFullYear()}
             </span>
+            <i className="mt-2 text-xs text-center font-light sm:text-sm md:text-base text-gray-700">
+              Powered by Polymorph Labs Ghana Limited
+            </i>
           </div>
         </div>
       </div>
