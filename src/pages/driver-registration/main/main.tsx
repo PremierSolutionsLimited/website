@@ -9,10 +9,6 @@ import React, {
 import { ApolloError, useMutation } from "@apollo/client";
 import { CREATE_DRIVER_APPLICATION } from "../../../services/graphql/applications";
 import { CustomContextLoader } from "../../../shared/loaders";
-import {
-  CreateApplicationInputProp,
-  CreateApplicationOuputProp,
-} from "./types";
 import { useRegistrationProvider } from "../../../services/context";
 import { getAvailableDays } from "../util/availability";
 import { getImage } from "../util/images";
@@ -50,13 +46,12 @@ const MainComponent = () => {
   const [region, setRegion] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [age, setAge] = useState<string>("");
-  const [telephone, setTelephone] = useState<string>("");
+  const [telephone, setTelephone] = useState("");
   const [maritalStatus, setMaritalStatus] = useState<string>("");
   const [numberOfChildren, setNumberOfChildren] = useState<string>("");
   const [highestLevelOfEducation, setHighestLevelOfEducation] =
     useState<string>("");
-  const [nameOfSchoolCompleted, setNameOfSchoolCompleted] =
-    useState<string>("");
+  const [nameOfSchoolCompleted, setNameOfSchoolCompleted] = useState("");
   const [yearOfGraduation, setYearOfGraduation] = useState<string>("");
   const [hasSmartPhone, setHasSmartPhone] = useState<string>("");
   const [canUseMap, setCanUseMap] = useState<string>("");
@@ -85,9 +80,9 @@ const MainComponent = () => {
   const [isEmployed, setIsEmployed] = useState<string>("");
 
   // states for driver family information
-  const [nextOfKinName, setNextOfKinName] = useState<string>("");
-  const [nexOfKinRelation, setNextOfKinRelation] = useState<string>("");
-  const [nextOfKinTelephone, setNextOfKinTelephone] = useState<string>("");
+  const [nextOfKinName, setNextOfKinName] = useState("");
+  const [nexOfKinRelation, setNextOfKinRelation] = useState("");
+  const [nextOfKinTelephone, setNextOfKinTelephone] = useState("");
   const [nextOfKinPhone, setNextOfKinPhone] = useState<string>("");
   const [nextOfKinAddress, setNextOfKinAddress] = useState<string>("");
   const [dependents, setDependents] = useState<DependentsInputProp[]>([]);
@@ -279,10 +274,9 @@ const MainComponent = () => {
     }
   };
 
-  const [createApplication, { loading }] = useMutation<
-    CreateApplicationOuputProp,
-    CreateApplicationInputProp
-  >(CREATE_DRIVER_APPLICATION);
+  const [createApplication, { loading }] = useMutation(
+    CREATE_DRIVER_APPLICATION
+  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -328,69 +322,69 @@ const MainComponent = () => {
         firstName: registrationState?.status?.firstName,
         otherNames: registrationState?.status?.otherNames,
         gender: registrationState?.status?.gender,
-        dob: new Date(registrationState?.status?.dob),
-        email: registrationState?.status?.email,
-        photograph: imageUrls[0],
-        maritalStatus: maritalStatus,
-        numberOfChildren: parseInt(numberOfChildren),
+        dob: new Date(registrationState?.status?.dob) || undefined,
+        email: registrationState?.status?.email || undefined,
+        photograph: imageUrls[0] || undefined,
+        maritalStatus: maritalStatus || undefined,
+        numberOfChildren: parseInt(numberOfChildren) || undefined,
         hasLicense: hasALicense === "yes" ? true : false,
-        phone: telephone,
-        region: region,
-        city: city,
-        residence: currentAddress,
-        licenseId: licenseId,
-        licenseIssueDate: new Date(licenseIssueDate),
-        licenseExpiryDate: new Date(licenseExpiryDate),
+        phone: telephone || undefined,
+        region: region || undefined,
+        city: city || undefined,
+        residence: currentAddress || undefined,
+        licenseId: licenseId || undefined,
+        licenseIssueDate: new Date(licenseIssueDate) || undefined,
+        licenseExpiryDate: new Date(licenseExpiryDate) || undefined,
         licenseImageFront: imageUrls[3] || undefined,
         licenseImageBack: imageUrls[4] || undefined,
-        licenseClass: licenseClass,
-        drivingExperience: parseInt(yearsOfExperienceOnLicense),
+        licenseClass: licenseClass || undefined,
+        drivingExperience: parseInt(yearsOfExperienceOnLicense) || undefined,
         // vehicleClasses: undefined,
-        transmissionTypes: transmissionTypes,
+        transmissionTypes: transmissionTypes || undefined,
         hasAccidents: hadAccidents === "yes" ? true : false,
         hasCrimeRecords: hasBeenArrested === "yes" ? true : false,
         hasSmartPhone: hasSmartPhone === "yes" ? true : false,
         canUseMap: canUseMap === "yes" ? true : false,
-        availablity: availableDays,
+        availablity: availableDays || undefined,
         educationalHistory: {
-          nameOfSchool: nameOfSchoolCompleted,
-          endDate: new Date(yearOfGraduation),
-          level: highestLevelOfEducation,
+          nameOfSchool: nameOfSchoolCompleted || undefined,
+          endDate: new Date(yearOfGraduation) || undefined,
+          level: highestLevelOfEducation || undefined,
           certificateImage: imageUrls[5] || undefined,
         },
         currentEmployment: {
-          currentEmployerName: currentEmployerName,
-          startDate: new Date(currentPositionStartDate),
-          endDate: new Date(currentPositionEndDate),
-          positionHeld: currentPositionHeld,
+          currentEmployerName: currentEmployerName || undefined,
+          startDate: new Date(currentPositionStartDate) || undefined,
+          endDate: new Date(currentPositionEndDate) || undefined,
+          positionHeld: currentPositionHeld || undefined,
         },
         previousEmployment: {
-          currentEmployerName: previousEmployerName,
-          startDate: new Date(previousPostionStartDate),
-          endDate: new Date(previousPositionEndDate),
-          positionHeld: previousPositionHeld,
-          reasonForLeaving: reasonForLeavingPreviousWork,
+          currentEmployerName: previousEmployerName || undefined,
+          startDate: new Date(previousPostionStartDate) || undefined,
+          endDate: new Date(previousPositionEndDate) || undefined,
+          positionHeld: previousPositionHeld || undefined,
+          reasonForLeaving: reasonForLeavingPreviousWork || undefined,
         },
-        emergencyContacts: emergencyContact,
-        dependents: dependents,
+        emergencyContacts: emergencyContact || undefined,
+        dependents: dependents || undefined,
         bankDetails: {
-          sortCode: sortCode,
-          nameOfBank: nameOfBank,
-          nameOfBankBranch: nameOfBankBranch,
-          accountNumber: accountNumber,
-          ssnitNumber: ssnitNumber,
-          momoNumber: momoNumber,
+          sortCode: sortCode || undefined,
+          nameOfBank: nameOfBank || undefined,
+          nameOfBankBranch: nameOfBankBranch || undefined,
+          accountNumber: accountNumber || undefined,
+          ssnitNumber: ssnitNumber || undefined,
+          momoNumber: momoNumber || undefined,
         },
         nextOfKin: {
-          name: nextOfKinName,
-          address: nextOfKinAddress,
-          phone: nextOfKinPhone,
-          relationship: nexOfKinRelation,
-          telephone: nextOfKinTelephone,
+          name: nextOfKinName || undefined,
+          address: nextOfKinAddress || undefined,
+          phone: nextOfKinPhone || undefined,
+          relationship: nexOfKinRelation || undefined,
+          telephone: nextOfKinTelephone || undefined,
         },
         ghanaCardId,
-        ghanaCardExpiryDate: new Date(ghanaCardExpiryDate),
-        ghanaCardIssueDate: new Date(ghanaCardIssueDate),
+        ghanaCardExpiryDate: new Date(ghanaCardExpiryDate) || undefined,
+        ghanaCardIssueDate: new Date(ghanaCardIssueDate) || undefined,
         ghanaCardImageFont: imageUrls[1] || undefined,
         ghanaCardImageBack: imageUrls[2] || undefined,
       },

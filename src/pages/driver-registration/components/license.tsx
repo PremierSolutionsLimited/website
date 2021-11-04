@@ -3,7 +3,6 @@ import { LicenseComponentProp } from "./types";
 import { CameraIcon } from "@heroicons/react/outline";
 import { DatePicker } from "antd";
 import SelectTypeOfCars from "../bones/typeMultiSelect";
-import toast from "react-hot-toast";
 
 export default function LicenseComponent({
   setTab,
@@ -28,9 +27,7 @@ export default function LicenseComponent({
 }: LicenseComponentProp) {
   const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!driverLicenseFrontImageUrl || !driverLicenseBackImageUrl) {
-      return toast.error("Please add a license images");
-    }
+
     return setTab("avaiabliity");
   };
 
