@@ -58,7 +58,7 @@ const SendCodeComponent = () => {
               <div className="flex-shrink-0 pt-10 sm:pt-16">
                 <a href="/" className="inline-flex">
                   <span className="sr-only">Workflow</span>
-                  <img className="h-442 w-auto" src={Logo} alt="" />
+                  <img className="h-32 w-auto" src={Logo} alt="" />
                 </a>
               </div>
               <div className="flex-shrink-0 my-auto py-16 sm:py-32">

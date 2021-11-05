@@ -73,7 +73,7 @@ const Login = () => {
           <div className="w-full">
             <div>
               <div className={"flex justify-center"}>
-                <img className="h-32 w-auto" src={Logo} alt="Workflow" />
+                <img className="h-44 w-auto" src={Logo} alt="Workflow" />
               </div>
               <h2 className="mt-6 text-3xl font-bold text-pink-600">
                 Client Login
@@ -190,7 +190,7 @@ const Login = () => {
           </div>
           <div className={"flex flex-col bottom-6 items-center w-full"}>
             <span className="mt-1 text-xs text-center font-light text-gray-400">
-              All Rights Reserved Copyright c {new Date()?.getFullYear()}
+              All Rights Reserved Copyright &copy; {new Date()?.getFullYear()}
             </span>
             <i className="mt-2 text-xs text-center font-light sm:text-sm md:text-base text-gray-700">
               Powered by Polymorph Labs Ghana Limited

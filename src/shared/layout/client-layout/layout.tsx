@@ -32,7 +32,7 @@ export default function AppLayout() {
         </div>
         <div className={"flex flex-col bottom-6 absolute items-center w-full"}>
           <span className="mt-1 text-xs text-center font-light text-gray-400">
-            All Rights Reserved Copyright c {new Date()?.getFullYear()}
+            All Rights Reserved Copyright &copy; {new Date()?.getFullYear()}
           </span>
           <i className="mt-2 text-xs text-center font-light sm:text-sm md:text-base text-gray-700">
             Powered by Polymorph Labs Ghana Limited

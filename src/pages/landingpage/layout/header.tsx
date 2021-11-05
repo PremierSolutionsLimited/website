@@ -55,7 +55,7 @@ const MainHeader = () => {
               <a href="#" className="flex">
                 <span className="sr-only">Logo</span>
                 <img
-                  className="h-12 rounded-full w-auto"
+                  className="h-14 rounded-full w-auto"
                   src={Logo}
                   alt="Workflow"
                 />
