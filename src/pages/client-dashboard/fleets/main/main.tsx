@@ -23,7 +23,7 @@ const BookTripComponent = lazy(() => import("../book"));
 const pages: BreadCrumbProp[] = [{ name: "My Fleet ", href: MY_FLEET }];
 
 const MainComponent = () => {
-  const currentClient = useCurrentClient();
+  const { currentUser: currentClient } = useCurrentClient();
   const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
   const { data, loading, refetch } = useQuery<
     MyFleetOutputProp,

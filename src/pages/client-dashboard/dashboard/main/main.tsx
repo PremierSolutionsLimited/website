@@ -1,5 +1,10 @@
 import { Fragment } from "react";
-import { ScaleIcon, CheckCircleIcon, MapIcon } from "@heroicons/react/outline";
+import {
+  ScaleIcon,
+  CheckCircleIcon,
+  MapIcon,
+  ShieldExclamationIcon,
+} from "@heroicons/react/outline";
 import { BarChart } from "../chart";
 import { useQuery } from "@apollo/client";
 import { GET_SUMMARY } from "../../../../services/graphql/dashboard/query";
@@ -97,6 +102,58 @@ const MainComponent = () => {
                                 <Fragment>
                                   <div className="text-lg font-medium text-gray-900">
                                     {data?.clientSummary?.completedTrips}
+                                  </div>
+                                </Fragment>
+                              ) : (
+                                <Fragment>
+                                  <div className="text-lg font-medium text-gray-900">
+                                    N/A
+                                  </div>
+                                </Fragment>
+                              )}
+                            </Fragment>
+                          )}
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 px-5 py-3">
+                  <div className="text-sm">
+                    <div className="font-medium text-cyan-700 hover:text-cyan-900">
+                      {/* View all */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white overflow-hidden shadow rounded-lg">
+                <div className="p-5">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <ShieldExclamationIcon
+                        className="h-6 w-6 text-gray-400"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">
+                          Canceled Trips
+                        </dt>
+                        <dd>
+                          {loading ? (
+                            <Fragment>
+                              <div className="text-sm font-light text-gray-700">
+                                loading...
+                              </div>
+                            </Fragment>
+                          ) : (
+                            <Fragment>
+                              {data ? (
+                                <Fragment>
+                                  <div className="text-lg font-medium text-gray-900">
+                                    {data?.clientSummary?.totalVehicles}
                                   </div>
                                 </Fragment>
                               ) : (

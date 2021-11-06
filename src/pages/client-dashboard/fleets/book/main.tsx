@@ -47,7 +47,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
 
-  const currentClient = useCurrentClient();
+  const { currentUser: currentClient } = useCurrentClient();
   const [tab, setTab] = useState<string>("trip");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<IGroupType[]>([]);
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
@@ -226,9 +226,9 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>

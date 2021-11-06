@@ -29,7 +29,8 @@ const MainComponent = () => {
   const [selectedTrip, setSelectedTrip] = useState<TripHistory>();
   const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
 
-  const currentUser = useCurrentClient();
+  const { currentUser } = useCurrentClient();
+
   const { data, loading, refetch } = useQuery<
     TripHistoryOutputProp,
     TripHistoryInputProp
@@ -117,7 +118,7 @@ const MainComponent = () => {
           )}
         </div>
       </div>
-      <Suspense fallback={ContextLoader}>
+      <Suspense fallback={ContextLoader()}>
         <ViewTripComponent
           show={viewTrip}
           setShow={setViewTrip}

@@ -45,7 +45,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [color, setColor] = useState("");
 
-  const currentClient = useCurrentClient();
+  const { currentUser: currentClient } = useCurrentClient();
 
   // get vehicle  classes
   const { data: vehicleClasses, loading: loadingVehicleClasses } = useQuery<
@@ -192,9 +192,9 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>

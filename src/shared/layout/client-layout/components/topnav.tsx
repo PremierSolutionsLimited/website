@@ -18,7 +18,7 @@ const TopNav = () => {
   const [logout, setLogout] = useState(false);
   const [showChangePassword, setShowChangePassword] = useState(false);
 
-  const curentClient = useCurrentClient();
+  const { currentUser: curentClient } = useCurrentClient();
 
   return (
     <Fragment>

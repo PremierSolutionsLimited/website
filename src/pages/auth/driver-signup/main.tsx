@@ -110,8 +110,6 @@ const DriverSignup = () => {
     startRegistration,
   ]);
 
-  console.log(dob);
-
   return (
     <Fragment>
       <div className="min-h-screen bg-white flex">

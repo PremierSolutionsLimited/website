@@ -15,7 +15,7 @@ const MainComponent = ({ dependDents, setDependents }: MainComponentProp) => {
       },
     ]);
   };
-  console.log(dependDents);
+
   return (
     <React.Fragment>
       <div style={{ width: "100%" }} className={"pl-3"}>
@@ -68,9 +68,9 @@ const MainComponent = ({ dependDents, setDependents }: MainComponentProp) => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M6 18L18 6M6 6l12 12"
                     ></path>
                   </svg>

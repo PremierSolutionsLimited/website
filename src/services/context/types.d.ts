@@ -29,6 +29,10 @@ export interface CurrentClientOutputProps {
   };
 }
 
+export interface ContextValue {
+  refetch: () => void;
+  currentUser?: Client;
+}
 export interface Client {
   _id: string;
   code: string;

@@ -85,9 +85,9 @@ const MainComponent: FC<RateDriverComponentProp> = ({
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
@@ -106,7 +106,7 @@ const MainComponent: FC<RateDriverComponentProp> = ({
               <div className="mt-1 rounded-none shadow-none">
                 <ReactStars
                   size={30}
-                  value={tripRating}
+                  value={parseInt(tripRating)}
                   onChange={ratingChanged}
                   count={5}
                 />

@@ -28,7 +28,9 @@ const MainComponent = () => {
   const [uploadingToFirebase, setUploadingToFirebase] =
     useState<boolean>(false);
 
-  const currentClient = useCurrentClient();
+  const { currentUser: currentClient, refetch: refetchCurrentUser } =
+    useCurrentClient();
+
   const [invokeUpdateClient, { loading }] = useMutation<
     UpdateCurrentClientOutputProp,
     UpdateCurrentClientInputProp
@@ -55,6 +57,7 @@ const MainComponent = () => {
       otherNames === currentClient?.otherNames &&
       email === currentClient?.email &&
       phone === currentClient?.phone &&
+      username === currentClient?.username &&
       !clientFile
     ) {
       return toast?.error(
@@ -91,7 +94,8 @@ const MainComponent = () => {
                 },
               })
                 .then(() => {
-                  console.log(fireBaseUrl);
+                  refetchCurrentUser();
+
                   toast.success("Profile updated successfully");
                   setUploadingToFirebase(false);
                 })
@@ -115,6 +119,7 @@ const MainComponent = () => {
         },
       })
         .then(() => {
+          refetchCurrentUser();
           toast.success("Profile updated successfully");
           setUploadingToFirebase(false);
         })

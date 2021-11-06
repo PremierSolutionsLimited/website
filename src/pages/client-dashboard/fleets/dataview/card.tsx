@@ -30,11 +30,11 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
                     width="94"
                     height="94"
                     viewBox="0 0 24 24"
-                    stroke-width="1.3"
+                    strokeWidth="1.3"
                     stroke="currentColor"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <circle cx="7" cy="17" r="2"></circle>
@@ -63,9 +63,9 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     />
                   </svg>
@@ -92,9 +92,9 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     />
                   </svg>
@@ -109,9 +109,9 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                     ></path>
                   </svg>

@@ -39,9 +39,9 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
@@ -92,8 +92,8 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   </div>
                   <dd className="-mt-10 hidden sm:hidden md:block text-sm text-gray-900 sm:-mt-10 sm:col-span-1">
                     <img
-                      className="h-24 w-36 rounded-none"
-                      src={trip?.vehicle?.class?.icon || CarImage}
+                      className="h-24 object-cover rounded-lg w-36 rounded-none"
+                      src={trip?.vehicle?.images[0] || CarImage}
                       alt=""
                     />
                   </dd>
@@ -133,6 +133,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                     </Fragment>
                   )}
                 </div>
+
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
                     End Time
@@ -152,6 +153,18 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                       </dd>
                     </Fragment>
                   )}
+                </div>
+
+                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Created on
+                  </dt>
+
+                  <Fragment>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {moment(trip?.createdAt).format("MMMM Do YYYY")}
+                    </dd>
+                  </Fragment>
                 </div>
 
                 {trip?.notes && (
