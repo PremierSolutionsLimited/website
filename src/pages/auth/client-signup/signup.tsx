@@ -217,7 +217,6 @@ const Signup = () => {
                             onChange={(
                               e: React.ChangeEvent<HTMLInputElement>
                             ) => setOtherNames(e.target.value)}
-                            required
                             className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                           />
                         </div>
