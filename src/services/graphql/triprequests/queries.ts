@@ -9,6 +9,14 @@ export const tripRequests = gql`
     ) {
       _id
       code
+      cost {
+        totalCost
+        items {
+          title
+          quantity
+          cost
+        }
+      }
       tripType {
         _id
         name

@@ -43,6 +43,14 @@ export interface TripHistory {
   cancelledAt: Date;
   cancelledBecause: string;
   createdAt: Date;
+  cost: {
+    totalCost: string;
+    items: {
+      title: string;
+      quantity: number;
+      cost: string;
+    };
+  };
   updatedAt: Date;
 }
 
