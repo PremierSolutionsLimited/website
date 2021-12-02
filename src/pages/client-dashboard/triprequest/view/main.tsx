@@ -99,13 +99,17 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   <div className={"col-span-2 ml-5"}>
                     <h1 className={"font-light ml-4"}>From</h1>
                     <span className={"font-medium ml-4"}>
-                      {loadPickup ? "loading..." : pickup}
+                      {loadPickup
+                        ? "loading..."
+                        : pickup || trip?.pickUpLocationName}
                     </span>
                   </div>
                   <div className={"col-span-2 ml-5"}>
                     <h1 className={"font-light ml-4"}>To</h1>
                     <span className={"font-medium ml-4"}>
-                      {loadDropoff ? "loading..." : dropoff}
+                      {loadDropoff
+                        ? "loading..."
+                        : dropoff || trip?.dropOffLocationName}
                     </span>
                   </div>
                   <div
@@ -169,6 +173,17 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                       </dd>
                     </Fragment>
                   )}
+                </div>
+                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Cost (GHS)
+                  </dt>
+
+                  <Fragment>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {trip?.cost?.totalCost}
+                    </dd>
+                  </Fragment>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">

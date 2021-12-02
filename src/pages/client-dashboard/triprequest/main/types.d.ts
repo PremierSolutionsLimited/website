@@ -38,6 +38,8 @@ export interface TripHistory {
   clientRated: boolean;
   clientRating: number;
   clientReview: string;
+  dropOffLocationName: string;
+  pickUpLocationName: string;
   cancelledAt: Date;
   cancelledBecause: string;
   createdAt: Date;
