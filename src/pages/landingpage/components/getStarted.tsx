@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import CardPng from "../../../assets/images/chauf.jpg";
+import CardPng from "../../../assets/images/chauf.jpeg";
 
 export default function GetStartedComponent() {
   return (

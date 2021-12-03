@@ -22,44 +22,44 @@ const FrequentlyAskedQuestions = () => {
                     What is Premier Chauffeur?
                   </summary>
 
-                  <span className="py-5">
+                  <p className="my-4 leading-snag">
                     We provide you with professionally trained and certified
                     chauffeur or drivers, whilst you travel around in the
                     comfort of your own vehicle. You do not have to worry about
                     traffic, leaving the office to pick your children or driving
                     around.
-                  </span>
+                  </p>
                 </details>
                 <details className="mb-4">
                   <summary className="font-medium bg-gray-100 rounded-md py-2 px-4">
                     How does one become a driver on the app?
                   </summary>
 
-                  <span>
+                  <p className="my-4 leading-snag">
                     You become a driver on the app after successfully going
                     through our structured assessment and defensive driving
                     training process.
-                  </span>
+                  </p>
                 </details>
                 <details className="mb-4">
                   <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
                     What are the requirements?
                   </summary>
 
-                  <span>
+                  <p className="my-4 leading-snag">
                     You must have a valid driver licence.You must have at least
                     5 years of driving experience.
-                  </span>
+                  </p>
                 </details>
                 <details className="mb-4">
                   <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
                     How does Premier Chauffeur work?
                   </summary>
 
-                  <span>
+                  <p className="my-4 leading-snag">
                     Client request for a driver and we assign client to an
                     available driver.
-                  </span>
+                  </p>
                 </details>
               </div>
               <div className="w-full lg:w-1/2 px-4 py-2">
@@ -69,9 +69,9 @@ const FrequentlyAskedQuestions = () => {
                     Chauffeur?
                   </summary>
 
-                  <span className="px-4 py-2">
+                  <p className="my-4 leading-snag">
                     No, you must not have a car to register as a driver.
-                  </span>
+                  </p>
                 </details>
                 <details className="mb-4">
                   <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
@@ -79,24 +79,24 @@ const FrequentlyAskedQuestions = () => {
                     Chauffeur?
                   </summary>
 
-                  <span className="px-4 py-2">
+                  <p className="my-4 leading-snag">
                     Yes, you must have your own car or access to a car that a
                     PSL chauffeur will drive on your behalf.
-                  </span>
+                  </p>
                 </details>
                 <details className="mb-4">
                   <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
                     Is the Chauffeur for iPhone app free?
                   </summary>
 
-                  <span className="px-4 py-2">Yes, absolutely.</span>
+                  <p className="my-4 leading-snag">Yes, absolutely.</p>
                 </details>
                 <details className="mb-4">
                   <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
                     Is the Premier Chauffeur for Android app free?
                   </summary>
 
-                  <span className="px-4 py-2">Yes, absolutely.</span>
+                  <p className="my-4 leading-snag">Yes, absolutely.</p>
                 </details>
               </div>
             </div>
