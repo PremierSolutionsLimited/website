@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import CardPng from "../../../assets/car2.png";
+import CardPng from "../../../assets/images/chauf.jpg";
 
 export default function GetStartedComponent() {
   return (
@@ -57,7 +57,7 @@ export default function GetStartedComponent() {
                       data-aos="zoom-y-out"
                     >
                       <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-pink-700">
-                        You Relax, We Drive
+                        We Drive, You Relax
                       </span>
                     </h1>
                     <div className="max-w-3xl mx-auto">
@@ -67,9 +67,8 @@ export default function GetStartedComponent() {
                         data-aos-delay="150"
                       >
                         We provide you the comfort of travelling in your own
-                        vehicle, while our professionally trained chauffeur or
-                        driver, drives you. Catch up on your day while in
-                        transit.
+                        vehicle, while our professionally trained chauffeur,
+                        drives you. Catch up on your day while in transit.
                       </p>
                       <div className={"block sm:block md:hidden"}>
                         <Link to="/driver-signup">
@@ -105,7 +104,11 @@ export default function GetStartedComponent() {
               </div>
             </section>
             <div className="hidden sm:hidden z-30 md:block aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-              <img src={CardPng} alt="car" className="h-auto w-full" />
+              <img
+                src={CardPng}
+                alt="car"
+                className="h-auto rounded-lg object-cover w-full"
+              />
             </div>
           </div>
         </div>

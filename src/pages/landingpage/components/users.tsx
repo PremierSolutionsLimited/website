@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import HeaderSvg from "../../../components/svgs/header";
+import Offers from "./offers";
 
 const UsersComponent = () => {
   return (
@@ -88,6 +89,7 @@ const UsersComponent = () => {
               </li>
             </ul>
           </div>
+          <Offers />
         </div>
       </div>
     </Fragment>
