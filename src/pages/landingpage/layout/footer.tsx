@@ -69,7 +69,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="mt-12  border md:mt-0">
+            <div className="mt-12  md:mt-0">
               <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
                 HyperLinks
               </h3>
@@ -118,52 +118,32 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="mt-12  border md:mt-0">
+            <div className="mt-12 md:mt-0">
               <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                Values
+                Values (DELI)
               </h3>
               <ul className="mt-4 grid grid-cols-1 gap-4">
                 <li>
-                  <a
-                    href="#offers"
-                    className="text-base text-gray-500 hover:text-gray-900"
-                  >
-                    Our Offers
-                  </a>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
+                    ● Diligence
+                  </span>
                 </li>
 
                 <li>
-                  <a
-                    href="#whoweare"
-                    className="text-base text-gray-500 hover:text-gray-900"
-                  >
-                    Who we are
-                  </a>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
+                    ● Excellence
+                  </span>
                 </li>
 
                 <li>
-                  <a
-                    href="#keyfeatures"
-                    className="text-base text-gray-500 hover:text-gray-900"
-                  >
-                    Features
-                  </a>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
+                    ● Love
+                  </span>
                 </li>
                 <li>
-                  <a
-                    href="#faq"
-                    className="text-base text-gray-500 hover:text-gray-900"
-                  >
-                    FAQs
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#contact"
-                    className="text-base text-gray-500 hover:text-gray-900"
-                  >
-                    Contact
-                  </a>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
+                    ● Integrity
+                  </span>
                 </li>
               </ul>
             </div>
