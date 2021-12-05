@@ -15,7 +15,7 @@ const Footer = () => {
           Footer
         </h2>
         <div className="max-w-7xl mx-auto py-0 px-4 sm:px-6 lg:py-0 lg:px-8">
-          <div className="xl:grid xl:grid-cols-4 xl:gap-8">
+          <div className="xl:grid xl:grid-cols-5 xl:gap-8">
             <div className="space-y-8 xl:col-span-1">
               <img className="h-16" src={Picture} alt="Company name" />
               <p className="text-gray-500 text-base">
@@ -69,6 +69,35 @@ const Footer = () => {
               </div>
             </div>
 
+            <div className="mt-12 md:mt-0">
+              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                Our Values (DELI)
+              </h3>
+              <ul className="mt-4 grid grid-cols-1 gap-4">
+                <li>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
+                    ● Diligence
+                  </span>
+                </li>
+
+                <li>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
+                    ● Excellence
+                  </span>
+                </li>
+
+                <li>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
+                    ● Love
+                  </span>
+                </li>
+                <li>
+                  <span className="text-base text-gray-500 hover:text-gray-900">
+                    ● Integrity
+                  </span>
+                </li>
+              </ul>
+            </div>
             <div className="mt-12  md:mt-0">
               <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
                 HyperLinks
@@ -108,47 +137,10 @@ const Footer = () => {
                     FAQs
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="#contact"
-                    className="text-base text-gray-500 hover:text-gray-900"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="mt-12 md:mt-0">
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                Values (DELI)
-              </h3>
-              <ul className="mt-4 grid grid-cols-1 gap-4">
-                <li>
-                  <span className="text-base text-gray-500 hover:text-gray-900">
-                    ● Diligence
-                  </span>
-                </li>
-
-                <li>
-                  <span className="text-base text-gray-500 hover:text-gray-900">
-                    ● Excellence
-                  </span>
-                </li>
-
-                <li>
-                  <span className="text-base text-gray-500 hover:text-gray-900">
-                    ● Love
-                  </span>
-                </li>
-                <li>
-                  <span className="text-base text-gray-500 hover:text-gray-900">
-                    ● Integrity
-                  </span>
-                </li>
               </ul>
             </div>
 
-            <div className="mt-8 xl:mt-0">
+            <div className="mt-8 col-span-2 w-full xl:mt-0">
               <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
                 Subscribe to our newsletter
               </h3>

@@ -316,7 +316,7 @@ export default function Banner() {
                   >
                     <div className={`relative`}>
                       <AnimatedDriver
-                        width="800"
+                        width="600"
                         height="400"
                         className={` -top-24 absolute`}
                       />

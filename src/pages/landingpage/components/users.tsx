@@ -19,6 +19,8 @@ const UsersComponent = () => {
                 Wherever you wish to go, our drivers will get you there safely
               </p>
             </div>
+            <Offers />
+
             <ul className="space-y-12 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-4 lg:gap-x-8">
               <li>
                 <div className="space-y-4">
@@ -89,7 +91,6 @@ const UsersComponent = () => {
               </li>
             </ul>
           </div>
-          <Offers />
         </div>
       </div>
     </Fragment>
