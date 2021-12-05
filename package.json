@@ -25,6 +25,8 @@
     "google-map-react": "^2.1.10",
     "graphql": "^15.5.0",
     "js-cookie": "^2.2.1",
+    "rc-banner-anim": "^2.4.5",
+    "rc-queue-anim": "^2.0.0",
     "react": "^17.0.2",
     "react-color": "^2.19.3",
     "react-dom": "^17.0.2",
