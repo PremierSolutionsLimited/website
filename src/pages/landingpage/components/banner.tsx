@@ -5,9 +5,7 @@ import image1 from "../../../assets/images/chauf.jpeg";
 import image3 from "../../../assets/images/chauf3.jpeg";
 import image4 from "../../../assets/images/chauf4.jpeg";
 import { Link } from "react-router-dom";
-import AnimatedDriver from "../../../components/svgs/driver-anim";
-import ChaufSVG from "../../../components/svgs/chauffer";
-import Chauf1 from "../../../components/svgs/chauf1";
+
 const BgElement = Element.BgElement;
 
 export default function Banner() {
@@ -102,18 +100,6 @@ export default function Banner() {
                       </div>
                     </div>
                   </section>
-                  <div
-                    data-aos={"fade-left"}
-                    className={`flex items-start justify-center`}
-                  >
-                    <div className={`relative`}>
-                      <Chauf1
-                        width="600"
-                        height="400"
-                        className={` -top-24 absolute`}
-                      />
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -141,7 +127,7 @@ export default function Banner() {
             >
               <div className="max-w-full mx-auto pt-12 pb-0 px-4 sm:px-6 lg:px-12">
                 <div className="overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
-                  <div className={`flex items-start justify-center`}>
+                  {/* <div className={`flex items-start justify-center`}>
                     <div className={`relative`}>
                       <ChaufSVG
                         width="800"
@@ -149,7 +135,7 @@ export default function Banner() {
                         className={` -top-24 absolute`}
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <section className="relative">
                     <div className="max-w-full">
                       <div className="pb-12 flex justify-between md:pb-20">
@@ -221,6 +207,7 @@ export default function Banner() {
             </div>
           </TweenOne>
         </Element>
+
         <Element prefixCls="banner-user-elem" key="0">
           <BgElement
             key="bg"
@@ -310,7 +297,7 @@ export default function Banner() {
                     </div>
                   </section>
                   {/*  */}
-                  <div
+                  {/* <div
                     data-aos={"fade-left"}
                     className={`flex items-start justify-center`}
                   >
@@ -321,7 +308,7 @@ export default function Banner() {
                         className={` -top-24 absolute`}
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
