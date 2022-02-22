@@ -55,6 +55,11 @@ export const getTripHistory = gql`
       cancelledBecause
       createdAt
       updatedAt
+      tripRequest {
+      cost {
+        totalCost
+      }
+    }
     }
     tripsLength(filter: $filter)
   }
