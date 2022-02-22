@@ -58,6 +58,11 @@ export interface Location {
 
 export interface TripRequest {
   cost: {
-    totalCost: number;
-  }
+    totalCost: string;
+    items: {
+      title: string;
+      quantity: number;
+      cost: string;
+    };
+  };
 }

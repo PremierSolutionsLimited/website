@@ -58,6 +58,11 @@ export const getTripHistory = gql`
       tripRequest {
       cost {
         totalCost
+        items {
+          title
+          quantity
+          cost
+        }
       }
     }
     }
