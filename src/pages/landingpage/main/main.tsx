@@ -3,7 +3,7 @@ import { Layout } from "../layout";
 import GetStartedComponent from "../components/getStarted";
 import UsersComponent from "../components/users";
 import FeaturesComponent from "../components/feature";
-import NewsLetter from "../components/newsLetter";
+//import NewsLetter from "../components/newsLetter";
 import FrequentlyAsked from "../components/faqs";
 
 const MainComponent = () => {
@@ -24,7 +24,7 @@ const MainComponent = () => {
         {/* pricing */}
         {/*  newsletter */}
         <FrequentlyAsked />
-        <NewsLetter />
+        {/* <NewsLetter /> */}
         {/* <PricingComponent /> */}
       </Layout>
     </Fragment>
