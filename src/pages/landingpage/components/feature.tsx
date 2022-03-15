@@ -56,7 +56,7 @@ const FeaturesComponent = () => {
           <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div className="relative">
               <h3 className="text-2xl font-bold text-gray-900 tracking-tight sm:text-3xl">
-                Catch a drive real quick
+                Hire a driver real quick
               </h3>
               <p className="mt-3 text-lg text-gray-500">
                 Why wait until the weekend to take a peaceful trip to your
@@ -67,9 +67,37 @@ const FeaturesComponent = () => {
               </p>
 
               <dl className="mt-10 space-y-10">
+              <div className="relative">
+                  <dt>
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gold-2 text-white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                      Professionalism
+                    </p>
+                  </dt>
+                  <dd className="mt-2 ml-16 text-base text-gray-500">
+                    Chauffeurs trained to be competent and respectful in dealing
+                    with clients.
+                  </dd>
+                </div>
+
                 <div className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gold-2 text-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
@@ -98,7 +126,7 @@ const FeaturesComponent = () => {
 
                 <div className="relative">
                   <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gold-2 text-white">
                       <svg
                         className="h-6 w-6"
                         xmlns="http://www.w3.org/2000/svg"
@@ -123,34 +151,6 @@ const FeaturesComponent = () => {
                     Chauffeurs trained to drive defensively to protect people
                     and property. Background checks are conducted on all
                     drivers.
-                  </dd>
-                </div>
-
-                <div className="relative">
-                  <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
-                      Professionalism
-                    </p>
-                  </dt>
-                  <dd className="mt-2 ml-16 text-base text-gray-500">
-                    Chauffeurs trained to be competent and respectful in dealing
-                    with clients.
                   </dd>
                 </div>
               </dl>
@@ -257,7 +257,7 @@ const FeaturesComponent = () => {
                 <dl className="mt-10 space-y-10">
                   <div className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gold-2 text-white">
                         <svg
                           className="h-6 w-6"
                           xmlns="http://www.w3.org/2000/svg"
@@ -286,7 +286,7 @@ const FeaturesComponent = () => {
 
                   <div className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gold-2 text-white">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-6 w-6"
@@ -313,7 +313,7 @@ const FeaturesComponent = () => {
                   </div>
                   <div className="relative">
                     <dt>
-                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-pink-600 text-white">
+                      <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-gold-2 text-white">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-6 w-6"
