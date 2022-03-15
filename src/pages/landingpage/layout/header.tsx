@@ -46,7 +46,7 @@ const MainHeader = () => {
     <Fragment>
       <div
         className={`border-b sticky top-0 z-40 dark:border-transparent  dark:bg-black ${
-          initialScrollPositionMoved ?  "bg-black text-yellow-600  border-yellow-600" : " shadow-none bg-white  border-gray-100 text-black"
+          initialScrollPositionMoved ?  "bg-black text-gold-2  border-gold-2" : " shadow-none bg-white  border-gray-100 text-black"
         }`}
       >
         <div className="relative max-w-7xl mx-auto ">
