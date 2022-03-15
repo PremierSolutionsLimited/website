@@ -13,8 +13,9 @@ module.exports = {
           800: "#5eb3b1",
         },
         gold: {
-          1: "#D4AF37",
+          1: "#EDCB01",
           2: "#C29B0C",
+          3: "#D4AF37"
         }
       },
       height: {
