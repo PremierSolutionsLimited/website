@@ -4,7 +4,7 @@ import { Transition } from "@headlessui/react";
 import { useOutsideListener } from "../../../components/hooks";
 import { Link, useHistory } from "react-router-dom";
 import SignupDropDown from "./bones/signupDropdown";
-import Logo from "../../../assets/images/Picture.jpg";
+import Logo from "../../../assets/logo_gold_text.png";
 
 const MainHeader = () => {
   const { push } = useHistory();
@@ -45,16 +45,16 @@ const MainHeader = () => {
   return (
     <Fragment>
       <div
-        className={`border-b sticky top-0 z-40 border-gray-100 dark:border-transparent  dark:bg-black ${
-          initialScrollPositionMoved ? " shadow-none bg-white " : "bg-gray-100"
+        className={`border-b sticky top-0 z-40 dark:border-transparent  dark:bg-black ${
+          initialScrollPositionMoved ?  "bg-black text-yellow-600  border-yellow-600" : " shadow-none bg-white  border-gray-100 text-black"
         }`}
       >
         <div className="relative max-w-7xl mx-auto ">
-          <div className="flex justify-between items-center px-4 py-3 sm:px-6 md:justify-start md:space-x-8 ">
+          <div className="flex justify-between items-center px-4 py-2 sm:px-6 md:justify-start md:space-x-8 ">
             <Link to="/">
               <a href="#" className="flex">
                 <span className="sr-only">Logo</span>
-                <img className="h-14 w-auto" src={Logo} alt="Workflow" />
+                <img className="h-20 w-auto" src={Logo} alt="Workflow" />
               </a>
             </Link>
 
@@ -62,25 +62,25 @@ const MainHeader = () => {
               <nav className="flex space-x-10">
                 <a
                   href="#offers"
-                  className="text-base text-black dark:text-gray-100 hover:text-black"
+                  className="text-base  dark:text-gray-100 hover:text-yellow-500"
                 >
                   Our Offers
                 </a>
                 <a
                   href="#whoweare"
-                  className="text-base text-black dark:text-gray-100 hover:text-black"
+                  className="text-base dark:text-gray-100 hover:text-yellow-500"
                 >
                   Who we are?
                 </a>
                 <a
                   href="#keyfeatures"
-                  className="text-base text-black dark:text-gray-100 hover:text-black"
+                  className="text-base dark:text-gray-100 hover:text-yellow-500"
                 >
                   Key Features
                 </a>
                 <a
                   href="#faq"
-                  className="text-base text-black dark:text-gray-100 hover:text-black"
+                  className="text-base dark:text-gray-100 hover:text-yellow-500"
                 >
                   FAQs
                 </a>

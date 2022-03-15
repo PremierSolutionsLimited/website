@@ -12,6 +12,10 @@ module.exports = {
         primary: {
           800: "#5eb3b1",
         },
+        gold: {
+          1: "#D4AF37",
+          2: "#C29B0C",
+        }
       },
       height: {
         "faq-height": "70vh",
