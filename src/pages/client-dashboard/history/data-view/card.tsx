@@ -61,6 +61,11 @@ const CardComponent = ({
           {history?.tripType?.name || "Not Specified"}
         </div>
       </td>
+      <td className="px-6 py-3 whitespace-nowrap">
+        <div className="text-sm text-gray-900">
+          {history?.tripRequest?.cost?.totalCost || "Not Specified"}
+        </div>
+      </td>
 
       {history?.status === "PENDING" ? (
         <Fragment>

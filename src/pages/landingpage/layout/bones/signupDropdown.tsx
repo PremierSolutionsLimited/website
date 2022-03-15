@@ -14,7 +14,7 @@ export default function SignupDropdown() {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="relative inline-flex items-center bg-pink-700 px-4 py-3 rounded-l-full rounded-r-full text-sm font-medium text-white hover:bg-pink-600 focus:outline-none focus:z-10  focus:ring-offset-gray-50 focus:ring-pink-700">
+            <Menu.Button className="relative inline-flex items-center bg-gold-1 px-4 py-3 rounded-l-full rounded-r-full text-sm font-medium text-gray-900 hover:bg-gold-2 hover:text-white focus:outline-none focus:z-10  focus:ring-offset-gray-50 focus:ring-gold-200">
               Sign Up Options
               <ChevronDownIcon
                 className="-mr-1 ml-2 h-5 w-5"

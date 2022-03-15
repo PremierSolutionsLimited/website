@@ -92,7 +92,7 @@ export default function Offers() {
             <p className="mt-2 text-sm text-gray-500">{action?.description}</p>
           </div>
           <span
-            className="pointer-events-none absolute top-6 right-6 text-pink-600 group-hover:text-pink-800"
+            className="pointer-events-none absolute top-6 right-6 text-gold-1 group-hover:text-gold-2"
             aria-hidden="true"
           >
             {action?.price}

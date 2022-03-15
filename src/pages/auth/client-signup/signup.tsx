@@ -9,6 +9,8 @@ import { useLazyQuery } from "@apollo/client";
 import { checkClientMail } from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";
 import moment from "moment";
+// @ts-ignore
+import ClientTermsPdf from "../../../assets/documents/client-terms.pdf"
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -138,7 +140,7 @@ const Signup = () => {
                   alt="Workflow"
                 />
               </div>
-              <h2 className="mt-6 text-3xl font-bold text-pink-600">
+              <h2 className="mt-6 text-3xl font-bold text-gold-2">
                 Client Registration
               </h2>
             </div>
@@ -306,7 +308,7 @@ const Signup = () => {
                       checkIfTaken({ variables: { filter: { email } } });
                     }}
                     disabled={isClientBelowAge}
-                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
+                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gold-2 hover:bg-gold-1 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
                     {loading || checking ? (
                       <Fragment>
@@ -319,7 +321,7 @@ const Signup = () => {
                 </form>
               </div>
               <div className="text-center font-light mt-3  text-gray-900 text-sm">
-                By signing up, you agree to our terms and privacy policy.
+                By signing up, you agree to our <a className="text-gold-2 font-semibold hover:text-gold-1" href={ClientTermsPdf} target="_blank" rel="noreferrer">terms and privacy policy</a>.
               </div>
               <div className="text-center font-light text-gray-900 text-sm">
                 We do not allow adult content
@@ -331,7 +333,7 @@ const Signup = () => {
             <Link to="/client-login">
               <button
                 type="button"
-                className="underline text-pink-600 ml-1 focus:outline-none"
+                className="underline text-gold-2 ml-1 focus:outline-none"
               >
                 Log In
               </button>

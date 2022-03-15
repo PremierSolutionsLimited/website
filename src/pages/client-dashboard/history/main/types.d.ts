@@ -41,6 +41,7 @@ export interface TripHistory {
   cancelledBecause: string;
   createdAt: Date;
   updatedAt: Date;
+  tripRequest: TripRequest;
 }
 
 export interface TripType {
@@ -53,4 +54,15 @@ export interface Location {
   _id: string;
   type: string;
   coordinates: number[];
+}
+
+export interface TripRequest {
+  cost: {
+    totalCost: string;
+    items: {
+      title: string;
+      quantity: number;
+      cost: string;
+    };
+  };
 }
