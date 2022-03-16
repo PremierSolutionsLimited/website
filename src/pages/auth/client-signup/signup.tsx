@@ -10,7 +10,9 @@ import { checkClientMail } from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";
 import moment from "moment";
 // @ts-ignore
-import ClientTermsPdf from "../../../assets/documents/client-terms.pdf"
+import ClientPrivacyPdf from "../../../assets/documents/client-privacy.pdf"
+//@ts-ignore
+import AppTermsPdf from "../../../assets/documents/app-terms.pdf"
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -303,7 +305,7 @@ const Signup = () => {
                   </div>{" "}
                   <div>
                     <div className="text-center font-light mt-7 mb-2  text-gray-900 text-sm">
-                      By signing up, you agree to our <a className="text-gold-2 font-semibold hover:text-gold-1" href={ClientTermsPdf} target="_blank" rel="noreferrer">terms and privacy policy</a>.
+                      By signing up, you agree to our <a className="text-gold-2 font-semibold hover:text-gold-1" href={AppTermsPdf} target="_blank" rel="noreferrer">terms</a> and <a className="text-gold-2 font-semibold hover:text-gold-1" href={ClientPrivacyPdf} target="_blank" rel="noreferrer">privacy policy</a>.
                     </div>
                     <button
                       type="button"
