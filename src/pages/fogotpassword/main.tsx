@@ -107,7 +107,7 @@ const MainComponent: React.FC<ForgotPasswordComponentProp> = ({
         >
           <div>
             <button onClick={() => setShow(false)}>
-              <XIcon className={"h-6 w-6 text-red-300"} />
+              <XIcon className={"h-6 w-6 text-yellow-400"} />
             </button>
           </div>
         </div>
