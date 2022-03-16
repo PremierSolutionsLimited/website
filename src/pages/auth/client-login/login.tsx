@@ -7,7 +7,7 @@ import { LOGIN_CLIENT } from "../../../services/graphql/auth";
 import { ContextLoader } from "../../../shared/loaders";
 import { LoginInputProps, LoginOutputProps } from "./types";
 import { StageSpinner } from "react-spinners-kit";
-import Logo from "../../../assets/images/logo.png";
+import Logo from "../../../assets/logo_gold_text.png";
 import _ from "lodash";
 import toast from "react-hot-toast";
 
@@ -72,10 +72,10 @@ const Login = () => {
         <div className="flex-1 relative flex flex-col justify-center py-12 md:px-0 px-5 sm:px-5 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
-              <div className={"flex justify-center"}>
-                <img className="h-44 w-auto" src={Logo} alt="Workflow" />
+              <div className="flex justify-center cursor-pointer" onClick={() => push("/")}>
+                <img className="h-40 w-auto" src={Logo} alt="Workflow" />
               </div>
-              <h2 className="mt-6 text-3xl font-bold text-pink-600">
+              <h2 className="mt-6 text-3xl font-bold text-gold-2">
                 Client Login
               </h2>
             </div>
@@ -137,7 +137,7 @@ const Login = () => {
                         id="remember_me"
                         name="remember_me"
                         type="checkbox"
-                        className="h-4 w-4 text-pink-600 focus:ring-pink-700 border-gray-300 rounded"
+                        className="h-4 w-4 text-gold-1 focus:ring-gold-2 border-gray-300 rounded"
                       />
                       <label
                         htmlFor="remember_me"
@@ -153,7 +153,7 @@ const Login = () => {
                         onClick={() =>
                           setShowForgotPassword(!showForgotPassword)
                         }
-                        className="font-medium text-pink-600 hover:text-pink-700 focus:outline-none"
+                        className="font-medium text-gold-2 hover:text-gold-1 focus:outline-none"
                       >
                         Forgot your password?
                       </button>
@@ -163,7 +163,7 @@ const Login = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full flex justify-center h-12 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
+                    className="w-full flex justify-center h-12 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gold-2 hover:bg-gold-1 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
                   >
                     {loading ? (
                       <Fragment>
@@ -180,7 +180,7 @@ const Login = () => {
                 <Link to="/client-signup">
                   <button
                     type="button"
-                    className="underline text-pink-600 ml-1 focus:outline-none"
+                    className="underline text-gold-2 ml-1 focus:outline-none"
                   >
                     Sign up
                   </button>

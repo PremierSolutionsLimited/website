@@ -4,13 +4,15 @@ import { StageSpinner } from "react-spinners-kit";
 import { useRegistrationProvider } from "../../../services/context";
 import { differenceInCalendarYears } from "date-fns";
 import { DatePicker } from "antd";
-import Logo from "../../../assets/images/logo.png";
+import Logo from "../../../assets/logo_gold_text.png";
 import { useLazyQuery } from "@apollo/client";
 import { checkDriverMail } from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";
 import moment from "moment";
 // @ts-ignore
-import DriverTermsPdf from "../../../assets/documents/driver-terms.pdf" 
+import DriverPrivacyPdf from "../../../assets/documents/driver-privacy.pdf" 
+//@ts-ignore
+import AppTermsPdf from "../../../assets/documents/app-terms.pdf"
 
 const bgImage =
   "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
@@ -134,7 +136,7 @@ const DriverSignup = () => {
             <div>
               <div className={`flex justify-center`}>
                 <img
-                  className="h-44 w-auto cursor-pointer"
+                  className="h-36 w-auto cursor-pointer"
                   onClick={(e: any) => {
                     e?.preventDefault();
                     push("/");
@@ -304,28 +306,31 @@ const DriverSignup = () => {
                       />
                     </div>
                   </div>{" "}
-                  <button
-                    type="submit"
-                    disabled={isDriverBelowAge}
-                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gold-2 hover:bg-gold-1 focus:outline-none  focus:ring-offset-2 focus:ring-gold-1"
-                  >
-                    {loading || checking ? (
-                      <Fragment>
-                        <StageSpinner color="#fff" loading size={20} />
-                      </Fragment>
-                    ) : (
-                      <Fragment>Get Started</Fragment>
-                    )}
-                  </button>
+                  <div>
+                    <div className="text-center font-light mt-7 mb-2  text-gray-900 text-sm">
+                      By signing up, you agree to our <a className="text-gold-2 font-semibold hover:text-gold-1" href={AppTermsPdf} target="_blank" rel="noreferrer">terms</a> and <a className="text-gold-2 font-semibold hover:text-gold-1" href={DriverPrivacyPdf} target="_blank" rel="noreferrer">privacy policy</a>.
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={isDriverBelowAge}
+                      className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gold-2 hover:bg-gold-1 focus:outline-none  focus:ring-offset-2 focus:ring-gold-1"
+                    >
+                      {loading || checking ? (
+                        <Fragment>
+                          <StageSpinner color="#fff" loading size={20} />
+                        </Fragment>
+                      ) : (
+                        <Fragment>Get Started</Fragment>
+                      )}
+                    </button>
+                  </div>
                 </form>
               </div>
-              <div className="text-center font-light mt-10  text-gray-900 text-sm">
-                By signing up, you agree to our <a className="text-gold-2 font-semibold hover:text-gold-1" href={DriverTermsPdf} target="_blank" rel="noreferrer">terms and privacy policy</a>.
-              </div>
+              
             </div>
           </div>
 
-          <div className={"flex flex-col bottom-6 items-center w-full"}>
+          <div className={"flex flex-col bottom-6 items-center w-full mt-10"}>
             <span className="mt-1 text-xs text-center font-light text-gray-400">
               All Rights Reserved Copyright &copy; {new Date()?.getFullYear()}
             </span>

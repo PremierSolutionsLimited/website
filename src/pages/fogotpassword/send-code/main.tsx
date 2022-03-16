@@ -14,8 +14,7 @@ const SendCodeComponent = ({ email, setEmail }: SendCodeComponentProp) => {
       <div className="col-span-2 ">
         <div className="text-center text-sm font-light pt-2">
           {" "}
-          We get it, stuff happens. Just enter your email address below and
-          we'll send you a code to reset your password!
+          Kindly enter your email address to receive a code to reset your password
         </div>
       </div>
       <div className="col-span-2 py-5">

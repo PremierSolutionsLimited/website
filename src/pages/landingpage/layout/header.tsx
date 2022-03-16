@@ -90,7 +90,7 @@ const MainHeader = () => {
                   <button
                     type="button"
                     onClick={() => push("/client-login")}
-                    className="inline-flex justify-center w-full rounded-full border-none  px-8 py-3 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-pink-500"
+                    className="inline-flex justify-center w-full rounded-full border-none  px-8 py-3 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gold-1"
                   >
                     Client Login
                   </button>
