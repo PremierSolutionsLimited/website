@@ -72,8 +72,8 @@ const Login = () => {
         <div className="flex-1 relative flex flex-col justify-center py-12 md:px-0 px-5 sm:px-5 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
             <div>
-              <div className={"flex justify-center"}>
-                <img className="h-44 w-auto" src={Logo} alt="Workflow" />
+              <div className="flex justify-center cursor-pointer" onClick={() => push("/")}>
+                <img className="h-40 w-auto" src={Logo} alt="Workflow" />
               </div>
               <h2 className="mt-6 text-3xl font-bold text-gold-2">
                 Client Login
