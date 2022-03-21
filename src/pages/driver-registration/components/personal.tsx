@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { DatePicker } from "antd";
 import moment from "moment";
 import { CameraIcon } from "@heroicons/react/outline";
+import SelectTypeOfCars from "../bones/typeMultiSelect";
 
 const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setTab,
@@ -15,34 +16,47 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
   setRegion,
   city,
   setCity,
-  age,
-  certificateImageUrl,
-  handleCertificateUpload,
   telephone,
   setTelephone,
   maritalStatus,
   setMaritalStatus,
   numberOfChildren,
   setNumberOfChildren,
-  highestLevelOfEducation,
-  setHighestLevelOfEducation,
-  nameOfSchoolCompleted,
-  setNameOfSchoolCompleted,
-  yearOfGraduation,
   showCropper,
-  setYearOfGraduation,
   hasSmartPhone,
   setHasSmartPhone,
   canUseMap,
   setCanUseMap,
   driverImageUrl,
+    hasValidLicense,
+    setHasValidLicense,
+    licenseNumber,
+    setLicenseNumber,
+    licenseClass,
+    setLicenseClass,
+    licenseIssueDate,
+    setLicenseIssueDate,
+    licenseExpiryDate,
+    setLicenseExpiryDate,
+    yearsOfExperienceOnLicense,
+    setYearsOfExperienceOnLicense,
+    driverLicenseBackImageUrl,
+    driverLicenseFrontImageUrl,
+    handleLicenseBackImageUpload,
+    handleLicenseFrontImageUpload,
+    vehicleType,
+    setVehicleType,
+    hasHadAccident,
+    setHasHadAccident,
+    hasBeenArrested,
+    setHasBeenArrested,
 }) => {
   const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!driverImageUrl) {
       return toast.error("Please add a profile image");
     }
-    return setTab("family");
+    return setTab("experience");
   };
 
   const disabledDate = (current: any) => {
@@ -245,7 +259,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 <option value={"SINGLE"}>Single</option>
                 <option value={"MARRIED"}>Married</option>
                 <option value={"WIDOWED"}>Widowed</option>
-                <option value={"DIVORCED"}>Divored</option>
+                <option value={"DIVORCED"}>Divorced</option>
               </select>
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -268,71 +282,6 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 required
                 autoComplete="organization"
                 className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Highest Level of Education
-              </label>
-              <select
-                id="location"
-                name="location"
-                value={highestLevelOfEducation}
-                required={true}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setHighestLevelOfEducation(e.target.value)
-                }
-                className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
-              >
-                <option value="">Please Choose</option>
-                <option value={"PRIMARY"}>Primary</option>
-                <option value={"MIDDLE"}>Middle</option>
-                <option value={"SECONDARY"}>Secondary</option>
-                <option value={"TERTIARY"}>Tertiary</option>
-              </select>
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Name of School Completed
-              </label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                required
-                placeholder={"Eg. Kimbu senior high"}
-                value={nameOfSchoolCompleted}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setNameOfSchoolCompleted(e.target.value)
-                }
-                autoComplete="organization"
-                className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
-              >
-                When did you graduate?
-              </label>
-
-              <DatePicker
-                defaultValue={moment()?.subtract(0, "days")}
-                onChange={(data: any) => {
-                  setYearOfGraduation(data);
-                }}
-                style={{ zIndex: showCropper ? -1 : 1 }}
-                disabledDate={disabledDate}
-                className={
-                  "border border-none h-11 mt-1 w-full bg-gray-100 focus:border-none"
-                }
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -379,79 +328,330 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 <option value={"no"}>No</option>
               </select>
             </div>
-            <div
-              style={{ zIndex: showCropper ? -1 : 1 }}
-              className="col-span-12 sm:col-span-12 md:col-span-12"
-            >
+            <div className="col-span-12 sm:col-span-6">
               <label
-                htmlFor="url"
-                className="block text-sm font-medium text-gray-700"
+                  htmlFor="company"
+                  className="block text-sm font-medium text-gray-700"
               >
-                Image of Certificate
+                Do you have a valid driver's license ?
+              </label>
+              <select
+                  id="location"
+                  name="location"
+                  value={hasValidLicense}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setHasValidLicense(e.target.value)
+                  }
+                  className="mt-1.5 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                  required={true}
+              >
+                <option>Please Choose</option>
+                <option value={"yes"}>Yes</option>
+                <option value={"no"}>No</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                  htmlFor="url"
+                  className="block text-sm font-medium text-gray-700"
+              >
+                License Number
+              </label>
+              <input
+                  type="text"
+                  name="url"
+                  id="url"
+                  required
+                  placeholder={"Eg. 4521789..."}
+                  value={licenseNumber}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setLicenseNumber(e.target.value)
+                  }
+                  className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                  htmlFor="company"
+                  className="block text-sm font-medium pb-2 text-gray-700"
+              >
+                Driver's license class
+              </label>
+              <select
+                  id="licence_class"
+                  name="licence_class"
+                  required={true}
+                  value={licenseClass}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setLicenseClass(e.target.value)
+                  }
+                  className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+              >
+                <option value={""}>Please Choose</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                  htmlFor="company"
+                  className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                License Issue Date
               </label>
 
-              {certificateImageUrl ? (
-                <Fragment>
-                  <div className="relative pt-3">
-                    <img
-                      className="h-28 w-full object-cover lg:h-44"
-                      src={certificateImageUrl}
-                      alt=""
-                    />
+              <DatePicker
+                  onChange={(data: any) => {
+                    setLicenseIssueDate(data);
+                  }}
+                  value={licenseIssueDate as any}
+                  className={
+                    "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                  }
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                  htmlFor="company"
+                  className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                License Expiry Date
+              </label>
+              <DatePicker
+                  onChange={(data: any) => {
+                    setLicenseExpiryDate(data);
+                  }}
+                  value={licenseExpiryDate as any}
+                  className={
+                    "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
+                  }
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                  htmlFor="company"
+                  className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Years of driving experience on license ?
+              </label>
+              <input
+                  type="number"
+                  name="years_of_experience"
+                  id="years_of_experience"
+                  autoComplete="years_of_experience"
+                  required
+                  placeholder={"Eg. 6"}
+                  value={yearsOfExperienceOnLicense}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setYearsOfExperienceOnLicense(e.target.value)
+                  }
+                  className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                  htmlFor="url"
+                  className="block text-sm font-medium pb-3 text-gray-700"
+              >
+                What type of vehicle can you drive?
+              </label>
+              <SelectTypeOfCars
+                  placeholder={"Click to select car type"}
+                  type={vehicleType}
+                  setType={setVehicleType}
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                  htmlFor="company"
+                  className="block text-sm font-medium text-gray-700"
+              >
+                Have you had an accident in the last 5 years ?
+              </label>
+              <select
+                  id="location"
+                  name="location"
+                  value={hasHadAccident}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setHasHadAccident(e.target.value)
+                  }
+                  className="mt-1.5 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                  required={true}
+              >
+                <option>Please Choose</option>
+                <option value={"yes"}>Yes</option>
+                <option value={"no"}>No</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                  htmlFor="company"
+                  className="block text-sm font-medium text-gray-700"
+              >
+                Have you been arrested before ?
+              </label>
+              <select
+                  id="location"
+                  name="location"
+                  value={hasBeenArrested}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setHasBeenArrested(e.target.value)
+                  }
+                  className="mt-1.5 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
+                  required={true}
+              >
+                <option>Please Choose</option>
+                <option value={"yes"}>Yes</option>
+                <option value={"no"}>No</option>
+              </select>
+            </div>
+            <div className="col-span-12 sm:col-span-6"/>
+            <div className="col-span-12 sm:col-span-12 md:col-span-6">
+              <label
+                  htmlFor="url"
+                  className="block text-sm font-medium text-gray-700"
+              >
+                Driver's License (Front)
+              </label>
+              {driverLicenseFrontImageUrl ? (
+                  <Fragment>
+                    <div className="relative pt-3">
+                      <img
+                          className="h-28 w-full object-cover lg:h-44"
+                          src={driverLicenseFrontImageUrl}
+                          alt="driverFront"
+                      />
+                      <label
+                          htmlFor="user-photo"
+                          className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                      >
+                        <div className="">
+                          <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
+                            <CameraIcon
+                                className=" flex-shrink-0 h-6 w-6 text-gray-300"
+                                aria-hidden="true"
+                            />
 
-                    <label
-                      htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
-                    >
-                      <div className="">
-                        <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
-                          <CameraIcon
-                            className=" flex-shrink-0 h-6 w-6 text-gray-300"
-                            aria-hidden="true"
-                          />
-
-                          <input
-                            type="file"
-                            id="user-photo"
-                            name="user-photo"
-                            accept={"image/*"}
-                            onChange={handleCertificateUpload}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                          />
+                            {/* <span className="sr-only"> user photo</span> */}
+                            <input
+                                type="file"
+                                id="user-photo"
+                                name="user-photo"
+                                onChange={handleLicenseFrontImageUpload}
+                                accept={"image/*"}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </label>
-                  </div>
-                </Fragment>
+                      </label>
+                    </div>
+                  </Fragment>
               ) : (
-                <Fragment>
-                  <div className="relative pt-3">
-                    <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
-                    <label
-                      htmlFor="user-photo"
-                      className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
-                    >
-                      <div className="">
-                        <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
-                          <CameraIcon
-                            className=" flex-shrink-0 h-6 w-6 text-gray-500"
-                            aria-hidden="true"
-                          />
+                  <Fragment>
+                    <div className="relative pt-3">
+                      <div className="h-28 w-full object-cover lg:h-44 border border-dashed rounded-lg border-gray-500"></div>
+                      <label
+                          htmlFor="user-photo"
+                          className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                      >
+                        <div className="">
+                          <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
+                            <CameraIcon
+                                className=" flex-shrink-0 h-6 w-6 text-gray-500"
+                                aria-hidden="true"
+                            />
 
-                          {/* <span className="sr-only"> user photo</span> */}
-                          <input
-                            type="file"
-                            id="user-photo"
-                            name="user-photo"
-                            accept={"image/*"}
-                            onChange={handleCertificateUpload}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
-                          />
+                            {/* <span className="sr-only"> user photo</span> */}
+                            <input
+                                type="file"
+                                id="user-photo"
+                                name="user-photo"
+                                onChange={handleLicenseFrontImageUpload}
+                                accept={"image/*"}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </label>
-                  </div>
-                </Fragment>
+                      </label>
+                    </div>
+                  </Fragment>
+              )}
+            </div>
+            <div className="col-span-12 sm:col-span-12 md:col-span-6">
+              <label
+                  htmlFor="url"
+                  className="block text-sm font-medium text-gray-700"
+              >
+                Driver's License (Back)
+              </label>
+
+              {driverLicenseBackImageUrl ? (
+                  <Fragment>
+                    <div className="relative pt-3">
+                      <img
+                          className="h-28 w-full object-cover lg:h-44"
+                          src={driverLicenseBackImageUrl}
+                          alt=""
+                      />
+
+                      <label
+                          htmlFor="user-photo"
+                          className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                      >
+                        <div className="">
+                          <div className="bg-gray-900 relative  bg-opacity-60  h-12 w-12 rounded-full flex items-center justify-center">
+                            <CameraIcon
+                                className=" flex-shrink-0 h-6 w-6 text-gray-300"
+                                aria-hidden="true"
+                            />
+
+                            {/* <span className="sr-only"> user photo</span> */}
+                            <input
+                                type="file"
+                                id="user-photo"
+                                name="user-photo"
+                                accept={"image/*"}
+                                onChange={handleLicenseBackImageUpload}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                            />
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </Fragment>
+              ) : (
+                  <Fragment>
+                    <div className="relative pt-3">
+                      <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
+                      <label
+                          htmlFor="user-photo"
+                          className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
+                      >
+                        <div className="">
+                          <div className="bg-gray-300 relative  bg-opacity-30  h-12 w-12 rounded-full flex items-center justify-center">
+                            <CameraIcon
+                                className=" flex-shrink-0 h-6 w-6 text-gray-500"
+                                aria-hidden="true"
+                            />
+
+                            {/* <span className="sr-only"> user photo</span> */}
+                            <input
+                                type="file"
+                                id="user-photo"
+                                name="user-photo"
+                                accept={"image/*"}
+                                onChange={handleLicenseBackImageUpload}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                            />
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </Fragment>
               )}
             </div>
           </div>

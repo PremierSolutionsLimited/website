@@ -15,7 +15,6 @@ const StepsComponent = ({ tab }: Props) => {
             <div
               className={`-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full ${
                 tab === "experience" ||
-                tab === "family" ||
                 tab === "emergency" ||
                 tab === "card" ||
                 tab === "license" ||
@@ -23,13 +22,13 @@ const StepsComponent = ({ tab }: Props) => {
                   ? "bg-pink-600"
                   : "bg-gray-300"
               }`}
-            ></div>
+            />
 
             <div className="relative flex items-start space-x-4 group focus:outline-none">
               <div className="h-9 flex items-center">
                 {tab === "personal" ? (
                   <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-pink-600 rounded-full">
-                    <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
+                    <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"/>
                   </span>
                 ) : (
                   <Fragment>

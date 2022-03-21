@@ -24,7 +24,6 @@ import Cropper from "react-easy-crop";
 import { duplicateCheck } from "../../../components/utils/duplicateCheck";
 
 const PersonalComponent = lazy(() => import("../components/personal"));
-const FamilyComponent = lazy(() => import("../components/family"));
 const EmergencyComponent = lazy(() => import("../components/emergency"));
 const CardComponent = lazy(() => import("../components/card"));
 const ExperienceComponent = lazy(() => import("../components/experience"));
@@ -461,49 +460,45 @@ const MainComponent = () => {
                       setRegion={setRegion}
                       city={city}
                       setCity={setCity}
-                      age={age}
-                      setAge={setAge}
                       showCropper={showCropper}
                       telephone={telephone}
                       setTelephone={setTelephone}
                       maritalStatus={maritalStatus}
                       setMaritalStatus={setMaritalStatus}
-                      certificateImageUrl={certificateImageUrl}
-                      handleCertificateUpload={handleCertificateUpload}
                       numberOfChildren={numberOfChildren}
                       setNumberOfChildren={setNumberOfChildren}
-                      highestLevelOfEducation={highestLevelOfEducation}
-                      setHighestLevelOfEducation={setHighestLevelOfEducation}
-                      nameOfSchoolCompleted={nameOfSchoolCompleted}
-                      setNameOfSchoolCompleted={setNameOfSchoolCompleted}
-                      yearOfGraduation={yearOfGraduation}
-                      setYearOfGraduation={setYearOfGraduation}
                       hasSmartPhone={hasSmartPhone}
                       setHasSmartPhone={setHasSmartPhone}
-                      canUseMap={canUseMap}
-                      setCanUseMap={setCanUseMap}
                       handleImageUpload={handleProfileImage}
                       driverImageUrl={croppedImage}
-                    />
-                  </Fragment>
-                )}
-
-                {tab === "family" && (
-                  <Fragment>
-                    <FamilyComponent
-                      setTab={setTab}
-                      nextOfKinName={nextOfKinName}
-                      setNextOfKinName={setNextOfKinName}
-                      nexOfKinRelation={nexOfKinRelation}
-                      setNextOfKinRelation={setNextOfKinRelation}
-                      nextOfKinTelephone={nextOfKinTelephone}
-                      setNextOfKinTelephone={setNextOfKinTelephone}
-                      setNextOfKinPhone={setNextOfKinPhone}
-                      nextOfKinPhone={nextOfKinPhone}
-                      setNextOfKinAddress={setNextOfKinAddress}
-                      nextOfKinAddress={nextOfKinAddress}
-                      setDependents={setDependents}
-                      dependents={dependents}
+                      hasValidLicense={hasALicense}
+                      setHasValidLicense={setHasALicense}
+                      licenseNumber={licenseNumber}
+                      setLicenseNumber={setLicenseNumber}
+                      vehicleType={typesOfCars}
+                      setVehicleType={setTypeOfCars}
+                      hasHadAccident={hadAccidents}
+                      setHasHadAccident={setHadAccidents}
+                      hasBeenArrested={hasBeenArrested}
+                      setHasBeenArrested={setHasBeenArrested}
+                      canUseMap={canUseMap}
+                      setCanUseMap={setCanUseMap}
+                      licenseClass={licenseClass}
+                      setLicenseClass={setLicenseClass}
+                      licenseIssueDate={licenseIssueDate}
+                      setLicenseIssueDate={setLicenseIssueDate}
+                      licenseExpiryDate={licenseExpiryDate}
+                      setLicenseExpiryDate={setLicenseExpiryDate}
+                      yearsOfExperienceOnLicense={yearsOfExperienceOnLicense}
+                      setYearsOfExperienceOnLicense={setYearsOfExperienceOnLicense}
+                      handleLicenseFrontImageUpload={
+                        handleLicenseFrontImageUpload
+                      }
+                      driverLicenseFrontImageUrl={driverLicenseFrontImageUrl}
+                      handleLicenseBackImageUpload={
+                        handleLicenseBackImageUpload
+                      }
+                      driverLicenseBackImageUrl={driverLicenseBackImageUrl}
                     />
                   </Fragment>
                 )}
