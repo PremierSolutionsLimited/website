@@ -37,7 +37,7 @@ export default function AgeGroupComponent1({ selected, setSelected }: any) {
               <span
                 className={classNames(
                   isIn
-                    ? "bg-pink-600 border-transparent"
+                    ? "bg-gold-1 border-transparent"
                     : "bg-white border-gray-300",
                   isIn ? "ring-2 ring-offset-2 ring-pink-500" : "",
                   "h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center"

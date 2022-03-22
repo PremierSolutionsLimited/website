@@ -103,7 +103,7 @@ const SendCodeComponent = () => {
                       type="button"
                       onClick={handleResetPassword}
                       disabled={resettingPassword}
-                      className="w-full flex justify-center h-12 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
+                      className="w-full flex justify-center h-12 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gold-1 hover:bg-gold-2 focus:outline-none  focus:ring-offset-2 focus:ring-gold-2"
                     >
                       {resettingPassword ? (
                         <Fragment>

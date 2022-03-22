@@ -173,7 +173,7 @@ const Footer = () => {
                         });
                       }, 2000);
                     }}
-                    className="w-full bg-gold-1 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-gray-900 hover:bg-pink-600 focus:outline-none"
+                    className="w-full bg-gold-1 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-gray-900 hover:bg-gold-1 focus:outline-none"
                   >
                     {loading ? "Subscribing....." : "Subscribe"}
                   </button>

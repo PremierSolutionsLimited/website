@@ -430,7 +430,7 @@ const MainComponent = () => {
                     <button
                       type="button"
                       onClick={showCroppedImage}
-                      className="inline-flex rounded-none items-center w-20 flex justify-center px-13 py-3 border border-pink-600 text-sm leading-5 font-light text-white hover:text-white bg-pink-600 hover:bg-pink-500 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
+                      className="inline-flex rounded-none items-center w-20 flex justify-center px-13 py-3 border border-gold-1 text-sm leading-5 font-light text-white hover:text-white bg-gold-1 hover:bg-pink-500 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
                     >
                       {imageCropLoad ? "One sec..." : "Done"}
                     </button>
@@ -554,31 +554,6 @@ const MainComponent = () => {
                       uploadingToFirebase={uploadingImages}
                       // yearsOfDrivingExperience={yearsOfDrivingExperience}
                       // setYearsOfDrivingExperience={setYearsOfDrivingExperience}
-                    />
-                  </Fragment>
-                )}
-                {tab === "avaiabliity" && (
-                  <Fragment>
-                    <AvailabiltyComponent
-                      setTab={setTab}
-                      mondayActive={mondayActive}
-                      setMondayActive={setMondayActive}
-                      tuesdayActive={tuesdayActive}
-                      setTuesdayActive={setTuesdayActive}
-                      wednesdayActive={wednesdayActive}
-                      setWednesdayActive={setWednesdayActive}
-                      thursdayActive={thursdayActive}
-                      setThursdayActive={setThursdayActive}
-                      fridayActive={fridayActive}
-                      setFridayActive={setFridayActive}
-                      saturdayActive={saturdayActive}
-                      setSaturdayActive={setSaturdayActive}
-                      sundayActive={sundayActive}
-                      setSundayActive={setSundayActive}
-                      currentImageLoaderPrompt={currentFile as number}
-                      loading={loading}
-                      handleSubmit={handleSubmit}
-                      uploadingToFirebase={uploadingImages}
                     />
                   </Fragment>
                 )}

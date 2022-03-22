@@ -133,7 +133,7 @@ const MainComponent: FC<RateDriverComponentProp> = ({
                   }
                   placeholder={"Review"}
                   className={
-                    "rounded-md focus:outline-none border border-gray-300 h-full font-light w-full p-3 bg-white focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                    "rounded-md focus:outline-none border border-gray-300 h-full font-light w-full p-3 bg-white focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
                   }
                 ></textarea>
               </div>
@@ -145,7 +145,7 @@ const MainComponent: FC<RateDriverComponentProp> = ({
               <button
                 type="button"
                 onClick={() => setShow(false)}
-                className="inline-flex rounded-lg items-center px-6 py-2 border border-pink-600 text-sm leading-5 font-light text-pink-600 hover:text-pink-600 bg-white hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
+                className="inline-flex rounded-lg items-center px-6 py-2 border border-gold-1 text-sm leading-5 font-light text-gold-1 hover:text-gold-1 bg-white hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
               >
                 <span className="mx-1">Close</span>
               </button>
@@ -155,7 +155,7 @@ const MainComponent: FC<RateDriverComponentProp> = ({
                 type="button"
                 onClick={handleSubmit}
                 disabled={loading}
-                className="inline-flex flex-row w-32 justify-center items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-gray focus:border-pink-600 active:bg-pink-600 transition duration-150 ease-in-out"
+                className="inline-flex flex-row w-32 justify-center items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-gray focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
               >
                 {loading ? (
                   <Fragment>

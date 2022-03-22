@@ -20,7 +20,7 @@ const StepsComponent = ({ tab }: Props) => {
                 tab === "card" ||
                 tab === "license" ||
                 tab === "avaiabliity"
-                  ? "bg-pink-600"
+                  ? "bg-gold-1"
                   : "bg-gray-300"
               }`}
             />
@@ -28,12 +28,12 @@ const StepsComponent = ({ tab }: Props) => {
             <div className="relative flex items-start space-x-4 group focus:outline-none">
               <div className="h-9 flex items-center">
                 {tab === "personal" ? (
-                  <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-pink-600 rounded-full">
-                    <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"/>
+                  <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-gold-1 rounded-full">
+                    <span className="h-2.5 w-2.5 bg-gold-1 rounded-full"/>
                   </span>
                 ) : (
                   <Fragment>
-                    <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-700 group-focus:bg-pink-700 transition ease-in-out duration-150">
+                    <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-gold-1 rounded-full group-hover:bg-gold-2 group-focus:bg-gold-2 transition ease-in-out duration-150">
                       <svg
                         className="w-5 h-5 text-white"
                         viewBox="0 0 20 20"
@@ -60,7 +60,7 @@ const StepsComponent = ({ tab }: Props) => {
                     tab === "card" ||
                     tab === "avaiabliity"
                       ? "text-gray-600"
-                      : "text-pink-600"
+                      : "text-gold-1"
                   } uppercase tracking-wide`}
                 >
                   Personal Information
@@ -83,7 +83,7 @@ const StepsComponent = ({ tab }: Props) => {
                 tab === "card" ||
                 tab === "avaiabliity" ||
                 tab === "license"
-                  ? "bg-pink-600"
+                  ? "bg-gold-1"
                   : "bg-gray-300"
               }`}
             />
@@ -96,11 +96,11 @@ const StepsComponent = ({ tab }: Props) => {
                 ) : (
                   <Fragment>
                     {tab === "education" ? (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-pink-600 rounded-full">
-                        <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-gold-1 rounded-full">
+                        <span className="h-2.5 w-2.5 bg-gold-1 rounded-full"></span>
                       </span>
                     ) : (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-700 group-focus:bg-pink-700 transition ease-in-out duration-150">
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-gold-1 rounded-full group-hover:bg-gold-2 group-focus:bg-gold-2 transition ease-in-out duration-150">
                         <svg
                           className="w-5 h-5 text-white"
                           viewBox="0 0 20 20"
@@ -123,7 +123,7 @@ const StepsComponent = ({ tab }: Props) => {
                     tab === "personal"
                       ? "text-gray-600"
                       : tab === "education"
-                      ? "text-pink-600"
+                      ? "text-gold-1"
                       : "text-gray-500"
                   } `}
                 >
@@ -148,11 +148,11 @@ const StepsComponent = ({ tab }: Props) => {
                 ) : (
                   <Fragment>
                     {tab === "experience" ? (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-pink-600 rounded-full">
-                        <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-gold-1 rounded-full">
+                        <span className="h-2.5 w-2.5 bg-gold-1 rounded-full"></span>
                       </span>
                     ) : (
-                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-pink-600 rounded-full group-hover:bg-pink-700 group-focus:bg-pink-700 transition ease-in-out duration-150">
+                      <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-gold-1 rounded-full group-hover:bg-gold-2 group-focus:bg-gold-2 transition ease-in-out duration-150">
                         <svg
                           className="w-5 h-5 text-white"
                           viewBox="0 0 20 20"
@@ -175,7 +175,7 @@ const StepsComponent = ({ tab }: Props) => {
                     tab === "card"
                       ? "text-gray-600"
                       : tab === "experience"
-                      ? "text-pink-600"
+                      ? "text-gold-1"
                       : "text-gray-500"
                   } `}
                 >

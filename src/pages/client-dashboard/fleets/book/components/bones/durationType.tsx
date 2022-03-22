@@ -53,7 +53,7 @@ export default function DurationTypeComponent({
           <div
             className={classNames(
               setting === selected
-                ? "bg-pink-600 border-transparent"
+                ? "bg-gold-1 border-transparent"
                 : "bg-white border-gray-300",
 
               "h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center"

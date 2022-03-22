@@ -91,7 +91,7 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-3 w-3 text-pink-600"
+                    className="h-3 w-3 text-gold-1"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -216,7 +216,7 @@ const SelectClassComponent: FC<SelectClassComponentProp> = ({
                                       <div>
                                         <svg
                                           xmlns="http://www.w3.org/2000/svg"
-                                          className="h-5 w-5 text-pink-600"
+                                          className="h-5 w-5 text-gold-1"
                                           fill="none"
                                           viewBox="0 0 24 24"
                                           stroke="currentColor"
