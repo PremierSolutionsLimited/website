@@ -135,6 +135,8 @@ export interface ExperienceComponentProp {
   handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
   loading: boolean;
   uploadingToFirebase: boolean;
+  comments: string;
+  setComments: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface LicenseComponentProp {

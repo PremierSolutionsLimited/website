@@ -1,7 +1,4 @@
 import React, { Fragment } from "react";
-import toast from "react-hot-toast";
-import { DatePicker } from "antd";
-import moment from "moment";
 import {EducationComponentProp} from "./types";
 
 const EducationHistory:React.FC<EducationComponentProp> = (
@@ -18,10 +15,6 @@ const EducationHistory:React.FC<EducationComponentProp> = (
 
 	const handleGoToNext = (e: React.FormEvent<HTMLFormElement>) => {
 		setTab("experience")
-	}
-
-	const handleGoBack = (e: React.FormEvent<HTMLFormElement>) => {
-		setTab("personal")
 	}
 
 	return (
@@ -50,10 +43,10 @@ const EducationHistory:React.FC<EducationComponentProp> = (
 								className="mt-1.5 block w-full pl-3 pr-10 py-2 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
 							>
 								<option value={""}>Please Choose</option>
-								<option value={"SINGLE"}>Primary</option>
-								<option value={"MARRIED"}>Junior High</option>
-								<option value={"WIDOWED"}>Senior High</option>
-								<option value={"DIVORCED"}>Tetiary</option>
+								<option value={"PRIMARY"}>Primary</option>
+								<option value={"MIDDLE"}>Junior High</option>
+								<option value={"SECONDARY"}>Senior High</option>
+								<option value={"TERTIARY"}>Tertiary</option>
 							</select>
 						</div>
 						<div className="col-span-12 sm:col-span-6" />
@@ -69,7 +62,7 @@ const EducationHistory:React.FC<EducationComponentProp> = (
 								name="url"
 								id="url"
 								required
-								placeholder={"Eg. 4521789..."}
+								placeholder={"Eg. Achimota School"}
 								value={nameOfSchool}
 								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 									setNameOfSchool(e.target.value)
@@ -89,7 +82,7 @@ const EducationHistory:React.FC<EducationComponentProp> = (
 								name="url"
 								id="url"
 								required
-								placeholder={"Eg. 4521789..."}
+								placeholder={"Eg. 2016"}
 								value={yearOfCompletion}
 								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 									setYearOfCompletion(e.target.value)

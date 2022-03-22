@@ -3,7 +3,7 @@ import { PersonalComponentProp } from "./types";
 import ProfileImage from "../../../assets/images/male.jpeg";
 import toast from "react-hot-toast";
 import { DatePicker } from "antd";
-import moment from "moment";
+//import moment from "moment";
 import { CameraIcon } from "@heroicons/react/outline";
 import SelectTypeOfCars from "../bones/typeMultiSelect";
 
@@ -59,11 +59,11 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
     return setTab("education");
   };
 
-  const disabledDate = (current: any) => {
+  /*const disabledDate = (current: any) => {
     // Can not select yesterday and before
     const start = moment()?.subtract(0, "days");
     return current > start;
-  };
+  };*/
 
   return (
     <Fragment>

@@ -32,7 +32,9 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   setIsEmployed,
   handleSubmit,
     loading,
-    uploadingToFirebase
+    uploadingToFirebase,
+    comments,
+    setComments
   // yearsOfDrivingExperience,
   // setYearsOfDrivingExperience,
 }) => {
@@ -46,6 +48,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
     return current > start;
   };
 
+  console.log(loading, uploadingToFirebase);
   return (
     <Fragment>
       <form
@@ -66,7 +69,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 type="text"
                 name="company"
                 id="company"
-                placeholder={"Uber"}
+                placeholder={"Eg. Uber"}
                 value={previousEmployerName}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPreviousEmployerName(e.target.value)
@@ -86,7 +89,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 required
                 type="text"
                 name="company"
-                placeholder={"Driver"}
+                placeholder={"Eg. Driver"}
                 id="company"
                 autoComplete="organization"
                 value={previousPositionHeld}
@@ -191,7 +194,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                     type="text"
                     name="company"
                     id="company"
-                    placeholder="Bolt"
+                    placeholder="Eg. Yango"
                     value={currentEmployerName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setCurrentEmployerName(e.target.value)
@@ -212,7 +215,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                     type="text"
                     name="company"
                     id="company"
-                    placeholder="Driver"
+                    placeholder="Eg. Driver"
                     value={currentPositionHeld}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setCurrentPositionHeld(e.target.value)
@@ -249,8 +252,36 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                     className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
                   /> */}
                 </div>
+                <div className="col-span-12 sm:col-span-6" />
               </Fragment>
             )}
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                  htmlFor="comments"
+                  className="block text-sm pb-2 font-medium text-gray-700"
+              >
+                Additional Comments
+              </label>
+              <textarea
+                  name="company"
+                  id="company"
+                  placeholder="Any other information you may want us to know"
+                  value={comments}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                      setComments(e.target.value)
+                  }
+                  className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+              />
+              {/* <input
+               type={"date"}
+               id={"dob"}
+               value={currentPositionEndDate}
+               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+               setCurrentPostionEndDate(e.target.value)
+               }
+               className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
+               /> */}
+            </div>
           </div>
 
           <div className="pt-6 divide-y divide-gray-200">
@@ -276,7 +307,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
 
                 <div>
                   {" "}
-                  {uploadingToFirebase || loading ? (
+                  {uploadingToFirebase ? (
                       <Fragment>
                         <div className="mt-1">
                           <CircleSpinner loading color="#fff" size={15} />
