@@ -24,6 +24,7 @@ import Cropper from "react-easy-crop";
 import { duplicateCheck } from "../../../components/utils/duplicateCheck";
 
 const PersonalComponent = lazy(() => import("../components/personal"));
+const EducationComponent = lazy(() => import("../components/education"));
 const EmergencyComponent = lazy(() => import("../components/emergency"));
 const CardComponent = lazy(() => import("../components/card"));
 const ExperienceComponent = lazy(() => import("../components/experience"));
@@ -501,6 +502,18 @@ const MainComponent = () => {
                       driverLicenseBackImageUrl={driverLicenseBackImageUrl}
                     />
                   </Fragment>
+                )}
+
+                {tab === "education" && (
+                    <EducationComponent
+                        setTab={setTab}
+                        educationLevel={highestLevelOfEducation}
+                        setEducationLevel={setHighestLevelOfEducation}
+                        nameOfSchool={nameOfSchoolCompleted}
+                        setNameOfSchool={setNameOfSchoolCompleted}
+                        yearOfCompletion={yearOfGraduation}
+                        setYearOfCompletion={setYearOfGraduation}
+                        />
                 )}
 
                 {tab === "emergency" && (

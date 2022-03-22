@@ -46,6 +46,16 @@ export interface PersonalComponentProp {
   setYearsOfExperienceOnLicense: React.Dispatch<React.SetStateAction<string>>;
 }
 
+export interface EducationComponentProp {
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+  educationLevel: string;
+  setEducationLevel: React.Dispatch<React.SetStateAction<string>>;
+  nameOfSchool: string;
+  setNameOfSchool: React.Dispatch<React.SetStateAction<string>>;
+  yearOfCompletion: string;
+  setYearOfCompletion: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export interface FamilyComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
   nextOfKinName: string;

@@ -3,7 +3,7 @@ interface Props {
   tab: string;
 }
 
-// personal, family, emergency , card ,experience, license , avaiabliity
+// personal, education, emergency , card ,experience, license , avaiabliity
 
 const StepsComponent = ({ tab }: Props) => {
   return (
@@ -15,6 +15,7 @@ const StepsComponent = ({ tab }: Props) => {
             <div
               className={`-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full ${
                 tab === "experience" ||
+                tab === "education" ||
                 tab === "emergency" ||
                 tab === "card" ||
                 tab === "license" ||
@@ -52,9 +53,10 @@ const StepsComponent = ({ tab }: Props) => {
                 <h3
                   className={`text-xs leading-4 font-medium ${
                     tab === "experience" ||
+                    tab === "education" ||    
                     tab === "license" ||
                     tab === "emergency" ||
-                    tab === "family" ||
+                    tab === "education" ||
                     tab === "card" ||
                     tab === "avaiabliity"
                       ? "text-gray-600"
@@ -64,7 +66,7 @@ const StepsComponent = ({ tab }: Props) => {
                   Personal Information
                 </h3>
                 <p className="text-sm  font-light leading-5 text-gray-500">
-                  Provide information concerning yourself, your immediate family
+                  Provide information concerning yourself, your immediate education
                   and your socio-economic life.
                 </p>
               </div>
@@ -76,6 +78,7 @@ const StepsComponent = ({ tab }: Props) => {
             <div
               className={`-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full ${
                 tab === "emergency" ||
+                //tab === "education" ||    
                 tab === "experience" ||
                 tab === "card" ||
                 tab === "avaiabliity" ||
@@ -83,7 +86,7 @@ const StepsComponent = ({ tab }: Props) => {
                   ? "bg-pink-600"
                   : "bg-gray-300"
               }`}
-            ></div>
+            />
             <div className="relative flex items-start space-x-4 group focus:outline-none">
               <div className="h-9 flex items-center">
                 {tab === "personal" ? (
@@ -92,7 +95,7 @@ const StepsComponent = ({ tab }: Props) => {
                   </span>
                 ) : (
                   <Fragment>
-                    {tab === "family" ? (
+                    {tab === "education" ? (
                       <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-pink-600 rounded-full">
                         <span className="h-2.5 w-2.5 bg-pink-600 rounded-full"></span>
                       </span>
@@ -119,16 +122,15 @@ const StepsComponent = ({ tab }: Props) => {
                   className={`text-xs leading-4 font-medium uppercase tracking-wide ${
                     tab === "personal"
                       ? "text-gray-600"
-                      : tab === "family"
+                      : tab === "education"
                       ? "text-pink-600"
                       : "text-gray-500"
                   } `}
                 >
-                  Family
+                  Education History
                 </h3>
                 <p className="text-sm leading-5 font-light text-gray-500">
-                  Provide information about your family. Give us details
-                  concerning your next of kin and dependents if any.
+                  Provide information about your education and academic qualifications.
                 </p>
               </div>
             </div>
@@ -148,7 +150,7 @@ const StepsComponent = ({ tab }: Props) => {
             ></div>
             <div className="relative flex items-start space-x-4 group focus:outline-none">
               <div className="h-9 flex items-center">
-                {tab === "family" || tab === "personal" ? (
+                {tab === "education" || tab === "personal" ? (
                   <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-gray-300 rounded-full group-hover:border-gray-400 group-focus:border-gray-400 transition ease-in-out duration-150">
                     <span className="h-2.5 w-2.5 bg-transparent rounded-full group-hover:bg-gray-300 group-focus:bg-gray-300 transition ease-in-out duration-150"></span>
                   </span>
@@ -179,7 +181,7 @@ const StepsComponent = ({ tab }: Props) => {
               <div className="min-w-0">
                 <h3
                   className={`text-xs leading-4 font-medium uppercase tracking-wide ${
-                    tab === "family"
+                    tab === "education"
                       ? "text-gray-600"
                       : tab === "emergency"
                       ? "text-pink-600"
@@ -209,7 +211,7 @@ const StepsComponent = ({ tab }: Props) => {
             <div className="relative flex items-start space-x-4 group focus:outline-none">
               <div className="h-9 flex items-center">
                 {tab === "emergency" ||
-                tab === "family" ||
+                tab === "education" ||
                 tab === "personal" ? (
                   <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-gray-300 rounded-full group-hover:border-gray-400 group-focus:border-gray-400 transition ease-in-out duration-150">
                     <span className="h-2.5 w-2.5 bg-transparent rounded-full group-hover:bg-gray-300 group-focus:bg-gray-300 transition ease-in-out duration-150"></span>
@@ -270,7 +272,7 @@ const StepsComponent = ({ tab }: Props) => {
               <div className="h-9 flex items-center">
                 {tab === "card" ||
                 tab === "emergency" ||
-                tab === "family" ||
+                tab === "education" ||
                 tab === "personal" ? (
                   <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-gray-300 rounded-full group-hover:border-gray-400 group-focus:border-gray-400 transition ease-in-out duration-150">
                     <span className="h-2.5 w-2.5 bg-transparent rounded-full group-hover:bg-gray-300 group-focus:bg-gray-300 transition ease-in-out duration-150"></span>
@@ -332,7 +334,7 @@ const StepsComponent = ({ tab }: Props) => {
                 {tab === "experience" ||
                 tab === "emergency" ||
                 tab === "card" ||
-                tab === "family" ||
+                tab === "education" ||
                 tab === "personal" ? (
                   <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-gray-300 rounded-full group-hover:border-gray-400 group-focus:border-gray-400 transition ease-in-out duration-150">
                     <span className="h-2.5 w-2.5 bg-transparent rounded-full group-hover:bg-gray-300 group-focus:bg-gray-300 transition ease-in-out duration-150"></span>
@@ -387,7 +389,7 @@ const StepsComponent = ({ tab }: Props) => {
             <div className="relative flex items-start space-x-4 group focus:outline-none">
               <div className="h-9 flex items-center">
                 {tab === "personal" ||
-                tab === "family" ||
+                tab === "education" ||
                 tab === "emergency" ||
                 tab === "card" ||
                 tab === "license" ||

@@ -56,7 +56,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
     if (!driverImageUrl) {
       return toast.error("Please add a profile image");
     }
-    return setTab("experience");
+    return setTab("education");
   };
 
   const disabledDate = (current: any) => {
@@ -515,7 +515,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     <div className="col-span-12 sm:col-span-6"/>
                     <div className="col-span-12 sm:col-span-12 md:col-span-6">
                       <label
-                          htmlFor="url"
+                          htmlFor="licenseUrl"
                           className="block text-sm font-medium text-gray-700"
                       >
                         Driver's License (Front)
@@ -529,7 +529,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                                   alt="driverFront"
                               />
                               <label
-                                  htmlFor="user-photo"
+                                  htmlFor="license-photo-front"
                                   className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
                               >
                                 <div className="">
@@ -542,8 +542,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                                     {/* <span className="sr-only"> user photo</span> */}
                                     <input
                                         type="file"
-                                        id="user-photo"
-                                        name="user-photo"
+                                        id="license-photo-front"
+                                        name="license-photo-front"
                                         onChange={handleLicenseFrontImageUpload}
                                         accept={"image/*"}
                                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
@@ -558,7 +558,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                             <div className="relative pt-3">
                               <div className="h-28 w-full object-cover lg:h-44 border border-dashed rounded-lg border-gray-500"></div>
                               <label
-                                  htmlFor="user-photo"
+                                  htmlFor="license-photo-front"
                                   className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
                               >
                                 <div className="">
@@ -571,8 +571,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                                     {/* <span className="sr-only"> user photo</span> */}
                                     <input
                                         type="file"
-                                        id="user-photo"
-                                        name="user-photo"
+                                        id="license-photo-front"
+                                        name="license-photo-front"
                                         onChange={handleLicenseFrontImageUpload}
                                         accept={"image/*"}
                                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
@@ -602,7 +602,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                               />
 
                               <label
-                                  htmlFor="user-photo"
+                                  htmlFor="license-photo-back"
                                   className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
                               >
                                 <div className="">
@@ -615,8 +615,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                                     {/* <span className="sr-only"> user photo</span> */}
                                     <input
                                         type="file"
-                                        id="user-photo"
-                                        name="user-photo"
+                                        id="license-photo-back"
+                                        name="license-photo-back"
                                         accept={"image/*"}
                                         onChange={handleLicenseBackImageUpload}
                                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
@@ -631,7 +631,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                             <div className="relative pt-3">
                               <div className="h-28 w-full object-cover lg:h-44 border rounded-lg border-dashed border-gray-500"></div>
                               <label
-                                  htmlFor="user-photo"
+                                  htmlFor="license-photo-back"
                                   className="absolute inset-0 w-full h-full bg-white bg-opacity-30 flex items-center justify-center text-sm font-medium text-white"
                               >
                                 <div className="">
@@ -644,8 +644,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                                     {/* <span className="sr-only"> user photo</span> */}
                                     <input
                                         type="file"
-                                        id="user-photo"
-                                        name="user-photo"
+                                        id="license-photo-back"
+                                        name="license-photo-back"
                                         accept={"image/*"}
                                         onChange={handleLicenseBackImageUpload}
                                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
