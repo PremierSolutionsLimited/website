@@ -6,6 +6,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useHistory } from "react-router-dom";
 import { useRegistrationProvider } from "../../../services/context";
 import Logo from "../../../assets/images/logo.png";
+import {Link} from "react-router-dom";
 
 export default function Header() {
   const [{ endRegistration }, registrationState] = useRegistrationProvider();
@@ -22,10 +23,10 @@ export default function Header() {
           <div className="relative z-20">
             <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
               <div>
-                <a href="#" className="flex">
-                  <span className="sr-only">Workflow</span>
+                <Link to="/" className="flex">
+                  <span className="sr-only">Premier Chauffeur</span>
                   <img className="h-8 w-auto sm:h-10" src={Logo} alt="" />
-                </a>
+                </Link>
               </div>
               <div className="-mr-2 -my-2 md:hidden">
                 <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -62,7 +63,7 @@ export default function Header() {
                       endRegistration();
                       push("/");
                     }}
-                    className="ml-8 inline-flex focus:outline-none items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-pink-600 hover:bg-pink-700"
+                    className="ml-8 inline-flex focus:outline-none items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gold-1 hover:bg-gold-2"
                   >
                     End Registration
                   </button>
@@ -115,7 +116,7 @@ export default function Header() {
                         endRegistration();
                         push("/");
                       }}
-                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-pink-600 hover:bg-pink-700"
+                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gold-1 hover:bg-gold-2"
                     >
                       End Registration
                     </button>
@@ -131,7 +132,7 @@ export default function Header() {
                               endRegistration();
                               push("/client-login");
                             }}
-                            className="text-pink-600 hover:text-pink-500"
+                            className="text-gold-1 hover:text-pink-500"
                           >
                             Sign in
                           </button>

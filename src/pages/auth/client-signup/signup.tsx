@@ -314,7 +314,7 @@ const Signup = () => {
                         checkIfTaken({ variables: { filter: { email } } });
                       }}
                       disabled={isClientBelowAge}
-                      className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gold-2 hover:bg-gold-1 focus:outline-none  focus:ring-offset-2 focus:ring-pink-700"
+                      className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gold-2 hover:bg-gold-1 focus:outline-none  focus:ring-offset-2 focus:ring-gold-2"
                     >
                       {loading || checking ? (
                         <Fragment>

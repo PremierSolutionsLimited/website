@@ -71,7 +71,7 @@ export default function GetStartedComponent() {
                  className="text-4xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4"
                  data-aos="zoom-y-out"
                >
-                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-pink-700">
+                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-1 to-gold-2">
                    We Drive, You Relax
                  </span>
                </h1>
@@ -87,7 +87,7 @@ export default function GetStartedComponent() {
                  </p>
                  <div className={"block sm:block md:hidden"}>
                    <Link to="/driver-signup">
-                     <div className="flex items-center justify-center text-white py-5 px-8 rounded-full bg-pink-600 hover:bg-pink-700 w-full mb-4 sm:w-auto sm:mb-0">
+                     <div className="flex items-center justify-center text-white py-5 px-8 rounded-full bg-gold-1 hover:bg-gold-2 w-full mb-4 sm:w-auto sm:mb-0">
                        Become a driver
                      </div>
                    </Link>
@@ -103,7 +103,7 @@ export default function GetStartedComponent() {
                    data-aos-delay="300"
                  >
                    <Link to="/driver-signup">
-                     <a className="btn text-white py-5 px-8 rounded-full bg-pink-600 hover:bg-pink-700 hover:text-white w-full mb-4 sm:w-auto sm:mb-0">
+                     <a className="btn text-white py-5 px-8 rounded-full bg-gold-1 hover:bg-gold-2 hover:text-white w-full mb-4 sm:w-auto sm:mb-0">
                        Become a driver
                      </a>
                    </Link>

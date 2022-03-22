@@ -10,12 +10,10 @@ import { ApolloError, useMutation } from "@apollo/client";
 import { CREATE_DRIVER_APPLICATION } from "../../../services/graphql/applications";
 import { CustomContextLoader } from "../../../shared/loaders";
 import { useRegistrationProvider } from "../../../services/context";
-import { getAvailableDays } from "../util/availability";
 import { getImage } from "../util/images";
 import { getTypeOfCars } from "../util/typeOfCars";
-import { DependentsInputProp, IType } from "../bones/types";
+import { IType } from "../bones/types";
 import { useMultipleImageUpload } from "../../../components/hooks";
-import { EmergencyInputProp } from "../../client-registration/bones/types";
 import Header from "../../../shared/layout/registration";
 import StepComponent from "../../../shared/driver-steps";
 import toast from "react-hot-toast";
@@ -24,12 +22,8 @@ import Cropper from "react-easy-crop";
 import { duplicateCheck } from "../../../components/utils/duplicateCheck";
 
 const PersonalComponent = lazy(() => import("../components/personal"));
-const FamilyComponent = lazy(() => import("../components/family"));
-const EmergencyComponent = lazy(() => import("../components/emergency"));
-const CardComponent = lazy(() => import("../components/card"));
+const EducationComponent = lazy(() => import("../components/education"));
 const ExperienceComponent = lazy(() => import("../components/experience"));
-const LicenceComponent = lazy(() => import("../components/license"));
-const AvailabiltyComponent = lazy(() => import("../components/availabilty"));
 const SucessComponent = lazy(() => import("../success"));
 
 const MainComponent = () => {
@@ -45,7 +39,7 @@ const MainComponent = () => {
   const [currentAddress, setCurrentAddress] = useState<string>("");
   const [region, setRegion] = useState<string>("");
   const [city, setCity] = useState<string>("");
-  const [age, setAge] = useState<string>("");
+  const [, setAge] = useState<string>("");
   const [telephone, setTelephone] = useState("");
   const [maritalStatus, setMaritalStatus] = useState<string>("");
   const [numberOfChildren, setNumberOfChildren] = useState<string>("");
@@ -57,62 +51,30 @@ const MainComponent = () => {
   const [canUseMap, setCanUseMap] = useState<string>("");
   // for driver's image
   const [driverFile, setDriverFile] = useState<any>(null);
-  const [certImageFile, setCertImageFile] = useState(null);
-  const [certificateImageUrl, setCertificateImageUrl] = useState("");
-
   // states for driver's personal experience
   const [hadAccidents, setHadAccidents] = useState<string>("");
   const [hasBeenArrested, setHasBeenArrested] = useState<string>("");
   const [previousEmployerName, setPreviousEmployerName] = useState<string>("");
   const [previousPositionHeld, setPreviousPositionHeld] = useState<string>("");
-  const [previousPostionStartDate, setPreviousPositionStartDate] =
+  const [previousPositionStartDate, setPreviousPositionStartDate] =
     useState<string>("");
   const [previousPositionEndDate, setPreviousPositionEndDate] =
     useState<string>("");
   const [reasonForLeavingPreviousWork, setReasonForLeavingPreviousWork] =
     useState<string>("");
   const [currentEmployerName, setCurrentEmployerName] = useState<string>("");
-  const [currentPositionStartDate, setCurrentPostionStartDate] =
+  const [currentPositionStartDate, setCurrentPositionStartDate] =
     useState<string>("");
-  const [currentPositionEndDate, setCurrentPostionEndDate] =
+  const [currentPositionEndDate, setCurrentPositionEndDate] =
     useState<string>("");
   const [currentPositionHeld, setCurrentPositionHeld] = useState<string>("");
   const [isEmployed, setIsEmployed] = useState<string>("");
-
-  // states for driver family information
-  const [nextOfKinName, setNextOfKinName] = useState("");
-  const [nexOfKinRelation, setNextOfKinRelation] = useState("");
-  const [nextOfKinTelephone, setNextOfKinTelephone] = useState("");
-  const [nextOfKinPhone, setNextOfKinPhone] = useState<string>("");
-  const [nextOfKinAddress, setNextOfKinAddress] = useState<string>("");
-  const [dependents, setDependents] = useState<DependentsInputProp[]>([]);
-
-  // state for emergency contact
-  const [emergencyContact, setEmergencyContact] = useState<
-    EmergencyInputProp[]
-  >([]);
-
-  // states for driver card information
-  const [sortCode, setSortCode] = useState<string>("");
-  const [nameOfBank, setNameOfBank] = useState<string>("");
-  const [nameOfBankBranch, setNameOfBankBranch] = useState<string>("");
-  const [accountNumber, setAccoutNumber] = useState<string>("");
-  const [ssnitNumber, setSsnitNumber] = useState<string>("");
-  const [momoNumber, setMomoNumber] = useState<string>("");
-  const [ghanaCardId, setGhanaCardId] = useState<string>("");
-  const [ghanaCardIssueDate, setGhanaCardIssueDate] = useState<string>("");
-  const [ghanaCardExpiryDate, setGhanaCardExpiryDate] = useState<string>("");
-  const [ghanaCardFrontFile, setghanaCardFrontFrontFile] = useState<any>(null);
-  const [ghanaCardFrontImageUrl, setGhanaCardFrontImageUrl] =
-    useState<string>("");
-  const [ghanaCardBackFile, setGhanaCardBackFile] = useState<any>(null);
-  const [ghanaCardBackImageUrl, setGhanaCardBackImageUrl] =
-    useState<string>("");
+  const [comments, setComments] = useState<string>("");
 
   // states for driver's license information
-  const [licenseId, setLicenseId] = useState<string>("");
+  //const [licenseId, setLicenseId] = useState<string>("");
   const [hasALicense, setHasALicense] = useState<string>("");
-  const [licenseType, setLicenseType] = useState<string>("");
+  //const [licenseType, setLicenseType] = useState<string>("");
   const [licenseExpiryDate, setLicenseExpiryDate] = useState<string>("");
   const [licenseIssueDate, setLicenseIssueDate] = useState<string>("");
   const [licenseNumber, setLicenseNumber] = useState<string>("");
@@ -128,7 +90,7 @@ const MainComponent = () => {
     useState<string>("");
   const [typesOfCars, setTypeOfCars] = React.useState<IType[]>([]);
 
-  const [currentFile, setCurrentFile] = useState<number>();
+  //const [currentFile, setCurrentFile] = useState<number>();
 
   // transmission types to submit to db
   const [transmissionTypes, setTransmissionTypes] = useState<string[]>([]);
@@ -143,15 +105,6 @@ const MainComponent = () => {
   useEffect(() => {
     setAge(registrationState?.status?.age);
   }, [registrationState?.status?.age]);
-
-  // registrationState's for driver availability
-  const [mondayActive, setMondayActive] = useState<boolean>(false);
-  const [tuesdayActive, setTuesdayActive] = useState<boolean>(false);
-  const [wednesdayActive, setWednesdayActive] = useState<boolean>(false);
-  const [thursdayActive, setThursdayActive] = useState<boolean>(false);
-  const [fridayActive, setFridayActive] = useState<boolean>(false);
-  const [saturdayActive, setSaturdayActive] = useState<boolean>(false);
-  const [sundayActive, setSundayActive] = useState<boolean>(false);
 
   // trigger success modal
   const [showSuccessComponent, setShowSucessComponent] =
@@ -207,7 +160,7 @@ const MainComponent = () => {
   };
 
   // function to handle upload of certificate upload
-  const handleCertificateUpload = (e: any) => {
+  /*const handleCertificateUpload = (e: any) => {
     if (e.target.files[0] !== undefined) {
       setCertificateImageUrl(URL.createObjectURL(e.target.files[0]));
       setCertImageFile(e.target.files[0]);
@@ -215,7 +168,7 @@ const MainComponent = () => {
       setCertificateImageUrl(URL.createObjectURL(driverLicenseBackFile));
       setCertImageFile(driverLicenseBackFile);
     }
-  };
+  };*/
 
   // function to handle image upload from user's pc
   // const handleImageUpload = (e: any) => {
@@ -227,28 +180,6 @@ const MainComponent = () => {
   //     setDriverFile(driverFile);
   //   }
   // };
-
-  // function to handle cardFront upload from user's pc
-  const handleGhanaCardFrontImageUpload = (e: any) => {
-    if (e.target.files[0] !== undefined) {
-      setGhanaCardFrontImageUrl(URL.createObjectURL(e.target.files[0]));
-      setghanaCardFrontFrontFile(e.target.files[0]);
-    } else {
-      setDriverLicenseFrontImageUrl(URL.createObjectURL(ghanaCardFrontFile));
-      setghanaCardFrontFrontFile(ghanaCardFrontFile);
-    }
-  };
-
-  // function to handle card upload from user's pc
-  const handleGhanaCardBackImageUpload = (e: any) => {
-    if (e.target.files[0] !== undefined) {
-      setGhanaCardBackImageUrl(URL.createObjectURL(e.target.files[0]));
-      setGhanaCardBackFile(e.target.files[0]);
-    } else {
-      setGhanaCardBackImageUrl(URL.createObjectURL(ghanaCardBackFile));
-      setGhanaCardBackFile(ghanaCardBackFile);
-    }
-  };
 
   // function to handle licenseFront upload from user's pc
   const handleLicenseFrontImageUpload = (e: any) => {
@@ -281,31 +212,18 @@ const MainComponent = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setUploadingImages(true);
-    let availableDays = getAvailableDays(
-      mondayActive,
-      tuesdayActive,
-      wednesdayActive,
-      thursdayActive,
-      fridayActive,
-      saturdayActive,
-      sundayActive
-    );
-
     // all driver image files
     let imageFiles = getImage(
       driverFile,
-      ghanaCardFrontFile,
-      ghanaCardBackFile,
       driverLicenseFrontFile,
       driverLicenseBackFile,
-      certImageFile
     );
 
     // image urls generated after firebase upload
     let imageUrls: string[] = [];
     if (![null].includes(imageFiles)) {
       for (let i = 0; i < imageFiles.length; i++) {
-        setCurrentFile(i);
+        //setCurrentFile(i);
         if (imageFiles[i]?.value === null) {
           continue;
         } else {
@@ -332,7 +250,6 @@ const MainComponent = () => {
         region: region || undefined,
         city: city || undefined,
         residence: currentAddress || undefined,
-        licenseId: licenseId || undefined,
         licenseIssueDate: new Date(licenseIssueDate) || undefined,
         licenseExpiryDate: new Date(licenseExpiryDate) || undefined,
         licenseImageFront: imageUrls[3] || undefined,
@@ -345,12 +262,10 @@ const MainComponent = () => {
         hasCrimeRecords: hasBeenArrested === "yes" ? true : false,
         hasSmartPhone: hasSmartPhone === "yes" ? true : false,
         canUseMap: canUseMap === "yes" ? true : false,
-        availablity: availableDays || undefined,
         educationalHistory: {
           nameOfSchool: nameOfSchoolCompleted || undefined,
           endDate: new Date(yearOfGraduation) || undefined,
           level: highestLevelOfEducation || undefined,
-          certificateImage: imageUrls[5] || undefined,
         },
         currentEmployment: {
           currentEmployerName: currentEmployerName || undefined,
@@ -360,33 +275,11 @@ const MainComponent = () => {
         },
         previousEmployment: {
           currentEmployerName: previousEmployerName || undefined,
-          startDate: new Date(previousPostionStartDate) || undefined,
+          startDate: new Date(previousPositionStartDate) || undefined,
           endDate: new Date(previousPositionEndDate) || undefined,
           positionHeld: previousPositionHeld || undefined,
           reasonForLeaving: reasonForLeavingPreviousWork || undefined,
         },
-        emergencyContacts: emergencyContact || undefined,
-        dependents: dependents || undefined,
-        bankDetails: {
-          sortCode: sortCode || undefined,
-          nameOfBank: nameOfBank || undefined,
-          nameOfBankBranch: nameOfBankBranch || undefined,
-          accountNumber: accountNumber || undefined,
-          ssnitNumber: ssnitNumber || undefined,
-          momoNumber: momoNumber || undefined,
-        },
-        nextOfKin: {
-          name: nextOfKinName || undefined,
-          address: nextOfKinAddress || undefined,
-          phone: nextOfKinPhone || undefined,
-          relationship: nexOfKinRelation || undefined,
-          telephone: nextOfKinTelephone || undefined,
-        },
-        ghanaCardId,
-        ghanaCardExpiryDate: new Date(ghanaCardExpiryDate) || undefined,
-        ghanaCardIssueDate: new Date(ghanaCardIssueDate) || undefined,
-        ghanaCardImageFont: imageUrls[1] || undefined,
-        ghanaCardImageBack: imageUrls[2] || undefined,
       },
     })
       .then(() => {
@@ -430,7 +323,7 @@ const MainComponent = () => {
                     <button
                       type="button"
                       onClick={showCroppedImage}
-                      className="inline-flex rounded-none items-center w-20 flex justify-center px-13 py-3 border border-pink-600 text-sm leading-5 font-light text-white hover:text-white bg-pink-600 hover:bg-pink-500 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
+                      className="inline-flex rounded-none items-center w-20 flex justify-center px-13 py-3 border border-gold-1 text-sm leading-5 font-light text-white hover:text-white bg-gold-1 hover:bg-pink-500 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
                     >
                       {imageCropLoad ? "One sec..." : "Done"}
                     </button>
@@ -461,95 +354,59 @@ const MainComponent = () => {
                       setRegion={setRegion}
                       city={city}
                       setCity={setCity}
-                      age={age}
-                      setAge={setAge}
                       showCropper={showCropper}
                       telephone={telephone}
                       setTelephone={setTelephone}
                       maritalStatus={maritalStatus}
                       setMaritalStatus={setMaritalStatus}
-                      certificateImageUrl={certificateImageUrl}
-                      handleCertificateUpload={handleCertificateUpload}
                       numberOfChildren={numberOfChildren}
                       setNumberOfChildren={setNumberOfChildren}
-                      highestLevelOfEducation={highestLevelOfEducation}
-                      setHighestLevelOfEducation={setHighestLevelOfEducation}
-                      nameOfSchoolCompleted={nameOfSchoolCompleted}
-                      setNameOfSchoolCompleted={setNameOfSchoolCompleted}
-                      yearOfGraduation={yearOfGraduation}
-                      setYearOfGraduation={setYearOfGraduation}
                       hasSmartPhone={hasSmartPhone}
                       setHasSmartPhone={setHasSmartPhone}
-                      canUseMap={canUseMap}
-                      setCanUseMap={setCanUseMap}
                       handleImageUpload={handleProfileImage}
                       driverImageUrl={croppedImage}
-                    />
-                  </Fragment>
-                )}
-
-                {tab === "family" && (
-                  <Fragment>
-                    <FamilyComponent
-                      setTab={setTab}
-                      nextOfKinName={nextOfKinName}
-                      setNextOfKinName={setNextOfKinName}
-                      nexOfKinRelation={nexOfKinRelation}
-                      setNextOfKinRelation={setNextOfKinRelation}
-                      nextOfKinTelephone={nextOfKinTelephone}
-                      setNextOfKinTelephone={setNextOfKinTelephone}
-                      setNextOfKinPhone={setNextOfKinPhone}
-                      nextOfKinPhone={nextOfKinPhone}
-                      setNextOfKinAddress={setNextOfKinAddress}
-                      nextOfKinAddress={nextOfKinAddress}
-                      setDependents={setDependents}
-                      dependents={dependents}
-                    />
-                  </Fragment>
-                )}
-
-                {tab === "emergency" && (
-                  <Fragment>
-                    <EmergencyComponent
-                      emergencyContact={emergencyContact}
-                      setEmergencyContact={setEmergencyContact}
-                      setTab={setTab}
-                    />
-                  </Fragment>
-                )}
-
-                {tab === "card" && (
-                  <Fragment>
-                    <CardComponent
-                      sortCode={sortCode}
-                      setSortCode={setSortCode}
-                      setTab={setTab}
-                      nameOfBank={nameOfBank}
-                      setNameOfBank={setNameOfBank}
-                      nameOfBankBranch={nameOfBankBranch}
-                      setNameOfBankBranch={setNameOfBankBranch}
-                      accountNumber={accountNumber}
-                      setAccoutNumber={setAccoutNumber}
-                      ssnitNumber={ssnitNumber}
-                      setSsnitNumber={setSsnitNumber}
-                      momoNumber={momoNumber}
-                      setMomoNumber={setMomoNumber}
-                      ghanaCardId={ghanaCardId}
-                      setGhanaCardId={setGhanaCardId}
-                      ghanaCardIssueDate={ghanaCardIssueDate}
-                      setGhanaCardIssueDate={setGhanaCardIssueDate}
-                      ghanaCardExpiryDate={ghanaCardExpiryDate}
-                      setGhanaCardExpiryDate={setGhanaCardExpiryDate}
-                      ghanaCardFrontImageUrl={ghanaCardFrontImageUrl}
-                      ghanaCardBackImageUrl={ghanaCardBackImageUrl}
-                      handleGhanaCardFrontImageUpload={
-                        handleGhanaCardFrontImageUpload
+                      hasValidLicense={hasALicense}
+                      setHasValidLicense={setHasALicense}
+                      licenseNumber={licenseNumber}
+                      setLicenseNumber={setLicenseNumber}
+                      vehicleType={typesOfCars}
+                      setVehicleType={setTypeOfCars}
+                      hasHadAccident={hadAccidents}
+                      setHasHadAccident={setHadAccidents}
+                      hasBeenArrested={hasBeenArrested}
+                      setHasBeenArrested={setHasBeenArrested}
+                      canUseMap={canUseMap}
+                      setCanUseMap={setCanUseMap}
+                      licenseClass={licenseClass}
+                      setLicenseClass={setLicenseClass}
+                      licenseIssueDate={licenseIssueDate}
+                      setLicenseIssueDate={setLicenseIssueDate}
+                      licenseExpiryDate={licenseExpiryDate}
+                      setLicenseExpiryDate={setLicenseExpiryDate}
+                      yearsOfExperienceOnLicense={yearsOfExperienceOnLicense}
+                      setYearsOfExperienceOnLicense={setYearsOfExperienceOnLicense}
+                      handleLicenseFrontImageUpload={
+                        handleLicenseFrontImageUpload
                       }
-                      handleGhanaCardBackImageUpload={
-                        handleGhanaCardBackImageUpload
+                      driverLicenseFrontImageUrl={driverLicenseFrontImageUrl}
+                      handleLicenseBackImageUpload={
+                        handleLicenseBackImageUpload
                       }
+                      driverLicenseBackImageUrl={driverLicenseBackImageUrl}
                     />
                   </Fragment>
+                )}
+
+                {tab === "education" && (
+                    <EducationComponent
+                        setTab={setTab}
+                        educationLevel={highestLevelOfEducation}
+                        setEducationLevel={setHighestLevelOfEducation}
+                        nameOfSchool={nameOfSchoolCompleted}
+                        setNameOfSchool={setNameOfSchoolCompleted}
+                        yearOfCompletion={yearOfGraduation}
+                        setYearOfCompletion={setYearOfGraduation}
+                        />
                 )}
                 {tab === "experience" && (
                   <Fragment>
@@ -565,7 +422,7 @@ const MainComponent = () => {
                       setPreviousEmployerName={setPreviousEmployerName}
                       previousPositionHeld={previousPositionHeld}
                       setPreviousPositionHeld={setPreviousPositionHeld}
-                      previousPostionStartDate={previousPostionStartDate}
+                      previousPostionStartDate={previousPositionStartDate}
                       setPreviousPositionStartDate={
                         setPreviousPositionStartDate
                       }
@@ -580,74 +437,18 @@ const MainComponent = () => {
                       currentEmployerName={currentEmployerName}
                       setCurrentEmployerName={setCurrentEmployerName}
                       currentPositionStartDate={currentPositionStartDate}
-                      setCurrentPostionStartDate={setCurrentPostionStartDate}
+                      setCurrentPostionStartDate={setCurrentPositionStartDate}
                       currentPositionEndDate={currentPositionEndDate}
-                      setCurrentPostionEndDate={setCurrentPostionEndDate}
+                      setCurrentPostionEndDate={setCurrentPositionEndDate}
                       currentPositionHeld={currentPositionHeld}
                       setCurrentPositionHeld={setCurrentPositionHeld}
-
-                      // yearsOfDrivingExperience={yearsOfDrivingExperience}
-                      // setYearsOfDrivingExperience={setYearsOfDrivingExperience}
-                    />
-                  </Fragment>
-                )}
-                {tab === "license" && (
-                  <Fragment>
-                    <LicenceComponent
-                      setTab={setTab}
-                      licenseId={licenseId}
-                      setLicenseId={setLicenseId}
-                      hasALicense={hasALicense}
-                      setHasALicense={setHasALicense}
-                      licenseType={licenseType}
-                      typesOfCars={typesOfCars}
-                      setTypeOfCars={setTypeOfCars}
-                      setLicenseType={setLicenseType}
-                      licenseIssueDate={licenseIssueDate}
-                      licenseExpiryDate={licenseExpiryDate}
-                      setLicenseIssueDate={setLicenseIssueDate}
-                      setLicenseExpiryDate={setLicenseExpiryDate}
-                      licenseNumber={licenseNumber}
-                      setLicenseNumber={setLicenseNumber}
-                      yearsOfExperienceOnLicense={yearsOfExperienceOnLicense}
-                      setYearsOfExperienceOnLicense={
-                        setYearsOfExperienceOnLicense
-                      }
-                      licenseClass={licenseClass}
-                      setLicenseClass={setLicenseClass}
-                      handleLicenseFrontImageUpload={
-                        handleLicenseFrontImageUpload
-                      }
-                      driverLicenseFrontImageUrl={driverLicenseFrontImageUrl}
-                      handleLicenseBackImageUpload={
-                        handleLicenseBackImageUpload
-                      }
-                      driverLicenseBackImageUrl={driverLicenseBackImageUrl}
-                    />
-                  </Fragment>
-                )}
-                {tab === "avaiabliity" && (
-                  <Fragment>
-                    <AvailabiltyComponent
-                      setTab={setTab}
-                      mondayActive={mondayActive}
-                      setMondayActive={setMondayActive}
-                      tuesdayActive={tuesdayActive}
-                      setTuesdayActive={setTuesdayActive}
-                      wednesdayActive={wednesdayActive}
-                      setWednesdayActive={setWednesdayActive}
-                      thursdayActive={thursdayActive}
-                      setThursdayActive={setThursdayActive}
-                      fridayActive={fridayActive}
-                      setFridayActive={setFridayActive}
-                      saturdayActive={saturdayActive}
-                      setSaturdayActive={setSaturdayActive}
-                      sundayActive={sundayActive}
-                      setSundayActive={setSundayActive}
-                      currentImageLoaderPrompt={currentFile as number}
                       loading={loading}
                       handleSubmit={handleSubmit}
                       uploadingToFirebase={uploadingImages}
+                      comments={comments}
+                      setComments={setComments}
+                      // yearsOfDrivingExperience={yearsOfDrivingExperience}
+                      // setYearsOfDrivingExperience={setYearsOfDrivingExperience}
                     />
                   </Fragment>
                 )}

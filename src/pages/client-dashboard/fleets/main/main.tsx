@@ -66,7 +66,7 @@ const MainComponent = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddCar(!showAddCar)}
-                  className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-700"
+                  className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-2"
                 >
                   Add New Car
                   <PlusCircleIcon

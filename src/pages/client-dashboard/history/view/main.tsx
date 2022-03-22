@@ -114,16 +114,16 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                     }
                   >
                     <LocationMarkerIcon
-                      className={"h-5 -ml-3.5 w-5 text-pink-600"}
+                      className={"h-5 -ml-3.5 w-5 text-gold-1"}
                     />
                     <div
                       className={
-                        "h-20 rounded-lg -ml-1 w-0.5 -mt-2 bg-pink-600"
+                        "h-20 rounded-lg -ml-1 w-0.5 -mt-2 bg-gold-1"
                       }
                     />
                     <div
                       className={
-                        "h-2 w-2 rounded-full -ml-1.5 bg-pink-600 -mt-1"
+                        "h-2 w-2 rounded-full -ml-1.5 bg-gold-1 -mt-1"
                       }
                     ></div>
                   </div>

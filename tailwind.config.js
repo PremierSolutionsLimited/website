@@ -13,8 +13,8 @@ module.exports = {
           800: "#5eb3b1",
         },
         gold: {
-          1: "#EDCB01",
-          2: "#C29B0C",
+          1: "#FFB81C",
+          2: "#CC8A00",
           3: "#D4AF37"
         }
       },

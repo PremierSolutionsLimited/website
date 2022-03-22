@@ -17,8 +17,6 @@ export const createDriverApplication = gql`
     $region: String
     $city: String
     $residence: String
-    $ghanaPostGps: String
-    $licenseId: String
     $licenseIssueDate: Date
     $licenseExpiryDate: Date
     $licenseImageFront: String
@@ -31,19 +29,9 @@ export const createDriverApplication = gql`
     $hasCrimeRecords: Boolean
     $hasSmartPhone: Boolean
     $canUseMap: Boolean
-    $availablity: [Day!]!
     $educationalHistory: EducationalHistoryInput
     $currentEmployment: WorkHistoryInput
     $previousEmployment: WorkHistoryInput
-    $dependents: [DependantInput]
-    $emergencyContacts: [EmergencyContactInput]
-    $nextOfKin: EmergencyContactInput
-    $bankDetails: BankDetailsInput
-    $ghanaCardId: String
-    $ghanaCardIssueDate: Date
-    $ghanaCardExpiryDate: Date
-    $ghanaCardImageFont: String
-    $ghanaCardImageBack: String
   ) {
     createDriverApplication(
       input: {
@@ -62,8 +50,6 @@ export const createDriverApplication = gql`
         region: $region
         city: $city
         residence: $residence
-        ghanaPostGps: $ghanaPostGps
-        licenseId: $licenseId
         licenseIssueDate: $licenseIssueDate
         licenseExpiryDate: $licenseExpiryDate
         licenseImageFront: $licenseImageFront
@@ -76,19 +62,9 @@ export const createDriverApplication = gql`
         hasCrimeRecords: $hasCrimeRecords
         hasSmartPhone: $hasSmartPhone
         canUseMap: $canUseMap
-        availablity: $availablity
         educationalHistory: $educationalHistory
         currentEmployment: $currentEmployment
         previousEmployment: $previousEmployment
-        emergencyContacts: $emergencyContacts
-        dependents: $dependents
-        bankDetails: $bankDetails
-        nextOfKin: $nextOfKin
-        ghanaCardId: $ghanaCardId
-        ghanaCardIssueDate: $ghanaCardIssueDate
-        ghanaCardExpiryDate: $ghanaCardExpiryDate
-        ghanaCardImageFront: $ghanaCardImageFont
-        ghanaCardImageBack: $ghanaCardImageBack
       }
     ) {
       _id

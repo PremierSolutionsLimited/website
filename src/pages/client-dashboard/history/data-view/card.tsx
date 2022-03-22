@@ -142,7 +142,7 @@ const CardComponent = ({
         <button
           onClick={onView}
           type="button"
-          className="text-pink-600 hover:text-pink-700 hover:underline cursor-pointer focus:outline-none "
+          className="text-gold-1 hover:text-gold-2 hover:underline cursor-pointer focus:outline-none "
         >
           View
         </button>
@@ -153,7 +153,7 @@ const CardComponent = ({
                 <button
                   onClick={onRateDriver}
                   type="button"
-                  className="text-pink-600 ml-3 hover:text-pink-700 hover:underline cursor-pointer focus:outline-none "
+                  className="text-gold-1 ml-3 hover:text-gold-2 hover:underline cursor-pointer focus:outline-none "
                 >
                   Rate Driver
                 </button>

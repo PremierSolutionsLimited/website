@@ -175,7 +175,7 @@ const MainComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setFirstName(e.target.value)
                     }
-                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
                     placeholder="Eg. John"
                   />
                 </div>
@@ -194,7 +194,7 @@ const MainComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setLastName(e.target.value)
                     }
-                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
                     placeholder="Eg. Doe"
                   />
                 </div>
@@ -211,7 +211,7 @@ const MainComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setOtherNames(e.target.value)
                     }
-                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
                     placeholder="Eg. Jr."
                   />
                 </div>
@@ -230,7 +230,7 @@ const MainComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setUsername(e.target.value)
                     }
-                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
                     placeholder="Eg. doe"
                   />
                 </div>
@@ -296,7 +296,7 @@ const MainComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setEmail(e.target.value)
                     }
-                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
                     placeholder="Eg. john@gmail.com"
                   />
                 </div>
@@ -315,7 +315,7 @@ const MainComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setPhone(e.target.value)
                     }
-                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600"
+                    className="shadow-none font-light py-2 mt-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
                     placeholder="Eg. 0200000000"
                   />
                 </div>
@@ -333,14 +333,14 @@ const MainComponent = () => {
               <div className="pt-8 flex justify-end">
                 <button
                   type="button"
-                  className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-600"
+                  className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-1"
                 >
                   Back
                 </button>
                 <button
                   type="submit"
                   disabled={uploadingToFirebase || loading}
-                  className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-600"
+                  className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gold-1 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-1"
                 >
                   {uploadingToFirebase || loading ? "Saving..." : "Save"}
                 </button>
