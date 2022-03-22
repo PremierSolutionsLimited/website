@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { ExperienceComponentProp } from "./types";
 import { DatePicker } from "antd";
 import moment from "moment";
+import { CircleSpinner } from "react-spinners-kit";
 
 const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   setTab,
@@ -29,7 +30,9 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   setCurrentPositionHeld,
   isEmployed,
   setIsEmployed,
-
+  handleSubmit,
+    loading,
+    uploadingToFirebase
   // yearsOfDrivingExperience,
   // setYearsOfDrivingExperience,
 }) => {
@@ -51,50 +54,6 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
       >
         <div className="py-6 px-4 sm:p-4 lg:pb-8">
           <div className="mt-0 grid grid-cols-12 gap-6">
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm font-medium pb-2 text-gray-700"
-              >
-                Have you had any accidents in the last 5 years?
-              </label>
-              <select
-                id="location"
-                name="location"
-                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
-                value={hadAccidents}
-                required={true}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setHadAccidents(e.target.value)
-                }
-              >
-                <option>Please Choose</option>
-                <option value={"yes"}>Yes</option>
-                <option value={"no"}>No</option>
-              </select>
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm font-medium pb-2 text-gray-700"
-              >
-                Have you ever been arrested before?
-              </label>
-              <select
-                id="location"
-                name="location"
-                required={true}
-                className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
-                value={hasBeenArrested}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setHasBeenArrested(e.target.value)
-                }
-              >
-                <option>Please Choose</option>
-                <option value={"yes"}>Yes</option>
-                <option value={"no"}>No</option>
-              </select>
-            </div>
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
@@ -297,17 +256,51 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
           <div className="pt-6 divide-y divide-gray-200">
             <div className="mt-4 py-4 px-4 flex justify-end sm:px-6">
               <button
-                onClick={() => setTab("card")}
-                type="button"
-                className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
+                  onClick={() => setTab("license")}
+                  type="button"
+                  className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
               >
                 Back
               </button>
               <button
-                type="submit"
-                className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={uploadingToFirebase || loading}
+                  className="ml-5 bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
               >
-                Next
+                <div className="mr-2">
+                  {uploadingToFirebase || loading
+                      ? "Completing Process"
+                      : "Complete Process"}
+                </div>
+
+                <div>
+                  {" "}
+                  {uploadingToFirebase || loading ? (
+                      <Fragment>
+                        <div className="mt-1">
+                          <CircleSpinner loading color="#fff" size={15} />
+                        </div>
+                      </Fragment>
+                  ) : (
+                      <Fragment>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 "
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                          <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </Fragment>
+                  )}
+                </div>
               </button>
             </div>
           </div>

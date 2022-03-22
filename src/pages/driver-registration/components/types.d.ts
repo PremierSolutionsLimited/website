@@ -132,6 +132,9 @@ export interface ExperienceComponentProp {
   setCurrentPositionHeld: React.Dispatch<React.SetStateAction<string>>;
   isEmployed: string;
   setIsEmployed: React.Dispatch<React.SetStateAction<string>>;
+  handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
+  loading: boolean;
+  uploadingToFirebase: boolean;
 }
 
 export interface LicenseComponentProp {

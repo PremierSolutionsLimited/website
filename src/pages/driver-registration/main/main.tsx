@@ -515,50 +515,6 @@ const MainComponent = () => {
                         setYearOfCompletion={setYearOfGraduation}
                         />
                 )}
-
-                {tab === "emergency" && (
-                  <Fragment>
-                    <EmergencyComponent
-                      emergencyContact={emergencyContact}
-                      setEmergencyContact={setEmergencyContact}
-                      setTab={setTab}
-                    />
-                  </Fragment>
-                )}
-
-                {tab === "card" && (
-                  <Fragment>
-                    <CardComponent
-                      sortCode={sortCode}
-                      setSortCode={setSortCode}
-                      setTab={setTab}
-                      nameOfBank={nameOfBank}
-                      setNameOfBank={setNameOfBank}
-                      nameOfBankBranch={nameOfBankBranch}
-                      setNameOfBankBranch={setNameOfBankBranch}
-                      accountNumber={accountNumber}
-                      setAccoutNumber={setAccoutNumber}
-                      ssnitNumber={ssnitNumber}
-                      setSsnitNumber={setSsnitNumber}
-                      momoNumber={momoNumber}
-                      setMomoNumber={setMomoNumber}
-                      ghanaCardId={ghanaCardId}
-                      setGhanaCardId={setGhanaCardId}
-                      ghanaCardIssueDate={ghanaCardIssueDate}
-                      setGhanaCardIssueDate={setGhanaCardIssueDate}
-                      ghanaCardExpiryDate={ghanaCardExpiryDate}
-                      setGhanaCardExpiryDate={setGhanaCardExpiryDate}
-                      ghanaCardFrontImageUrl={ghanaCardFrontImageUrl}
-                      ghanaCardBackImageUrl={ghanaCardBackImageUrl}
-                      handleGhanaCardFrontImageUpload={
-                        handleGhanaCardFrontImageUpload
-                      }
-                      handleGhanaCardBackImageUpload={
-                        handleGhanaCardBackImageUpload
-                      }
-                    />
-                  </Fragment>
-                )}
                 {tab === "experience" && (
                   <Fragment>
                     <ExperienceComponent
@@ -593,44 +549,11 @@ const MainComponent = () => {
                       setCurrentPostionEndDate={setCurrentPostionEndDate}
                       currentPositionHeld={currentPositionHeld}
                       setCurrentPositionHeld={setCurrentPositionHeld}
-
+                      loading={loading}
+                      handleSubmit={handleSubmit}
+                      uploadingToFirebase={uploadingImages}
                       // yearsOfDrivingExperience={yearsOfDrivingExperience}
                       // setYearsOfDrivingExperience={setYearsOfDrivingExperience}
-                    />
-                  </Fragment>
-                )}
-                {tab === "license" && (
-                  <Fragment>
-                    <LicenceComponent
-                      setTab={setTab}
-                      licenseId={licenseId}
-                      setLicenseId={setLicenseId}
-                      hasALicense={hasALicense}
-                      setHasALicense={setHasALicense}
-                      licenseType={licenseType}
-                      typesOfCars={typesOfCars}
-                      setTypeOfCars={setTypeOfCars}
-                      setLicenseType={setLicenseType}
-                      licenseIssueDate={licenseIssueDate}
-                      licenseExpiryDate={licenseExpiryDate}
-                      setLicenseIssueDate={setLicenseIssueDate}
-                      setLicenseExpiryDate={setLicenseExpiryDate}
-                      licenseNumber={licenseNumber}
-                      setLicenseNumber={setLicenseNumber}
-                      yearsOfExperienceOnLicense={yearsOfExperienceOnLicense}
-                      setYearsOfExperienceOnLicense={
-                        setYearsOfExperienceOnLicense
-                      }
-                      licenseClass={licenseClass}
-                      setLicenseClass={setLicenseClass}
-                      handleLicenseFrontImageUpload={
-                        handleLicenseFrontImageUpload
-                      }
-                      driverLicenseFrontImageUrl={driverLicenseFrontImageUrl}
-                      handleLicenseBackImageUpload={
-                        handleLicenseBackImageUpload
-                      }
-                      driverLicenseBackImageUrl={driverLicenseBackImageUrl}
                     />
                   </Fragment>
                 )}
