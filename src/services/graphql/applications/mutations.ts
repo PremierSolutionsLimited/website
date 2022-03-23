@@ -17,6 +17,7 @@ export const createDriverApplication = gql`
     $region: String
     $city: String
     $residence: String
+    $licenseId: String
     $licenseIssueDate: Date
     $licenseExpiryDate: Date
     $licenseImageFront: String
@@ -32,6 +33,7 @@ export const createDriverApplication = gql`
     $educationalHistory: EducationalHistoryInput
     $currentEmployment: WorkHistoryInput
     $previousEmployment: WorkHistoryInput
+	  $comments: String
   ) {
     createDriverApplication(
       input: {
@@ -50,6 +52,7 @@ export const createDriverApplication = gql`
         region: $region
         city: $city
         residence: $residence
+        licenseId: $licenseId
         licenseIssueDate: $licenseIssueDate
         licenseExpiryDate: $licenseExpiryDate
         licenseImageFront: $licenseImageFront
@@ -65,6 +68,7 @@ export const createDriverApplication = gql`
         educationalHistory: $educationalHistory
         currentEmployment: $currentEmployment
         previousEmployment: $previousEmployment
+		  comments: $comments
       }
     ) {
       _id
