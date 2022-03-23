@@ -232,6 +232,8 @@ const MainComponent = () => {
         }
       }
     }
+
+    console.log("Image Urls: ",imageUrls, " , ", licenseNumber);
     setUploadingImages(false);
     createApplication({
       variables: {
@@ -250,10 +252,11 @@ const MainComponent = () => {
         region: region || undefined,
         city: city || undefined,
         residence: currentAddress || undefined,
+        licenseId: licenseNumber || undefined,
         licenseIssueDate: new Date(licenseIssueDate) || undefined,
         licenseExpiryDate: new Date(licenseExpiryDate) || undefined,
-        licenseImageFront: imageUrls[3] || undefined,
-        licenseImageBack: imageUrls[4] || undefined,
+        licenseImageFront: imageUrls[1] || undefined,
+        licenseImageBack: imageUrls[2] || undefined,
         licenseClass: licenseClass || undefined,
         drivingExperience: parseInt(yearsOfExperienceOnLicense) || undefined,
         // vehicleClasses: undefined,
@@ -280,6 +283,7 @@ const MainComponent = () => {
           positionHeld: previousPositionHeld || undefined,
           reasonForLeaving: reasonForLeavingPreviousWork || undefined,
         },
+        comments: comments || undefined,
       },
     })
       .then(() => {

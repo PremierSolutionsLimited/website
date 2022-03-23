@@ -117,6 +117,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 className={
                   "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
                 }
+                picker="month"
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
@@ -137,6 +138,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 className={
                   "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
                 }
+                picker="month"
               />
             </div>
             <div className="col-span-12 sm:col-span-12">
@@ -181,7 +183,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 <option value={"no"}>No</option>
               </select>
             </div>
-            {isEmployed === "yes" && (
+            {isEmployed === "yes"? (
               <Fragment>
                 <div className="col-span-12 sm:col-span-6">
                   <label
@@ -241,6 +243,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                     className={
                       "border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
                     }
+                    picker="month"
                   />
                   {/* <input
                     type={"date"}
@@ -252,9 +255,8 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                     className="mt-1 block w-full pl-1 pr-1 py-2  text-base bg-gray-100 border-none focus:outline-none focus:ring-gray-100 focus:border-gray-100 sm:text-sm rounded-none"
                   /> */}
                 </div>
-                <div className="col-span-12 sm:col-span-6" />
               </Fragment>
-            )}
+            ): <div className="col-span-12 sm:col-span-6" />}
             <div className="col-span-12 sm:col-span-6">
               <label
                   htmlFor="comments"
@@ -270,6 +272,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                   onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                       setComments(e.target.value)
                   }
+                  rows={5}
                   className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
               />
               {/* <input

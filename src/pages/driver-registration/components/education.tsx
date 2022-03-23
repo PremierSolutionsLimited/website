@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import {EducationComponentProp} from "./types";
+import { DatePicker } from "antd";
 
 const EducationHistory:React.FC<EducationComponentProp> = (
 	{
@@ -77,17 +78,15 @@ const EducationHistory:React.FC<EducationComponentProp> = (
 							>
 								Year of Completion
 							</label>
-							<input
-								type="text"
-								name="url"
-								id="url"
-								required
-								placeholder={"Eg. 2016"}
-								value={yearOfCompletion}
-								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-									setYearOfCompletion(e.target.value)
+							<DatePicker
+								onChange={(data: any) => {
+									setYearOfCompletion(data);
+								}}
+								value={yearOfCompletion as any}
+								className={
+									"border border-none py-2 mt-1 w-full bg-gray-100 focus:border-none"
 								}
-								className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
+								picker="year"
 							/>
 						</div>
 					</div>
