@@ -153,7 +153,7 @@ const MainComponent = () => {
                               {data ? (
                                 <Fragment>
                                   <div className="text-lg font-medium text-gray-900">
-                                    {data?.clientSummary?.totalVehicles}
+                                    0
                                   </div>
                                 </Fragment>
                               ) : (

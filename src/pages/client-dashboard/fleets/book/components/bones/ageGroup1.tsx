@@ -39,7 +39,7 @@ export default function AgeGroupComponent1({ selected, setSelected }: any) {
                   isIn
                     ? "bg-gold-1 border-transparent"
                     : "bg-white border-gray-300",
-                  isIn ? "ring-2 ring-offset-2 ring-pink-500" : "",
+                  isIn ? "ring-2 ring-offset-2 ring-gold-2" : "",
                   "h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center"
                 )}
                 aria-hidden="true"

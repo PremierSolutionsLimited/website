@@ -14,7 +14,7 @@ export default function LoginDropdown() {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="inline-flex justify-center w-full rounded-full border-none px-4 py-3 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-pink-500">
+            <Menu.Button className="inline-flex justify-center w-full rounded-full border-none px-4 py-3 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gold-2">
               Log In Options
               <ChevronDownIcon
                 className="-mr-1 ml-2 h-5 w-5"
