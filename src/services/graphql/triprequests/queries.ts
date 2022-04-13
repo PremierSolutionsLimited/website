@@ -55,6 +55,7 @@ export const tripRequests = gql`
         model
         registrationNumber
       }
+      createdAt
     }
     tripRequestsLength
   }
