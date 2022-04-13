@@ -33,6 +33,7 @@ const MainComponent = () => {
   }, []);
 
   const [, registrationState] = useRegistrationProvider();
+  console.log(registrationState)
   // toggle tab
   const [tab, setTab] = useState<string>("personal");
 
@@ -40,8 +41,10 @@ const MainComponent = () => {
   const [username, setUsername] = useState<string>("");
   const [nationality, setNationality] = useState<string>("");
   const [placeOfResdience, setPlaceOfResidence] = useState<string>("");
+  console.log(placeOfResdience)
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  console.log(password, ' ', confirmPassword)
 
   // for clients's image
   const [clientFile, setClientFile] = useState<any>(null);

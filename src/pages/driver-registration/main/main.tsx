@@ -233,7 +233,7 @@ const MainComponent = () => {
       }
     }
 
-    console.log("Image Urls: ",imageUrls, " , ", licenseNumber);
+    console.log("Image Urls: ",imageUrls)
     setUploadingImages(false);
     createApplication({
       variables: {
