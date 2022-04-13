@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment } from "react";
 import FooterSvg from "../../../components/svgs/footer";
-import Picture from "../../../assets/images/Picture.jpg";
+//import Picture from "../../../assets/images/Picture.jpg";
 //import toast from "react-hot-toast";
 import { PhoneIcon, MailIcon, GlobeAltIcon } from "@heroicons/react/outline";
 export interface Props {}
@@ -20,7 +20,7 @@ const Footer = () => {
   return (
     <Fragment>
       <FooterSvg />
-      <footer className="bg-gray-100 -mt-16" aria-labelledby="footerHeading">
+      <footer className="bg-gray-100 -mt-28" aria-labelledby="footerHeading">
         <h2 id="footerHeading" className="sr-only">
           Footer
         </h2>
@@ -128,7 +128,7 @@ const Footer = () => {
             </i>
           </div>
         </div> */}
-        <div className="max-w-7xl mx-auto py-6   px-4 overflow-hidden sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto py-12   px-4 overflow-hidden sm:px-6 lg:px-8">
         <div className="flex flex-col items-center">
             <h2 className="text-2xl font-extrabold text-gray-900 sm:text-3xl">Contact Us</h2>
             <div className="mt-3">

@@ -11,7 +11,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Fragment>
       <Header />
-      <div className={"overflow-x-hidden "}>
+      <div className={"overflow-x-hidden "} style={{scrollBehavior: "smooth"}}>
         {children}
 
         <Footer />

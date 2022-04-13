@@ -3,7 +3,7 @@ import { Fragment } from "react";
 const FrequentlyAskedQuestions = () => {
   return (
     <Fragment>
-      <div id="faq" className="h:0 md:h-faq-height sm:h-0">
+      <div id="faq" className="h:0 md:h-faq-height sm:h-0" style={{scrollBehavior: "smooth"}}>
         <section className="text-gray-700">
           <div className="container px-5 py-24 mx-auto">
             <div className="text-center mb-20">
