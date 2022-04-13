@@ -16,7 +16,11 @@ module.exports = {
           1: "#FFB81C",
           2: "#CC8A00",
           3: "#D4AF37"
-        }
+        },
+        customBlack: {
+          1: "#101820",
+          2: "#1E2019",
+        },
       },
       height: {
         "faq-height": "70vh",

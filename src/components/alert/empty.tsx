@@ -44,7 +44,7 @@ const EmptyAlert = ({
             <button
               type="button"
               onClick={onClickButton}
-              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gold-1 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-2"
             >
               <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
               {buttonMessage}

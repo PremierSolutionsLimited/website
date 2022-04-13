@@ -3,7 +3,7 @@ import { Fragment } from "react";
 const FrequentlyAskedQuestions = () => {
   return (
     <Fragment>
-      <div id="faq" className="h:0 md:h-faq-height sm:h-0">
+      <div id="faq" className="h:0 md:h-faq-height sm:h-0" style={{scrollBehavior: "smooth"}}>
         <section className="text-gray-700">
           <div className="container px-5 py-24 mx-auto">
             <div className="text-center mb-20">
@@ -43,12 +43,21 @@ const FrequentlyAskedQuestions = () => {
                 </details>
                 <details className="mb-4">
                   <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
-                    What are the requirements?
+                    What are the driver requirements?
                   </summary>
 
                   <p className="my-4 leading-snag">
                     You must have a valid driver licence.You must have at least
                     5 years of driving experience.
+                  </p>
+                </details>
+                <details className="mb-4">
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                  Who is qualified to register as a client??
+                  </summary>
+
+                  <p className="my-4 leading-snag">
+                  Any individual over 18 years of age with access to a road worthy vehicle
                   </p>
                 </details>
                 <details className="mb-4">
@@ -61,8 +70,6 @@ const FrequentlyAskedQuestions = () => {
                     available driver.
                   </p>
                 </details>
-              </div>
-              <div className="w-full lg:w-1/2 px-4 py-2">
                 <details className="mb-4">
                   <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
                     Do I need a car as a driver to register on Premier
@@ -73,6 +80,8 @@ const FrequentlyAskedQuestions = () => {
                     No, you must not have a car to register as a driver.
                   </p>
                 </details>
+              </div>
+              <div className="w-full lg:w-1/2 px-4 py-2">
                 <details className="mb-4">
                   <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
                     Do I need a car as a client to register on Premier
@@ -97,6 +106,27 @@ const FrequentlyAskedQuestions = () => {
                   </summary>
 
                   <p className="my-4 leading-snag">Yes, absolutely.</p>
+                </details>
+                <details className="mb-4">
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                    How do I download the Premier Chauffeur app for iPhone?
+                  </summary>
+
+                  <p className="my-4 leading-snag">Go to the App Store to download the latest Premier Chauffeur for iPhone app.</p>
+                </details>
+                <details className="mb-4">
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                  How do I download the Premier Chauffeur app for Android?
+                  </summary>
+
+                  <p className="my-4 leading-snag">Go to Google Play to download the latest Klips for Android app.</p>
+                </details>
+                <details className="mb-4">
+                  <summary className="font-medium  bg-gray-100 rounded-md py-2 px-4">
+                  How much do I earn as a driver?
+                  </summary>
+
+                  <p className="my-4 leading-snag">This varies and is dependent on the trip type and duration.</p>
                 </details>
               </div>
             </div>

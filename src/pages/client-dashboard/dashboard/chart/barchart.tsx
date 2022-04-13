@@ -94,7 +94,7 @@ export default class Example extends PureComponent {
           {/* <YAxis /> */}
           <Tooltip />
           <Legend />
-          <Bar dataKey="uv" fill="#e91e63" />
+          <Bar dataKey="uv" fill="#FFB81C" />
         </BarChart>
       </ResponsiveContainer>
     );

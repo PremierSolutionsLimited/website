@@ -1,12 +1,12 @@
 import { Fragment } from "react";
 import DriverSvg from "../../../components/svgs/driver";
-import MobileImage1 from "../../../assets/images/mobile1.png";
-import MobileImage2 from "../../../assets/images/mobile2.png";
+import MobileImage1 from "../../../assets/images/premier-chauffeur-1.jpeg";
+import MobileImage2 from "../../../assets/images/premier-chauffeur-2.jpeg";
 
 const FeaturesComponent = () => {
   return (
     <Fragment>
-      <div id={"whoweare"} className="py-16 bg-white overflow-hidden lg:py-24">
+      <div id={"whoweare"} className="py-16 bg-white overflow-hidden lg:py-24" style={{scrollBehavior: "smooth"}}>
         <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
           <svg
             className="hidden lg:block absolute left-full transform -translate-x-1/2 -translate-y-1/4"

@@ -33,6 +33,7 @@ const MainComponent = () => {
   }, []);
 
   const [, registrationState] = useRegistrationProvider();
+  console.log(registrationState)
   // toggle tab
   const [tab, setTab] = useState<string>("personal");
 
@@ -40,8 +41,10 @@ const MainComponent = () => {
   const [username, setUsername] = useState<string>("");
   const [nationality, setNationality] = useState<string>("");
   const [placeOfResdience, setPlaceOfResidence] = useState<string>("");
+  console.log(placeOfResdience)
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  console.log(password, ' ', confirmPassword)
 
   // for clients's image
   const [clientFile, setClientFile] = useState<any>(null);
@@ -265,7 +268,7 @@ const MainComponent = () => {
                     <button
                       type="button"
                       onClick={showCroppedImage}
-                      className="inline-flex rounded-none items-center w-20 flex justify-center px-13 py-3 border border-gold-1 text-sm leading-5 font-light text-white hover:text-white bg-gold-1 hover:bg-pink-500 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
+                      className="inline-flex rounded-none items-center w-20 flex justify-center px-13 py-3 border border-gold-1 text-sm leading-5 font-light text-white hover:text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
                     >
                       {imageCropLoad ? "One sec..." : "Done"}
                     </button>

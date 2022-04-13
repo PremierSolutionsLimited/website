@@ -5,7 +5,7 @@ import Offers from "./offers";
 const UsersComponent = () => {
   return (
     <Fragment>
-      <div id={"offers"} className="bg-white">
+      <div id={"offers"} className="bg-white" style={{scrollBehavior: "smooth"}}>
         <div className="-mt-20">
           <HeaderSvg />
         </div>

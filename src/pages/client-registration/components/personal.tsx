@@ -20,15 +20,13 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
 }) => {
   function handleGoToNextPage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!clientImageUrl) {
-      return toast.error("Please add a profile image");
-    }
     if (password !== confirmPassword) {
       return toast.error("Passwords do not match");
     } else {
       setTab("other");
     }
   }
+  console.log(placeOfResidence)
   return (
     <Fragment>
       <form
@@ -168,7 +166,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 id="residence"
                 required
                 placeholder={"Eg. Adenta - Accra"}
-                value={placeOfResidence}
+                value={placeOfResidence}  
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPlaceOfResidence(e.target.value)
                 }
@@ -184,8 +182,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               </label>
               <input
                 type="password"
-                name="url"
-                id="url"
+                name="password"
+                id="password"
                 placeholder="*********"
                 value={password}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

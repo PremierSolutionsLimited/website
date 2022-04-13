@@ -340,7 +340,7 @@ const MainComponent = () => {
                 <button
                   type="submit"
                   disabled={uploadingToFirebase || loading}
-                  className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gold-1 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-1"
+                  className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-1"
                 >
                   {uploadingToFirebase || loading ? "Saving..." : "Save"}
                 </button>

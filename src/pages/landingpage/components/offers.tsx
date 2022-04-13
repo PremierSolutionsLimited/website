@@ -54,7 +54,9 @@ function classNames(...classes: any) {
 
 export default function Offers() {
   return (
-    <div className="rounded-lg mt-12 bg-gray-200 overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
+    <div
+      style={{scrollBehavior: "smooth"}} 
+      className="rounded-lg mt-12 bg-gray-200 overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
       {actions.map((action, actionIdx) => (
         <div
           key={action.title}

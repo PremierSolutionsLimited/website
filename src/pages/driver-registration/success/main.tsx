@@ -52,7 +52,7 @@ const MainComponent = ({ show, setShow }: SucessComponentProp) => {
               <button
                 type="button"
                 onClick={handleClearToken}
-                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-gold-1 text-base font-medium text-white hover:bg-gold-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:text-sm"
+                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-gold-1 text-base font-medium text-white hover:bg-gold-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-2 sm:text-sm"
               >
                 OK
               </button>

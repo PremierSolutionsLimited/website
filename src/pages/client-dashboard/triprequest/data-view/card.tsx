@@ -53,7 +53,7 @@ const CardComponent = ({
       </td>
       <td className="px-6 py-3 whitespace-nowrap">
         <div className="text-sm flex flex-col text-gray-900">
-          <span> GHS {history?.cost?.totalCost}</span>
+          <span> GHS {history?.quote?.totalCost}</span>
           <span className={`text-sm text-gray-500`}>
             {history?.vehicle?.registrationNumber || "Not Specified"}
           </span>

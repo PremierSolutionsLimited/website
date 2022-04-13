@@ -9,7 +9,7 @@ export const tripRequests = gql`
     ) {
       _id
       code
-      cost {
+      quote {
         totalCost
         items {
           title
@@ -55,6 +55,7 @@ export const tripRequests = gql`
         model
         registrationNumber
       }
+      createdAt
     }
     tripRequestsLength
   }
