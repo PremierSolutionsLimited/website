@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import DriverSvg from "../../../components/svgs/driver";
-import MobileImage1 from "../../../assets/images/mobile1.png";
-import MobileImage2 from "../../../assets/images/mobile2.png";
+import MobileImage1 from "../../../assets/images/premier-chauffeur-1.jpeg";
+import MobileImage2 from "../../../assets/images/premier-chauffeur-2.jpeg";
 
 const FeaturesComponent = () => {
   return (

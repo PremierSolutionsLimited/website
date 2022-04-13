@@ -142,7 +142,7 @@ const Footer = () => {
                   <PhoneIcon className="h-6 w-6 text-gray-700" aria-hidden="true" />
                 </div>
                 <div className="ml-3 text-base text-gray-800">
-                  <p>024-499-7999</p>
+                  <p>+233 303306541 / 0246900037</p>
                 </div>
               </div>
               <div className="mt-3 flex">
@@ -151,8 +151,8 @@ const Footer = () => {
                 </div>
                 <div className="ml-3 text-base text-gray-800">
                   <a href="mailto:help@premierchauffergh.com">
-                    <p>help@premierchauffeurgh.com</p>
-                    </a>
+                    <p>info@premierchauffeurgh.com</p>
+                  </a>
                 </div>
               </div>
               <div className="mt-3 flex">
