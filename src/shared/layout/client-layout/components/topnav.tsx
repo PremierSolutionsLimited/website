@@ -7,6 +7,7 @@ import { ClientDashBoardNavigationProps } from "./types";
 import { Link, useLocation } from "react-router-dom";
 import { ContextLoader } from "../../../loaders";
 import { useCurrentClient } from "../../../../services/context/currentClient";
+import {useHistory} from "react-router-dom";
 import ProfileImage from "../../../../assets/images/male.jpeg";
 import Logo from "../../../../assets/logo_gold_text.png";
 
@@ -20,6 +21,8 @@ const TopNav = () => {
 
   const { currentUser: curentClient } = useCurrentClient();
 
+  const {push} = useHistory();
+
   return (
     <Fragment>
       <Disclosure as="nav" className="bg-black shadow-sm">
@@ -28,16 +31,24 @@ const TopNav = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
               <div className="flex justify-between h-22">
                 <div className="flex">
-                  <div className="flex-shrink-0 flex items-center">
+                  <div className="flex-shrink-0 flex items-center cursor-pointer">
                     <img
                       className="block rounded-full lg:hidden h-12 w-auto"
                       src={Logo}
                       alt="Workflow"
+                      onClick={(e: any) => {
+                        e?.preventDefault();
+                        push("/");
+                      }}
                     />
                     <img
                       className="hidden rounded-full lg:block h-20 w-auto"
                       src={Logo}
                       alt="Workflow"
+                      onClick={(e: any) => {
+                        e?.preventDefault();
+                        push("/");
+                      }}
                     />
                   </div>
                   <div className="hidden sm:-my-px sm:ml-10 sm:flex sm:space-x-8">
