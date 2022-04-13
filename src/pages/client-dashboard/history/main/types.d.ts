@@ -42,6 +42,14 @@ export interface TripHistory {
   createdAt: Date;
   updatedAt: Date;
   tripRequest: TripRequest;
+  finalCost: {
+    finalCost: number;
+    items: {
+      title: string;
+      quantity: number;
+      cost: number;
+    }
+  }
 }
 
 export interface TripType {

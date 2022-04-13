@@ -63,7 +63,7 @@ const CardComponent = ({
       </td>
       <td className="px-6 py-3 whitespace-nowrap">
         <div className="text-sm text-gray-900">
-          {history?.tripRequest?.cost?.totalCost || "Not Specified"}
+          {history?.finalCost?.finalCost || "Not Specified"}
         </div>
       </td>
 
