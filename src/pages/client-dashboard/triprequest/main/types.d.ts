@@ -43,7 +43,7 @@ export interface TripHistory {
   cancelledAt: Date;
   cancelledBecause: string;
   createdAt: Date;
-  cost: {
+  quote: {
     totalCost: string;
     items: {
       title: string;
