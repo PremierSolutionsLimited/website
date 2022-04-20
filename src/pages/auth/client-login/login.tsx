@@ -30,7 +30,7 @@ const Login = () => {
   >(LOGIN_CLIENT);
 
   useEffect(() => {
-    document.title = "Client Login | Hire A Driver";
+    document.title = "Client Login | Premier Chauffeur";
   }, []);
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {

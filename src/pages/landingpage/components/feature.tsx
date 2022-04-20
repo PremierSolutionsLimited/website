@@ -56,7 +56,7 @@ const FeaturesComponent = () => {
           <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div className="relative">
               <h3 className="text-2xl font-bold text-gray-900 tracking-tight sm:text-3xl">
-                Hire a driver real quick
+                Premier Chauffeur real quick
               </h3>
               <p className="mt-3 text-lg text-gray-500">
                 Why wait until the weekend to take a peaceful trip to your

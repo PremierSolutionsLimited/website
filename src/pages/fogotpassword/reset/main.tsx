@@ -11,7 +11,7 @@ import _ from "lodash";
 
 const SendCodeComponent = () => {
   useEffect(() => {
-    document.title = "Reset Password | Hire A Driver";
+    document.title = "Reset Password | Premier Chauffeur";
   }, []);
 
   const { push } = useHistory();

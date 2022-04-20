@@ -8,7 +8,7 @@ import FrequentlyAsked from "../components/faqs";
 
 const MainComponent = () => {
   useEffect(() => {
-    document.title = "Hire A Driver";
+    document.title = "Premier Chauffeur";
   }, []);
   return (
     <Fragment>

@@ -19,7 +19,7 @@ const bgImage =
 
 const Signup = () => {
   useEffect(() => {
-    document.title = "Client Signup | Hire A Driver";
+    document.title = "Client Signup | Premier Chauffeur";
   }, []);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
