@@ -95,7 +95,20 @@ export const createTripRequest = gql`
     }
   }
 `;
-
+export const getTripCostSummary = gql`
+  mutation GetTripQuote($input: GetTripQuoteInput!) {
+  getTripQuote(input: $input) {
+    items {
+      title
+      quantity
+      cost
+      rate
+      unit
+    }
+    totalCost
+  }
+}
+`
 export const getTripQuote = gql`
   mutation (
     $client: ID

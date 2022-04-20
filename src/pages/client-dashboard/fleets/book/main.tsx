@@ -14,6 +14,7 @@ import { ApolloError, useMutation } from "@apollo/client";
 import {
   CREATE_TRIP,
   GET_TRIP_QUOTE,
+  GET_TRIP_COST_SUMMARY
 } from "../../../../services/graphql/fleet";
 import { useCurrentClient } from "../../../../services/context/currentClient";
 import { getDamages } from "./utils/util";
@@ -83,6 +84,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [totalTripCost, setTotalTripCost] = useState<string>("");
 
   // get trip quote
+  const [getTripQuote, { loading: loadingTripQuoteData }] = useMutation<any>(GET_TRIP_COST_SUMMARY)
   const [invokeGetTripRequest, { loading: gettingTripRequest }] = useMutation<
     GetTripQuotepOutputProp,
     GetTripQuoteInputProp
@@ -105,38 +107,48 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
       otherDamagesDescription
     );
     let passengerAges: string[] = getPassengers(selectedAgeGroup);
-    invokeGetTripRequest({
+
+    getTripQuote({
       variables: {
-        client: currentClient?._id as string,
-        vehicle: selectedCar?._id as string,
-        tripType: requestType,
-        expectedStartTime: new Date(tripStartDate),
-        expectedEndTime: endTime as Date,
-        pickUpLocation: {
-          type: "Point",
-          coordinates: [+pickupLng, +pickupLat],
-        },
-        pickUpLocationName: pickupAddress,
-        dropOffLocation: {
-          type: "Point",
-          coordinates: [+dropOffLng, +dropOffLat],
-        },
-        checklist: {
-          registeredVehicle: registeredVehicle,
-          validRoadWorthySticker: dvlaRoadWorthy,
-          validInsurance: insurance,
-          emergencyTriangle: emergencyTriangle,
-          fireExtinguisher: fireExtinguisher,
-          spareTyre: spareTyre,
-          clientComments: clientComments,
-          damagesOnVehicle: damagesVehicle,
-          crackedWindscreens: damagesWindScreen,
-          otherDamages: otherDamagesInput,
-        },
-        dropOffLocationName: dropOffAddress,
-        passengerAges: passengerAges,
-      },
+        input: {
+          expectedStartTime: new Date(tripStartDate),
+          expectedEndTime: endTime as Date,
+          overnightTrip: false
+        }
+      }
     })
+    // invokeGetTripRequest({
+    //   variables: {
+    //     client: currentClient?._id as string,
+    //     vehicle: selectedCar?._id as string,
+    //     tripType: requestType,
+    //     expectedStartTime: new Date(tripStartDate),
+    //     expectedEndTime: endTime as Date,
+    //     pickUpLocation: {
+    //       type: "Point",
+    //       coordinates: [+pickupLng, +pickupLat],
+    //     },
+    //     pickUpLocationName: pickupAddress,
+    //     dropOffLocation: {
+    //       type: "Point",
+    //       coordinates: [+dropOffLng, +dropOffLat],
+    //     },
+    //     checklist: {
+    //       registeredVehicle: registeredVehicle,
+    //       validRoadWorthySticker: dvlaRoadWorthy,
+    //       validInsurance: insurance,
+    //       emergencyTriangle: emergencyTriangle,
+    //       fireExtinguisher: fireExtinguisher,
+    //       spareTyre: spareTyre,
+    //       clientComments: clientComments,
+    //       damagesOnVehicle: damagesVehicle,
+    //       crackedWindscreens: damagesWindScreen,
+    //       otherDamages: otherDamagesInput,
+    //     },
+    //     dropOffLocationName: dropOffAddress,
+    //     passengerAges: passengerAges,
+    //   },
+    // })
       .then(({ data }) => {
         if (data) {
           setTotalTripCost(data?.getTripQuote?.totalCost);
