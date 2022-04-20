@@ -3,8 +3,8 @@ import {
   BookTripComponentProp,
   BookTripInputProp,
   BookTripOutputProp,
-  GetTripQuoteInputProp,
-  GetTripQuotepOutputProp,
+  //GetTripQuoteInputProp,
+  //GetTripQuotepOutputProp,
   DamagesInput,
 } from "./types";
 import { Modal } from "../../../../components/modal/custom";
@@ -13,7 +13,7 @@ import { IDurationType, IGroupType } from "./components/data/types";
 import { ApolloError, useMutation } from "@apollo/client";
 import {
   CREATE_TRIP,
-  GET_TRIP_QUOTE,
+  //GET_TRIP_QUOTE,
   GET_TRIP_COST_SUMMARY
 } from "../../../../services/graphql/fleet";
 import { useCurrentClient } from "../../../../services/context/currentClient";
@@ -85,10 +85,10 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   // get trip quote
   const [getTripQuote, { loading: loadingTripQuoteData }] = useMutation<any>(GET_TRIP_COST_SUMMARY)
-  const [invokeGetTripRequest, { loading: gettingTripRequest }] = useMutation<
-    GetTripQuotepOutputProp,
-    GetTripQuoteInputProp
-  >(GET_TRIP_QUOTE);
+  // const [invokeGetTripRequest, { loading: gettingTripRequest }] = useMutation<
+  //   GetTripQuotepOutputProp,
+  //   GetTripQuoteInputProp
+  // >(GET_TRIP_QUOTE);
 
   // pay for trip
   const [invokeBookTripRequest, { loading }] = useMutation<
@@ -100,13 +100,13 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   const handleSubmitTripQuote = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let damagesVehicle: DamagesInput[] = getDamages(damageOnVehicle);
-    let damagesWindScreen: DamagesInput[] = getDamages(crackedWindScreens);
-    let otherDamagesInput: DamagesInput[] = getDamages(
-      otherDamages,
-      otherDamagesDescription
-    );
-    let passengerAges: string[] = getPassengers(selectedAgeGroup);
+    // let damagesVehicle: DamagesInput[] = getDamages(damageOnVehicle);
+    // let damagesWindScreen: DamagesInput[] = getDamages(crackedWindScreens);
+    // let otherDamagesInput: DamagesInput[] = getDamages(
+    //   otherDamages,
+    //   otherDamagesDescription
+    // );
+    // let passengerAges: string[] = getPassengers(selectedAgeGroup);
 
     getTripQuote({
       variables: {
@@ -303,7 +303,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                   <CheckListComponent
                     setTab={setTab}
                     handleSubmitTripQuote={handleSubmitTripQuote}
-                    loading={gettingTripRequest}
+                    loading={loadingTripQuoteData}
                     valuableItems={valuableItems}
                     registeredVehicle={registeredVehicle}
                     setRegisteredVehicle={setRegisteredVehicle}
