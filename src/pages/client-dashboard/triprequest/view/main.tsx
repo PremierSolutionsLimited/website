@@ -114,14 +114,14 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
-                    Start Time
+                    Expected Start Time
                   </dt>
 
-                  {trip?.startTime ? (
+                  {trip?.expectedStartTime ? (
                     <Fragment>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                         {moment(trip?.startTime).format(
-                          "MMMM Do YYYY, h:mm:ss a"
+                          "MMMM Do YYYY, h:mm a"
                         )}
                       </dd>
                     </Fragment>
@@ -136,13 +136,13 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
 
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
-                    End Time
+                    Expected End Time
                   </dt>
-                  {trip?.endTime ? (
+                  {trip?.expectedEndTime ? (
                     <Fragment>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                         {moment(trip?.endTime).format(
-                          "MMMM Do YYYY, h:mm:ss a"
+                          "MMMM Do YYYY, h:mm a"
                         )}
                       </dd>
                     </Fragment>

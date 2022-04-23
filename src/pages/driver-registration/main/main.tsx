@@ -28,7 +28,7 @@ const SucessComponent = lazy(() => import("../success"));
 
 const MainComponent = () => {
   useEffect(() => {
-    document.title = "Driver Registration | Hire A Driver";
+    document.title = "Driver Registration | Premier Chauffeur";
   }, []);
   const [, registrationState] = useRegistrationProvider();
   const { upload } = useMultipleImageUpload("driverRegistration");

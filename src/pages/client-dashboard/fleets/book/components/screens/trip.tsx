@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { TripComponentProp } from "./types";
 import {
   getFinalDateWithDurationInput,
@@ -24,6 +24,8 @@ export default function Trip({
   durationTypeSelected,
   duration,
   setDuration,
+  isOvernightTrip,
+  setIsOvernightTrip,
   tripStartDate,
   setTripStartDate,
   setEndTime,
@@ -62,6 +64,15 @@ export default function Trip({
     const start = moment()?.subtract(1, "days");
     return current < start;
   };
+
+  console.log(isOvernightTrip)
+  useEffect(() => {
+    console.log(requestType);
+    if (requestType !== "61faa7fc8b2c8d00164ada82") {
+      setIsOvernightTrip(false);
+    }
+    else setIsOvernightTrip(true)
+  },[requestType, setIsOvernightTrip])
 
   return (
     <Fragment>
@@ -171,6 +182,7 @@ export default function Trip({
               id="location"
               name="location"
               required
+              title={"Select request type"}
               value={requestType}
               onChange={(e) => setRequestType(e.target.value)}
               className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
@@ -187,7 +199,7 @@ export default function Trip({
                     <Fragment>
                       {data?.tripTypesLength === 0 ? (
                         <Fragment>
-                          <option>No request time found</option>
+                          <option>No request type found</option>
                         </Fragment>
                       ) : (
                         <Fragment>

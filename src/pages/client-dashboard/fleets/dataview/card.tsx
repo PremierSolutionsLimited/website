@@ -52,12 +52,13 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
                   data-tip
                   onClick={onBook}
                   data-for="registerTip"
-                  className="text-gray-400 hover:text-gray-500 hover:bg-gray-200 bg-gray-100 h-12 w-12 rounded-full flex items-center justify-center focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                  className=" flex items-center justify-between space-x-1 p-2 text-white hover:text-gold-2 hover:bg-customBlack-2 bg-gold-2 rounded-full focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
                   aria-label="Close"
                 >
+                  <div className="font-semibold">Book A Trip</div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

@@ -30,7 +30,7 @@ const Login = () => {
   >(LOGIN_CLIENT);
 
   useEffect(() => {
-    document.title = "Client Login | Hire A Driver";
+    document.title = "Client Login | Premier Chauffeur";
   }, []);
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -88,13 +88,13 @@ const Login = () => {
                       htmlFor="email"
                       className="block text-sm font-medium pb-2 text-gray-700"
                     >
-                      Email address
+                      Email address/Phone Number
                     </label>
                     <div className="mt-1">
                       <input
                         id="email"
                         name="email"
-                        type="email"
+                        type="text"
                         autoComplete="email"
                         placeholder="Eg. johndoe@something.com"
                         required

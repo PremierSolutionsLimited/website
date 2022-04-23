@@ -29,7 +29,7 @@ const SucessComponent = lazy(() => import("../success"));
 
 const MainComponent = () => {
   useEffect(() => {
-    document.title = "Client Registration | Hire A Driver";
+    document.title = "Client Registration | Premier Chauffeur";
   }, []);
 
   const [, registrationState] = useRegistrationProvider();

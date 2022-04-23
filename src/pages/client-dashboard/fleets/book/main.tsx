@@ -3,8 +3,8 @@ import {
   BookTripComponentProp,
   BookTripInputProp,
   BookTripOutputProp,
-  GetTripQuoteInputProp,
-  GetTripQuotepOutputProp,
+  //GetTripQuoteInputProp,
+  //GetTripQuotepOutputProp,
   DamagesInput,
 } from "./types";
 import { Modal } from "../../../../components/modal/custom";
@@ -13,7 +13,8 @@ import { IDurationType, IGroupType } from "./components/data/types";
 import { ApolloError, useMutation } from "@apollo/client";
 import {
   CREATE_TRIP,
-  GET_TRIP_QUOTE,
+  //GET_TRIP_QUOTE,
+  GET_TRIP_COST_SUMMARY
 } from "../../../../services/graphql/fleet";
 import { useCurrentClient } from "../../../../services/context/currentClient";
 import { getDamages } from "./utils/util";
@@ -52,6 +53,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<IGroupType[]>([]);
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
   const [durationTypeSelected, setDurationTypeSelected] = useState<string>("");
+  const [isOvernightTrip, setIsOvernightTrip] = useState<boolean>(false);
   const [duration, setDuration] = useState<string>("");
   const [requestType, setRequesType] = useState<string>("");
   const [tripStartDate, setTripStartDate] = useState<any>("");
@@ -83,10 +85,11 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [totalTripCost, setTotalTripCost] = useState<string>("");
 
   // get trip quote
-  const [invokeGetTripRequest, { loading: gettingTripRequest }] = useMutation<
-    GetTripQuotepOutputProp,
-    GetTripQuoteInputProp
-  >(GET_TRIP_QUOTE);
+  const [getTripQuote, { loading: loadingTripQuoteData }] = useMutation<any>(GET_TRIP_COST_SUMMARY)
+  // const [invokeGetTripRequest, { loading: gettingTripRequest }] = useMutation<
+  //   GetTripQuotepOutputProp,
+  //   GetTripQuoteInputProp
+  // >(GET_TRIP_QUOTE);
 
   // pay for trip
   const [invokeBookTripRequest, { loading }] = useMutation<
@@ -98,45 +101,55 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   const handleSubmitTripQuote = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let damagesVehicle: DamagesInput[] = getDamages(damageOnVehicle);
-    let damagesWindScreen: DamagesInput[] = getDamages(crackedWindScreens);
-    let otherDamagesInput: DamagesInput[] = getDamages(
-      otherDamages,
-      otherDamagesDescription
-    );
-    let passengerAges: string[] = getPassengers(selectedAgeGroup);
-    invokeGetTripRequest({
+    // let damagesVehicle: DamagesInput[] = getDamages(damageOnVehicle);
+    // let damagesWindScreen: DamagesInput[] = getDamages(crackedWindScreens);
+    // let otherDamagesInput: DamagesInput[] = getDamages(
+    //   otherDamages,
+    //   otherDamagesDescription
+    // );
+    // let passengerAges: string[] = getPassengers(selectedAgeGroup);
+
+    getTripQuote({
       variables: {
-        client: currentClient?._id as string,
-        vehicle: selectedCar?._id as string,
-        tripType: requestType,
-        expectedStartTime: new Date(tripStartDate),
-        expectedEndTime: endTime as Date,
-        pickUpLocation: {
-          type: "Point",
-          coordinates: [+pickupLng, +pickupLat],
-        },
-        pickUpLocationName: pickupAddress,
-        dropOffLocation: {
-          type: "Point",
-          coordinates: [+dropOffLng, +dropOffLat],
-        },
-        checklist: {
-          registeredVehicle: registeredVehicle,
-          validRoadWorthySticker: dvlaRoadWorthy,
-          validInsurance: insurance,
-          emergencyTriangle: emergencyTriangle,
-          fireExtinguisher: fireExtinguisher,
-          spareTyre: spareTyre,
-          clientComments: clientComments,
-          damagesOnVehicle: damagesVehicle,
-          crackedWindscreens: damagesWindScreen,
-          otherDamages: otherDamagesInput,
-        },
-        dropOffLocationName: dropOffAddress,
-        passengerAges: passengerAges,
-      },
+        input: {
+          expectedStartTime: new Date(tripStartDate),
+          expectedEndTime: endTime as Date,
+          overnightTrip: isOvernightTrip,
+        }
+      }
     })
+    // invokeGetTripRequest({
+    //   variables: {
+    //     client: currentClient?._id as string,
+    //     vehicle: selectedCar?._id as string,
+    //     tripType: requestType,
+    //     expectedStartTime: new Date(tripStartDate),
+    //     expectedEndTime: endTime as Date,
+    //     pickUpLocation: {
+    //       type: "Point",
+    //       coordinates: [+pickupLng, +pickupLat],
+    //     },
+    //     pickUpLocationName: pickupAddress,
+    //     dropOffLocation: {
+    //       type: "Point",
+    //       coordinates: [+dropOffLng, +dropOffLat],
+    //     },
+    //     checklist: {
+    //       registeredVehicle: registeredVehicle,
+    //       validRoadWorthySticker: dvlaRoadWorthy,
+    //       validInsurance: insurance,
+    //       emergencyTriangle: emergencyTriangle,
+    //       fireExtinguisher: fireExtinguisher,
+    //       spareTyre: spareTyre,
+    //       clientComments: clientComments,
+    //       damagesOnVehicle: damagesVehicle,
+    //       crackedWindscreens: damagesWindScreen,
+    //       otherDamages: otherDamagesInput,
+    //     },
+    //     dropOffLocationName: dropOffAddress,
+    //     passengerAges: passengerAges,
+    //   },
+    // })
       .then(({ data }) => {
         if (data) {
           setTotalTripCost(data?.getTripQuote?.totalCost);
@@ -253,6 +266,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setSelectedDuration={setDurationType}
                     durationTypeSelected={durationTypeSelected}
                     setDurationTypeSelected={setDurationTypeSelected}
+                    isOvernightTrip={isOvernightTrip}
+                    setIsOvernightTrip={setIsOvernightTrip}
                     duration={duration}
                     setDuration={setDuration}
                     tripStartDate={tripStartDate}
@@ -291,7 +306,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                   <CheckListComponent
                     setTab={setTab}
                     handleSubmitTripQuote={handleSubmitTripQuote}
-                    loading={gettingTripRequest}
+                    loading={loadingTripQuoteData}
                     valuableItems={valuableItems}
                     registeredVehicle={registeredVehicle}
                     setRegisteredVehicle={setRegisteredVehicle}

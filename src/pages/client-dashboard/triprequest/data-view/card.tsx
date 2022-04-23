@@ -120,7 +120,7 @@ const CardComponent = ({
         <Fragment>
           <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
             {moment(history?.expectedStartTime).format(
-              "MMMM Do YYYY, h:mm:ss a"
+              "MMMM Do YYYY, h:mm a"
             )}
           </td>
         </Fragment>

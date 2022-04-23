@@ -27,6 +27,7 @@ export interface TripHistory {
   tripType: TripType;
   startTime: Date;
   expectedStartTime: Date;
+  expectedEndTime: Date;
   endTime: Date;
   pickUpLocationName: string;
   dropOffLocationName: string;
