@@ -44,7 +44,7 @@ const FeaturesComponent = () => {
 
           <div className="relative">
             <h2 className="text-center text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Who we are?
+              Who We Are?
             </h2>
             <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
               We provide professionally trained and certified drivers for
@@ -56,7 +56,7 @@ const FeaturesComponent = () => {
           <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div className="relative">
               <h3 className="text-2xl font-bold text-gray-900 tracking-tight sm:text-3xl">
-                Premier Chauffeur real quick
+                Hire A Driver Real Quick
               </h3>
               <p className="mt-3 text-lg text-gray-500">
                 Why wait until the weekend to take a peaceful trip to your

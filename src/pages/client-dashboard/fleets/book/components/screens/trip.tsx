@@ -67,7 +67,6 @@ export default function Trip({
 
   console.log(isOvernightTrip)
   useEffect(() => {
-    console.log(requestType);
     if (requestType !== "61faa7fc8b2c8d00164ada82") {
       setIsOvernightTrip(false);
     }
