@@ -248,7 +248,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
             </button>
           </div>
           <span className={"font-medium text-md mt-5"}>
-            Book a trip with your "{selectedCar?.make}"
+            Book a trip with your "{selectedCar?.make} {selectedCar?.model}"
           </span>
           <div className=" grid gap-4 grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5 md:grid-cols-5">
             <div className="sm:col-span-2 md:col-span-2 hidden sm:hidden md:block ">
