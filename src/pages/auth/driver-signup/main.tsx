@@ -27,6 +27,7 @@ const DriverSignup = () => {
   const [otherNames, setOtherNames] = useState("");
   const [title, setTitle] = useState("");
   const [dob, setDob] = useState<any>(moment()?.subtract(18, "years"));
+  const [gender, setGender] = useState("")
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const { push } = useHistory();
@@ -88,7 +89,7 @@ const DriverSignup = () => {
         lastName,
         dob: new Date(dob),
         email,
-        gender: title === "MRS" || title === "MISS" ? "FEMALE" : "MALE",
+        gender: gender,
         title,
         otherNames,
         typeOfRegistration: "Driver",
@@ -112,6 +113,7 @@ const DriverSignup = () => {
     usersAge,
     push,
     startRegistration,
+    gender
   ]);
 
   return (
@@ -252,36 +254,66 @@ const DriverSignup = () => {
                           <option value="MR">Mr</option>
                           <option value="MRS">Mrs</option>
                           <option value="MISS">Miss</option>
+                          <option value="DR">Dr</option>
+                          <option value="PROF">Prof</option>
+                          <option value="REV">Rev</option>
+                          <option value="OTHER">Other</option>
                         </select>
                       </div>
                     </div>
                   </div>
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm pb-1 z-10  font-medium text-gray-700"
-                    >
-                      Date of Birth (18 years +)
-                    </label>
-                    <div className={" bg-gray-100 p-1.5"}>
-                      <DatePicker
-                        defaultValue={dob}
-                        onChange={(data: any) => {
-                          setDob(data);
-                        }}
-                        disabledDate={disabledDate}
-                        className={
-                          "border border-none w-full bg-gray-100 focus:border-none"
-                        }
-                      />
+                  <div className="flex flex-wrap -mx-2 overflow-hidden">
+                    <div className="my-0 px-2 w-1/2 overflow-hidden">
+                      <label
+                        htmlFor="password"
+                        className="block text-sm pb-1 font-medium text-gray-700"
+                      >
+                        Date of Birth
+                      </label>
+                      <div className={" bg-gray-100 p-1.5"}>
+                        <DatePicker
+                          defaultValue={dob}
+                          onChange={(data: any) => {
+                            setDob(data);
+                          }}
+                          disabledDate={disabledDate}
+                          className={
+                            "border border-none w-full bg-gray-100 focus:border-none"
+                          }
+                        />
+                      </div>
+                      {isDriverBelowAge && (
+                        <Fragment>
+                          <p className="font-medium mt-1 text-xs text-red-600 hover:text-red-700">
+                            You must be at least 18 years to sign up
+                          </p>
+                        </Fragment>
+                      )}
                     </div>
-                    {isDriverBelowAge && (
-                      <Fragment>
-                        <p className="font-medium mt-1 text-xs text-red-600 hover:text-red-700">
-                          You must be at least 18 years to sign up
-                        </p>
-                      </Fragment>
-                    )}
+                    <div className="my-0 px-2 w-1/2 overflow-hidden">
+                      <div>
+                        <label
+                          htmlFor="password"
+                          className="block text-sm pb-1 font-medium text-gray-700"
+                        >
+                          Gender
+                        </label>
+                        <select
+                          id="gender"
+                          name="gender"
+                          autoComplete="gender"
+                          value={gender}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                            setGender(e.target.value)
+                          }
+                          className="block w-full mt-1 text-sm py-3 px-3 form-select bg-gray-100 p-2 border-none rounded-none shadow-sm placeholder-gray-200 focus:outline-none focus:ring-white focus:border-white"
+                        >
+                          <option>Please Choose</option>
+                          <option value="MALE">Male</option>
+                          <option value="FEMALE">Female</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                   <div className="space-y-1">
                     <label

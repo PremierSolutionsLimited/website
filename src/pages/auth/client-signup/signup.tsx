@@ -99,6 +99,7 @@ const Signup = () => {
     lastName,
     push,
     startRegistration,
+    gender
   ]);
 
   return (
@@ -260,7 +261,7 @@ const Signup = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="space-y-1">
+                  <div className="flex flex-wrap -mx-2 overflow-hidden">
                     <div className="my-0 px-2 w-1/2 overflow-hidden">
                       <label
                         htmlFor="password"
@@ -302,7 +303,7 @@ const Signup = () => {
                           autoComplete="gender"
                           value={gender}
                           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                            setTitle(e.target.value)
+                            setGender(e.target.value)
                           }
                           className="block w-full mt-1 text-sm py-3 px-3 form-select bg-gray-100 p-2 border-none rounded-none shadow-sm placeholder-gray-200 focus:outline-none focus:ring-white focus:border-white"
                         >

@@ -1,5 +1,4 @@
 import React, { Fragment, FC } from "react";
-import { Link } from "react-router-dom";
 import { IoCarSportSharp, IoTime, IoTimeOutline } from "react-icons/io5";
 import { LocationMarkerIcon } from "@heroicons/react/outline";
 import { useLocationName } from "../../../../components/hooks/useLocationName";
