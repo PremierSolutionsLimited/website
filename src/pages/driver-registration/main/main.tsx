@@ -209,7 +209,7 @@ const MainComponent = () => {
     CREATE_DRIVER_APPLICATION
   );
 
-  const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setUploadingImages(true);
     // all driver image files

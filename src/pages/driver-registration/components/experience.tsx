@@ -3,6 +3,7 @@ import { ExperienceComponentProp } from "./types";
 import { DatePicker } from "antd";
 import moment from "moment";
 import { CircleSpinner } from "react-spinners-kit";
+import toast from "react-hot-toast";
 
 const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   setTab,
@@ -38,9 +39,12 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   // yearsOfDrivingExperience,
   // setYearsOfDrivingExperience,
 }) => {
-  const handleGotoNextPage = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCompleteProcess = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    return setTab("license");
+    if (!previousPostionStartDate || !previousPositionEndDate) {
+      return toast.error("Please select a start/end date");
+    }
+    return handleSubmit(e)
   };
   const disabledDate = (current: any) => {
     // Can not select yesterday and before
@@ -52,7 +56,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
   return (
     <Fragment>
       <form
-        onSubmit={handleGotoNextPage}
+        onSubmit={handleCompleteProcess}
         className="divide-y divide-gray-200 lg:col-span-9"
       >
         <div className="py-6 px-4 sm:p-4 lg:pb-8">
@@ -62,7 +66,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                Previous Employer Name
+                Previous Employer Name <span className="text-red-500">*</span>
               </label>
               <input
                 required
@@ -83,14 +87,14 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                Position Held
+                Position Held <span className="text-red-500">*</span>
               </label>
               <input
                 required
                 type="text"
-                name="company"
+                name="position"
                 placeholder={"Eg. Driver"}
-                id="company"
+                id="position"
                 autoComplete="organization"
                 value={previousPositionHeld}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -104,7 +108,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                Start Date
+                Start Date <span className="text-red-500">*</span>
               </label>
 
               <DatePicker
@@ -125,7 +129,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                End Date
+                End Date <span className="text-red-500">*</span>
               </label>
 
               <DatePicker
@@ -146,14 +150,14 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm pb-2 font-medium text-gray-700"
               >
-                Reason for leaving previous work
+                Reason for leaving previous work <span className="text-red-500">*</span>
               </label>
               <input
                 required
                 type="text"
-                name="company"
+                name="reason-for-leaving"
                 placeholder={"Eg. Needed a change of environment"}
-                id="company"
+                id="reason-for-leaving"
                 value={reasonForLeavingPreviousWork}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setReasonForLeavingPreviousWork(e.target.value)
@@ -167,18 +171,19 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 htmlFor="company"
                 className="block text-sm font-medium pb-2 text-gray-700"
               >
-                Are you currently employed?
+                Are you currently employed? <span className="text-red-500">*</span>
               </label>
               <select
-                id="location"
-                name="location"
+                id="currently-employed"
+                name="currently-employed"
                 className="mt-1 block w-full pl-3 pr-10 py-3 text-xs border-none bg-gray-100 focus:outline-none focus:ring-white focus:border-white sm:text-sm rounded-none"
                 value={isEmployed}
+                required={true}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setIsEmployed(e.target.value)
                 }
               >
-                <option>Please Choose</option>
+                <option value={""}>Please Choose</option>
                 <option value={"yes"}>Yes</option>
                 <option value={"no"}>No</option>
               </select>
@@ -297,8 +302,8 @@ const ExperienceComponent: React.FC<ExperienceComponentProp> = ({
                 Back
               </button>
               <button
-                  type="button"
-                  onClick={handleSubmit}
+                  type="submit"
+                  //onClick={handleSubmit}
                   disabled={uploadingToFirebase || loading}
                   className="ml-5 bg-gold-1 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-gold-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
               >

@@ -166,8 +166,8 @@ const DriverSignup = () => {
                         </label>
                         <div className="mt-1">
                           <input
-                            id="name"
-                            name="name"
+                            id="firstName"
+                            name="firstName"
                             type="text"
                             placeholder="Eg. John "
                             required
@@ -191,8 +191,8 @@ const DriverSignup = () => {
                         </label>
                         <div className="mt-1">
                           <input
-                            id="name"
-                            name="name"
+                            id="lastName"
+                            name="lastName"
                             type="text"
                             placeholder="Eg. Doe"
                             required
@@ -217,8 +217,8 @@ const DriverSignup = () => {
                         </label>
                         <div className="mt-1">
                           <input
-                            id="text"
-                            name="text"
+                            id="otherNames"
+                            name="otherNames"
                             type="text"
                             autoComplete="text"
                             placeholder="Eg. Jr."

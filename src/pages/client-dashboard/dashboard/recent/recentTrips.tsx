@@ -94,7 +94,7 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
                 </div>
                 <div className="flex items-baseline">
                   <p className="text-2xl font-semibold text-gray-900">
-                    GHC{data?.finalCost?.finalCost || "N/A"}
+                    GHC {data?.finalCost?.finalCost || "N/A"}
                   </p>
                 </div>
               </div>
