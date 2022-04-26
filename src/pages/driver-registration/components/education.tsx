@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import {EducationComponentProp} from "./types";
 import { DatePicker } from "antd";
+import toast from "react-hot-toast";
 
 const EducationHistory:React.FC<EducationComponentProp> = (
 	{
@@ -15,7 +16,11 @@ const EducationHistory:React.FC<EducationComponentProp> = (
 ) => {
 
 	const handleGoToNext = (e: React.FormEvent<HTMLFormElement>) => {
-		setTab("experience")
+		e.preventDefault();
+		if (!yearOfCompletion) {
+			return toast.error("Please select year of completion")
+		}
+		return setTab("experience")
 	}
 
 	return (
@@ -31,7 +36,7 @@ const EducationHistory:React.FC<EducationComponentProp> = (
 								htmlFor="company"
 								className="block text-sm font-medium text-gray-700"
 							>
-								What is your highest level of education?
+								What is your highest level of education? <span className="text-red-500">*</span>
 							</label>
 							<select
 								id="location"
@@ -56,7 +61,7 @@ const EducationHistory:React.FC<EducationComponentProp> = (
 								htmlFor="url"
 								className="block text-sm font-medium text-gray-700"
 							>
-								Name of School Attended
+								Name of School Attended <span className="text-red-500">*</span>
 							</label>
 							<input
 								type="text"
@@ -76,7 +81,7 @@ const EducationHistory:React.FC<EducationComponentProp> = (
 								htmlFor="url"
 								className="block text-sm font-medium text-gray-700"
 							>
-								Year of Completion
+								Year of Completion <span className="text-red-500">*</span>
 							</label>
 							<DatePicker
 								onChange={(data: any) => {

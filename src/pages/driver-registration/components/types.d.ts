@@ -132,7 +132,7 @@ export interface ExperienceComponentProp {
   setCurrentPositionHeld: React.Dispatch<React.SetStateAction<string>>;
   isEmployed: string;
   setIsEmployed: React.Dispatch<React.SetStateAction<string>>;
-  handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   loading: boolean;
   uploadingToFirebase: boolean;
   comments: string;

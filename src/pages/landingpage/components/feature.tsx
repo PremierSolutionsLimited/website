@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import DriverSvg from "../../../components/svgs/driver";
-import MobileImage1 from "../../../assets/images/premier-chauffeur-1.jpeg";
-import MobileImage2 from "../../../assets/images/premier-chauffeur-2.jpeg";
+import MobileImage1 from "../../../assets/images/mobile-1.png";
+import MobileImage2 from "../../../assets/images/mobile-2.png";
 
 const FeaturesComponent = () => {
   return (
@@ -193,13 +193,13 @@ const FeaturesComponent = () => {
                 <img
                   className="relative  mx-auto"
                   width="220"
-                  src={MobileImage2}
+                  src={MobileImage1}
                   alt=""
                 />
                 <img
                   className="relative  mx-auto"
                   width="220"
-                  src={MobileImage1}
+                  src={MobileImage2}
                   alt=""
                 />
               </div>
@@ -212,6 +212,7 @@ const FeaturesComponent = () => {
             fill="none"
             viewBox="0 0 404 784"
             aria-hidden="true"
+            id={"keyfeatures"}
           >
             <defs>
               <pattern
@@ -239,7 +240,7 @@ const FeaturesComponent = () => {
             />
           </svg>
 
-          <div id={"keyfeatures"} className="relative mt-12 sm:mt-16 lg:mt-24">
+          <div className="relative mt-12 sm:mt-16 lg:mt-24">
             <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
               <div className="lg:col-start-2">
                 <h1 className="text-2xl font-bold text-center text-gray-900 tracking-tight sm:text-3xl">

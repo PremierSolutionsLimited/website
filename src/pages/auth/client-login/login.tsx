@@ -7,14 +7,14 @@ import { LOGIN_CLIENT } from "../../../services/graphql/auth";
 import { ContextLoader } from "../../../shared/loaders";
 import { LoginInputProps, LoginOutputProps } from "./types";
 import { StageSpinner } from "react-spinners-kit";
-import Logo from "../../../assets/logo_gold_text.png";
+import Logo from "../../../assets/PC_logo_no_bg.png";
+import BgImage from "../../../assets/images/005.jpg";
 import _ from "lodash";
 import toast from "react-hot-toast";
 
 const ForgotPasswordComponent = lazy(() => import("../../fogotpassword"));
 
-const bgImage =
-  "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
+//const bgImage ="https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
 
 const Login = () => {
   const [{ signIn }] = useAuthProvider();
@@ -63,7 +63,7 @@ const Login = () => {
           <div className="flex flex-col ">
             <img
               className="absolute inset-0 h-full w-full object-cover"
-              src={bgImage}
+              src={BgImage}
               alt=""
             />
           </div>
@@ -73,7 +73,7 @@ const Login = () => {
           <div className="w-full">
             <div>
               <div className="flex justify-center cursor-pointer" onClick={() => push("/")}>
-                <img className="h-40 w-auto" src={Logo} alt="Workflow" />
+                <img className="h-40 w-auto rounded-full bg-black" src={Logo} alt="Workflow" />
               </div>
               <h2 className="mt-6 text-3xl font-bold text-gold-2">
                 Client Login

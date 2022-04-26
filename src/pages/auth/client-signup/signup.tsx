@@ -4,7 +4,8 @@ import { StageSpinner } from "react-spinners-kit";
 import { useRegistrationProvider } from "../../../services/context";
 import { differenceInCalendarYears } from "date-fns";
 import { DatePicker } from "antd";
-import Logo from "../../../assets/logo_gold_text.png";
+import Logo from "../../../assets/PC_logo_no_bg.png";
+import BgImage from "../../../assets/images/009.jpg";
 import { useLazyQuery } from "@apollo/client";
 import { checkClientMail } from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";
@@ -14,8 +15,7 @@ import ClientPrivacyPdf from "../../../assets/documents/client-privacy.pdf"
 //@ts-ignore
 import AppTermsPdf from "../../../assets/documents/app-terms.pdf"
 
-const bgImage =
-  "https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
+//const bgImage ="https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
 
 const Signup = () => {
   useEffect(() => {
@@ -113,7 +113,7 @@ const Signup = () => {
           <div className="flex flex-col ">
             <img
               className="absolute inset-0 h-full w-full object-cover"
-              src={bgImage}
+              src={BgImage}
               alt=""
             />
             <div
@@ -135,7 +135,7 @@ const Signup = () => {
             <div>
               <div className={`flex justify-center`}>
                 <img
-                  className="h-36 w-auto cursor-pointer"
+                  className="h-36 w-auto cursor-pointer bg-black rounded-full"
                   onClick={(e: any) => {
                     e?.preventDefault();
                     push("/");
