@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import DriverSvg from "../../../components/svgs/driver";
-import MobileImage1 from "../../../assets/images/mobile-1.jpeg";
-import MobileImage2 from "../../../assets/images/mobile-2.jpeg";
+import MobileImage1 from "../../../assets/images/mobile-1.png";
+import MobileImage2 from "../../../assets/images/mobile-2.png";
 
 const FeaturesComponent = () => {
   return (
@@ -193,13 +193,13 @@ const FeaturesComponent = () => {
                 <img
                   className="relative  mx-auto"
                   width="220"
-                  src={MobileImage2}
+                  src={MobileImage1}
                   alt=""
                 />
                 <img
                   className="relative  mx-auto"
                   width="220"
-                  src={MobileImage1}
+                  src={MobileImage2}
                   alt=""
                 />
               </div>

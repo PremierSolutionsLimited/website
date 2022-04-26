@@ -1,9 +1,9 @@
 import BannerAnim, { Element } from "rc-banner-anim";
 import TweenOne from "rc-tween-one";
 import "rc-banner-anim/assets/index.css";
-import image1 from "../../../assets/images/chauf.jpeg";
-import image3 from "../../../assets/images/chauf3.jpeg";
-import image4 from "../../../assets/images/chauf4.jpeg";
+import image1 from "../../../assets/images/001.jpg";
+import image3 from "../../../assets/images/002.jpg";
+import image4 from "../../../assets/images/003.jpg";
 import { Link } from "react-router-dom";
 
 const BgElement = Element.BgElement;
@@ -21,6 +21,9 @@ export default function Banner() {
               backgroundImage: `url(${image1})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundAttachment: "fixed",
+              backgroundOrigin: "content-box",
             }}
           />
           <TweenOne
