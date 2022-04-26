@@ -11,8 +11,8 @@ const navigation = {
   main: [
     { name: "Our Offers", href: "#offers" },
     { name: "Who We Are", href: "#whoweare" },
-    { name: "Key Features", href: "#features" },
-    { name: "FAQS", href: "#faqs" },
+    { name: "Key Features", href: "#keyfeatures" },
+    { name: "FAQS", href: "#faq" },
   ],
 };
 

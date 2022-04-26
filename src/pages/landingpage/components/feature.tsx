@@ -212,6 +212,7 @@ const FeaturesComponent = () => {
             fill="none"
             viewBox="0 0 404 784"
             aria-hidden="true"
+            id={"keyfeatures"}
           >
             <defs>
               <pattern
@@ -239,7 +240,7 @@ const FeaturesComponent = () => {
             />
           </svg>
 
-          <div id={"keyfeatures"} className="relative mt-12 sm:mt-16 lg:mt-24">
+          <div className="relative mt-12 sm:mt-16 lg:mt-24">
             <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
               <div className="lg:col-start-2">
                 <h1 className="text-2xl font-bold text-center text-gray-900 tracking-tight sm:text-3xl">
