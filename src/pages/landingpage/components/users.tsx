@@ -1,6 +1,9 @@
 import { Fragment } from "react";
 import HeaderSvg from "../../../components/svgs/header";
 import Offers from "./offers";
+import Image1 from "../../../assets/images/1000_F_1795123_AbL0VAydISbu4ablvaFt3ZsXCUeJ78.jpg"
+import Image2 from "../../../assets/images/1000_F_124642680_FYfbwP9fTFf5C0jx6XAtHq5Mj7U5jx0o.jpg"
+import Image3 from "../../../assets/images/beach-cape-coast-ghana-morning_101709-1033.jpg"
 
 const UsersComponent = () => {
   return (
@@ -27,7 +30,7 @@ const UsersComponent = () => {
                   <div className="aspect-w-3 relative aspect-h-2">
                     <img
                       className="object-cover shadow-lg rounded-lg"
-                      src="https://images.unsplash.com/photo-1579888286284-692fa4bdc42b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2l0eXxlbnwwfDJ8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+                      src={Image2}
                       alt=""
                     />
                   </div>
@@ -44,7 +47,7 @@ const UsersComponent = () => {
                   <div className="aspect-w-3 aspect-h-2">
                     <img
                       className="object-cover shadow-lg rounded-lg"
-                      src="https://images.unsplash.com/photo-1462396881884-de2c07cb95ed?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZHJpdmluZ3xlbnwwfDJ8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+                      src={Image1}
                       alt=""
                     />
                   </div>
@@ -60,7 +63,7 @@ const UsersComponent = () => {
                   <div className="aspect-w-3 aspect-h-2">
                     <img
                       className="object-cover shadow-lg rounded-lg"
-                      src="https://images.unsplash.com/photo-1610963349361-013b92f96014?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGFja2FnZXxlbnwwfDJ8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+                      src={Image3}
                       alt=""
                     />
                   </div>
