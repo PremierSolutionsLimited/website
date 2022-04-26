@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import FooterSvg from "../../../components/svgs/footer";
 //import Picture from "../../../assets/images/Picture.jpg";
 //import toast from "react-hot-toast";
 import { PhoneIcon, MailIcon, GlobeAltIcon } from "@heroicons/react/outline";
+import ContactUs from "../components/contact-us"
 export interface Props {}
 
 const navigation = {
@@ -16,7 +17,7 @@ const navigation = {
 };
 
 const Footer = () => {
-  //const [loading, setLoading] = useState<boolean>(false);
+  const [openContact, setOpenContact] = useState<boolean>(false);
   return (
     <Fragment>
       <FooterSvg />
@@ -165,6 +166,15 @@ const Footer = () => {
                   </a>
                 </div>
               </div>
+              <div className="mt-5 flex justify-center items-center">
+                <div className="flex-shrink-0">
+                  <button
+                    onClick={() => setOpenContact(true)} 
+                    className="p-3 bg-gold-2 text-white rounded-md border-3 hover:bg-customBlack-1 hover:border-gold-1 hover:text-gold-2 focus:ring-2 focus:ring-black">
+                    Send Us An Email
+                  </button>
+                  </div>
+              </div>
             </div>
           </div>
         
@@ -193,6 +203,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
+      <ContactUs show={openContact} setShow={setOpenContact} />
     </Fragment>
   );
 };
