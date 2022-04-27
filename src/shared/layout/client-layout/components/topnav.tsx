@@ -28,7 +28,7 @@ const TopNav = () => {
       <Disclosure as="nav" className="bg-black shadow-sm">
         {({ open }) => (
           <>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sticky">
               <div className="flex justify-between h-22">
                 <div className="flex">
                   <div className="flex-shrink-0 flex items-center cursor-pointer">

@@ -37,7 +37,7 @@ const MainComponent = () => {
   console.log(recentTrips);
   return (
     <Fragment>
-      <div className="max-w-7xl mx-auto items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 ">
+      <div className="max-w-7xl mx-auto items-center py-5 sm:py-4 lg:px-8 ">
         <div className="mt-3">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-lg leading-6 font-medium text-gray-900">
@@ -255,9 +255,7 @@ const MainComponent = () => {
               </div>
             </div>
             <div
-              style={{
-                height: "55vh",
-              }}
+              
               className="flex flex-col space-y-5 mt-10"
             >
               <h2 className="text-lg leading-6 font-medium text-gray-900">
@@ -270,7 +268,7 @@ const MainComponent = () => {
                   </div>
                 </Fragment>
               ) : (
-                <div className="grid grid-cols-3 gap-3 p-5 flex-grow overflow-hidden shadow rounded-lg">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 p-5 flex-grow overflow-hidden shadow rounded-lg">
                   {recentTrips?.trips?.map((trip: any) => (
                     <RecentTrips data={trip} key={trip._id} />
                   ))}

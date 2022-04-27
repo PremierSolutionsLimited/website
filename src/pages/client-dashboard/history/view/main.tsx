@@ -59,7 +59,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
       <BasicModal
         show={show}
         setShow={setShow}
-        size={isTabletOrMobile ? 100 : 55}
+        size={isTabletOrMobile ? 90 : 55}
       >
         <div className="p-0  ">
           <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
@@ -147,6 +147,18 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   <dt className="text-sm font-medium text-gray-500">Status</dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     {trip?.status || "Not Specified"}
+                  </dd>
+                </div>
+                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">Vehicle</dt>
+                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    GHC {trip?.finalCost?.finalCost || "Not Specified"}
+                  </dd>
+                </div>
+                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">Final Cost</dt>
+                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {trip?.vehicle?.make + " " + trip?.vehicle?.model} , {trip?.vehicle?.registrationNumber}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
