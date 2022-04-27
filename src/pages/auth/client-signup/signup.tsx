@@ -159,7 +159,7 @@ const Signup = () => {
                           htmlFor="email"
                           className="block text-sm pb-1 font-medium text-gray-700"
                         >
-                          First Name
+                          First Name <span className="text-red-500">*</span>
                         </label>
                         <div className="mt-1">
                           <input
@@ -184,8 +184,8 @@ const Signup = () => {
                         <label
                           htmlFor="email"
                           className="block text-sm pb-1 font-medium text-gray-700"
-                        >
-                          Last Name
+                        > 
+                          Last Name <span className="text-red-500">*</span>
                         </label>
                         <div className="mt-1">
                           <input
@@ -212,7 +212,7 @@ const Signup = () => {
                           htmlFor="password"
                           className="block text-sm pb-1 font-medium text-gray-700"
                         >
-                          Other Names
+                          Other Names <span className="text-red-500">*</span>
                         </label>
                         <div className="mt-1">
                           <input
@@ -237,7 +237,7 @@ const Signup = () => {
                           htmlFor="password"
                           className="block text-sm pb-1 font-medium text-gray-700"
                         >
-                          Title
+                          Title <span className="text-red-500">*</span>
                         </label>
                         <select
                           id="country"
@@ -267,7 +267,7 @@ const Signup = () => {
                         htmlFor="password"
                         className="block text-sm pb-1 font-medium text-gray-700"
                       >
-                        Date of Birth
+                        Date of Birth <span className="text-red-500">*</span>
                       </label>
                       <div className={" bg-gray-100 p-1.5"}>
                         <DatePicker
@@ -295,7 +295,7 @@ const Signup = () => {
                           htmlFor="password"
                           className="block text-sm pb-1 font-medium text-gray-700"
                         >
-                          Gender
+                          Gender <span className="text-red-500">*</span>
                         </label>
                         <select
                           id="gender"
@@ -319,7 +319,7 @@ const Signup = () => {
                       htmlFor="password"
                       className="block text-sm pb-1 font-medium text-gray-700"
                     >
-                      Email address
+                      Email address <span className="text-red-500">*</span>
                     </label>
                     <div className="mt-1">
                       <input
