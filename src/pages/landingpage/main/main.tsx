@@ -5,6 +5,7 @@ import UsersComponent from "../components/users";
 import FeaturesComponent from "../components/feature";
 //import NewsLetter from "../components/newsLetter";
 import FrequentlyAsked from "../components/faqs";
+import {Footer} from "../layout/footer";
 
 const MainComponent = () => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const MainComponent = () => {
         <FrequentlyAsked />
         {/* <NewsLetter /> */}
         {/* <PricingComponent /> */}
+        <Footer />
       </Layout>
     </Fragment>
   );

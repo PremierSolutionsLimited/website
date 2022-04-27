@@ -3,7 +3,7 @@ import { Fragment } from "react";
 const FrequentlyAskedQuestions = () => {
   return (
     <Fragment>
-      <div id="faq" className="h:0 md:h-faq-height sm:h-0" style={{scrollBehavior: "smooth"}}>
+      <div id="faq" style={{scrollBehavior: "smooth"}}>
         <section className="text-gray-700">
           <div className="container px-5 py-24 mx-auto">
             <div className="text-center mb-20">
@@ -24,7 +24,7 @@ const FrequentlyAskedQuestions = () => {
 
                   <p className="my-4 leading-snag">
                     We provide you with professionally trained and certified
-                    chauffeur or drivers, whilst you travel around in the
+                    chauffeurs or drivers, whilst you travel around in the
                     comfort of your own vehicle. You do not have to worry about
                     traffic, leaving the office to pick your children or driving
                     around.
@@ -66,7 +66,7 @@ const FrequentlyAskedQuestions = () => {
                   </summary>
 
                   <p className="my-4 leading-snag">
-                    Client request for a driver and we assign client to an
+                    Client requests for a driver and we assign client to an
                     available driver.
                   </p>
                 </details>
@@ -90,7 +90,7 @@ const FrequentlyAskedQuestions = () => {
 
                   <p className="my-4 leading-snag">
                     Yes, you must have your own car or access to a car that a
-                    PSL chauffeur will drive on your behalf.
+                    PC chauffeur will drive on your behalf.
                   </p>
                 </details>
                 <details className="mb-4">
