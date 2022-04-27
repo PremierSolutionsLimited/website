@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment, ReactNode } from "react";
-import { Footer } from "./footer";
+//import { Footer } from "./footer";
 import Header from "./header";
 
 export interface Props {
@@ -14,7 +14,6 @@ const Layout: React.FC<Props> = ({ children }) => {
       <div className={"overflow-x-hidden "} style={{scrollBehavior: "smooth"}}>
         {children}
 
-        <Footer />
         {/* <CookieAlert /> */}
       </div>
     </Fragment>
