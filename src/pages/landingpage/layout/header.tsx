@@ -12,7 +12,6 @@ import {
   IdentificationIcon,
   LightBulbIcon,
   HeartIcon,
-  MailIcon,
 } from "@heroicons/react/outline";
 
 const navigation = [
@@ -40,7 +39,7 @@ const MainHeader = () => {
   );
 
   //for mobile devices
-  const [showMobileDropdown, setShowMobileDropdown] = useState<boolean>(false);
+  const [, setShowMobileDropdown] = useState<boolean>(false);
   const showMobileDropdownContainerRef = useRef();
   useOutsideListener(showMobileDropdownContainerRef, () =>
     setShowMobileDropdown(false)
