@@ -210,7 +210,7 @@ const PreviewComponent = ({
               </Fragment>
             ) : (
               <Fragment>
-                <span className="mx-1">Pay</span>
+                <span className="mx-1">Book Trip</span>
               </Fragment>
             )}
           </button>

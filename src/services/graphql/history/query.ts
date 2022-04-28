@@ -113,5 +113,6 @@ export const getTripHistoryLite = gql`
       }
       createdAt
     }
+    tripsLength(filter: $filter)
   }
 `

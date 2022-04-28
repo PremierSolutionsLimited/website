@@ -17,6 +17,7 @@ import {
   GET_TRIP_COST_SUMMARY
 } from "../../../../services/graphql/fleet";
 import { useCurrentClient } from "../../../../services/context/currentClient";
+import { useHistory } from "react-router-dom";
 import { getDamages } from "./utils/util";
 import TripComponent from "./components/screens/trip";
 import OriginComponent from "./components/screens/origin";
@@ -49,6 +50,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   });
 
   const { currentUser: currentClient } = useCurrentClient();
+  const {push} = useHistory();
   const [tab, setTab] = useState<string>("trip");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<IGroupType[]>([]);
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
@@ -206,9 +208,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
     })
       .then(({ data }) => {
         if (data) {
-          return window.location.replace(
-            data?.createTripRequest?.payment?.authorizationUrl
-          );
+          return push("/app/requests")
         }
       })
       .catch((e: ApolloError) => {
