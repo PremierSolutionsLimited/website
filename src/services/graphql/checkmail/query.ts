@@ -7,6 +7,18 @@ export const checkClientMail = gql`
 `;
 export const checkDriverMail = gql`
   query ($filter: CheckMailFilter!) {
-    checkClientMail(filter: $filter)
+    checkDriverMail(filter: $filter)
   }
 `;
+
+export const checkDriverPhone = gql`
+  query Query($filter: CheckPhoneFilter!) {
+  checkDriverPhone(filter: $filter)
+}
+`
+
+export const checkClientPhone = gql`
+  query Query($filter: CheckPhoneFilter!) {
+  checkClientPhone(filter: $filter)
+}
+`

@@ -248,7 +248,7 @@ const MainComponent = () => {
         maritalStatus: maritalStatus || undefined,
         numberOfChildren: parseInt(numberOfChildren) || undefined,
         hasLicense: hasALicense === "yes" ? true : false,
-        phone: telephone || undefined,
+        phone: registrationState?.status?.phone || undefined,
         region: region || undefined,
         city: city || undefined,
         residence: currentAddress || undefined,
