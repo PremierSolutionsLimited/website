@@ -12,7 +12,7 @@ const FrequentlyAskedQuestions = () => {
               </h1>
               <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
                 The most common questions about how our business works and what
-                can do for you.
+                we can do for you.
               </p>
             </div>
             <div className="flex flex-wrap lg:w-5/6 sm:mx-auto sm:mb-2 -mx-2">

@@ -392,7 +392,7 @@ export default function CheckList({
           >
             <span className="mx-1">
               {" "}
-              {loading ? "Processing..." : "Preview & Pay"}
+              {loading ? "Processing..." : "Preview Trip"}
             </span>
           </button>
         </span>
