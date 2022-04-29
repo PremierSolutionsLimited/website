@@ -276,34 +276,6 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 className="mt-1.5 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
-
-            <div className="col-span-12 sm:col-span-6">
-              <label
-                htmlFor="company"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Telephone <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                required
-                min="0"
-                maxLength={10}
-                placeholder={"Eg. 0542781934"}
-                value={telephone}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (/[a-zA-Z]/.test(e.target.value)) {
-                    return setTelephone("");
-                  } else {
-                    setTelephone(e.target.value);
-                  }
-                }}
-                autoComplete="organization"
-                className="mt-1.5 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-              />
-            </div>
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
