@@ -5,11 +5,13 @@ import { classNames } from "../../../../components/classnames";
 import { userNavigation, ClientDashBoardNavigation } from "./util";
 import { ClientDashBoardNavigationProps } from "./types";
 import { Link, useLocation } from "react-router-dom";
-import { ContextLoader } from "../../../loaders";
+import { ContextLoader, DataLoader } from "../../../loaders";
 import { useCurrentClient } from "../../../../services/context/currentClient";
 import {useHistory} from "react-router-dom";
 import ProfileImage from "../../../../assets/images/male.jpeg";
 import Logo from "../../../../assets/logo_gold_text.png";
+import { useQuery } from "@apollo/client";
+import { GET_NOTIFICATIONS } from "../../../../services/graphql/notifications/queries";
 
 const LogoutModal = lazy(() => import("./logout"));
 const ChangePasswordModal = lazy(() => import("./changpassword"));
@@ -22,6 +24,14 @@ const TopNav = () => {
   const { currentUser: curentClient } = useCurrentClient();
 
   const {push} = useHistory();
+
+  const {data:notifactions, loading:loadingNotifications} = useQuery(GET_NOTIFICATIONS, {
+    variables: {
+      pagination: {
+        limit: 5,
+      }
+    }
+  });
 
   return (
     <Fragment>
@@ -95,12 +105,42 @@ const TopNav = () => {
                           leave="transition ease-in duration-75"
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
+
                         >
                           <Menu.Items
                             static
-                            className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            className="origin-top-right absolute right-0 mt-2 p-4 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            style={{
+                              height: "250px",
+                              minWidth: "200px"
+                            }}
                           >
-
+                            {
+                              loadingNotifications ? (
+                                <Menu.Item>
+                                  {({ active }) => (
+                                  <DataLoader />
+                                  )}
+                                </Menu.Item>
+                              )
+                              :
+                              notifactions?.notifications?.length > 0 ? (
+                                notifactions?.notifications?.map((item: any, itemIdx: number) => (
+                                    <div key={itemIdx}>
+                                      <Menu.Item>
+                                        {item.title}
+                                      </Menu.Item>
+                                    </div>
+                                  )
+                                )
+                              )
+                              :
+                              <Menu.Item>
+                                {({active}) => (
+                                  <p>No Notifications Yet</p>
+                                )}
+                              </Menu.Item>
+                            }
                           </Menu.Items>
                         </Transition>
                       </>

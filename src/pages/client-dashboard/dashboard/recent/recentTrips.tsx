@@ -105,14 +105,14 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
               </div>
               <div className="flex flex-col items-center space-y-2">
                 <span
-                  className={`inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-gray-500 ${
+                  className={`inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium text-white ${
                     data?.status === "COMPLETED"
-                      ? "text-green-500"
+                      ? "bg-green-500"
                       : data?.status === "IN_PROGRESS"
-                      ? "text-blue-500"
+                      ? "bg-blue-500"
                       : data?.status === "CANCELLED"
-                      ? "text-red-600"
-                      : "text-yellow-400"
+                      ? "bg-red-600"
+                      : "bg-gold-2"
                   }`}
                 >
                   <svg

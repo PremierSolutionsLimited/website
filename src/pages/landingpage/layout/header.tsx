@@ -18,7 +18,7 @@ const navigation = [
   { name: "Our Offers", href: "#offers", icon: HeartIcon },
   { name: "Who We Are", href: "#whoweare", icon: IdentificationIcon },
   { name: "Key Features", href: "#keyfeatures", icon: LightBulbIcon },
-  { name: "Faqs", href: "#faq", icon: QuestionMarkCircleIcon },
+  { name: "FAQs", href: "#faq", icon: QuestionMarkCircleIcon },
   //{ name: "Contact Us", href: "#footer", icon: MailIcon },
 ];
 
