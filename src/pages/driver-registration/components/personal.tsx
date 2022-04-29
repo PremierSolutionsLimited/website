@@ -555,7 +555,6 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
                 </div>
-                <div className="col-span-12 sm:col-span-6" />
                 <div className="col-span-12 sm:col-span-12 md:col-span-6">
                   <label
                     htmlFor="licenseUrl"
