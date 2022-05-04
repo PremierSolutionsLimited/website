@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { StageSpinner } from "react-spinners-kit";
 import { useRegistrationProvider } from "../../../services/context";
@@ -10,10 +10,11 @@ import { useLazyQuery } from "@apollo/client";
 import { checkClientMail } from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";
 import moment from "moment";
+import { RefreshIcon } from "@heroicons/react/outline";
 // @ts-ignore
-import ClientPrivacyPdf from "../../../assets/documents/client-privacy.pdf"
+import ClientPrivacyPdf from "../../../assets/documents/client-privacy.pdf";
 //@ts-ignore
-import AppTermsPdf from "../../../assets/documents/app-terms.pdf"
+import AppTermsPdf from "../../../assets/documents/app-terms.pdf";
 
 //const bgImage ="https://images.unsplash.com/photo-1616805111699-0e52fa62f779?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80";
 
@@ -27,7 +28,8 @@ const Signup = () => {
   const [title, setTitle] = useState("");
   const [dob, setDob] = useState<any>(moment()?.subtract(18, "years"));
   const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("")
+  const [gender, setGender] = useState("");
+  const [isOther, setIsOther] = useState(false);
   const { push } = useHistory();
   const [{ startRegistration }] = useRegistrationProvider();
 
@@ -99,8 +101,15 @@ const Signup = () => {
     lastName,
     push,
     startRegistration,
-    gender
+    gender,
   ]);
+
+  useEffect(() => {
+    if (title === "OTHER") {
+      setTitle("");
+      setIsOther(true);
+    }
+  }, [title]);
 
   return (
     <Fragment>
@@ -184,7 +193,7 @@ const Signup = () => {
                         <label
                           htmlFor="email"
                           className="block text-sm pb-1 font-medium text-gray-700"
-                        > 
+                        >
                           Last Name <span className="text-red-500">*</span>
                         </label>
                         <div className="mt-1">
@@ -239,26 +248,50 @@ const Signup = () => {
                         >
                           Title <span className="text-red-500">*</span>
                         </label>
-                        <select
-                          id="title"
-                          name="title"
-                          autoComplete="title"
-                          value={title}
-                          required={true}
-                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                            setTitle(e.target.value)
-                          }
-                          className="block w-full mt-1 text-sm py-3 px-3 form-select bg-gray-100 p-2 border-none rounded-none shadow-sm placeholder-gray-200 focus:outline-none focus:ring-white focus:border-white"
-                        >
-                          <option value="">Please Choose</option>
-                          <option value="MR">Mr</option>
-                          <option value="MRS">Mrs</option>
-                          <option value="MISS">Miss</option>
-                          <option value="DR">Dr</option>
-                          <option value="PROF">Prof</option>
-                          <option value="REV">Rev</option>
-                          <option value="OTHER">Other</option>
-                        </select>
+                        {isOther ? (
+                          <div className="relative">
+                            <input
+                              type="text"
+                              placeholder="Eg. Ing."
+                              name="title"
+                              value={title}
+                              required={true}
+                              onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                              ) => setTitle(e.target.value)}
+                              className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                            />
+                            <div
+                              className="absolute inset-y-0 z-40 rounded-full right-0 pr-3 cursor-pointer flex items-center text-gray-600 hover:text-gold-1"
+                              onClick={() => setIsOther(false)}
+                            >
+                              <RefreshIcon
+                                className="h-5 w-5 "
+                                aria-hidden="true"
+                              />
+                            </div>
+                          </div>
+                        ) : (
+                          <select
+                            id="title"
+                            name="title"
+                            value={title}
+                            required={true}
+                            onChange={(
+                              e: React.ChangeEvent<HTMLSelectElement>
+                            ) => setTitle(e.target.value)}
+                            className="block w-full mt-1 text-sm py-3 px-3 form-select bg-gray-100 p-2 border-none rounded-none shadow-sm placeholder-gray-200 focus:outline-none focus:ring-white focus:border-white"
+                          >
+                            <option value="">Please Choose</option>
+                            <option value="MR">Mr</option>
+                            <option value="MRS">Mrs</option>
+                            <option value="MISS">Miss</option>
+                            <option value="DR">Dr</option>
+                            <option value="PROF">Prof</option>
+                            <option value="REV">Rev</option>
+                            <option value="OTHER">Other</option>
+                          </select>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -343,7 +376,25 @@ const Signup = () => {
                   </div>{" "}
                   <div>
                     <div className="text-center font-light mt-7 mb-2  text-gray-900 text-sm">
-                      By signing up, you agree to our <a className="text-gold-2 font-semibold hover:text-gold-1" href={AppTermsPdf} target="_blank" rel="noreferrer">terms</a> and <a className="text-gold-2 font-semibold hover:text-gold-1" href={ClientPrivacyPdf} target="_blank" rel="noreferrer">privacy policy</a>.
+                      By signing up, you agree to our{" "}
+                      <a
+                        className="text-gold-2 font-semibold hover:text-gold-1"
+                        href={AppTermsPdf}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        terms
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        className="text-gold-2 font-semibold hover:text-gold-1"
+                        href={ClientPrivacyPdf}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        privacy policy
+                      </a>
+                      .
                     </div>
                     <button
                       type="button"
@@ -365,7 +416,6 @@ const Signup = () => {
                   </div>
                 </form>
               </div>
-              
             </div>
           </div>
           <div className="flex flex-row items-center justify-center mt-10 font-light">
