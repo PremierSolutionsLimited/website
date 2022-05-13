@@ -172,20 +172,33 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 >
                   Region <span className="text-red-500">*</span>
                 </label>
-                <div className="mt-1.5">
-                  <input
-                    type="text"
-                    name="region"
-                    id="region"
-                    value={region}
-                    placeholder={"Eg. Greater Accra"}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setRegion(e.target.value)
-                    }
-                    autoComplete="family-name"
-                    className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
-                  />
-                </div>
+                <div className="mt-1.5 rounded-md shadow-sm flex">
+                    <select
+                      required={true}
+                      value={region}
+                      onChange={(e) => setRegion(e.target.value)}
+                      autoComplete="family-name"
+                      className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                    >
+                      <option value={""}>Please Choose</option>
+                      <option value="Greater Accra">Greater Accra</option>
+                      <option value="Ashanti">Ashanti</option>
+                      <option value="Eastern">Eastern</option>
+                      <option value="Central">Central</option>
+                      <option value="Western">Western</option>
+                      <option value="Western North">Western North</option>
+                      <option value="Ahafo">Ahafo</option>
+                      <option value="Bono">Bono</option>
+                      <option value="Nothern">Nothern</option>
+                      <option value="Oti">Oti</option>
+                      <option value="Volta">Volta</option>
+                      <option value="North East">North East</option>
+                      <option value="Nothern">Nothern</option>
+                      <option value="Upper West">Upper West</option>
+                      <option value="Upper East">Upper East</option>
+                      <option value="Savanna">Savanna</option>
+                    </select>
+                    </div>
               </div>
             </div>
 

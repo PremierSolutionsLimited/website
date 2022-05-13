@@ -311,7 +311,7 @@ const MainComponent = () => {
           <div className={``}>
             {showCropper && (
               <Fragment>
-                <div>
+                <div className="z-100">
                   <Cropper
                     image={imageUrl}
                     crop={crop}
