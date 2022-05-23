@@ -112,6 +112,8 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
                       ? "bg-blue-500"
                       : data?.status === "CANCELLED"
                       ? "bg-red-600"
+                      : data?.status === "PREPARED" 
+                      ? "bg-teal-600"
                       : "bg-gold-2"
                   }`}
                 >
