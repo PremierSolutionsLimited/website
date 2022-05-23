@@ -83,7 +83,10 @@ class MyGoogleMap extends Component {
   _generateAddress() {
     const { mapApi } = this.state;
 
+    console.log(mapApi)
     const geocoder = new mapApi.Geocoder();
+
+    console.log(geocoder)
 
     geocoder.geocode(
       { location: { lat: this.state.lat, lng: this.state.lng } },
@@ -138,7 +141,7 @@ class MyGoogleMap extends Component {
             <div className="sm:col-span-3 mt-0 ">
               <div className="bg-gray-800 w-full p-3 rounded-md my-4">
                 <div className="font-medium text-sm mt-0 text-white">
-                  <span>{truncateText(this.state.address, 20)}</span>
+                  <span>{truncateText(this.state.address, 30)}</span>
                 </div>
                 <div className="flex flex-row items-center my-0.5">
                   <svg
