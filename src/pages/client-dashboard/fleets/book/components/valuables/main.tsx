@@ -56,7 +56,7 @@ const MainComponent: FC<IMainComponentProp> = ({ valuables, setValuables }) => {
           </button>
         </div>
       </Fragment>
-      <div className="overflow-y-auto grid grid-cols-4 gap-5 mt-5 pt-3 pb-4">
+      <div className="overflow-y-auto grid grid-cols-4 gap-5 mt-5 pt-3 pb-4 pl-3">
         {valuables?.map((valuable, index) => {
           return (
             <SingleValuable

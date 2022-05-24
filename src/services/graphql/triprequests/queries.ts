@@ -55,6 +55,23 @@ export const tripRequests = gql`
         model
         registrationNumber
       }
+      checklist {
+        damagesOnVehicle {
+          description
+          images
+        }
+        valuablesInVehicle {
+          description
+          images
+        }
+        clientComments
+        registeredVehicle
+        validRoadWorthySticker
+        validInsurance
+        emergencyTriangle
+        fireExtinguisher
+        spareTyre
+      }
       createdAt
     }
     tripRequestsLength

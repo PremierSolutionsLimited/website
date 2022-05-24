@@ -1,4 +1,6 @@
 import { MyFleet } from "../../fleets/main/types";
+import { TDamageType } from "../../fleets/book/components/damage/main";
+import { TValuableType } from "../../fleets/book/components/valuables/main";
 export interface TripHistoryInputProp {
   filter?: {
     client?: {
@@ -52,6 +54,17 @@ export interface TripHistory {
       cost: string;
     };
   };
+  checklist: {
+    damagesOnVehicle?: TDamageType[];
+    valuablesInVehicle?: TValuableType[];
+    clientComments?: string;
+    registeredVehicle?: boolean;
+    validRoadWorthySticker?: boolean;
+    validInsurance?: boolean;
+    emergencyTriangle?: boolean;
+    fireExtinguisher?: boolean;
+    spareTyre?: boolean;
+  }
   updatedAt: Date;
 }
 

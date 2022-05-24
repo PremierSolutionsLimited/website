@@ -7,7 +7,7 @@ import Pagination from "../../../../shared/ui-modules/pagination/pagination";
 const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
   data,
   onView,
-  onRateDriver,
+  onUpdateChecklist,
   limit,
   total,
   skip,
@@ -70,7 +70,7 @@ const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
                     <CardComponent
                       history={history}
                       onView={() => onView(history)}
-                      onRateDriver={() => onRateDriver(history)}
+                      onUpdateChecklist={() => onUpdateChecklist(history)}
                     />
                   </Fragment>
                 ))}

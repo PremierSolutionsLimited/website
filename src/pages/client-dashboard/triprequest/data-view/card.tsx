@@ -6,7 +6,7 @@ import moment from "moment";
 const CardComponent = ({
   history,
   onView,
-  onRateDriver,
+  onUpdateChecklist,
 }: HistoryCardComponentProp) => {
   return (
     <tr>
@@ -154,19 +154,15 @@ const CardComponent = ({
         >
           View
         </button>
-        {history?.status === "COMPLETED" && (
+        {history?.status === "PENDING" && (
           <Fragment>
-            {!history?.clientRated && (
-              <Fragment>
-                <button
-                  onClick={onRateDriver}
-                  type="button"
-                  className="text-gold-1 ml-3 hover:text-gold-2 hover:underline cursor-pointer focus:outline-none "
-                >
-                  Rate Driver
-                </button>
-              </Fragment>
-            )}
+            <button
+              onClick={onUpdateChecklist}
+              type="button"
+              className="text-gold-1 ml-3 hover:text-gold-2 hover:underline cursor-pointer focus:outline-none "
+            >
+              Update Checklist
+            </button>
           </Fragment>
         )}
       </td>
