@@ -5,7 +5,7 @@ import {
   BookTripOutputProp,
   //GetTripQuoteInputProp,
   //GetTripQuotepOutputProp,
-  DamagesInput,
+  //DamagesInput,
 } from "./types";
 import { Modal } from "../../../../components/modal/custom";
 import { useMediaQuery } from "react-responsive";
@@ -14,21 +14,23 @@ import { ApolloError, useMutation } from "@apollo/client";
 import {
   CREATE_TRIP,
   //GET_TRIP_QUOTE,
-  GET_TRIP_COST_SUMMARY
+  GET_TRIP_COST_SUMMARY,
 } from "../../../../services/graphql/fleet";
 import { useCurrentClient } from "../../../../services/context/currentClient";
 import { useHistory } from "react-router-dom";
-import { getDamages } from "./utils/util";
+//import { getDamages } from "./utils/util";
 import TripComponent from "./components/screens/trip";
 import OriginComponent from "./components/screens/origin";
 import DestinationComponent from "./components/screens/destination";
 import CheckListComponent from "./components/screens/checklist";
 import PreviewComponent from "./components/screens/preview";
-import ValuablesComponent from "./components/screens/valuables"
+import ValuablesComponent from "./components/screens/valuables";
+import DamageComponent from "./components/screens/damage";
 import StepComponent from "./components/bones";
 import toast from "react-hot-toast";
 import _ from "lodash";
-import { TValuableType } from "./components/valuables/main"
+import { TValuableType } from "./components/valuables/main";
+import { TDamageType } from "./components/damage/main";
 
 // get ids of selected regions in array
 export const getPassengers = (selectedAgeGroup: IGroupType[]) => {
@@ -52,7 +54,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   });
 
   const { currentUser: currentClient } = useCurrentClient();
-  const {push} = useHistory();
+  const { push } = useHistory();
   const [tab, setTab] = useState<string>("trip");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<IGroupType[]>([]);
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
@@ -80,17 +82,15 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [fireExtinguisher, setFireExtinguisher] = useState<boolean>(false);
   const [spareTyre, setSpareTyre] = useState<boolean>(false);
   const [valuableItems, setValuableItems] = useState<TValuableType[]>([]);
-  const [damageOnVehicle, setDamageOnVehicle] = useState<boolean>(false);
-  const [crackedWindScreens, setCrackedWindScreens] = useState<boolean>(false);
-  const [otherDamages, setOtherDamages] = useState<boolean>(false);
-  const [otherDamagesDescription, setOtherDamagesDescription] =
-    useState<string>("");
+  const [damageOnVehicle, setDamageOnVehicle] = useState<TDamageType[]>([]);
   const [clientComments, setClientComments] = useState<string>("");
 
   const [totalTripCost, setTotalTripCost] = useState<string>("");
 
   // get trip quote
-  const [getTripQuote, { loading: loadingTripQuoteData }] = useMutation<any>(GET_TRIP_COST_SUMMARY)
+  const [getTripQuote, { loading: loadingTripQuoteData }] = useMutation<any>(
+    GET_TRIP_COST_SUMMARY
+  );
   // const [invokeGetTripRequest, { loading: gettingTripRequest }] = useMutation<
   //   GetTripQuotepOutputProp,
   //   GetTripQuoteInputProp
@@ -120,41 +120,41 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
           expectedStartTime: new Date(tripStartDate),
           expectedEndTime: endTime as Date,
           overnightTrip: isOvernightTrip,
-        }
-      }
+        },
+      },
     })
-    // invokeGetTripRequest({
-    //   variables: {
-    //     client: currentClient?._id as string,
-    //     vehicle: selectedCar?._id as string,
-    //     tripType: requestType,
-    //     expectedStartTime: new Date(tripStartDate),
-    //     expectedEndTime: endTime as Date,
-    //     pickUpLocation: {
-    //       type: "Point",
-    //       coordinates: [+pickupLng, +pickupLat],
-    //     },
-    //     pickUpLocationName: pickupAddress,
-    //     dropOffLocation: {
-    //       type: "Point",
-    //       coordinates: [+dropOffLng, +dropOffLat],
-    //     },
-    //     checklist: {
-    //       registeredVehicle: registeredVehicle,
-    //       validRoadWorthySticker: dvlaRoadWorthy,
-    //       validInsurance: insurance,
-    //       emergencyTriangle: emergencyTriangle,
-    //       fireExtinguisher: fireExtinguisher,
-    //       spareTyre: spareTyre,
-    //       clientComments: clientComments,
-    //       damagesOnVehicle: damagesVehicle,
-    //       crackedWindscreens: damagesWindScreen,
-    //       otherDamages: otherDamagesInput,
-    //     },
-    //     dropOffLocationName: dropOffAddress,
-    //     passengerAges: passengerAges,
-    //   },
-    // })
+      // invokeGetTripRequest({
+      //   variables: {
+      //     client: currentClient?._id as string,
+      //     vehicle: selectedCar?._id as string,
+      //     tripType: requestType,
+      //     expectedStartTime: new Date(tripStartDate),
+      //     expectedEndTime: endTime as Date,
+      //     pickUpLocation: {
+      //       type: "Point",
+      //       coordinates: [+pickupLng, +pickupLat],
+      //     },
+      //     pickUpLocationName: pickupAddress,
+      //     dropOffLocation: {
+      //       type: "Point",
+      //       coordinates: [+dropOffLng, +dropOffLat],
+      //     },
+      //     checklist: {
+      //       registeredVehicle: registeredVehicle,
+      //       validRoadWorthySticker: dvlaRoadWorthy,
+      //       validInsurance: insurance,
+      //       emergencyTriangle: emergencyTriangle,
+      //       fireExtinguisher: fireExtinguisher,
+      //       spareTyre: spareTyre,
+      //       clientComments: clientComments,
+      //       damagesOnVehicle: damagesVehicle,
+      //       crackedWindscreens: damagesWindScreen,
+      //       otherDamages: otherDamagesInput,
+      //     },
+      //     dropOffLocationName: dropOffAddress,
+      //     passengerAges: passengerAges,
+      //   },
+      // })
       .then(({ data }) => {
         if (data) {
           setTotalTripCost(data?.getTripQuote?.totalCost);
@@ -169,12 +169,12 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let damagesVehicle: DamagesInput[] = getDamages(damageOnVehicle);
-    let damagesWindScreen: DamagesInput[] = getDamages(crackedWindScreens);
-    let otherDamagesInput: DamagesInput[] = getDamages(
-      otherDamages,
-      otherDamagesDescription
-    );
+    // let damagesVehicle: DamagesInput[] = getDamages(damageOnVehicle);
+    // let damagesWindScreen: DamagesInput[] = getDamages(crackedWindScreens);
+    // let otherDamagesInput: DamagesInput[] = getDamages(
+    //   otherDamages,
+    //   otherDamagesDescription
+    // );
     let passengerAges: string[] = getPassengers(selectedAgeGroup);
 
     invokeBookTripRequest({
@@ -201,9 +201,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
           fireExtinguisher: fireExtinguisher,
           spareTyre: spareTyre,
           clientComments: clientComments,
-          damagesOnVehicle: damagesVehicle,
-          crackedWindscreens: damagesWindScreen,
-          otherDamages: otherDamagesInput,
+          damagesOnVehicle: damageOnVehicle,
         },
         dropOffLocationName: dropOffAddress,
         passengerAges: passengerAges,
@@ -211,7 +209,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
     })
       .then(({ data }) => {
         if (data) {
-          return push("/app/requests")
+          return push("/app/requests");
         }
       })
       .catch((e: ApolloError) => {
@@ -323,31 +321,31 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setFireExtinguisher={setFireExtinguisher}
                     spareTyre={spareTyre}
                     setSpareTyre={setSpareTyre}
-                    damageOnVehicle={damageOnVehicle}
-                    setDamageOnVehicle={setDamageOnVehicle}
-                    crackedWindScreens={crackedWindScreens}
-                    setCrackedWindScreens={setCrackedWindScreens}
-                    otherDamages={otherDamages}
-                    setOtherDamages={setOtherDamages}
-                    otherDamagesDescription={otherDamagesDescription}
-                    setOtherDamagesDescription={setOtherDamagesDescription}
                     clientComments={clientComments}
                     setClientComments={setClientComments}
                   />
                 </Fragment>
               )}
 
-{
-                tab === "valuables" && (
-                  <Fragment>
-                    <ValuablesComponent
-                      setTab={setTab}
-                      setValuableItems={setValuableItems}
-                      valuableItems={valuableItems}
-                    />
-                  </Fragment>
-                )
-              }
+              {tab === "valuables" && (
+                <Fragment>
+                  <ValuablesComponent
+                    setTab={setTab}
+                    setValuableItems={setValuableItems}
+                    valuableItems={valuableItems}
+                  />
+                </Fragment>
+              )}
+
+              {tab === "damage" && (
+                <Fragment>
+                  <DamageComponent
+                    setTab={setTab}
+                    setDamage={setDamageOnVehicle}
+                    damage={damageOnVehicle}
+                  />
+                </Fragment>
+              )}
 
               {tab === "preview" && (
                 <Fragment>
@@ -372,9 +370,6 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     fireExtinguisher={fireExtinguisher}
                     spareTyre={spareTyre}
                     damageOnVehicle={damageOnVehicle}
-                    crackedWindScreens={crackedWindScreens}
-                    otherDamages={otherDamages}
-                    otherDamagesDescription={otherDamagesDescription}
                     clientComments={clientComments}
                   />
                 </Fragment>

@@ -24,9 +24,6 @@ const PreviewComponent = ({
   fireExtinguisher,
   spareTyre,
   damageOnVehicle,
-  crackedWindScreens,
-  otherDamages,
-  otherDamagesDescription,
   clientComments,
   totalTripCost,
   registeredVehicle,
@@ -149,34 +146,6 @@ const PreviewComponent = ({
             {damageOnVehicle ? "Yes" : "No"}
           </dd>
         </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-light text-gray-700"> Cracked Screens</dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {crackedWindScreens ? "Yes" : "No"}
-          </dd>
-        </div>
-
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-light text-gray-700">Other</dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {otherDamages ? "Yes" : "No"}
-          </dd>
-        </div>
-
-        {otherDamages && (
-          <Fragment>
-            <div className="sm:col-span-3">
-              <dt className="text-sm font-light text-gray-700">
-                {" "}
-                Other Description
-              </dt>
-              <dd className="mt-1 text-sm text-gray-900">
-                {otherDamagesDescription}
-              </dd>
-            </div>
-          </Fragment>
-        )}
-
         {clientComments && (
           <Fragment>
             <div className="sm:col-span-3">

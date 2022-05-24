@@ -74,11 +74,8 @@ interface Checklist {
   spareTyre: boolean;
   clientComments: string;
   damagesOnVehicle: DamagesInput[];
-  crackedWindscreens: DamagesInput[];
-  otherDamages: DamagesInput[];
 }
 export interface DamagesInput {
-  hasDamage: boolean;
   description: string;
-  image: string;
+  images: string[];
 }

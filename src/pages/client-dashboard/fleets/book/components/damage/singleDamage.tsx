@@ -1,7 +1,7 @@
 import React, { Fragment, FC } from "react";
 import { MinusCircleIcon } from "@heroicons/react/outline";
 
-export interface ValuableProps {
+export interface DamageProps {
   description: string;
   setDescription: (value: any) => void;
   images?: string[];
@@ -9,7 +9,7 @@ export interface ValuableProps {
   handleRemove: () => void;
 }
 
-const SingleValuable: FC<ValuableProps> = ({
+const SingleValuable: FC<DamageProps> = ({
   description,
   setDescription,
   handleRemove,
@@ -20,7 +20,7 @@ const SingleValuable: FC<ValuableProps> = ({
         <div className="grid grid-cols-5 gap-4">
           <div className="col-span-4">
             <input
-              placeholder="Enter name/description of item"
+              placeholder="Enter description of damage"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-3 focus:outline-none bg-white focus:ring-gray-500 focus:border-gray-400 sm:text-sm"
               value={description}
                 onChange={(e) => setDescription(e.target.value)}
