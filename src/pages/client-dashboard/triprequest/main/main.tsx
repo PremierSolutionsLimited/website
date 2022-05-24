@@ -19,15 +19,15 @@ import { useCurrentClient } from "../../../../services/context/currentClient";
 import DataView from "../data-view";
 
 const ViewTripComponent = lazy(() => import("../view"));
-const RateDriverComponent = lazy(() => import("../rate-driver"));
+const UpdateChecklistComponent = lazy(() => import("../update-checklist"));
 
 const pages: BreadCrumbProp[] = [{ name: "Requested Trips ", href: HISTORY }];
 
 const MainComponent = () => {
   const [viewTrip, setViewTrip] = useState<boolean>(false);
-  const [rateDriver, setRateDriver] = useState<boolean>(false);
+  const [updateChecklist, setUpdateChecklist] = useState<boolean>(false);
   const [selectedTrip, setSelectedTrip] = useState<TripHistory>();
-  const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
+  const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(5);
 
   const { currentUser } = useCurrentClient();
   const { data, loading, refetch } = useQuery<
@@ -95,9 +95,9 @@ const MainComponent = () => {
                           setSelectedTrip(dataFromCard);
                           setViewTrip(!viewTrip);
                         }}
-                        onRateDriver={(dataFromCard: TripHistory) => {
+                        onUpdateChecklist={(dataFromCard: TripHistory) => {
                           setSelectedTrip(dataFromCard);
-                          setRateDriver(!rateDriver);
+                          setUpdateChecklist(!updateChecklist);
                         }}
                       />
                     </Fragment>
@@ -123,10 +123,10 @@ const MainComponent = () => {
           setShow={setViewTrip}
           trip={selectedTrip}
         />
-        <RateDriverComponent
+        <UpdateChecklistComponent
           refetch={refetch}
-          show={rateDriver}
-          setShow={setRateDriver}
+          show={updateChecklist}
+          setShow={setUpdateChecklist}
           trip={selectedTrip}
         />
       </Suspense>
