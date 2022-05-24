@@ -6,12 +6,16 @@ export interface IValuablesProps {
   damage: TDamageType[];
   setDamage: Dispatch<SetStateAction<TDamageType[]>>;
   setTab: Dispatch<SetStateAction<string>>;
+  handleSubmitTripQuote: (e: React.FormEvent<HTMLButtonElement>) => void;
+  loading: boolean;
 }
 
 const Valuables: FC<IValuablesProps> = ({
   damage,
   setDamage,
   setTab,
+  handleSubmitTripQuote,
+  loading,
 }) => {
     console.log(damage)
   return (
@@ -35,11 +39,11 @@ const Valuables: FC<IValuablesProps> = ({
         <span className="inline-flex rounded-none shadow-sm ">
           <button
             type="button"
-            onClick={() => setTab("summary")}
-            //disabled={loading}
+            onClick={handleSubmitTripQuote}
+            disabled={loading}
             className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-gray focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
           >
-            <span className="mx-1">Next</span>
+            <span className="mx-1">{loading? "Loading...": "Preview"}</span>
           </button>
         </span>
       </div>

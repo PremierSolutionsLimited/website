@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { ChecklistComponentProp } from "./types";
 import { Switch } from "@headlessui/react";
+import toast from "react-hot-toast";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -26,6 +27,30 @@ export default function CheckList({
   handleSubmitTripQuote,
   loading,
 }: ChecklistComponentProp) {
+
+  const handleGoToNext = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (!registeredVehicle){
+      return toast.error("You cannot proceed without a registered vehicle")
+    }
+    if (!dvlaRoadWorthy){
+      return toast.error("You cannot proceed without DVLA roadworthy")
+    }
+    if (!insurance){
+      return toast.error("You cannot proceed without insurance")
+    }
+    if (!emergencyTriangle){
+      return toast.error("You cannot proceed without an emergency triangle")
+    }
+    if (!fireExtinguisher){
+      return toast.error("You cannot proceed without a fire extinguisher")
+    }
+    if (!spareTyre){
+      return toast.error("You cannot proceed without a spare tyre")
+    }
+    setTab("valuables")
+  }
+
   return (
     <Fragment>
       <div className="pt-0  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
@@ -257,7 +282,7 @@ export default function CheckList({
         <span className="inline-flex rounded-none shadow-sm ">
           <button
             type="button"
-            onClick={() => setTab("valuables")}
+            onClick={handleGoToNext}
             //disabled={loading}
             className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-gray focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
           >

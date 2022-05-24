@@ -95,6 +95,7 @@ export interface PreviewComponentProp {
   emergencyTriangle: boolean;
   fireExtinguisher: boolean;
   spareTyre: boolean;
-  damageOnVehicle: any;
+  damageOnVehicle?: any;
+  valuableItems?: any;
   clientComments: string;
 }

@@ -343,6 +343,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setTab={setTab}
                     setDamage={setDamageOnVehicle}
                     damage={damageOnVehicle}
+                    loading={loadingTripQuoteData}
+                    handleSubmitTripQuote={handleSubmitTripQuote}
                   />
                 </Fragment>
               )}
@@ -370,6 +372,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     fireExtinguisher={fireExtinguisher}
                     spareTyre={spareTyre}
                     damageOnVehicle={damageOnVehicle}
+                    valuableItems={valuableItems}
                     clientComments={clientComments}
                   />
                 </Fragment>

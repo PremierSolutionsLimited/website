@@ -1,5 +1,5 @@
 import React, { Fragment, FC, Dispatch, SetStateAction } from "react";
-import SingleValuable from "./singleDamage";
+import SingleDamage from "./singleDamage";
 
 export type TDamageType = {
   description: string;
@@ -59,7 +59,7 @@ const MainComponent: FC<IMainComponentProp> = ({ damage, setDamage }) => {
       <div className="overflow-y-auto grid grid-cols-4 gap-5 mt-5 pt-3 pb-4">
         {damage?.map((valuable, index) => {
           return (
-            <SingleValuable
+            <SingleDamage
               key={index}
               description={valuable.description}
               setDescription={(value) => {

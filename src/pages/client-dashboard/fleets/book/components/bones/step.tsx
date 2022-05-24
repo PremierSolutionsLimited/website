@@ -337,8 +337,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
             </div>
           </li>
 
-          <li className="relative pb-10">
-            {/*Complete Step*/}
+          {/* <li className="relative pb-10">
             <div
               className={`-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full ${
                 tab === "preview" ? "bg-gold-1" : "bg-gray-300"
@@ -387,7 +386,7 @@ const StepsComponent = ({ tab }: { tab: string }) => {
                 </p>
               </div>
             </div>
-          </li>
+          </li> */}
 
           <li className="relative">
             {/*Complete Step*/}
