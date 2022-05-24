@@ -22,8 +22,8 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
         </label>
         <input
           type="text"
-          name="url"
-          id="url"
+          name="name"
+          id="name"
           required
           placeholder="Eg. Maverick Abemposah"
           value={name}
@@ -40,8 +40,8 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
         </label>
         <input
           type="text"
-          name="url"
-          id="url"
+          name="relationship"
+          id="relationship"
           required
           placeholder="Eg. Brother"
           value={relationship}
@@ -58,9 +58,9 @@ const SingleSelectOption: React.FC<SingleEmergencySelectProps> = ({
         </label>
         <input
           type="text"
-          name="url"
+          name="phone"
           required
-          id="url"
+          id="phone"
           placeholder="Eg. 0542677282"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}

@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { ChecklistComponentProp } from "./types";
 import { Switch } from "@headlessui/react";
+import toast from "react-hot-toast";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -8,7 +9,7 @@ function classNames(...classes: any) {
 
 export default function CheckList({
   setTab,
-  valuableItems,
+  //valuableItems,
   registeredVehicle,
   setRegisteredVehicle,
   dvlaRoadWorthy,
@@ -21,19 +22,35 @@ export default function CheckList({
   setFireExtinguisher,
   spareTyre,
   setSpareTyre,
-  damageOnVehicle,
-  setDamageOnVehicle,
-  crackedWindScreens,
-  setCrackedWindScreens,
-  otherDamages,
-  setOtherDamages,
-  otherDamagesDescription,
-  setOtherDamagesDescription,
   clientComments,
   setClientComments,
   handleSubmitTripQuote,
   loading,
 }: ChecklistComponentProp) {
+
+  const handleGoToNext = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (!registeredVehicle){
+      return toast.error("You cannot proceed without a registered vehicle")
+    }
+    if (!dvlaRoadWorthy){
+      return toast.error("You cannot proceed without DVLA roadworthy")
+    }
+    if (!insurance){
+      return toast.error("You cannot proceed without insurance")
+    }
+    if (!emergencyTriangle){
+      return toast.error("You cannot proceed without an emergency triangle")
+    }
+    if (!fireExtinguisher){
+      return toast.error("You cannot proceed without a fire extinguisher")
+    }
+    if (!spareTyre){
+      return toast.error("You cannot proceed without a spare tyre")
+    }
+    setTab("valuables")
+  }
+
   return (
     <Fragment>
       <div className="pt-0  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
@@ -225,129 +242,8 @@ export default function CheckList({
                 />
               </Switch>
             </Switch.Group>
-            <Switch.Group
-              as="li"
-              className="py-3 flex items-center justify-between"
-            >
-              <div className="flex flex-col">
-                <Switch.Label
-                  as="p"
-                  className="text-sm  font-medium text-gray-900"
-                  passive
-                >
-                  Damage on Vehicle
-                </Switch.Label>
-              </div>
-              <Switch
-                checked={damageOnVehicle}
-                onChange={setDamageOnVehicle}
-                className={classNames(
-                  damageOnVehicle ? "bg-green-500" : "bg-gray-200",
-                  "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
-                )}
-              >
-                <span className="sr-only">Use setting</span>
-                <span
-                  aria-hidden="true"
-                  className={classNames(
-                    damageOnVehicle ? "translate-x-5" : "translate-x-0",
-                    "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
-                  )}
-                />
-              </Switch>
-            </Switch.Group>
-            <Switch.Group
-              as="li"
-              className="py-3 flex items-center justify-between"
-            >
-              <div className="flex flex-col">
-                <Switch.Label
-                  as="p"
-                  className="text-sm  font-medium text-gray-900"
-                  passive
-                >
-                  Cracked Wind Screens
-                </Switch.Label>
-              </div>
-              <Switch
-                checked={crackedWindScreens}
-                onChange={setCrackedWindScreens}
-                className={classNames(
-                  crackedWindScreens ? "bg-green-500" : "bg-gray-200",
-                  "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
-                )}
-              >
-                <span className="sr-only">Use setting</span>
-                <span
-                  aria-hidden="true"
-                  className={classNames(
-                    crackedWindScreens ? "translate-x-5" : "translate-x-0",
-                    "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
-                  )}
-                />
-              </Switch>
-            </Switch.Group>
-            <Switch.Group
-              as="li"
-              className="py-3 flex items-center justify-between"
-            >
-              <div className="flex flex-col">
-                <Switch.Label
-                  as="p"
-                  className="text-sm  font-medium text-gray-900"
-                  passive
-                >
-                  Other
-                </Switch.Label>
-              </div>
-              <Switch
-                checked={otherDamages}
-                onChange={setOtherDamages}
-                className={classNames(
-                  otherDamages ? "bg-green-500" : "bg-gray-200",
-                  "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
-                )}
-              >
-                <span className="sr-only">Use setting</span>
-                <span
-                  aria-hidden="true"
-                  className={classNames(
-                    otherDamages ? "translate-x-5" : "translate-x-0",
-                    "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
-                  )}
-                />
-              </Switch>
-            </Switch.Group>
           </ul>
         </div>
-        {otherDamages && (
-          <Fragment>
-            <div className="sm:col-span-6 mx-5 py-3">
-              <label
-                htmlFor="first_name"
-                className="block text-sm pb-1 font-medium leading-5 text-gray-700"
-              >
-                Other Damages Description
-              </label>
-              <div className="mt-1 rounded-none shadow-none">
-                <textarea
-                  name=""
-                  id=""
-                  rows={2}
-                  required
-                  value={otherDamagesDescription}
-                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                    setOtherDamagesDescription(e.target.value)
-                  }
-                  placeholder={"Other damages description"}
-                  className={
-                    "rounded-md focus:outline-none border border-gray-300 h-full font-light w-full p-3 bg-white focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
-                  }
-                ></textarea>
-              </div>
-            </div>
-          </Fragment>
-        )}
         <div className="sm:col-span-6 mx-5 pt-3">
           <label
             htmlFor="first_name"
@@ -386,13 +282,12 @@ export default function CheckList({
         <span className="inline-flex rounded-none shadow-sm ">
           <button
             type="button"
-            onClick={handleSubmitTripQuote}
+            onClick={handleGoToNext}
             //disabled={loading}
             className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-gray focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
           >
             <span className="mx-1">
-              {" "}
-              {loading ? "Processing..." : "Preview Trip"}
+              Next
             </span>
           </button>
         </span>
