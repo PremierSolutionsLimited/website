@@ -58,7 +58,7 @@ export interface ChecklistComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
   handleSubmitTripQuote: (e: React.FormEvent<HTMLButtonElement>) => void;
   loading: boolean;
-  valuableItems: string[];
+  valuableItems?: string[];
   registeredVehicle: boolean;
   setRegisteredVehicle: React.Dispatch<React.SetStateAction<boolean>>;
   dvlaRoadWorthy: boolean;

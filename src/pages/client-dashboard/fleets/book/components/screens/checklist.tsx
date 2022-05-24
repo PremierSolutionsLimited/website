@@ -8,7 +8,7 @@ function classNames(...classes: any) {
 
 export default function CheckList({
   setTab,
-  valuableItems,
+  //valuableItems,
   registeredVehicle,
   setRegisteredVehicle,
   dvlaRoadWorthy,
@@ -386,13 +386,12 @@ export default function CheckList({
         <span className="inline-flex rounded-none shadow-sm ">
           <button
             type="button"
-            onClick={handleSubmitTripQuote}
+            onClick={() => setTab("valuables")}
             //disabled={loading}
             className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-gray focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
           >
             <span className="mx-1">
-              {" "}
-              {loading ? "Processing..." : "Preview Trip"}
+              Next
             </span>
           </button>
         </span>

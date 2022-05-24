@@ -24,9 +24,11 @@ import OriginComponent from "./components/screens/origin";
 import DestinationComponent from "./components/screens/destination";
 import CheckListComponent from "./components/screens/checklist";
 import PreviewComponent from "./components/screens/preview";
+import ValuablesComponent from "./components/screens/valuables"
 import StepComponent from "./components/bones";
 import toast from "react-hot-toast";
 import _ from "lodash";
+import { TValuableType } from "./components/valuables/main"
 
 // get ids of selected regions in array
 export const getPassengers = (selectedAgeGroup: IGroupType[]) => {
@@ -70,13 +72,14 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [dropOffAddress, setDropOffAddress] = useState<string>("");
 
   // states for check list
-  const [valuableItems] = useState<string[]>([]);
+  //const [valuableItems] = useState<string[]>([]);
   const [dvlaRoadWorthy, setDVLARoadWorthy] = useState<boolean>(false);
   const [registeredVehicle, setRegisteredVehicle] = useState<boolean>(false);
   const [insurance, setInsurance] = useState<boolean>(false);
   const [emergencyTriangle, setEmergencyTriangle] = useState<boolean>(false);
   const [fireExtinguisher, setFireExtinguisher] = useState<boolean>(false);
   const [spareTyre, setSpareTyre] = useState<boolean>(false);
+  const [valuableItems, setValuableItems] = useState<TValuableType[]>([]);
   const [damageOnVehicle, setDamageOnVehicle] = useState<boolean>(false);
   const [crackedWindScreens, setCrackedWindScreens] = useState<boolean>(false);
   const [otherDamages, setOtherDamages] = useState<boolean>(false);
@@ -307,7 +310,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setTab={setTab}
                     handleSubmitTripQuote={handleSubmitTripQuote}
                     loading={loadingTripQuoteData}
-                    valuableItems={valuableItems}
+                    //valuableItems={valuableItems}
                     registeredVehicle={registeredVehicle}
                     setRegisteredVehicle={setRegisteredVehicle}
                     dvlaRoadWorthy={dvlaRoadWorthy}
@@ -333,6 +336,18 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                   />
                 </Fragment>
               )}
+
+{
+                tab === "valuables" && (
+                  <Fragment>
+                    <ValuablesComponent
+                      setTab={setTab}
+                      setValuableItems={setValuableItems}
+                      valuableItems={valuableItems}
+                    />
+                  </Fragment>
+                )
+              }
 
               {tab === "preview" && (
                 <Fragment>
