@@ -50,6 +50,12 @@ export interface TripHistory {
       cost: number;
     }
   }
+  checklistMismatch: boolean;
+  checklist: {
+    damagesOnVehicle: any[];
+    valuablesInVehicle: any[];
+    clientComments: string;
+  }
 }
 
 export interface TripType {

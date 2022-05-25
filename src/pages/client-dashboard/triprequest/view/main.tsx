@@ -7,6 +7,8 @@ import { LocationMarkerIcon } from "@heroicons/react/solid";
 import ReactStars from "react-rating-stars-component";
 import moment from "moment";
 import CarImage from "../../../../assets/images/bmw.png";
+import { TDamageType } from "../../fleets/book/components/damage/main";
+import { TValuableType } from "../../fleets/book/components/valuables/main";
 
 const MainComponent: React.FC<ViewTripComponentProp> = ({
   show,
@@ -80,14 +82,10 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                       className={"h-5 -ml-3.5 w-5 text-gold-1"}
                     />
                     <div
-                      className={
-                        "h-20 rounded-lg -ml-1 w-0.5 -mt-2 bg-gold-1"
-                      }
+                      className={"h-20 rounded-lg -ml-1 w-0.5 -mt-2 bg-gold-1"}
                     />
                     <div
-                      className={
-                        "h-2 w-2 rounded-full -ml-1.5 bg-gold-1 -mt-1"
-                      }
+                      className={"h-2 w-2 rounded-full -ml-1.5 bg-gold-1 -mt-1"}
                     ></div>
                   </div>
                   <dd className="-mt-10 hidden sm:hidden md:block text-sm text-gray-900 sm:-mt-10 sm:col-span-1">
@@ -120,7 +118,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   {trip?.expectedStartTime ? (
                     <Fragment>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {moment(trip?.startTime).format(
+                        {moment(trip?.expectedStartTime).format(
                           "MMMM Do YYYY, h:mm a"
                         )}
                       </dd>
@@ -141,7 +139,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   {trip?.expectedEndTime ? (
                     <Fragment>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {moment(trip?.endTime).format(
+                        {moment(trip?.expectedEndTime).format(
                           "MMMM Do YYYY, h:mm a"
                         )}
                       </dd>
@@ -163,6 +161,132 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   <Fragment>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                       {moment(trip?.createdAt).format("MMMM Do YYYY")}
+                    </dd>
+                  </Fragment>
+                </div>
+
+                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Vehicle Details and Checklist
+                  </dt>
+
+                  <Fragment>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-light text-gray-700">
+                            Registered Vehicle
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.registeredVehicle ? "Yes" : "No"}{" "}
+                          </dd>
+                        </div>
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-light text-gray-700">
+                            Road Worthy Sticker
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.validRoadWorthySticker
+                              ? "Yes"
+                              : "No"}{" "}
+                          </dd>
+                        </div>
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-light text-gray-700">
+                            Valid Insurance
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.validInsurance ? "Yes" : "No"}
+                          </dd>
+                        </div>
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-light text-gray-700">
+                            {" "}
+                            Emergency Triangle
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.emergencyTriangle ? "Yes" : "No"}
+                          </dd>
+                        </div>
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-light text-gray-700">
+                            {" "}
+                            Fire Extinguisher
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.fireExtinguisher ? "Yes" : "No"}
+                          </dd>
+                        </div>
+
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-light text-gray-700">
+                            Spare Tyre
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.spareTyre ? "Yes" : "No"}
+                          </dd>
+                        </div>
+                        <div className="sm:col-span-1" />
+                        <div className="sm:col-span-3">
+                          <dt className="text-sm font-light text-gray-700">
+                            Damage on Vehicle?
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.damagesOnVehicle
+                              ? trip?.checklist?.damagesOnVehicle?.length > 0
+                                ? "Yes"
+                                : "No"
+                              : null}
+                          </dd>
+                        </div>
+                        {trip?.checklist?.damagesOnVehicle &&
+                          trip?.checklist?.damagesOnVehicle?.length > 0 && (
+                            <div className="sm:col-span-3">
+                              <dt className="text-sm font-light text-gray-700">
+                                {" "}
+                                Damage Description
+                              </dt>
+                              <dd className="mt-1 text-sm text-gray-900">
+                                {trip?.checklist?.damagesOnVehicle?.map(
+                                  (item: TDamageType, itemIdx: number) => (
+                                    <Fragment key={itemIdx}>
+                                      <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+                                        {item?.description}
+                                      </dd>
+                                    </Fragment>
+                                  )
+                                )}
+                              </dd>
+                            </div>
+                          )}
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-light text-gray-700">
+                            Valuables In Vehicle?
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.valuablesInVehicle && trip?.checklist?.valuablesInVehicle?.length > 0 ? "Yes" : "No"}
+                          </dd>
+                        </div>
+                        {trip?.checklist?.valuablesInVehicle && trip?.checklist?.valuablesInVehicle?.length > 0 && (
+                          <div className="sm:col-span-3">
+                            <dt className="text-sm font-light text-gray-700">
+                              {" "}
+                              Item Name/Description
+                            </dt>
+                            <dd className="mt-1 text-sm text-gray-900">
+                              {trip?.checklist?.valuablesInVehicle?.map(
+                                (item: TValuableType, itemIdx: number) => (
+                                  <Fragment key={itemIdx}>
+                                    <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+                                      {item?.description}
+                                    </dd>
+                                  </Fragment>
+                                )
+                              )}
+                            </dd>
+                          </div>
+                        )}
+                      </div>
                     </dd>
                   </Fragment>
                 </div>

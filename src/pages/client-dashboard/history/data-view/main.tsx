@@ -8,6 +8,7 @@ const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
   data,
   onView,
   onRateDriver,
+  onUpdateChecklist,
   limit,
   total,
   skip,
@@ -77,6 +78,7 @@ const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
                       history={history}
                       onView={() => onView(history)}
                       onRateDriver={() => onRateDriver(history)}
+                      onUpdateChecklist={() => onUpdateChecklist(history)}
                     />
                   </Fragment>
                 ))}

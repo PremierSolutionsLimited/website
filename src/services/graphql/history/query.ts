@@ -62,6 +62,25 @@ export const getTripHistory = gql`
           cost
         }
       }
+      checklistMismatch
+      checklist {
+        valuablesInVehicle {
+          reporterResponse {
+            description
+            images
+          }
+          confirmerResponse
+          reportedBy
+        }
+        damagesOnVehicle {
+          reporterResponse {
+            description
+            images
+          }
+          confirmerResponse
+          reportedBy
+        }
+      }
     }
     tripsLength(filter: $filter)
   }
@@ -115,4 +134,4 @@ export const getTripHistoryLite = gql`
     }
     tripsLength(filter: $filter)
   }
-`
+`;

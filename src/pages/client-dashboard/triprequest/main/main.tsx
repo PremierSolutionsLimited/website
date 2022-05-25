@@ -35,7 +35,7 @@ const MainComponent = () => {
     TripHistoryInputProp
   >(TRIP_REQUESTS, {
     variables: {
-      populate: ["vehicle", "class", "tripType"],
+      populate: ["vehicle", "class", "tripType", "checklist"],
       filter: {
         client: {
           eq: currentUser?._id as string,

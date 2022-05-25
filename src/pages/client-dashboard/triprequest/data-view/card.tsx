@@ -154,7 +154,7 @@ const CardComponent = ({
         >
           View
         </button>
-        {history?.status === "PENDING" && (
+        {/* {history?.status === "PENDING" && (
           <Fragment>
             <button
               onClick={onUpdateChecklist}
@@ -164,7 +164,7 @@ const CardComponent = ({
               Update Checklist
             </button>
           </Fragment>
-        )}
+        )} */}
       </td>
     </tr>
   );
