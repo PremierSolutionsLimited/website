@@ -164,7 +164,7 @@ const CardComponent = ({
         )}
         {history?.status === "PENDING" && (
           <Fragment>
-            
+            {history?.checklistMismatch && (
               <Fragment>
                 <button
                   onClick={onUpdateChecklist}
@@ -174,7 +174,7 @@ const CardComponent = ({
                   Update Checklist
                 </button>
               </Fragment>
-            
+            )}
           </Fragment>
         )}
       </td>

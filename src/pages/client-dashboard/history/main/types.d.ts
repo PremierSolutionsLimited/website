@@ -55,6 +55,12 @@ export interface TripHistory {
     damagesOnVehicle: any[];
     valuablesInVehicle: any[];
     clientComments: string;
+    validRoadWorthySticker: boolean;
+    registeredVehicle: boolean;
+    validInsurance: boolean;
+    emergencyTriangle: boolean;
+    fireExtinguisher: boolean;
+    spareTyre: boolean;
   }
 }
 
