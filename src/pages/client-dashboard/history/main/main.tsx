@@ -29,7 +29,7 @@ const MainComponent = () => {
   const [rateDriver, setRateDriver] = useState<boolean>(false)
   const [updateChecklist, setUpdateChecklist] = useState<boolean>(false);
   const [selectedTrip, setSelectedTrip] = useState<TripHistory>();
-  const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
+  const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(5);
 
   const { currentUser } = useCurrentClient();
 

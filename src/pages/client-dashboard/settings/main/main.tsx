@@ -31,7 +31,7 @@ const MainComponent = () => {
   const { currentUser: currentClient, refetch: refetchCurrentUser } =
     useCurrentClient();
 
-  const [invokeUpdateClient, { loading }] = useMutation<
+  const [invokeUpdateClient, { loading: loadingUpdate }] = useMutation<
     UpdateCurrentClientOutputProp,
     UpdateCurrentClientInputProp
   >(UPDATE_CURRENT_CLIENT);
@@ -139,6 +139,8 @@ const MainComponent = () => {
       setClientFile(clientFile);
     }
   };
+
+  console.log(loadingUpdate, uploadingToFirebase)
   return (
     <Fragment>
       <div className="max-w-7xl  mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
@@ -331,18 +333,18 @@ const MainComponent = () => {
               </div>
 
               <div className="pt-8 flex justify-end">
-                <button
+                {/* <button
                   type="button"
                   className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-1"
                 >
                   Back
-                </button>
+                </button> */}
                 <button
                   type="submit"
-                  disabled={uploadingToFirebase || loading}
+                  disabled={uploadingToFirebase || loadingUpdate}
                   className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-1"
                 >
-                  {uploadingToFirebase || loading ? "Saving..." : "Save"}
+                  {uploadingToFirebase || loadingUpdate ? "Saving..." : "Save"}
                 </button>
               </div>
             </form>
