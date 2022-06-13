@@ -21,7 +21,7 @@ const Basic: FC<BasicModalComponentProp> = ({
         <Dialog
           as="div"
           static
-          className="fixed z-30 inset-0 overflow-y-auto"
+          className="fixed z-50 inset-0 overflow-y-auto"
           open={show}
           onClose={setShow}
           initialFocus={ref}
