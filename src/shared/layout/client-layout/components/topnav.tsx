@@ -28,7 +28,7 @@ const TopNav = () => {
   const {data:notifactions, loading:loadingNotifications} = useQuery(GET_NOTIFICATIONS, {
     variables: {
       pagination: {
-        limit: 5,
+        limit: 10,
       }
     }
   });

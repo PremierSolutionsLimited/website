@@ -8,6 +8,7 @@ const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
   data,
   onView,
   onRateDriver,
+  onUpdateChecklist,
   limit,
   total,
   skip,
@@ -56,7 +57,7 @@ const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Expected Start Time
+                    Start Time
                   </th>
                   {/* <th
                     scope="col"
@@ -77,6 +78,7 @@ const DataViewComponent: React.FC<HistoryDataViewComponentProp> = ({
                       history={history}
                       onView={() => onView(history)}
                       onRateDriver={() => onRateDriver(history)}
+                      onUpdateChecklist={() => onUpdateChecklist(history)}
                     />
                   </Fragment>
                 ))}

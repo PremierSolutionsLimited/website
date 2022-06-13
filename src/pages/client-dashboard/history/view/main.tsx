@@ -7,6 +7,8 @@ import { LocationMarkerIcon } from "@heroicons/react/solid";
 import ReactStars from "react-rating-stars-component";
 import moment from "moment";
 import CarImage from "../../../../assets/images/bmw.png";
+//import { TDamageType } from "../../fleets/book/components/damage/main";
+//import { TValuableType } from "../../fleets/book/components/valuables/main";
 
 const MainComponent: React.FC<ViewTripComponentProp> = ({
   show,
@@ -152,13 +154,13 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">Vehicle</dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    GHC {trip?.finalCost?.finalCost || "Not Specified"}
+                  {trip?.vehicle?.make + " " + trip?.vehicle?.model} , {trip?.vehicle?.registrationNumber}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">Final Cost</dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {trip?.vehicle?.make + " " + trip?.vehicle?.model} , {trip?.vehicle?.registrationNumber}
+                  GHC {trip?.finalCost?.finalCost || "Not Specified"}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -211,6 +213,77 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   <Fragment>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                       {moment(trip?.createdAt).format("MMMM Do YYYY")}
+                    </dd>
+                  </Fragment>
+                </div>
+                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Vehicle Details and Checklist
+                  </dt>
+
+                  <Fragment>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="sm:col-span-3">
+                          <dt className="text-sm font-light text-gray-700">
+                            Damage on Vehicle?
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.damagesOnVehicle
+                              ? trip?.checklist?.damagesOnVehicle?.length > 0
+                                ? "Yes"
+                                : "No"
+                              : null}
+                          </dd>
+                        </div>
+                        {trip?.checklist?.damagesOnVehicle &&
+                          trip?.checklist?.damagesOnVehicle?.length > 0 && (
+                            <div className="sm:col-span-3">
+                              <dt className="text-sm font-light text-gray-700">
+                                {" "}
+                                Damage Description
+                              </dt>
+                              <dd className="mt-1 text-sm text-gray-900">
+                                {trip?.checklist?.damagesOnVehicle?.map(
+                                  (item: any, itemIdx: number) => (
+                                    <Fragment key={itemIdx}>
+                                      <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+                                        {item?.reporterResponse?.description}
+                                      </dd>
+                                    </Fragment>
+                                  )
+                                )}
+                              </dd>
+                            </div>
+                          )}
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-light text-gray-700">
+                            Valuables In Vehicle?
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {trip?.checklist?.valuablesInVehicle && trip?.checklist?.valuablesInVehicle?.length > 0 ? "Yes" : "No"}
+                          </dd>
+                        </div>
+                        {trip?.checklist?.valuablesInVehicle && trip?.checklist?.valuablesInVehicle?.length > 0 && (
+                          <div className="sm:col-span-3">
+                            <dt className="text-sm font-light text-gray-700">
+                              {" "}
+                              Item Name/Description
+                            </dt>
+                            <dd className="mt-1 text-sm text-gray-900">
+                              {trip?.checklist?.valuablesInVehicle?.map(
+                                (item: any, itemIdx: number) => (
+                                  <Fragment key={itemIdx}>
+                                    <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+                                      {item?.reporterResponse?.description}
+                                    </dd>
+                                  </Fragment>
+                                )
+                              )}
+                            </dd>
+                          </div>
+                        )}
+                      </div>
                     </dd>
                   </Fragment>
                 </div>

@@ -19,15 +19,17 @@ import { useCurrentClient } from "../../../../services/context/currentClient";
 import DataView from "../data-view";
 
 const ViewTripComponent = lazy(() => import("../view"));
-const RateDriverComponent = lazy(() => import("../rate-driver"));
+const UpdateChecklistComponent = lazy(() => import("../update-checklist"));
+const RateDriverConponent = lazy(() =>  import("../rate-driver"))
 
 const pages: BreadCrumbProp[] = [{ name: "Trip History ", href: HISTORY }];
 
 const MainComponent = () => {
   const [viewTrip, setViewTrip] = useState<boolean>(false);
-  const [rateDriver, setRateDriver] = useState<boolean>(false);
+  const [rateDriver, setRateDriver] = useState<boolean>(false)
+  const [updateChecklist, setUpdateChecklist] = useState<boolean>(false);
   const [selectedTrip, setSelectedTrip] = useState<TripHistory>();
-  const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(4);
+  const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(5);
 
   const { currentUser } = useCurrentClient();
 
@@ -100,6 +102,10 @@ const MainComponent = () => {
                           setSelectedTrip(dataFromCard);
                           setRateDriver(!rateDriver);
                         }}
+                        onUpdateChecklist={(dataFromCard: TripHistory) => {
+                          setSelectedTrip(dataFromCard);
+                          setUpdateChecklist(!updateChecklist);
+                        }}
                       />
                     </Fragment>
                   )}
@@ -124,10 +130,16 @@ const MainComponent = () => {
           setShow={setViewTrip}
           trip={selectedTrip}
         />
-        <RateDriverComponent
+        <RateDriverConponent
           refetch={refetch}
           show={rateDriver}
           setShow={setRateDriver}
+          trip={selectedTrip}
+        />
+        <UpdateChecklistComponent
+          refetch={refetch}
+          show={updateChecklist}
+          setShow={setUpdateChecklist}
           trip={selectedTrip}
         />
       </Suspense>

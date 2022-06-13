@@ -30,7 +30,7 @@ export default function AppLayout() {
             })}
           </Suspense>
         </div>
-        <div className={"lg:absolute flex flex-col bottom-6 items-center w-full"}>
+        <div className={"flex flex-col bottom-6 items-center w-full"}>
           <span className="mt-1 text-xs text-center font-light text-gray-400">
             All Rights Reserved Copyright &copy; {new Date()?.getFullYear()}
           </span>
