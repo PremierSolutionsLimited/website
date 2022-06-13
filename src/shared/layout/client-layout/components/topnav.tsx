@@ -25,7 +25,7 @@ const TopNav = () => {
 
   const {push} = useHistory();
 
-  const {data:notifactions, loading:loadingNotifications} = useQuery(GET_NOTIFICATIONS, {
+  const {data:notifications, loading:loadingNotifications} = useQuery(GET_NOTIFICATIONS, {
     variables: {
       pagination: {
         limit: 10,
@@ -33,12 +33,14 @@ const TopNav = () => {
     }
   });
 
+  console.log(notifications?.notifications)
+
   return (
     <Fragment>
       <Disclosure as="nav" className="bg-black shadow-sm">
         {({ open }) => (
           <>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sticky">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
               <div className="flex justify-between h-22">
                 <div className="flex">
                   <div className="flex-shrink-0 flex items-center cursor-pointer">
@@ -109,11 +111,7 @@ const TopNav = () => {
                         >
                           <Menu.Items
                             static
-                            className="origin-top-right absolute right-0 mt-2 p-4 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                            style={{
-                              height: "250px",
-                              minWidth: "200px"
-                            }}
+                            className="origin-top-right absolute right-0 mt-2 p-4 w-80 h-100 overflow-y-auto rounded-md shadow-lg py-1 divide-y divide-gray bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
                             {
                               loadingNotifications ? (
@@ -124,11 +122,22 @@ const TopNav = () => {
                                 </Menu.Item>
                               )
                               :
-                              notifactions?.notifications?.length > 0 ? (
-                                notifactions?.notifications?.map((item: any, itemIdx: number) => (
+                              notifications?.notifications?.length > 0 ? (
+                                notifications?.notifications?.map((item: any, itemIdx: number) => (
                                     <div key={itemIdx}>
                                       <Menu.Item>
-                                        {item.title}
+                                      <div className="flex space-x-3 py-2">
+                                        <BellIcon className="h-6 w-6 bg-gold-1 rounded-full p-0.5" />
+                                        <div className="flex-1 space-y-1">
+                                          <div className="flex items-center justify-between">
+                                            <h3 className="text-sm font-medium">{item?.title}</h3>
+                                            <p className="text-sm text-gray-500">2h</p>
+                                          </div>
+                                          <p className="text-sm text-gray-500">
+                                            {item.body}
+                                          </p>
+                                        </div>
+                                      </div>
                                       </Menu.Item>
                                     </div>
                                   )
