@@ -11,7 +11,7 @@ export default function AppLayout() {
   return (
     <Fragment>
       {/* top nav bar */}
-      <div className="top-0 sticky overscroll-none">
+      <div className="top-0 sticky overscroll-none z-40">
         <TopNav />
       </div>
       <div className="min-h-screen bg-gray-100">

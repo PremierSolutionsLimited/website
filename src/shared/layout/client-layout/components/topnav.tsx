@@ -7,11 +7,12 @@ import { ClientDashBoardNavigationProps } from "./types";
 import { Link, useLocation } from "react-router-dom";
 import { ContextLoader, DataLoader } from "../../../loaders";
 import { useCurrentClient } from "../../../../services/context/currentClient";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ProfileImage from "../../../../assets/images/male.jpeg";
 import Logo from "../../../../assets/logo_gold_text.png";
 import { useQuery } from "@apollo/client";
 import { GET_NOTIFICATIONS } from "../../../../services/graphql/notifications/queries";
+import moment from "moment";
 
 const LogoutModal = lazy(() => import("./logout"));
 const ChangePasswordModal = lazy(() => import("./changpassword"));
@@ -23,22 +24,27 @@ const TopNav = () => {
 
   const { currentUser: curentClient } = useCurrentClient();
 
-  const {push} = useHistory();
+  const { push } = useHistory();
 
-  const {data:notifactions, loading:loadingNotifications} = useQuery(GET_NOTIFICATIONS, {
-    variables: {
-      pagination: {
-        limit: 10,
-      }
+  const { data: notifications, loading: loadingNotifications } = useQuery(
+    GET_NOTIFICATIONS,
+    {
+      variables: {
+        pagination: {
+          limit: 10,
+        },
+      },
     }
-  });
+  );
+
+  console.log(notifications?.notifications);
 
   return (
     <Fragment>
       <Disclosure as="nav" className="bg-black shadow-sm">
         {({ open }) => (
           <>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sticky">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
               <div className="flex justify-between h-22">
                 <div className="flex">
                   <div className="flex-shrink-0 flex items-center cursor-pointer">
@@ -88,7 +94,7 @@ const TopNav = () => {
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:items-center">
                   <Menu as="div" className="relative">
-                    {({open}) => (
+                    {({ open }) => (
                       <>
                         <div>
                           <Menu.Button className="bg-gold-1 p-1 rounded-full text-customBlack-1 hover:text-customBlack-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-1">
@@ -105,42 +111,64 @@ const TopNav = () => {
                           leave="transition ease-in duration-75"
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
-
                         >
                           <Menu.Items
                             static
-                            className="origin-top-right absolute right-0 mt-2 p-4 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            className="origin-top-right absolute right-0 mt-2 w-96 rounded-md shadow-lg py-1 divide-y divide-gray bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                             style={{
-                              height: "250px",
-                              minWidth: "200px"
+                              maxHeight: "65vh",
                             }}
                           >
-                            {
-                              loadingNotifications ? (
-                                <Menu.Item>
-                                  {({ active }) => (
-                                  <DataLoader />
-                                  )}
-                                </Menu.Item>
-                              )
-                              :
-                              notifactions?.notifications?.length > 0 ? (
-                                notifactions?.notifications?.map((item: any, itemIdx: number) => (
-                                    <div key={itemIdx}>
-                                      <Menu.Item>
-                                        {item.title}
-                                      </Menu.Item>
-                                    </div>
-                                  )
-                                )
-                              )
-                              :
+                            {loadingNotifications ? (
                               <Menu.Item>
-                                {({active}) => (
-                                  <p>No Notifications Yet</p>
-                                )}
+                                {({ active }) => <DataLoader />}
                               </Menu.Item>
-                            }
+                            ) : notifications?.notifications?.length > 0 ? (
+                              <div className="max-h-96 mb-10 overflow-y-auto divide-y divide-gray">
+                                {
+                                  notifications?.notifications?.map(
+                                    (item: any, itemIdx: number) => (
+                                      <div key={itemIdx} className={`${!item?.read && "bg-yellow-50"} pl-4`}>
+                                        <Menu.Item>
+                                          <div className={` flex space-x-3 py-2`}>
+                                            <BellIcon className="h-6 w-6 bg-gold-1 rounded-full p-0.5" />
+                                            <div className="flex-1 space-y-1">
+                                              <div className="grid grid-cols-4 gap-6">
+                                                <h3 className="col-span-3 text-sm font-medium">
+                                                  {item?.title}
+                                                </h3>
+                                                <p className="col-span-1 text-xs text-customBlack-2">
+                                                  {moment(item?.createdAt).fromNow()}
+                                                </p>
+                                              </div>
+                                              <p className="text-sm text-gray-500">
+                                                {item.body}
+                                              </p>
+                                            </div>
+                                          </div>
+                                        </Menu.Item>
+                                      </div>
+                                    )
+                                  )
+                                }
+                              </div>
+                            ) : (
+                              <Menu.Item>
+                                {({ active }) => <p>No Notifications Yet</p>}
+                              </Menu.Item>
+                            )}
+                            <div className="absolute bottom-0 overflow-hidden w-full">
+                              <div className="flex justify-center py-2 bg-gray-100 text-customBlack-1 hover:text-gold-2 cursor-pointer">
+                                View All Notifications
+                              </div>
+                              {/* <Menu.Item>
+                                {({ active }) => (
+                                  <div className="bg-gray-100 text-gold-1 flex justify-center py-2">
+                                    View All Notifications
+                                  </div>
+                                )}
+                              </Menu.Item> */}
+                            </div>
                           </Menu.Items>
                         </Transition>
                       </>

@@ -9,6 +9,7 @@ export const GET_NOTIFICATIONS = gql `
         data
         read
         readAt
+        createdAt
     }
 }
 `
