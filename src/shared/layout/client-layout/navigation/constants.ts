@@ -6,3 +6,4 @@ export const MY_FLEET = "/app/myfleet";
 export const HISTORY = "/app/history";
 export const REQUESTS = "/app/requests";
 export const SETTINGS = "/app/settings";
+export const NOTIFICATIONS = "/app/notifications";
