@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from "react";
-import { useQuery,useMutation } from "@apollo/client";
+import React, { Fragment, useState, useEffect, useCallback } from "react";
+import { useQuery, useMutation } from "@apollo/client";
 import { GET_NOTIFICATIONS } from "../../../../services/graphql/notifications/queries";
 import { READ_NOTIFICATION } from "../../../../services/graphql/notifications/mutations";
 import { DataLoader } from "../../../../shared/loaders";
@@ -23,10 +23,9 @@ import toast from "react-hot-toast";
 // }
 
 const Nofications = () => {
-  
   const [selectedNotification, setSelectedNotification] = useState<any>();
 
-  const { data: notifications, loading: loadingNotifications } = useQuery(
+  const { data: notifications, loading: loadingNotifications, refetch } = useQuery(
     GET_NOTIFICATIONS,
     {
       variables: {
@@ -37,50 +36,98 @@ const Nofications = () => {
     }
   );
 
-  const [invokeReadNotification] = useMutation(
-    READ_NOTIFICATION
-  );
+  useEffect(() => {
+      handleReadNotification(notifications?.notifications[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleReadNotification = (notification: any) => {
+  const [invokeReadNotification, { loading: loadingReadNotification }] =
+    useMutation(READ_NOTIFICATION);
+
+  const handleReadNotification = useCallback(
+    (notification: any) => {
     invokeReadNotification({
       variables: {
-        id: notification.id,
+        input: {
+          notificationId: notification._id,
+        },
       },
-    }).then(() => {
-      setSelectedNotification(notification);
-    }
-    ).catch(() => {
-      toast.error("Error reading notification");
-    });
-  }
+      refetchQueries: [
+        {
+          query: GET_NOTIFICATIONS,
+        },
+      ],
+    })
+      .then(() => {
+        setSelectedNotification(notification);
+        refetch()
+      })
+      .catch(() => {
+        toast.error("Error reading notification");
+      })
+    }, [invokeReadNotification, refetch]);
+
   return (
     <Fragment>
-      <div className="max-w-7xl mx-auto items-center py-5 sm:py-4 lg:px-8 ">
+      <div className="max-w-7xl h-full mx-auto items-center py-5 sm:py-4 lg:px-8">
         <div className="mt-3">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <main
-              className="flex-1 flex overflow-hidden"
+              className="flex-1 flex overflow-hidden  border border-gray-200"
               style={{ height: "100vh" }}
             >
               {/* Primary column */}
               <section
                 aria-labelledby="primary-heading"
-                className="min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-last ml-3"
+                className="min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-last"
               >
                 <h1 id="primary-heading" className="sr-only">
                   Notifications Details
                 </h1>
                 {/* Your content */}
-                <h2 className="text-2xl font-bold p-3 bg-white text-gray-600 mb-3">
-                    Notification Details
-                  </h2>
+                <h2 className="text-2xl font-bold p-3 bg-white text-gray-600 mb-3 border-b border-gray-200">
+                  Notification Details
+                </h2>
+                <ul className="py-4 space-y-2 sm:px-3 sm:space-y-4 lg:px-4">
+                  {loadingReadNotification ? (
+                    <li className="bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6 flex justify-center items-center">
+                      <div className="flex-shrink-0">
+                        <DataLoader />
+                      </div>
+                    </li>
+                  ) : (
+                    <li className="bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6">
+                      <div className="sm:flex sm:justify-between sm:items-baseline">
+                        <h3 className="text-base font-medium">
+                          <span className="text-gold-2 text-xl">
+                            {selectedNotification?.title}
+                          </span>{" "}
+                        </h3>
+                        <p className="flex flex-col justify-end mt-1 text-sm text-gray-600 whitespace-nowrap sm:mt-0 sm:ml-3">
+                          <div>
+                            {selectedNotification?.createdAt? new Date(selectedNotification?.createdAt).toDateString() : ""}
+                          </div>
+                          <div className="text-gray-900">
+                            {selectedNotification?.createdAt? new Date(selectedNotification?.createdAt).toLocaleTimeString() : ""}
+                          </div>
+                        </p>
+                      </div>
+                      <div
+                        className="mt-4 space-y-6 text-lg text-gray-800"
+                        dangerouslySetInnerHTML={{
+                          __html: selectedNotification?.body,
+                        }}
+                      />
+                    </li>
+                  )}
+                </ul>
               </section>
 
               {/* Secondary column (hidden on smaller screens) */}
-              <aside className="hidden xl:block border xl:order-first">
+              <aside className="hidden xl:block xl:order-first">
                 <div className="h-full relative overflow-auto flex flex-col min-w-1/3 border-r border-gray-200">
                   {/* Your content */}
-                  <h2 className="text-2xl font-bold p-3 bg-white text-gray-600 mb-3">
+                  <h2 className="text-2xl font-bold p-3 bg-white text-gray-600  border-b border-gray-200">
                     Notifications Summary
                   </h2>
                   <div className="">
@@ -97,11 +144,17 @@ const Nofications = () => {
                         <div className="mb-10 overflow-y-auto divide-y divide-gray">
                           {notifications?.notifications?.map(
                             (notification: any, notificationIdx: any) => (
-                              <li 
-                                key={notificationIdx} 
-                                className={`px-5 pt-5 mb-3 ${!notification.read? "bg-yellow-100" : "bg-white" } border-b border-gray-200`}
-                                onClick={() => handleReadNotification(notification)}
-                                >
+                              <li
+                                key={notificationIdx}
+                                className={`px-5 pt-5 mb-3 ${
+                                  !notification.read
+                                    ? "bg-yellow-100"
+                                    : "bg-white"
+                                } border-b border-gray-200 cursor-pointer hover:bg-gray-200 ${selectedNotification?._id === notification?._id ? "bg-gray-200" : ""}`}
+                                onClick={() =>
+                                  handleReadNotification(notification)
+                                }
+                              >
                                 <div className="relative pb-8">
                                   {notificationIdx !==
                                   notifications?.notifications?.length - 1 ? (
@@ -113,7 +166,7 @@ const Nofications = () => {
                                   <div className="relative flex items-start space-x-3">
                                     <>
                                       <div className="relative">
-                                        <div className="h-8 w-8 bg-gray-100 rounded-full ring-8 ring-white flex items-center justify-center">
+                                        <div className={`h-8 w-8 ${notification.read? "bg-gray-100": "bg-customBlack-2"} rounded-full ring-8 ring-white flex items-center justify-center`}>
                                           {notification?.data?.action ===
                                             "TripAssigned" ||
                                           notification?.data?.action ===
@@ -163,7 +216,7 @@ const Nofications = () => {
                                       <div className="min-w-0 mt-2 flex-1">
                                         <div>
                                           <div className="text-sm">
-                                            <div className="font-medium text-gray-900 text-md">
+                                            <div className="font-medium text-gray-900 text-lg">
                                               {notification?.title}
                                             </div>
                                           </div>
@@ -175,7 +228,11 @@ const Nofications = () => {
                                           </p>
                                         </div>
                                         <div className="mt-2 text-sm text-gray-700">
-                                          <p>{_?.truncate(notification?.body, {length:50})}</p>
+                                          <p>
+                                            {_?.truncate(notification?.body, {
+                                              length: 50,
+                                            })}
+                                          </p>
                                         </div>
                                       </div>
                                     </>
@@ -190,7 +247,7 @@ const Nofications = () => {
                           <div className="flex-shrink-0">
                             <p className="text-gray-500">
                               No notifications yet.
-                            </p>  
+                            </p>
                           </div>
                         </div>
                       )}
