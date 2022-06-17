@@ -37,7 +37,7 @@ const Nofications = () => {
   );
 
   useEffect(() => {
-      handleReadNotification(notifications?.notifications[0]);
+      notifications?.notifications && handleReadNotification(notifications?.notifications[0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -66,6 +66,8 @@ const Nofications = () => {
         toast.error("Error reading notification");
       })
     }, [invokeReadNotification, refetch]);
+
+    console.log(selectedNotification?.body)
 
   return (
     <Fragment>
@@ -113,11 +115,10 @@ const Nofications = () => {
                         </p>
                       </div>
                       <div
-                        className="mt-4 space-y-6 text-lg text-gray-800"
-                        dangerouslySetInnerHTML={{
-                          __html: selectedNotification?.body,
-                        }}
-                      />
+                        className="mt-4 space-y-6 text-lg text-gray-800 whitespace-pre-wrap"
+                      >
+                        {selectedNotification?.body}
+                      </div>
                     </li>
                   )}
                 </ul>
