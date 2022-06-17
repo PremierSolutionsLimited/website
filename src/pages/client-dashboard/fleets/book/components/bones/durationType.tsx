@@ -10,7 +10,7 @@ function classNames(...classes: any) {
 interface Props {
   selected: IDurationType;
   setDurationTypeSelected: React.Dispatch<React.SetStateAction<string>>;
-  setSelected: React.Dispatch<React.SetStateAction<IDurationType>>;
+  setSelected: React.Dispatch<React.SetStateAction<IDurationType | undefined>>;
   duration: string;
   selectedDate: string;
   setEndTime: React.Dispatch<React.SetStateAction<Date | undefined>>;

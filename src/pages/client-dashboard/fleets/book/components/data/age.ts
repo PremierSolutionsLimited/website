@@ -17,14 +17,18 @@ export const ageGroup2: IGroupType[] = [
 export const duration: IDurationType[] = [
   {
     name: "Hours",
+    type: "HOURLY"
   },
   {
     name: "Days",
+    type: "DAILY"
   },
   {
     name: "Weeks",
+    type: "WEEKLY"
   },
   {
     name: "Months",
+    type: "MONTHLY"
   },
 ];

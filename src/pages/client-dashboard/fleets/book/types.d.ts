@@ -13,6 +13,7 @@ export interface BookTripInputProp {
   tripType: string;
   expectedStartTime: Date;
   expectedEndTime?: Date;
+  durationType?: string;
   pickUpLocation?: {
     type: string;
     coordinates: number[];

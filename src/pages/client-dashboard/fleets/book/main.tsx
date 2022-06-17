@@ -87,6 +87,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   const [totalTripCost, setTotalTripCost] = useState<string>("");
 
+  console.log(durationType)
   // get trip quote
   const [getTripQuote, { loading: loadingTripQuoteData }] = useMutation<any>(
     GET_TRIP_COST_SUMMARY
@@ -184,6 +185,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
         tripType: requestType,
         expectedStartTime: new Date(tripStartDate),
         expectedEndTime: endTime as Date,
+        durationType: durationType?.type,
         pickUpLocation: {
           type: "Point",
           coordinates: [+pickupLng, +pickupLat],
