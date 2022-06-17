@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect, useCallback } from "react";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery, useMutation, NetworkStatus } from "@apollo/client";
 import { GET_NOTIFICATIONS } from "../../../../services/graphql/notifications/queries";
 import { READ_NOTIFICATION } from "../../../../services/graphql/notifications/mutations";
 import { DataLoader } from "../../../../shared/loaders";
 import _ from "lodash";
+import {InView} from "react-intersection-observer"
 
 import {
   //ChatAltIcon,
@@ -24,20 +25,26 @@ import toast from "react-hot-toast";
 
 const Nofications = () => {
   const [selectedNotification, setSelectedNotification] = useState<any>();
+  const [fullyLoaded, setFullyLoaded] = useState(false);
 
-  const { data: notifications, loading: loadingNotifications, refetch } = useQuery(
-    GET_NOTIFICATIONS,
-    {
-      variables: {
-        pagination: {
-          limit: 10,
-        },
+  const {
+    data: notifications,
+    networkStatus,
+    refetch,
+    fetchMore,
+  } = useQuery(GET_NOTIFICATIONS, {
+    notifyOnNetworkStatusChange: true,
+    variables: {
+      pagination: {
+        limit: 5,
+        skip: 0
       },
-    }
-  );
+    },
+  });
 
   useEffect(() => {
-      notifications?.notifications && handleReadNotification(notifications?.notifications[0]);
+    notifications?.notifications &&
+      handleReadNotification(notifications?.notifications[0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -46,37 +53,37 @@ const Nofications = () => {
 
   const handleReadNotification = useCallback(
     (notification: any) => {
-    invokeReadNotification({
-      variables: {
-        input: {
-          notificationId: notification._id,
+      invokeReadNotification({
+        variables: {
+          input: {
+            notificationId: notification._id,
+          },
         },
-      },
-      refetchQueries: [
-        {
-          query: GET_NOTIFICATIONS,
-        },
-      ],
-    })
-      .then(() => {
-        setSelectedNotification(notification);
-        refetch()
+        refetchQueries: [
+          {
+            query: GET_NOTIFICATIONS,
+          },
+        ],
       })
-      .catch(() => {
-        toast.error("Error reading notification");
-      })
-    }, [invokeReadNotification, refetch]);
-
-    console.log(selectedNotification?.body)
+        .then(() => {
+          setSelectedNotification(notification);
+          refetch();
+        })
+        .catch(() => {
+          toast.error("Error reading notification");
+        });
+    },
+    [invokeReadNotification, refetch]
+  );
 
   return (
     <Fragment>
-      <div className="max-w-7xl h-full mx-auto items-center py-5 sm:py-4 lg:px-8">
+      <div className="max-w-7xl mx-auto items-center py-5 sm:py-4 lg:px-8">
         <div className="mt-3">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <main
               className="flex-1 flex overflow-hidden  border border-gray-200"
-              style={{ height: "100vh" }}
+              style={{ height: "80vh" }}
             >
               {/* Primary column */}
               <section
@@ -107,16 +114,22 @@ const Nofications = () => {
                         </h3>
                         <p className="flex flex-col justify-end mt-1 text-sm text-gray-600 whitespace-nowrap sm:mt-0 sm:ml-3">
                           <div>
-                            {selectedNotification?.createdAt? new Date(selectedNotification?.createdAt).toDateString() : ""}
+                            {selectedNotification?.createdAt
+                              ? new Date(
+                                  selectedNotification?.createdAt
+                                ).toDateString()
+                              : ""}
                           </div>
                           <div className="text-gray-900">
-                            {selectedNotification?.createdAt? new Date(selectedNotification?.createdAt).toLocaleTimeString() : ""}
+                            {selectedNotification?.createdAt
+                              ? new Date(
+                                  selectedNotification?.createdAt
+                                ).toLocaleTimeString()
+                              : ""}
                           </div>
                         </p>
                       </div>
-                      <div
-                        className="mt-4 space-y-6 text-lg text-gray-800 whitespace-pre-wrap"
-                      >
+                      <div className="mt-4 space-y-6 text-lg text-gray-800 whitespace-pre-wrap">
                         {selectedNotification?.body}
                       </div>
                     </li>
@@ -133,9 +146,9 @@ const Nofications = () => {
                   </h2>
                   <div className="">
                     <ul className="-mb-8">
-                      {loadingNotifications ? (
+                      {networkStatus === NetworkStatus?.loading ? (
                         <Fragment>
-                          <li className="flex items-center p-5 bg-white">
+                          <li className="flex justify-center items-center p-5 bg-white">
                             <div className="flex-shrink-0">
                               <DataLoader />
                             </div>
@@ -151,7 +164,12 @@ const Nofications = () => {
                                   !notification.read
                                     ? "bg-yellow-100"
                                     : "bg-white"
-                                } border-b border-gray-200 cursor-pointer hover:bg-gray-200 ${selectedNotification?._id === notification?._id ? "bg-gray-200" : ""}`}
+                                } border-b border-gray-200 cursor-pointer hover:bg-gray-200 ${
+                                  selectedNotification?._id ===
+                                  notification?._id
+                                    ? "bg-gray-200"
+                                    : ""
+                                }`}
                                 onClick={() =>
                                   handleReadNotification(notification)
                                 }
@@ -167,7 +185,13 @@ const Nofications = () => {
                                   <div className="relative flex items-start space-x-3">
                                     <>
                                       <div className="relative">
-                                        <div className={`h-8 w-8 ${notification.read? "bg-gray-100": "bg-customBlack-2"} rounded-full ring-8 ring-white flex items-center justify-center`}>
+                                        <div
+                                          className={`h-8 w-8 ${
+                                            notification.read
+                                              ? "bg-gray-100"
+                                              : "bg-customBlack-2"
+                                          } rounded-full ring-8 ring-white flex items-center justify-center`}
+                                        >
                                           {notification?.data?.action ===
                                             "TripAssigned" ||
                                           notification?.data?.action ===
@@ -254,6 +278,25 @@ const Nofications = () => {
                       )}
                     </ul>
                   </div>
+                  {networkStatus !== NetworkStatus.fetchMore &&
+                    notifications?.notifications?.length % 5 === 0 &&
+                    !fullyLoaded && (
+                      <InView
+                        onChange={async (inView:any) => {
+                          if (inView) {
+                            const result: any = await fetchMore({
+                              variables: {
+                                  offset: notifications?.notifications?.length,
+                              },
+                            });
+                            setFullyLoaded(
+                              !result?.data?.notifications?.notifications
+                                ?.length
+                            );
+                          }
+                        }}
+                      />
+                    )}
                 </div>
               </aside>
             </main>
