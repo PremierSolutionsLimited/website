@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { RouteProp } from "./types";
-import { DASHBOARD, MY_FLEET, SETTINGS, HISTORY, REQUESTS } from "./constants";
+import { DASHBOARD, MY_FLEET, SETTINGS, HISTORY, REQUESTS, NOTIFICATIONS } from "./constants";
 
 const Dashboard = lazy(
   () => import("../../../../pages/client-dashboard/dashboard")
@@ -16,6 +16,9 @@ const SettingsComponent = lazy(
 );
 const TripRequestsComponent = lazy(
   () => import("../../../../pages/client-dashboard/triprequest")
+);
+const NotificationsComponent = lazy(
+  () => import("../../../../pages/client-dashboard/notifications")
 );
 
 const routes: RouteProp[] = [
@@ -50,6 +53,12 @@ const routes: RouteProp[] = [
     path: SETTINGS,
     exact: true,
   },
+  {
+    component: NotificationsComponent,
+    name: "Notifications",
+    path: NOTIFICATIONS,
+    exact: true
+  }
 ];
 
 export default routes;

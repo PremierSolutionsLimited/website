@@ -8,6 +8,7 @@ import {
   HttpLink,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import {offsetLimitPagination} from '@apollo/client/utilities';
 import Auth, { BASE_URL } from "./cookie.config";
 import { useAuthProvider } from "../context";
 import toast from "react-hot-toast";
@@ -55,7 +56,15 @@ const ClientApollo = ({ children }) => {
 
   const client = new ApolloClient({
     link: link,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            notifications: offsetLimitPagination()
+          }
+        }
+      }
+    }),
   });
   return (
     <Fragment>

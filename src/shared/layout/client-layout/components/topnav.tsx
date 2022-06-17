@@ -12,6 +12,7 @@ import ProfileImage from "../../../../assets/images/male.jpeg";
 import Logo from "../../../../assets/logo_gold_text.png";
 import { useQuery } from "@apollo/client";
 import { GET_NOTIFICATIONS } from "../../../../services/graphql/notifications/queries";
+import {NOTIFICATIONS} from "../navigation/constants";
 import moment from "moment";
 
 const LogoutModal = lazy(() => import("./logout"));
@@ -158,9 +159,11 @@ const TopNav = () => {
                               </Menu.Item>
                             )}
                             <div className="absolute bottom-0 overflow-hidden w-full">
-                              <div className="flex justify-center py-2 bg-gray-100 text-customBlack-1 hover:text-gold-2 cursor-pointer">
-                                View All Notifications
-                              </div>
+                              <Link to={NOTIFICATIONS}>
+                                <div className="flex justify-center py-2 bg-gray-100 text-customBlack-1 hover:text-gold-2 cursor-pointer">
+                                  View All Notifications
+                                </div>
+                              </Link>
                               {/* <Menu.Item>
                                 {({ active }) => (
                                   <div className="bg-gray-100 text-gold-1 flex justify-center py-2">
