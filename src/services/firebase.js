@@ -1,18 +1,22 @@
-import firebase from "firebase/app";
+import {initializeApp} from "firebase/app";
+import { getStorage } from "@firebase/storage";
+import { getMessaging } from "firebase/messaging";
 import "firebase/storage";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDsG17OENjc4mJj6FaqGQDYatrfGdPFUeQ",
-  authDomain: "psl-had.firebaseapp.com",
-  projectId: "psl-had",
-  storageBucket: "psl-had.appspot.com",
-  messagingSenderId: "518553240943",
-  appId: "1:518553240943:web:f1f1d288e132af537ad49a",
-  measurementId: "G-D0PMK42PKL",
+  apiKey: "AIzaSyBwTif_PdCif-fTk6sjQxxWJC1ApOqoCIU",
+  authDomain: "premier-chauffer.firebaseapp.com",
+  projectId: "premier-chauffer",
+  storageBucket: "premier-chauffer.appspot.com",
+  messagingSenderId: "729946359345",
+  appId: "1:729946359345:web:0560773b4d10f588027710",
+  measurementId: "G-ETNK9820LR"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+//initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const storage = firebase.storage();
+const storage = getStorage(app);
+const messaging = getMessaging(app);
 
-export { storage, firebase as default };
+export { storage, app as default, messaging };

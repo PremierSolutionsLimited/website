@@ -4,11 +4,11 @@ import {
   UpdateCurrentClientInputProp,
   UpdateCurrentClientOutputProp,
 } from "./types";
-
 import { ApolloError, useMutation } from "@apollo/client";
 import { UPDATE_CURRENT_CLIENT } from "../../../../services/graphql/auth";
 import { v4 } from "uuid";
 import { storage } from "../../../../services/firebase";
+import {ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import ProfileImage from "../../../../assets/images/male.jpeg";
 import moment from "moment";
 import toast from "react-hot-toast";
@@ -68,7 +68,8 @@ const MainComponent = () => {
     if (clientFile) {
       setUploadingToFirebase(true);
       let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
-      const uploadTask = storage.ref(`/clients/${fileName}`).put(clientFile);
+      const storeRef = ref(storage,`/clients/${fileName}`)
+      const uploadTask = uploadBytesResumable(storeRef, clientFile);
       uploadTask.on(
         "state_changed",
         (snapShot: any) => {},
@@ -77,10 +78,7 @@ const MainComponent = () => {
           return toast.error(err?.message);
         },
         () => {
-          storage
-            .ref("clients")
-            .child(fileName)
-            .getDownloadURL()
+            getDownloadURL(uploadTask.snapshot.ref)
             .then((fireBaseUrl: string) => {
               invokeUpdateClient({
                 variables: {
