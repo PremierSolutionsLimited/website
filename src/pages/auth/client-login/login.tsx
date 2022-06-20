@@ -11,6 +11,8 @@ import Logo from "../../../assets/PC_logo_no_bg.png";
 import BgImage from "../../../assets/images/005.jpg";
 import _ from "lodash";
 import toast from "react-hot-toast";
+import { getToken } from "@firebase/messaging";
+import { messaging } from "../../../services/firebase";
 
 const ForgotPasswordComponent = lazy(() => import("../../fogotpassword"));
 
@@ -21,6 +23,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showForgotPassword, setShowForgotPassword] = useState<boolean>(false);
+  const [gettingToken, setGettingToken] = useState(false);
 
   const { push } = useHistory();
 
@@ -35,28 +38,49 @@ const Login = () => {
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    loginInvoker({
-      variables: {
-        email,
-        password,
-      },
-    })
-      .then(async ({ data }) => {
-        await signIn(data?.loginClient);
-        return push("/app/");
+    setGettingToken(true);
+    const publicKey = process?.env?.REACT_APP_PUBLIC_VAPID_KEY;
+    console.log(publicKey)
+    getToken(messaging, { vapidKey: publicKey })
+    ?.then((token) => {
+      setGettingToken(false);
+      console.log("Token is: ",token)
+      loginInvoker({
+        variables: {
+          email,
+          password,
+          notificationToken: token
+        },
       })
-      .catch((e: ApolloError) => {
-        toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)), {
-          id: "loginError",
+        .then(async ({ data }) => {
+          await signIn(data?.loginClient);
+          push("/app/");
+          toast.success(`Welcome Back ${data?.loginClient?.client?.firstName}!`);
+        })
+        .catch((e: ApolloError) => {
+          toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)), {
+            id: "loginError",
+          });
         });
-      });
+    })
+    ?.catch((e) => {
+      setGettingToken(false);
+      toast.error(
+        e?.toString() ===
+          "AbortError: Registration failed - push service error"
+          ? "This browser doesn't support push notifications. Kindly use other browser"
+          : "Notifications not allowed in your browser, Kindly allow for notifications in your browser..."
+      );
+      console.log("An error occurred while retrieving token. ", e);
+      // toast.success(`Welcome Back ${data?.loginClient?.client?.firstName}!`);
+    });   
   };
 
   return (
     <Fragment>
       <div className="min-h-screen bg-white flex">
-        <button
-          type="button"
+        <div
+          // type="button"
           onClick={() => push("/")}
           className="hidden sm:hidden md:flex lg:block relative w-0 flex-1 focus:outline-none"
         >
@@ -67,7 +91,7 @@ const Login = () => {
               alt=""
             />
           </div>
-        </button>
+        </div>
 
         <div className="flex-1 relative flex flex-col justify-center py-12 md:px-0 px-5 sm:px-5 w-3/12 lg:flex-none lg:mx-24 xl:mx-36">
           <div className="w-full">
@@ -165,7 +189,7 @@ const Login = () => {
                     disabled={loading}
                     className="w-full flex justify-center h-12 py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gold-2 hover:bg-gold-1 focus:outline-none  focus:ring-offset-2 focus:ring-gold-2"
                   >
-                    {loading ? (
+                    {loading || gettingToken? (
                       <Fragment>
                         <StageSpinner color="#fff" loading size={20} />
                       </Fragment>
