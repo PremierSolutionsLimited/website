@@ -15,6 +15,7 @@ import { useRegistrationProvider } from "../../../services/context";
 import { v4 } from "uuid";
 import { CustomContextLoader } from "../../../shared/loaders";
 import { storage } from "../../../services/firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import toast from "react-hot-toast";
 import Header from "../../../shared/layout/registration";
 import StepComponent from "../../../shared/client-steps";
@@ -91,7 +92,8 @@ const MainComponent = () => {
     if (clientFile) {
       setUploadingToFirebase(true);
       let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
-      const uploadTask = storage.ref(`/clients/${fileName}`).put(clientFile);
+      const storeRef = ref(storage,`/clients/${fileName}`);
+      const uploadTask = uploadBytesResumable(storeRef, clientFile);
       uploadTask.on(
         "state_changed",
         (snapShot: any) => {},
@@ -100,10 +102,7 @@ const MainComponent = () => {
           return toast.error(err?.message);
         },
         () => {
-          storage
-            .ref("clients")
-            .child(fileName)
-            .getDownloadURL()
+          getDownloadURL(uploadTask.snapshot.ref)
             .then((fireBaseUrl: string) => {
               invokeCreateClient({
                 variables: {

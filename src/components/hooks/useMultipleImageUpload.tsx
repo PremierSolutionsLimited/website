@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { storage } from "../../services/firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 
 const useImageUpload = (assetFolderName: string) => {
   const [loading, setLoading] = useState(false);
@@ -9,31 +10,34 @@ const useImageUpload = (assetFolderName: string) => {
     new Promise<string>((resolve, reject) => {
       setLoading(true); // true
       const fileNewName: string = new Date().toString() + file.name;
-      const uploadTask = storage
-        .ref(`${assetFolderName}/${fileNewName}`)
-        .put(file);
+      const storeRef = ref(storage, `${assetFolderName}/${fileNewName}`);
+      const uploadTask = uploadBytesResumable(storeRef, file);
 
       uploadTask.on(
         "state_changed",
-        (snapshot) => {
+        (snapshot:any) => {
           let initProgress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setProgress(initProgress);
         },
-        (error) => {
+        (error:any) => {
           setLoading(false);
           reject(error);
         },
         () => {
-          storage
-            .ref(assetFolderName)
-            .child(fileNewName)
-            .getDownloadURL()
-            .then((url) => {
-              setLoading(false);
-              resolve(url);
-            })
-            .catch((e) => reject(e));
+          // storage
+          //   .ref(assetFolderName)
+          //   .child(fileNewName)
+          //   .getDownloadURL()
+          //   .then((url:any) => {
+          //     setLoading(false);
+          //     resolve(url);
+          //   })
+          //   .catch((e: any) => reject(e));
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setLoading(false);
+            resolve(downloadURL);
+          }).catch((e: any) => reject(e));
         }
       );
     });

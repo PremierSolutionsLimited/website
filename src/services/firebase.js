@@ -1,4 +1,6 @@
-import firebase from "firebase/app";
+import {initializeApp} from "firebase/app";
+import { getStorage } from "@firebase/storage";
+import { getMessaging } from "firebase/messaging";
 import "firebase/storage";
 
 var firebaseConfig = {
@@ -11,9 +13,10 @@ var firebaseConfig = {
   measurementId: "G-D0PMK42PKL",
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+//initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const storage = firebase.storage();
-const messaging = firebase.messaging()
+const storage = getStorage(app);
+const messaging = getMessaging(app);
 
-export { storage, firebase as default, messaging };
+export { storage, app as default, messaging };
