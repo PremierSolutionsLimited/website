@@ -44,7 +44,7 @@ const Login = () => {
     getToken(messaging, { vapidKey: publicKey })
     ?.then((token) => {
       setGettingToken(false);
-      console.log("Token is: ",token)
+      //console.log("Token is: ",token)
       loginInvoker({
         variables: {
           email,
