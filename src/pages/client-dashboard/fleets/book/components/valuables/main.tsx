@@ -9,6 +9,7 @@ export type TValuableType = {
 export interface IMainComponentProp {
   valuables: TValuableType[];
   setValuables: Dispatch<SetStateAction<TValuableType[]>>;
+  update?: boolean
 }
 
 const MainComponent: FC<IMainComponentProp> = ({ valuables, setValuables }) => {

@@ -162,7 +162,7 @@ const CardComponent = ({
             )}
           </Fragment>
         )}
-        {history?.status === "PENDING" && (
+        {history?.status === "PREPARED" && (
           <Fragment>
             {history?.checklistMismatch && (
               <Fragment>

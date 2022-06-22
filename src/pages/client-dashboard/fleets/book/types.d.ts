@@ -77,6 +77,6 @@ interface Checklist {
   damagesOnVehicle: DamagesInput[];
 }
 export interface DamagesInput {
-  description: string;
-  images: string[];
+  description?: string;
+  images?: string[];
 }

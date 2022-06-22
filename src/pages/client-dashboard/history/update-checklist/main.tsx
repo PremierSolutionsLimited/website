@@ -113,12 +113,14 @@ const MainComponent: FC<UpdateChecklistComponentProp> = ({
               <ValuablesComponent 
                 valuables={valuableItems}
                 setValuables={setValuableItems}
+                update={true}
               />
             </div>
             <div className="col-span-4">
               <DamageComponent 
                 damage={damage}
                 setDamage={setDamage}
+                update={true} 
               />
             </div>
           </div>

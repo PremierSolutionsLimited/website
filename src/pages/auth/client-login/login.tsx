@@ -40,11 +40,11 @@ const Login = () => {
     e.preventDefault();
     setGettingToken(true);
     const publicKey = process?.env?.REACT_APP_PUBLIC_VAPID_KEY;
-    console.log(publicKey)
+    //console.log(publicKey)
     getToken(messaging, { vapidKey: publicKey })
     ?.then((token) => {
       setGettingToken(false);
-      //console.log("Token is: ",token)
+      console.log("Token is: ",token)
       loginInvoker({
         variables: {
           email,
