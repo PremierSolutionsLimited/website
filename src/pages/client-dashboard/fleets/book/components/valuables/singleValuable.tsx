@@ -2,11 +2,12 @@ import React, { Fragment, FC } from "react";
 import { MinusCircleIcon } from "@heroicons/react/outline";
 
 export interface ValuableProps {
-  description: string;
-  setDescription: (value: any) => void;
+  description?: string;
+  setDescription?: (value: any) => void;
   images?: string[];
   setImages?: (value: any) => void;
   handleRemove: () => void;
+  setConfirm?: (value: boolean) => void;
 }
 
 const SingleValuable: FC<ValuableProps> = ({
@@ -23,7 +24,7 @@ const SingleValuable: FC<ValuableProps> = ({
               placeholder="Enter name/description of item"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-3 focus:outline-none bg-white focus:ring-gray-500 focus:border-gray-400 sm:text-sm"
               value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => setDescription && setDescription(e.target.value)}
               required
             />
           </div>

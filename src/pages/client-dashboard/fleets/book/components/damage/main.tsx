@@ -6,7 +6,7 @@ export type TDamageType = {
   description?: string;
   images?: string[];
   reporterResponse?: {
-    description: string
+    description?: string
     images?: string[]
   }
   confrimerResponse?: boolean
@@ -90,6 +90,7 @@ const MainComponent: FC<IMainComponentProp> = ({ damage, setDamage, update }) =>
           return (
             <SingleDamage
               key={index}
+              update={update}
               description={!update? valuable.description : valuable?.reporterResponse?.description}
               setDescription={(value) => {
                 if (!update) {
@@ -117,12 +118,39 @@ const MainComponent: FC<IMainComponentProp> = ({ damage, setDamage, update }) =>
               }}
               images={valuable.images}
               setImages={(value) => {
-                damage[index].images = value;
-                setDamage([...damage]);
+                if (!update) {
+                  damage[index].images = value;
+                  setDamage([...damage]);
+                }
+                else {
+                  if (damage[index].reporterResponse) {
+                    damage[index].reporterResponse = {
+                      ...damage[index].reporterResponse,
+                      images: [
+                        value
+                      ]
+                    }
+                    setDamage([...damage]);
+                  }
+                  else {
+                    damage[index].reporterResponse = {
+                      description: "",
+                      images: [value],
+                    };
+                    setDamage([...damage]);
+                  }
+                }
               }}
               handleRemove={() => {
                 damage.splice(index, 1);
                 setDamage([...damage]);
+              }}
+              setConfirm={(value: boolean | undefined) => {
+                if (update) {
+                  damage[index].confrimerResponse = value;
+                  setDamage([...damage]);
+                }
+                
               }}
             />
           );
