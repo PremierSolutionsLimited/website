@@ -1,11 +1,13 @@
 import React, { Fragment, FC } from "react";
-import { MinusCircleIcon } from "@heroicons/react/outline";
+import { MinusCircleIcon, CheckIcon, XIcon } from "@heroicons/react/outline";
 
 export interface ValuableProps {
   description?: string;
   setDescription?: (value: any) => void;
   images?: string[];
   setImages?: (value: any) => void;
+  update?: boolean;
+  reportedBy?: "Driver" | "Client";
   handleRemove: () => void;
   setConfirm?: (value: boolean) => void;
 }
@@ -14,6 +16,9 @@ const SingleValuable: FC<ValuableProps> = ({
   description,
   setDescription,
   handleRemove,
+  update,
+  reportedBy,
+  setConfirm
 }) => {
   return (
     <Fragment>
@@ -28,6 +33,38 @@ const SingleValuable: FC<ValuableProps> = ({
               required
             />
           </div>
+          {update ? (
+            reportedBy === "Driver" ? (
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  title="Confirm"
+                  onClick={() => setConfirm && setConfirm(true)}
+                  className="border border-green-600 text-green-600 rounded-md flex justify-center items-center hover:bg-gray-100"
+                >
+                  <CheckIcon className="h-6 w-6" />
+                </button>
+                <button
+                  type="button"
+                  title="Deny"
+                  onClick={() => setConfirm && setConfirm(false)}
+                  className="border border-red-600 text-red-600 rounded-md flex justify-center items-center hover:bg-gray-100"
+                >
+                  <XIcon className="h-6 w-6" />
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                title="Remove"
+                onClick={handleRemove}
+                className="col-span-1 border border-red-600 text-red-600 rounded-md flex justify-center items-center hover:bg-gray-100"
+              >
+                <MinusCircleIcon className="h-6 w-6" />
+              </button>
+            )
+          )
+          :
           <button
             type="button"
             title="Remove"
@@ -36,6 +73,7 @@ const SingleValuable: FC<ValuableProps> = ({
           >
             <MinusCircleIcon className="h-6 w-6" />
           </button>
+}
         </div>
       </div>
     </Fragment>

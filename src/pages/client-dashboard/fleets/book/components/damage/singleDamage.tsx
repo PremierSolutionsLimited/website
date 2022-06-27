@@ -35,12 +35,12 @@ const SingleValuable: FC<DamageProps> = ({
           </div>
           {update ? (
             reportedBy === "Driver" ? (
-              <div className="flex flex-row-reverse justify-between">
+              <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
                   title="Confirm"
                   onClick={() => setConfirm && setConfirm(true)}
-                  className="col-span-1 border border-red-600 text-red-600 rounded-md flex justify-center items-center hover:bg-gray-100"
+                  className="border border-green-600 text-green-600 rounded-md flex justify-center items-center hover:bg-gray-100"
                 >
                   <CheckIcon className="h-6 w-6" />
                 </button>
@@ -48,7 +48,7 @@ const SingleValuable: FC<DamageProps> = ({
                   type="button"
                   title="Deny"
                   onClick={() => setConfirm && setConfirm(false)}
-                  className="col-span-1 border border-red-600 text-red-600 rounded-md flex justify-center items-center hover:bg-gray-100"
+                  className="border border-red-600 text-red-600 rounded-md flex justify-center items-center hover:bg-gray-100"
                 >
                   <XIcon className="h-6 w-6" />
                 </button>

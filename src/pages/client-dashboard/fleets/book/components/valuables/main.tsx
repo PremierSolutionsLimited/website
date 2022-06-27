@@ -83,6 +83,7 @@ const MainComponent: FC<IMainComponentProp> = ({ valuables, setValuables, update
           return (
             <SingleValuable
               key={index}
+              update={update}
               description={!update? valuable.description : valuable?.reporterResponse?.description}
               setDescription={(value) => {
                 if (!update) {
@@ -144,6 +145,7 @@ const MainComponent: FC<IMainComponentProp> = ({ valuables, setValuables, update
                 }
                 
               }}
+              reportedBy={valuable.reportedBy}
             />
           );
         })}
