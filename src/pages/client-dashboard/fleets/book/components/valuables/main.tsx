@@ -2,24 +2,46 @@ import React, { Fragment, FC, Dispatch, SetStateAction } from "react";
 import SingleValuable from "./singleValuable";
 
 export type TValuableType = {
-  description: string;
-  images: string[];
+  description?: string;
+  images?: string[];
+  reporterResponse?: {
+    description?: string
+    images?: string[]
+  }
+  confrimerResponse?: boolean
+  reportedBy?: "Driver" | "Client"
 };
 
 export interface IMainComponentProp {
   valuables: TValuableType[];
   setValuables: Dispatch<SetStateAction<TValuableType[]>>;
+  update?: boolean
 }
 
-const MainComponent: FC<IMainComponentProp> = ({ valuables, setValuables }) => {
+const MainComponent: FC<IMainComponentProp> = ({ valuables, setValuables, update }) => {
   const handleAddValuable = () => {
-    setValuables([
-      ...valuables,
-      {
-        description: "",
-        images: [],
-      },
-    ]);
+    if (!update) {
+      setValuables([
+        ...valuables,
+        {
+          description: "",
+          images: [],
+        },
+      ]);
+    }
+    else {
+      setValuables([
+        ...valuables,
+        {
+          reporterResponse: {
+            description: "",
+            images: [],
+          },
+          confrimerResponse: false,
+          reportedBy: "Client"
+        },
+      ]);
+    }
   };
   return (
     <Fragment>
@@ -61,20 +83,69 @@ const MainComponent: FC<IMainComponentProp> = ({ valuables, setValuables }) => {
           return (
             <SingleValuable
               key={index}
-              description={valuable.description}
+              update={update}
+              description={!update? valuable.description : valuable?.reporterResponse?.description}
               setDescription={(value) => {
-                valuables[index].description = value;
+                if (!update) {
+                  valuables[index].description = value;
+                  setValuables([...valuables]);
+                }
+                else {
+                  if (valuables[index].reporterResponse) {
+                    valuables[index].reporterResponse = {
+                      ...valuables[index].reporterResponse,
+                      description: value
+                    }
+                    setValuables([...valuables]);
+                  }
+                  else {
+                    valuables[index].reporterResponse = {
+                      description: value,
+                      images: [],
+                    };
+                    setValuables([...valuables]);
+                  }
+                }
+                //valuables[index].reporterResponse? valuables[index].reporterResponse={description: value, images: [] } : valuables[index].description = value;
                 setValuables([...valuables]);
               }}
               images={valuable.images}
               setImages={(value) => {
-                valuables[index].images = value;
-                setValuables([...valuables]);
+                if (!update) {
+                  valuables[index].images = value;
+                  setValuables([...valuables]);
+                }
+                else {
+                  if (valuables[index].reporterResponse) {
+                    valuables[index].reporterResponse = {
+                      ...valuables[index].reporterResponse,
+                      images: [
+                        value
+                      ]
+                    }
+                    setValuables([...valuables]);
+                  }
+                  else {
+                    valuables[index].reporterResponse = {
+                      description: "",
+                      images: [value],
+                    };
+                    setValuables([...valuables]);
+                  }
+                }
               }}
               handleRemove={() => {
                 valuables.splice(index, 1);
                 setValuables([...valuables]);
               }}
+              setConfirm={(value: boolean | undefined) => {
+                if (update) {
+                  valuables[index].confrimerResponse = value;
+                  setValuables([...valuables]);
+                }
+                
+              }}
+              reportedBy={valuable.reportedBy}
             />
           );
         })}

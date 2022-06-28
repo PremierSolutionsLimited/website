@@ -42,6 +42,8 @@ export const getTripHistory = gql`
         type
         coordinates
       }
+      pickUpLocationName
+      dropOffLocationName
       status
       notes
       driverRated
@@ -126,6 +128,8 @@ export const getTripHistoryLite = gql`
         type
         coordinates
       }
+      pickUpLocationName
+      dropOffLocationName
       status
       finalCost {
         finalCost

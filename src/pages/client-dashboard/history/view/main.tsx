@@ -101,13 +101,13 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   <div className={"col-span-2 ml-5"}>
                     <h1 className={"font-light ml-4"}>From</h1>
                     <span className={"font-medium ml-4"}>
-                      {loadPickup ? "loading..." : pickup}
+                      {loadPickup ? "loading..." : pickup || trip?.pickUpLocationName}
                     </span>
                   </div>
                   <div className={"col-span-2 ml-5"}>
                     <h1 className={"font-light ml-4"}>To</h1>
                     <span className={"font-medium ml-4"}>
-                      {loadDropoff ? "loading..." : dropoff}
+                      {loadDropoff ? "loading..." : dropoff || trip?.dropOffLocationName}
                     </span>
                   </div>
                   <div

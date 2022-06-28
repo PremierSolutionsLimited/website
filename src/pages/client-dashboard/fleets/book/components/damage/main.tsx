@@ -1,25 +1,54 @@
 import React, { Fragment, FC, Dispatch, SetStateAction } from "react";
 import SingleDamage from "./singleDamage";
 
+
 export type TDamageType = {
-  description: string;
-  images: string[];
+  description?: string;
+  images?: string[];
+  reporterResponse?: {
+    description?: string
+    images?: string[]
+  }
+  confrimerResponse?: boolean
+  reportedBy?: "Driver" | "Client"
 };
+
+// export type TUpdateDamageType = {
+//   reporterResponse: TDamageType
+//   confrimerResponse: boolean
+//   reportedBy: "Driver" | "Client"
+// }
 
 export interface IMainComponentProp {
   damage: TDamageType[];
   setDamage: Dispatch<SetStateAction<TDamageType[]>>;
+  update?: boolean
 }
 
-const MainComponent: FC<IMainComponentProp> = ({ damage, setDamage }) => {
+const MainComponent: FC<IMainComponentProp> = ({ damage, setDamage, update }) => {
   const handleAddDamage = () => {
-    setDamage([
-      ...damage,
-      {
-        description: "",
-        images: [],
-      },
-    ]);
+    if (!update) {
+      setDamage([
+        ...damage,
+        {
+          description: "",
+          images: [],
+        },
+      ]);
+    }
+    else {
+      setDamage([
+        ...damage,
+        {
+          reporterResponse: {
+            description: "",
+            images: [],
+          },
+          confrimerResponse: false,
+          reportedBy: "Client"
+        },
+      ]);
+    }
   };
   return (
     <Fragment>
@@ -61,20 +90,69 @@ const MainComponent: FC<IMainComponentProp> = ({ damage, setDamage }) => {
           return (
             <SingleDamage
               key={index}
-              description={valuable.description}
+              update={update}
+              description={!update? valuable.description : valuable?.reporterResponse?.description}
               setDescription={(value) => {
-                damage[index].description = value;
+                if (!update) {
+                  damage[index].description = value;
+                  setDamage([...damage]);
+                }
+                else {
+                  if (damage[index].reporterResponse) {
+                    damage[index].reporterResponse = {
+                      ...damage[index].reporterResponse,
+                      description: value
+                    }
+                    setDamage([...damage]);
+                  }
+                  else {
+                    damage[index].reporterResponse = {
+                      description: value,
+                      images: [],
+                    };
+                    setDamage([...damage]);
+                  }
+                }
+                //damage[index].reporterResponse? damage[index].reporterResponse={description: value, images: [] } : damage[index].description = value;
                 setDamage([...damage]);
               }}
               images={valuable.images}
               setImages={(value) => {
-                damage[index].images = value;
-                setDamage([...damage]);
+                if (!update) {
+                  damage[index].images = value;
+                  setDamage([...damage]);
+                }
+                else {
+                  if (damage[index].reporterResponse) {
+                    damage[index].reporterResponse = {
+                      ...damage[index].reporterResponse,
+                      images: [
+                        value
+                      ]
+                    }
+                    setDamage([...damage]);
+                  }
+                  else {
+                    damage[index].reporterResponse = {
+                      description: "",
+                      images: [value],
+                    };
+                    setDamage([...damage]);
+                  }
+                }
               }}
               handleRemove={() => {
                 damage.splice(index, 1);
                 setDamage([...damage]);
               }}
+              setConfirm={(value: boolean | undefined) => {
+                if (update) {
+                  damage[index].confrimerResponse = value;
+                  setDamage([...damage]);
+                }
+                
+              }}
+              reportedBy={valuable.reportedBy}
             />
           );
         })}

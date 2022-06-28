@@ -29,6 +29,8 @@ export interface TripHistory {
   endTime: Date;
   pickUpLocation: Location;
   dropOffLocation: Location;
+  pickUpLocationName: string;
+  dropOffLocationName: string;
   status: string;
   notes: string;
   driverRated: boolean;
