@@ -76,7 +76,7 @@ const CardComponent = ({
             </span>
           </td>
         </Fragment>
-      ) : history?.status === "IN_PROGRES" ? (
+      ) : history?.status === "IN_PROGRESS" ? (
         <Fragment>
           <td className="px-6 py-4 whitespace-nowrap">
             <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
@@ -96,7 +96,7 @@ const CardComponent = ({
         <Fragment>
           <td className="px-6 py-4 whitespace-nowrap">
             <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-              Prepared
+              {history?.checklistMismatch === true? "Checklist Mismatch" : "Prepared" }
             </span>
           </td>
         </Fragment>
