@@ -30,6 +30,8 @@ type TripType = {
   dropOffLocation: {
     coordinates: string;
   };
+  pickUpLocationName: string;
+  dropOffLocationName: string;
 };
 
 interface ITripProps {
@@ -141,13 +143,13 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
             <div className={"col-span-2"}>
               <h1 className={"font-light ml-4"}>From</h1>
               <span className={"font-medium ml-4"}>
-                {loadPickup ? "loading..." : pickup}
+                {loadPickup ? "loading..." : pickup || data?.pickUpLocationName}
               </span>
             </div>
             <div className={"col-span-2"}>
               <h1 className={"font-light ml-4"}>To</h1>
               <span className={"font-medium ml-4"}>
-                {loadDropoff ? "loading..." : dropoff}
+                {loadDropoff ? "loading..." : dropoff || data?.dropOffLocationName}
               </span>
             </div>
             <div className={"absolute left-2 sm:left-2 w-0.5"}>

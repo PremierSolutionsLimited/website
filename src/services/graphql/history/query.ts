@@ -126,6 +126,8 @@ export const getTripHistoryLite = gql`
         type
         coordinates
       }
+      pickUpLocationName
+      dropOffLocationName
       status
       finalCost {
         finalCost
