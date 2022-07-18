@@ -160,10 +160,10 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-2 mt-5 bg-gold-1 border border-gold-1 rounded-md py-3 px-2">
-            <div className="flex justify-between text-gray-100">
+          <div className="grid grid-cols-1 gap-2 mt-5 border border-dashed border-gold-1 rounded-md py-3 px-2">
+            <div className="flex justify-between text-gray-800">
               <div className="flex">
-                <IoTime className="h-5 w-5 mr-1 text-customBlack-2"/>
+                <IoTime className="h-5 w-5 mr-1 text-green-500"/>
                 Start Time:
               </div>
               <p className="text-black">
@@ -172,9 +172,9 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
                   : "Not Started Yet"}
               </p>
             </div>
-            <div className="flex justify-between text-gray-100">
+            <div className="flex justify-between text-gray-800">
               <div className="flex">
-                <IoTimeOutline className="h-5 w-5 mr-1 text-customBlack-2" />
+                <IoTimeOutline className="h-5 w-5 mr-1 text-red-600" />
                 End Time:
               </div>
               <p className="text-black">
