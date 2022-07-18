@@ -8,7 +8,7 @@ export type TValuableType = {
     description?: string
     images?: string[]
   }
-  confrimerResponse?: boolean
+  confirmerResponse?: boolean
   reportedBy?: "Driver" | "Client"
 };
 
@@ -37,7 +37,7 @@ const MainComponent: FC<IMainComponentProp> = ({ valuables, setValuables, update
             description: "",
             images: [],
           },
-          confrimerResponse: false,
+          confirmerResponse: false,
           reportedBy: "Client"
         },
       ]);
@@ -140,12 +140,13 @@ const MainComponent: FC<IMainComponentProp> = ({ valuables, setValuables, update
               }}
               setConfirm={(value: boolean | undefined) => {
                 if (update) {
-                  valuables[index].confrimerResponse = value;
+                  valuables[index].confirmerResponse = value;
                   setValuables([...valuables]);
                 }
                 
               }}
               reportedBy={valuable.reportedBy}
+              confirmerResponse={valuable.confirmerResponse}
             />
           );
         })}

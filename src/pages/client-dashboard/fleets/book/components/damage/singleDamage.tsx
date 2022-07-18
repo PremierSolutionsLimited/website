@@ -8,6 +8,7 @@ export interface DamageProps {
   setImages?: (value: any) => void;
   update?: boolean;
   reportedBy?: "Driver" | "Client";
+  confirmerResponse?: boolean;
   handleRemove: () => void;
   setConfirm?: (value: boolean) => void
 }
@@ -18,6 +19,7 @@ const SingleValuable: FC<DamageProps> = ({
   handleRemove,
   update,
   reportedBy,
+  confirmerResponse,
   setConfirm
 }) => {
   return (
@@ -34,7 +36,7 @@ const SingleValuable: FC<DamageProps> = ({
             />
           </div>
           {update ? (
-            reportedBy === "Driver" ? (
+            reportedBy === "Driver" && !confirmerResponse? (
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
@@ -53,16 +55,18 @@ const SingleValuable: FC<DamageProps> = ({
                   <XIcon className="h-6 w-6" />
                 </button>
               </div>
-            ) : (
-              <button
-                type="button"
-                title="Remove"
-                onClick={handleRemove}
-                className="col-span-1 border border-red-600 text-red-600 rounded-md flex justify-center items-center hover:bg-gray-100"
-              >
-                <MinusCircleIcon className="h-6 w-6" />
-              </button>
-            )
+            ) : 
+            // (
+            //   <button
+            //     type="button"
+            //     title="Remove"
+            //     onClick={handleRemove}
+            //     className="col-span-1 border border-red-600 text-red-600 rounded-md flex justify-center items-center hover:bg-gray-100"
+            //   >
+            //     <MinusCircleIcon className="h-6 w-6" />
+            //   </button>
+            // )
+            null
           ) : (
             <button
               type="button"

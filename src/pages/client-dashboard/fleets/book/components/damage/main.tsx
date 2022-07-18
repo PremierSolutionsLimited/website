@@ -153,6 +153,7 @@ const MainComponent: FC<IMainComponentProp> = ({ damage, setDamage, update }) =>
                 
               }}
               reportedBy={valuable.reportedBy}
+              confirmerResponse={valuable.confrimerResponse}
             />
           );
         })}

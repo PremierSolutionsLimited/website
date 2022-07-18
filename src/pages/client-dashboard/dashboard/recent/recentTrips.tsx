@@ -78,13 +78,13 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
   }, [data]);
   return (
     <Fragment>
-      <div className="bg-white flex flex-col space-y-5 pt-5 sm:pt-6 shadow rounded-lg overflow-hidden">
+      <div className="bg-white flex flex-col space-y-5 pt-5 sm:pt-6 shadow-sm rounded-lg overflow-hidden border border-gray-300">
         <div className="flex flex-col px-4 sm:px-6">
           <div>
-            <div className="flex justify-between items-top">
-              <div className="flex justify-start">
+            <div className="flex justify-between gap-2 items-top">
+              <div className="flex justify-start items-center">
                 <div
-                  className=" bg-gray-500 rounded-md p-3"
+                  className=" bg-gold-1 rounded-full p-3"
                   style={{ height: "50px" }}
                 >
                   <IoCarSportSharp
@@ -98,8 +98,8 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
                   <div className="text-sm font-medium text-gray-500 truncate">
                     {data?.vehicle?.make + " " + data?.vehicle?.model}
                   </div>
-                  <div className="flex items-baseline">
-                    <p className="text-2xl font-semibold text-gray-900">
+                  <div className="p-1 flex justify-center flex-shrink border border-dashed border-gray-700 rounded-md bg-customBlack-2">
+                    <p className="text-lg md:text-xl font-semibold text-white">
                       GHC {data?.finalCost?.finalCost || "N/A"}
                     </p>
                   </div>
@@ -107,16 +107,16 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
               </div>
               <div className="flex flex-col items-center space-y-2">
                 <span
-                  className={`inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium text-white ${
+                  className={`inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium border text-gray-800 ${
                     data?.status === "COMPLETED"
-                      ? "bg-green-500"
+                      ? "border-green-500 text-green-600"
                       : data?.status === "IN_PROGRESS"
-                      ? "bg-blue-500"
+                      ? "border-blue-600 text-blue-700"
                       : data?.status === "CANCELLED"
-                      ? "bg-red-600"
+                      ? "border-red-600 text-red-700"
                       : data?.status === "PREPARED" 
-                      ? "bg-teal-600"
-                      : "bg-gold-2"
+                      ? "border-indigo-600 text-indigo-700"
+                      : "border-yellow-500 text-gold-1"
                   }`}
                 >
                   <svg
@@ -131,51 +131,53 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="mt-4 flex justify-between text-lg ">
+          <div className="mt-4 flex justify-between text-lg">
             <div className="text-gray-700">
-              {new Date(data?.createdAt).toLocaleDateString()}
+              {new Date(data?.createdAt).toDateString()}
             </div>
-            <h2 className="font-medium text-blue-600">
+            <h2 className="font-medium text-gray-500 text-sm border-b border-gold-1">
               {data?.tripType?.name}
             </h2>
           </div>
-          <div className="relative sm:grid sm:grid-cols-2 sm:gap-4 mt-5">
-            <div className={"col-span-2"}>
-              <h1 className={"font-light ml-4"}>From</h1>
-              <span className={"font-medium ml-4"}>
-                {loadPickup ? "loading..." : pickup || data?.pickUpLocationName}
-              </span>
+          <div className="mt-5 flex justify-start items-center">
+            <div className={"w-0.5"}>
+              <LocationMarkerIcon className={"h-5 w-5 -ml-2 text-gold-1"} />
+              <div className={"h-20 rounded-lg w-0.5 -mt-2 bg-gold-1"} />
+              <div className={"h-2 w-2 rounded-full -ml-0.5 bg-gold-1 -mt-1"} />
             </div>
-            <div className={"col-span-2"}>
-              <h1 className={"font-light ml-4"}>To</h1>
-              <span className={"font-medium ml-4"}>
-                {loadDropoff ? "loading..." : dropoff || data?.dropOffLocationName}
-              </span>
-            </div>
-            <div className={"absolute left-2 sm:left-2 w-0.5"}>
-              <LocationMarkerIcon className={"h-5 -ml-3.5 w-5 text-gold-1"} />
-              <div className={"h-20 rounded-lg -ml-1 w-0.5 -mt-2 bg-gold-1"} />
-              <div className={"h-2 w-2 rounded-full -ml-1.5 bg-gold-1 -mt-1"} />
+            <div className="sm:grid sm:grid-cols-2 sm:gap-4">
+              <div className={"col-span-2"}>
+                <h1 className={"font-light ml-4"}>From</h1>
+                <span className={"font-medium ml-4"}>
+                  {loadPickup ? "loading..." : data?.pickUpLocationName}
+                </span>
+              </div>
+              <div className={"col-span-2"}>
+                <h1 className={"font-light ml-4"}>To</h1>
+                <span className={"font-medium ml-4"}>
+                  {loadDropoff ? "loading..." : dropoff || data?.dropOffLocationName}
+                </span>
+              </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-2 mt-5">
-            <div className="flex justify-between text-gray-700">
+          <div className="grid grid-cols-1 gap-2 mt-5 bg-gold-1 border border-gold-1 rounded-md py-3 px-2">
+            <div className="flex justify-between text-gray-100">
               <div className="flex">
-                <IoTime className="h-5 w-5 mr-1" />
+                <IoTime className="h-5 w-5 mr-1 text-customBlack-2"/>
                 Start Time:
               </div>
-              <p className="text-gold-2">
+              <p className="text-black">
                 {data?.startTime
                   ? moment(data?.startTime).format("D/MM/YYYY, h:mm a")
                   : "Not Started Yet"}
               </p>
             </div>
-            <div className="flex justify-between text-gray-700">
+            <div className="flex justify-between text-gray-100">
               <div className="flex">
-                <IoTimeOutline className="h-5 w-5 mr-1" />
+                <IoTimeOutline className="h-5 w-5 mr-1 text-customBlack-2" />
                 End Time:
               </div>
-              <p className="text-gold-2">
+              <p className="text-black">
                 {data?.endTime
                   ? moment(data?.endTime).format("D/MM/YYYY, h:mm a")
                   : "Not Ended Yet"}
@@ -183,14 +185,14 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className=" bg-gray-50 p-4 ">
+        <div className=" bg-gray-100 p-4 bottom-0">
           <div className="text-sm">
             <div
               onClick={() => push("/app/history")}
-              className="font-medium text-indigo-600 hover:text-gold-1 cursor-pointer"
+              className="font-medium text-gray-800 cursor-pointer hover:animate-bounce"
             >
               {" "}
-              View all<span className="sr-only"> Trips History</span>
+              <p className="hover:text-gold-1">View all</p><span className="sr-only"> Trips History</span>
             </div>
           </div>
         </div>
