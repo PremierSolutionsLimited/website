@@ -160,7 +160,7 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-2 mt-5 border border-dashed border-gold-1 rounded-md py-3 px-2">
+          <div className="grid grid-cols-1 gap-2 mt-5 border border-dashed border-gray-700 rounded-md py-3 px-2">
             <div className="flex justify-between text-gray-800">
               <div className="flex">
                 <IoTime className="h-5 w-5 mr-1 text-green-500"/>
