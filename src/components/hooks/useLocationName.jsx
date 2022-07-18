@@ -8,7 +8,7 @@ export const useLocationName = () => {
     setLoading(true);
     try {
       let results = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=true&result_type=street_address&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
         {
           method: "POST",
         }
