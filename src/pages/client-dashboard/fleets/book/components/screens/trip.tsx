@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { TripComponentProp } from "./types";
 import {
   getFinalDateWithDurationInput,
@@ -8,7 +8,7 @@ import { IDurationType } from "../data/types";
 import { useQuery } from "@apollo/client";
 import { GetTypesInput, GetTypesOutput } from "./types";
 import { GET_TRIP_TYPE } from "../../../../../../services/graphql/fleet";
-import { DatePicker } from "antd";
+import DatePicker from "react-multi-date-picker"
 import DurationType from "../bones/durationType";
 import AgeGroup1 from "../bones/ageGroup1";
 import AgeGroup2 from "../bones/ageGroup2";
@@ -38,6 +38,12 @@ export default function Trip({
   const { data, loading } = useQuery<GetTypesOutput, GetTypesInput>(
     GET_TRIP_TYPE
   );
+
+  const [tripDates, setTripDates] = useState<any>([]);
+
+  useEffect(() => {
+    console.log(tripDates)
+  },[tripDates])
 
   const handleNext = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -81,25 +87,22 @@ export default function Trip({
             htmlFor="url"
             className="block text-sm pb-1 font-medium text-gray-700"
           >
-            Trip Start Date <span className={"text-red-600"}>*</span>
+            Trip Start Date(s) <span className={"text-red-600"}>*</span>
           </label>
-          <div className="mt-1 rounded-none shadow-none">
+          <div className="mt-1 rounded-none shadow-none col-span-12">
             <DatePicker
               // value={value}
-              disabledDate={disabledDate}
-              onChange={(data: any) => {
-                setTripStartDate(data);
-                if (duration && selectedDuration) {
-                  getFinalDateWithDateInput(
-                    durationTypeSelected,
-                    duration,
-                    (tripStartDate = data),
-                    setEndTime
-                  );
-                }
+              multiple={true}
+              value={tripDates}
+              onChange={setTripDates}
+              style={{
+                width: "100%",
+                boxSizing: "border-box",
+                height: "30px"
               }}
-              showTime
-              className={"border w-full"}
+              containerStyle={{
+                width: "100%"
+              }}
             />
 
             {/* <input
