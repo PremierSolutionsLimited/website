@@ -103,6 +103,7 @@ export default function Trip({
               containerStyle={{
                 width: "100%"
               }}
+            minDate={new Date().setDate(new Date().getDate())}
             />
 
             {/* <input
