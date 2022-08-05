@@ -105,29 +105,10 @@ export default function Trip({
               }}
             minDate={new Date().setDate(new Date().getDate())}
             />
-
-            {/* <input
-              required
-              type={"datetime-local"}
-              id={"dob"}
-              value={tripStartDate}
-              onChange={(e) => {
-                setTripStartDate(e.target.value);
-                if (duration && selectedDuration) {
-                  getFinalDateWithDateInput(
-                    durationTypeSelected,
-                    duration,
-                    (tripStartDate = e.target.value),
-                    setEndTime
-                  );
-                }
-              }}
-              className="mt-1 block w-full pl-3 pr-4 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
-            /> */}
           </div>
         </div>
 
-        <div className="col-span-12 sm:col-span-12 md:col-span-12 overflow-x-auto scrollContainer">
+        {/* <div className="col-span-12 sm:col-span-12 md:col-span-12 overflow-x-auto scrollContainer">
           <label
             htmlFor="url"
             className="block text-sm pb-1 font-medium text-gray-700"
@@ -172,8 +153,8 @@ export default function Trip({
             className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
             placeholder={`Eg. 3 ${durationTypeSelected}`}
           />
-        </div>
-        <div className="col-span-12 sm:col-span-12 md:col-span-6">
+        </div> */}
+        <div className="col-span-12 sm:col-span-12 md:col-span-12">
           <label
             htmlFor="url"
             className="block text-sm pb-0 font-medium text-gray-700"
