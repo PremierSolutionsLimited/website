@@ -47,7 +47,7 @@ export default function Trip({
 
   const [tripDates, setTripDates] = useState<any>([]);
   const [enabledStart, setEnabledStart] = useState(false);
-  const [enabledDurations, setEnabledDurations] = useState(false);
+  const [enabledDuration, setEnabledDuration] = useState(false);
 
   useEffect(() => {
     console.log(tripDates);
@@ -114,7 +114,7 @@ export default function Trip({
             />
           </div>
         </div>
-        <div className="col-span-12 sm:col-span-12 md:col-span-12">
+        <div className="col-span-12 sm:col-span-12 md:col-span-12 mt-3">
           <div className="flex flex-col">
             <div className="grid grid-cols-12 gap-4 ml-2 divide-x">
               <div className="col-span-12 md:col-span-6 inline-flex items-center justify-start">
@@ -148,17 +148,17 @@ export default function Trip({
               <div className="pl-4 col-span-12 md:col-span-6 inline-flex items-center justify-start">
                 <Switch.Group as="div" className="flex items-center">
                   <Switch
-                    checked={enabledDurations}
-                    onChange={setEnabledDurations}
+                    checked={enabledDuration}
+                    onChange={setEnabledDuration}
                     className={classNames(
-                      enabledDurations ? "bg-indigo-600" : "bg-gray-200",
+                      enabledDuration ? "bg-indigo-600" : "bg-gray-200",
                       "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     )}
                   >
                     <span
                       aria-hidden="true"
                       className={classNames(
-                        enabledDurations ? "translate-x-5" : "translate-x-0",
+                        enabledDuration ? "translate-x-5" : "translate-x-0",
                         "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
                       )}
                     />
@@ -173,10 +173,10 @@ export default function Trip({
                   </Switch.Label>
                 </Switch.Group>
               </div>
-              <div className="col-span-12 sm:col-span-12 md:col-span-12">
+              <div className="col-span-12">
                 <TimeAndDuration
-                  fixedStart={false}
-                  fixedDuration={false}
+                  fixedStart={enabledStart}
+                  fixedDuration={enabledDuration}
                   dates={tripDates}
                   startTimes={[]}
                   setStartTimes={function (
