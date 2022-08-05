@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, SetStateAction } from "react";
 import { TripComponentProp } from "./types";
 import {
   getFinalDateWithDurationInput,
@@ -8,12 +8,18 @@ import { IDurationType } from "../data/types";
 import { useQuery } from "@apollo/client";
 import { GetTypesInput, GetTypesOutput } from "./types";
 import { GET_TRIP_TYPE } from "../../../../../../services/graphql/fleet";
-import DatePicker from "react-multi-date-picker"
+import DatePicker from "react-multi-date-picker";
 import DurationType from "../bones/durationType";
 import AgeGroup1 from "../bones/ageGroup1";
 import AgeGroup2 from "../bones/ageGroup2";
+import TimeAndDuration from "../bones/timeAndDuration";
 import moment from "moment";
 import toast from "react-hot-toast";
+import { Switch } from "@headlessui/react";
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function Trip({
   selectedAgeGroup,
@@ -40,10 +46,12 @@ export default function Trip({
   );
 
   const [tripDates, setTripDates] = useState<any>([]);
+  const [enabledStart, setEnabledStart] = useState(false);
+  const [enabledDurations, setEnabledDurations] = useState(false);
 
   useEffect(() => {
-    console.log(tripDates)
-  },[tripDates])
+    console.log(tripDates);
+  }, [tripDates]);
 
   const handleNext = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -71,13 +79,12 @@ export default function Trip({
     return current < start;
   };
 
-  console.log(isOvernightTrip)
+  console.log(isOvernightTrip);
   useEffect(() => {
     if (requestType !== "61faa7fc8b2c8d00164ada82") {
       setIsOvernightTrip(false);
-    }
-    else setIsOvernightTrip(true)
-  },[requestType, setIsOvernightTrip])
+    } else setIsOvernightTrip(true);
+  }, [requestType, setIsOvernightTrip]);
 
   return (
     <Fragment>
@@ -98,13 +105,106 @@ export default function Trip({
               style={{
                 width: "100%",
                 boxSizing: "border-box",
-                height: "30px"
+                height: "30px",
               }}
               containerStyle={{
-                width: "100%"
+                width: "100%",
               }}
-            minDate={new Date().setDate(new Date().getDate())}
+              minDate={new Date().setDate(new Date().getDate())}
             />
+          </div>
+        </div>
+        <div className="col-span-12 sm:col-span-12 md:col-span-12">
+          <div className="flex flex-col">
+            <div className="grid grid-cols-12 gap-4 ml-2 divide-x">
+              <div className="col-span-12 md:col-span-6 inline-flex items-center justify-start">
+                <Switch.Group as="div" className="flex items-center">
+                  <Switch
+                    checked={enabledStart}
+                    onChange={setEnabledStart}
+                    className={classNames(
+                      enabledStart ? "bg-indigo-600" : "bg-gray-200",
+                      "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    )}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={classNames(
+                        enabledStart ? "translate-x-5" : "translate-x-0",
+                        "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                      )}
+                    />
+                  </Switch>
+                  <Switch.Label as="span" className="ml-3 flex flex-col">
+                    <span className="text-sm font-medium text-gray-900">
+                      Fixed Start Time{" "}
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      (Trips Will Start at the Same Time)
+                    </span>
+                  </Switch.Label>
+                </Switch.Group>
+              </div>
+              <div className="pl-4 col-span-12 md:col-span-6 inline-flex items-center justify-start">
+                <Switch.Group as="div" className="flex items-center">
+                  <Switch
+                    checked={enabledDurations}
+                    onChange={setEnabledDurations}
+                    className={classNames(
+                      enabledDurations ? "bg-indigo-600" : "bg-gray-200",
+                      "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    )}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={classNames(
+                        enabledDurations ? "translate-x-5" : "translate-x-0",
+                        "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                      )}
+                    />
+                  </Switch>
+                  <Switch.Label as="span" className="ml-3 flex flex-col">
+                    <span className="text-sm font-medium text-gray-900">
+                      Fixed Durations{" "}
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      (Trips Will Have The Same Durations)
+                    </span>
+                  </Switch.Label>
+                </Switch.Group>
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-12">
+                <TimeAndDuration
+                  fixedStart={false}
+                  fixedDuration={false}
+                  dates={tripDates}
+                  startTimes={[]}
+                  setStartTimes={function (
+                    value: SetStateAction<string[]>
+                  ): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                  durations={[]}
+                  setDurations={function (
+                    value: SetStateAction<string[]>
+                  ): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                  endTimes={[]}
+                  setEndTimes={function (
+                    value: SetStateAction<string[]>
+                  ): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                  setStartTime={function (value: SetStateAction<string>): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                  setDuration={function (value: SetStateAction<string>): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
