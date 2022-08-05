@@ -28,8 +28,6 @@ export default function Trip({
   setSelectedDuration,
   setDurationTypeSelected,
   durationTypeSelected,
-  duration,
-  setDuration,
   isOvernightTrip,
   setIsOvernightTrip,
   tripStartDate,
@@ -48,10 +46,11 @@ export default function Trip({
   const [tripDates, setTripDates] = useState<any>([]);
   const [enabledStart, setEnabledStart] = useState(false);
   const [enabledDuration, setEnabledDuration] = useState(false);
-
-  useEffect(() => {
-    console.log(tripDates);
-  }, [tripDates]);
+  const [startTimes, setStartTimes] = useState<Date[]>([]);
+  const [durations, setDurations] = useState<string[]>([]);
+  const [endTimes, setEndTimes] = useState<Date[]>([]);
+  const [startTime, setStartTime] = useState<Date>(new Date());
+  const [duration, setDuration] = useState<string>("");
 
   const handleNext = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -86,6 +85,8 @@ export default function Trip({
     } else setIsOvernightTrip(true);
   }, [requestType, setIsOvernightTrip]);
 
+
+  console.log(new Date(tripDates[0]));
   return (
     <Fragment>
       <div className="grid grid-cols-12 gap-3  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto">
@@ -178,30 +179,17 @@ export default function Trip({
                   fixedStart={enabledStart}
                   fixedDuration={enabledDuration}
                   dates={tripDates}
-                  startTimes={[]}
-                  setStartTimes={function (
-                    value: SetStateAction<string[]>
-                  ): void {
-                    throw new Error("Function not implemented.");
-                  }}
-                  durations={[]}
-                  setDurations={function (
-                    value: SetStateAction<string[]>
-                  ): void {
-                    throw new Error("Function not implemented.");
-                  }}
-                  endTimes={[]}
-                  setEndTimes={function (
-                    value: SetStateAction<string[]>
-                  ): void {
-                    throw new Error("Function not implemented.");
-                  }}
-                  setStartTime={function (value: SetStateAction<string>): void {
-                    throw new Error("Function not implemented.");
-                  }}
-                  setDuration={function (value: SetStateAction<string>): void {
-                    throw new Error("Function not implemented.");
-                  }}
+                  setDates={setTripDates}
+                  startTimes={startTimes}
+                  setStartTimes={setStartTimes}
+                  durations={durations}
+                  setDurations={setDurations}
+                  endTimes={endTimes}
+                  setEndTimes={setEndTimes}
+                  startTime={startTime}
+                  setStartTime={setStartTime}
+                  duration={duration}
+                  setDuration={setDuration}
                 />
               </div>
             </div>

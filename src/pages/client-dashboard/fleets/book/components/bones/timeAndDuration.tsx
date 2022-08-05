@@ -1,6 +1,4 @@
 import React, {
-  useState,
-  useEffect,
   Fragment,
   Dispatch,
   SetStateAction,
@@ -13,14 +11,15 @@ interface IProps {
   fixedStart: boolean;
   fixedDuration: boolean;
   dates: any[];
-  startTimes: string[];
-  setStartTimes: Dispatch<SetStateAction<string[]>>;
+  setDates: Dispatch<SetStateAction<any[]>>;
+  startTimes: Date[];
+  setStartTimes: Dispatch<SetStateAction<Date[]>>;
   durations: string[];
   setDurations: Dispatch<SetStateAction<string[]>>;
-  endTimes: string[];
-  setEndTimes: Dispatch<SetStateAction<string[]>>;
-  startTime?: string;
-  setStartTime: Dispatch<SetStateAction<string>>;
+  endTimes: Date[];
+  setEndTimes: Dispatch<SetStateAction<Date[]>>;
+  startTime?: Date;
+  setStartTime: Dispatch<SetStateAction<Date>>;
   duration?: string;
   setDuration: Dispatch<SetStateAction<string>>;
 }
@@ -29,6 +28,7 @@ const TimeAndDuration = ({
   fixedStart,
   fixedDuration,
   dates,
+  setDates,
   startTime,
   setStartTime,
   duration,
@@ -40,11 +40,46 @@ const TimeAndDuration = ({
   durations,
   setDurations,
 }: IProps) => {
-  const onChangeTime = (time: Moment | null, timeString: string) => {
-    console.log(time, timeString);
+
+  const onChangeStartTime = (time: Moment | null, timeString: string, index: number) => {
+    console.log("Time: ",time, "Timestring: ",timeString);
+    setStartTimes((prev) => {
+        const newStartTimes = [...prev];
+        if (time) {
+            const hours = time?.hours();
+            const minutes = time?.minutes();
+            newStartTimes[index] = new Date(new Date(dates[index]).setHours(hours, minutes));
+            return newStartTimes;
+        }
+        return newStartTimes;
+    }
+    );
+    
   };
 
-  console.log(dates);
+  const onChangeEndTime = (time: Moment | null , timeString: string, index: number) => {
+    setEndTimes((prev) => {
+        const newEndTimes = [...prev];
+        if (time) {
+            const hours = time?.hour()
+            const minutes = time.minutes()
+            newEndTimes[index] = new Date(new Date(dates[index].setHours(hours, minutes)))
+            return newEndTimes
+        }
+        return newEndTimes
+    })
+  }
+
+  console.log("Dates: ",dates);
+
+  const setFixedStartTime = (time: Moment | null, timeString: string) => {
+    //set the same time for all the start times 
+    
+  }
+
+  const setFixedDuration = (value: number) => {
+    setDuration(value.toString());
+  }
   return (
     <Fragment>
       {(fixedStart || fixedDuration) && (
@@ -63,8 +98,8 @@ const TimeAndDuration = ({
                       use12Hours
                       format="h:mm"
                       placeholder="Select Time"
-                      onChange={onChangeTime}
-                      defaultValue={moment("00:00:00", "HH:mm:ss")}
+                      onChange={setFixedStartTime}
+                      defaultOpenValue={moment("00:00", "h:mm")}
                     />
                   </div>
                 </div>
@@ -85,6 +120,7 @@ const TimeAndDuration = ({
                       defaultValue={1}
                       formatter={(value) => `${value} hour(s)`}
                       parser={(value: any) => value!.replace("hour(s)", "")}
+                      onChange={setFixedDuration}
                     />
                   </div>
                 </div>
@@ -113,7 +149,7 @@ const TimeAndDuration = ({
                             use12Hours
                             format="h:mm A"
                             placeholder="Select Time"
-                            onChange={onChangeTime}
+                            onChange={(value, dateString) => onChangeStartTime(value, dateString, index)}
                             defaultOpenValue={moment("00:00", "h:mm A")}
                           />
                         </div>
@@ -151,7 +187,7 @@ const TimeAndDuration = ({
                             //use12Hours
                             format="h:mm A"
                             placeholder="Select Time"
-                            onChange={onChangeTime}
+                            onChange={(value, dateString) => onChangeEndTime(value, dateString, index)}
                             defaultOpenValue={moment("00:00", "h:mm A")}
                           />
                         </div>
