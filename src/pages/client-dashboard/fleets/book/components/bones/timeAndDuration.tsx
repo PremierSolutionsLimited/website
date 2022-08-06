@@ -1,8 +1,4 @@
-import React, {
-  Fragment,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import React, { Fragment, Dispatch, SetStateAction, useState } from "react";
 import { TimePicker, InputNumber } from "antd";
 import type { Moment } from "moment";
 import moment from "moment";
@@ -41,45 +37,109 @@ const TimeAndDuration = ({
   setDurations,
 }: IProps) => {
 
-  const onChangeStartTime = (time: Moment | null, timeString: string, index: number) => {
-    console.log("Time: ",time, "Timestring: ",timeString);
+  console.log("STARTS: ", startTimes)
+
+  const [displayFixedTime, setDisplayFixedTime] = useState<any>("");
+  const [displayFixedDuration, setDisplayFixedDuration] = useState<any>("");
+
+  const onChangeStartTime = (
+    time: Moment | null,
+    timeString: string,
+    index: number
+  ) => {
     setStartTimes((prev) => {
-        const newStartTimes = [...prev];
-        if (time) {
-            const hours = time?.hours();
-            const minutes = time?.minutes();
-            newStartTimes[index] = new Date(new Date(dates[index]).setHours(hours, minutes));
-            return newStartTimes;
-        }
+      const newStartTimes = [...prev];
+      if (time) {
+        const hours = time?.hours();
+        const minutes = time?.minutes();
+        newStartTimes[index] = new Date(
+          new Date(dates[index]).setHours(hours, minutes)
+        );
         return newStartTimes;
-    }
-    );
-    
+      }
+      return newStartTimes;
+    });
   };
 
-  const onChangeEndTime = (time: Moment | null , timeString: string, index: number) => {
+  const onChangeEndTime = (
+    time: Moment | null,
+    _timeString: string,
+    index: number
+  ) => {
     setEndTimes((prev) => {
-        const newEndTimes = [...prev];
-        if (time) {
-            const hours = time?.hour()
-            const minutes = time.minutes()
-            newEndTimes[index] = new Date(new Date(dates[index].setHours(hours, minutes)))
-            return newEndTimes
+      const newEndTimes = [...prev];
+      if (time) {
+        const hours = time?.hour();
+        const minutes = time.minutes();
+        newEndTimes[index] = new Date(
+          new Date(dates[index].setHours(hours, minutes))
+        );
+        return newEndTimes;
+      }
+      return newEndTimes;
+    });
+  };
+
+  console.log("Dates: ", dates);
+
+  const setFixedStartTime = (time: Moment | null, _timeString: string) => {
+    //set the same time for all the start times
+    console.log("Before: ", startTimes);
+    setDisplayFixedTime(time)
+    setStartTimes((prev) => {
+      const newStartTimes: any = [...prev];
+      if (time) {
+        const hours = time?.hours();
+        const minutes = time?.minutes();
+        if (newStartTimes.length > 0) {
+          newStartTimes.forEach((_startTime: any, index: number) => {
+            newStartTimes[index] = new Date(
+              new Date(dates[index]).setHours(hours, minutes)
+            );
+          });
         }
-        return newEndTimes
-    })
-  }
+        else {
+          for (let i = 0; i < dates?.length; i++) {
+            newStartTimes[i] = new Date(dates[i]).setHours(hours, minutes);
+          }
+        }
+      }
+      return newStartTimes;
+    });
+    console.log("After: ", startTimes);
+  };
 
-  console.log("Dates: ",dates);
-
-  const setFixedStartTime = (time: Moment | null, timeString: string) => {
-    //set the same time for all the start times 
-    
-  }
+  const onChangeDuration = (value: number, index: number) => {
+    setDurations((prev) => {
+      const newDurations = [...prev];
+      if (value) {
+        newDurations[index] = value.toString();
+      }
+      return newDurations;
+    });
+  };
 
   const setFixedDuration = (value: number) => {
-    setDuration(value.toString());
-  }
+    //set the same duration for all the 
+    setDisplayFixedDuration(value)
+    setDurations((prev) => {
+      const newDurations: any = [...prev];
+      if (value) {
+        if (newDurations.length > 0) {
+          newDurations.forEach((_startTime: any, index: number) => {
+            newDurations[index] = value.toString();
+          });
+        }
+        else {
+          for (let i = 0; i < dates?.length; i++) {
+            newDurations[i] = value.toString();
+          }
+        }
+      }
+      return newDurations;
+    });
+  };
+
   return (
     <Fragment>
       {(fixedStart || fixedDuration) && (
@@ -96,7 +156,7 @@ const TimeAndDuration = ({
                   <div className="flex-grow">
                     <TimePicker
                       use12Hours
-                      format="h:mm"
+                      format="h:mm A"
                       placeholder="Select Time"
                       onChange={setFixedStartTime}
                       defaultOpenValue={moment("00:00", "h:mm")}
@@ -149,8 +209,11 @@ const TimeAndDuration = ({
                             use12Hours
                             format="h:mm A"
                             placeholder="Select Time"
-                            onChange={(value, dateString) => onChangeStartTime(value, dateString, index)}
+                            onChange={(value, dateString) =>
+                              onChangeStartTime(value, dateString, index)
+                            }
                             defaultOpenValue={moment("00:00", "h:mm A")}
+                            value={displayFixedTime? displayFixedTime : startTimes[index]}
                           />
                         </div>
                       </div>
@@ -171,6 +234,8 @@ const TimeAndDuration = ({
                             parser={(value: any) =>
                               value!.replace("hour(s)", "")
                             }
+                            onChange={(value) => onChangeDuration(value, index)}
+                            value={displayFixedDuration? displayFixedDuration : durations[index]}
                           />
                         </div>
                       </div>
@@ -187,7 +252,9 @@ const TimeAndDuration = ({
                             //use12Hours
                             format="h:mm A"
                             placeholder="Select Time"
-                            onChange={(value, dateString) => onChangeEndTime(value, dateString, index)}
+                            onChange={(value, dateString) =>
+                              onChangeEndTime(value, dateString, index)
+                            }
                             defaultOpenValue={moment("00:00", "h:mm A")}
                           />
                         </div>
