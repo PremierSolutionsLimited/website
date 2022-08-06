@@ -213,7 +213,8 @@ const TimeAndDuration = ({
                               onChangeStartTime(value, dateString, index)
                             }
                             defaultOpenValue={moment("00:00", "h:mm A")}
-                            value={displayFixedTime? displayFixedTime : startTimes[index]}
+                            value={(fixedStart && displayFixedTime)? displayFixedTime : startTimes[index]? moment(startTimes[index]) : null}
+                            disabled={fixedStart}
                           />
                         </div>
                       </div>
@@ -235,7 +236,8 @@ const TimeAndDuration = ({
                               value!.replace("hour(s)", "")
                             }
                             onChange={(value) => onChangeDuration(value, index)}
-                            value={displayFixedDuration? displayFixedDuration : durations[index]}
+                            value={(fixedDuration && displayFixedDuration)? displayFixedDuration : durations[index]}
+                            disabled={fixedDuration}
                           />
                         </div>
                       </div>
