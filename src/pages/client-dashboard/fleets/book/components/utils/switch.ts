@@ -192,3 +192,30 @@ export const getFinalDateWithDurationTypeInput = (
       return;
   }
 };
+
+export const getFinalTimeFromStartTimeAndDuration = (
+  startTime: Date,
+  duration: number
+) => {
+  console.log('working here too')
+  const tempStartTime = new Date(startTime);
+  let finalTime = new Date(
+    tempStartTime.getFullYear(),
+    tempStartTime.getMonth(),
+    tempStartTime.getDate(),
+    tempStartTime.getHours() + duration,
+    tempStartTime.getMinutes(),
+    0
+  );
+  return finalTime;
+}
+
+export const getDurationFromStartTimeAndEndTime = (
+  startTime: Date,
+  endTime: Date
+) => {
+  const tempStartTime = new Date(startTime);
+  const tempEndTime = new Date(endTime);
+  let duration = tempEndTime.getHours() - tempStartTime.getHours();
+  return duration;
+}

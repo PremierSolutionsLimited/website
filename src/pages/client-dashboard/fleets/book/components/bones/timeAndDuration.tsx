@@ -1,7 +1,11 @@
-import React, { Fragment, Dispatch, SetStateAction, useState } from "react";
+import React, { Fragment, Dispatch, SetStateAction, useState, useEffect } from "react";
 import { TimePicker, InputNumber } from "antd";
 import type { Moment } from "moment";
 import moment from "moment";
+import {
+  getFinalTimeFromStartTimeAndDuration,
+  getDurationFromStartTimeAndEndTime
+} from "../utils/switch";
 
 interface IProps {
   fixedStart: boolean;
@@ -37,7 +41,7 @@ const TimeAndDuration = ({
   setDurations,
 }: IProps) => {
 
-  console.log("STARTS: ", startTimes)
+  console.log("DURATIONS: ", durations)
 
   const [displayFixedTime, setDisplayFixedTime] = useState<any>("");
   const [displayFixedDuration, setDisplayFixedDuration] = useState<any>("");
@@ -72,11 +76,25 @@ const TimeAndDuration = ({
         const hours = time?.hour();
         const minutes = time.minutes();
         newEndTimes[index] = new Date(
-          new Date(dates[index].setHours(hours, minutes))
+          new Date(dates[index]).setHours(hours, minutes)
         );
         return newEndTimes;
       }
       return newEndTimes;
+    });
+    setDurations((prev) => {
+      const newDurations:any = [...prev];
+      if (time && startTimes[index]) {
+        console.info(time)
+        console.info(typeof(time.format("HH:mm")))
+        const duration = getDurationFromStartTimeAndEndTime(
+          startTimes[index],
+          new Date(time.toDate())
+        );
+        newDurations[index] = duration.toString();
+        return newDurations;
+      }
+      return newDurations;
     });
   };
 
@@ -114,6 +132,17 @@ const TimeAndDuration = ({
       const newDurations = [...prev];
       if (value) {
         newDurations[index] = value.toString();
+        setEndTimes((prev) => {
+          const newEndTimes = [...prev];
+          console.log("working")
+          newEndTimes[index] = getFinalTimeFromStartTimeAndDuration(
+            startTimes[index],
+            value
+          );
+          console.log(newEndTimes)
+          return newEndTimes;
+        }
+        );
       }
       return newDurations;
     });
@@ -258,6 +287,8 @@ const TimeAndDuration = ({
                               onChangeEndTime(value, dateString, index)
                             }
                             defaultOpenValue={moment("00:00", "h:mm A")}
+                            disabled={!startTimes[index]}
+                            value={endTimes[index]? moment(endTimes[index]) : null}
                           />
                         </div>
                       </div>
