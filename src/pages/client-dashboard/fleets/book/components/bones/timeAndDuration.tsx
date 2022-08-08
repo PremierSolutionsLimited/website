@@ -1,4 +1,4 @@
-import React, { Fragment, Dispatch, SetStateAction, useState, useEffect } from "react";
+import React, { Fragment, Dispatch, SetStateAction, useState } from "react";
 import { TimePicker, InputNumber } from "antd";
 import type { Moment } from "moment";
 import moment from "moment";
@@ -167,6 +167,28 @@ const TimeAndDuration = ({
       }
       return newDurations;
     });
+    setEndTimes((prev) => {
+      const newEndTimes: any = [...prev];
+      if (value) {
+        if (newEndTimes.length > 0) {
+          newEndTimes.forEach((_startTime: any, index: number) => {
+            newEndTimes[index] = getFinalTimeFromStartTimeAndDuration(
+              startTimes[index],
+              value
+            );
+          });
+        }
+        else {
+          for (let i = 0; i < dates?.length; i++) {
+            newEndTimes[i] = getFinalTimeFromStartTimeAndDuration(
+              startTimes[i],
+              value
+            );
+          }
+        }
+      }
+      return newEndTimes;
+    });
   };
 
   return (
@@ -287,7 +309,7 @@ const TimeAndDuration = ({
                               onChangeEndTime(value, dateString, index)
                             }
                             defaultOpenValue={moment("00:00", "h:mm A")}
-                            disabled={!startTimes[index]}
+                            disabled={!startTimes[index] || fixedDuration}
                             value={endTimes[index]? moment(endTimes[index]) : null}
                           />
                         </div>
