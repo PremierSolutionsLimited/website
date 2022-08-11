@@ -1,15 +1,15 @@
-import React, { Fragment, useEffect, useState, SetStateAction } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { TripComponentProp } from "./types";
-import {
-  getFinalDateWithDurationInput,
-  getFinalDateWithDateInput,
-} from "../utils/switch";
-import { IDurationType } from "../data/types";
+// import {
+//   getFinalDateWithDurationInput,
+//   getFinalDateWithDateInput,
+// } from "../utils/switch";
+//import { IDurationType } from "../data/types";
 import { useQuery } from "@apollo/client";
 import { GetTypesInput, GetTypesOutput } from "./types";
 import { GET_TRIP_TYPE } from "../../../../../../services/graphql/fleet";
 import DatePicker from "react-multi-date-picker";
-import DurationType from "../bones/durationType";
+//import DurationType from "../bones/durationType";
 import AgeGroup1 from "../bones/ageGroup1";
 import AgeGroup2 from "../bones/ageGroup2";
 import TimeAndDuration from "../bones/timeAndDuration";
@@ -30,6 +30,8 @@ export default function Trip({
   durationTypeSelected,
   isOvernightTrip,
   setIsOvernightTrip,
+  isOutOfTown,
+  setIsOutOfTown,
   tripStartDate,
   setTripStartDate,
   setEndTime,
@@ -72,11 +74,11 @@ export default function Trip({
 
     setTab("origin");
   };
-  const disabledDate = (current: any) => {
-    // Can not select yesterday and before
-    const start = moment()?.subtract(1, "days");
-    return current < start;
-  };
+  // const disabledDate = (current: any) => {
+  //   // Can not select yesterday and before
+  //   const start = moment()?.subtract(1, "days");
+  //   return current < start;
+  // };
 
   console.log(isOvernightTrip);
   useEffect(() => {
@@ -85,15 +87,14 @@ export default function Trip({
     } else setIsOvernightTrip(true);
   }, [requestType, setIsOvernightTrip]);
 
-
   console.log(new Date(tripDates[0]));
   return (
     <Fragment>
-      <div className="grid grid-cols-12 gap-3  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto">
+      <div className="grid grid-cols-12 gap-3 pb-2 h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto">
         <div className="col-span-12 sm:col-span-12 md:col-span-12">
           <label
             htmlFor="url"
-            className="block text-sm pb-1 font-medium text-gray-700"
+            className="block text-base pb-1 font-medium text-gray-700"
           >
             Trip Start Date(s) <span className={"text-red-600"}>*</span>
           </label>
@@ -115,7 +116,7 @@ export default function Trip({
             />
           </div>
         </div>
-        <div className="col-span-12 sm:col-span-12 md:col-span-12 mt-3">
+        <div className="col-span-12 mt-3">
           <div className="flex flex-col">
             <div className="grid grid-cols-12 gap-4 ml-2 divide-x">
               <div className="col-span-12 md:col-span-6 inline-flex items-center justify-start">
@@ -242,10 +243,10 @@ export default function Trip({
             placeholder={`Eg. 3 ${durationTypeSelected}`}
           />
         </div> */}
-        <div className="col-span-12 sm:col-span-12 md:col-span-12">
+        <div className="col-span-12">
           <label
             htmlFor="url"
-            className="block text-sm pb-0 font-medium text-gray-700"
+            className="block text-base pb-0 font-medium text-gray-700"
           >
             Request Type <span className={"text-red-600"}>*</span>
           </label>
@@ -319,7 +320,7 @@ export default function Trip({
         <div className="col-span-12 sm:col-span-12 md:col-span-6">
           <label
             htmlFor="url"
-            className="block text-sm pb-1 font-medium text-gray-700"
+            className="block text-base pb-1 font-medium text-gray-700"
           >
             Age Group <span className={"text-red-600"}>*</span>
           </label>
@@ -333,7 +334,7 @@ export default function Trip({
         <div className="col-span-12 sm:col-span-12 md:col-span-6">
           <label
             htmlFor="url"
-            className="block text-sm pb-5 font-medium text-gray-700"
+            className="block text-base pb-5 font-medium text-gray-700"
           />
 
           <div className="mt-1 rounded-none shadow-none">
@@ -342,6 +343,98 @@ export default function Trip({
               setSelected={setSelectedAgeGroup}
             />
           </div>
+        </div>
+        <div className="col-span-12 mt-2">
+          <label className="text-base font-medium text-gray-900">
+            Accomodation and Feeding
+          </label>
+          <p className="text-sm leading-5 text-gray-500">
+            Would you provide our driver with food and accomodation for
+            overnight stays?
+          </p>
+          <fieldset className="mt-2 pl-2">
+            <legend className="sr-only">Accomoadtion Response</legend>
+            <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+              <div className="flex items-center">
+                <input
+                  id="yesAccomodation"
+                  name="notification-method"
+                  type="radio"
+                  defaultChecked={true}
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                  onChange={(e) => setIsOvernightTrip(true)}
+                />
+                <label
+                  htmlFor="yesAccomodation"
+                  className="ml-3 block text-sm font-medium text-gray-700"
+                >
+                  Yes
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="noAccomodation"
+                  name="notification-method"
+                  type="radio"
+                  defaultChecked={false}
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                  onChange={(e) => setIsOvernightTrip(false)}
+                />
+                <label
+                  htmlFor="noAccomodation"
+                  className="ml-3 block text-sm font-medium text-gray-700"
+                >
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div className="col-span-12 mt-2">
+          <label className="text-base font-medium text-gray-900">
+            Out of Town Trip
+          </label>
+          <p className="text-sm leading-5 text-gray-500">
+            Will the trips be out of town, where the destination is not within a 50km radius of 
+            the origin of the trip?
+          </p>
+          <fieldset className="mt-2 pl-2">
+            <legend className="sr-only">Out of Town Response</legend>
+            <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+              <div className="flex items-center">
+                <input
+                  id="yesOut"
+                  name="notification-method"
+                  type="radio"
+                  defaultChecked={false}
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                  onChange={(e) => setIsOutOfTown(true)}
+                />
+                <label
+                  htmlFor="yesOut"
+                  className="ml-3 block text-sm font-medium text-gray-700"
+                >
+                  Yes
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="noOut"
+                  name="notification-method"
+                  type="radio"
+                  defaultChecked={false}
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                  onChange={(e) => setIsOutOfTown(false)}
+                />
+                <label
+                  htmlFor="noOut"
+                  className="ml-3 block text-sm font-medium text-gray-700"
+                >
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
         </div>
       </div>
       <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">

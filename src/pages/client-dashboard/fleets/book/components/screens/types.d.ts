@@ -12,6 +12,8 @@ export interface TripComponentProp {
   setDurationTypeSelected: React.Dispatch<React.SetStateAction<string>>;
   isOvernightTrip: boolean;
   setIsOvernightTrip: React.Dispatch<React.SetStateAction<boolean>>;
+  isOutOfTown: boolean,
+  setIsOutOfTown: React.Dispatch<React.SetStateAction<boolean>>;
   duration: string;
   setDuration: React.Dispatch<React.SetStateAction<string>>;
   requestType: string;
