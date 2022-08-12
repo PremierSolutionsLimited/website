@@ -47,12 +47,12 @@ export default function Destination({
     setDropOffLocations(dropOffLocations.filter((l) => l !== location));
   };
 
-  // useEffect(() => {
-  //   if (selectedLocation) {
-  //     addToDropOffLocations(selectedLocation);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [selectedLocation]);
+  useEffect(() => {
+    if (selectedLocation) {
+      addToDropOffLocations(selectedLocation);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedLocation, setSelectedLocation]);
 
   return (
     <Fragment>
@@ -61,7 +61,7 @@ export default function Destination({
         <Combobox
           as="div"
           value={selectedLocation}
-          onChange={setSelectedLocation && addToDropOffLocations(selectedLocation)}
+          onChange={setSelectedLocation}
         >
           <Combobox.Label className="block text-base font-medium text-gray-700">
             Search For/Select Destination
