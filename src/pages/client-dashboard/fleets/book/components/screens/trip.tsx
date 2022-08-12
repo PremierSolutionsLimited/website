@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { TripComponentProp } from "./types";
 // import {
 //   getFinalDateWithDurationInput,
@@ -56,20 +56,29 @@ export default function Trip({
 
   const handleNext = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (!tripStartDate) {
-      return toast.error("Please select trip start date");
+    if (tripDates?.length < 1 ) {
+      return toast.error("Please select at least one trip date");
     }
-    if (durationTypeSelected.trim() === "") {
-      return toast.error("Please select duration type");
+    if (startTimes?.length < tripDates?.length) {
+      return toast.error("You don't have corresponding start time for each trip date");
     }
-    if (duration?.trim() === "") {
-      return toast.error("Please specify the duration of your trip");
-    }
+    // if (durationTypeSelected.trim() === "") {
+    //   return toast.error("Please select duration type");
+    // }
+    // if (duration?.trim() === "") {
+    //   return toast.error("Please specify the duration of your trip");
+    // }
     if (requestType?.trim() === "") {
       return toast.error("Please specify the request type");
     }
     if (selectedAgeGroup?.length < 1) {
       return toast.error("Please select age group or groups");
+    }
+    if (isOvernightTrip === undefined) {
+      return toast.error("Please specifiy if you'll pay for the driver's accomodation and feeding")
+    }
+    if (isOutOfTown === undefined) {
+      return toast.error("Please specifiy if your trip is out of town")
     }
 
     setTab("origin");
@@ -81,11 +90,11 @@ export default function Trip({
   // };
 
   console.log(isOvernightTrip);
-  useEffect(() => {
-    if (requestType !== "61faa7fc8b2c8d00164ada82") {
-      setIsOvernightTrip(false);
-    } else setIsOvernightTrip(true);
-  }, [requestType, setIsOvernightTrip]);
+  // useEffect(() => {
+  //   if (requestType !== "61faa7fc8b2c8d00164ada82") {
+  //     setIsOvernightTrip(false);
+  //   } else setIsOvernightTrip(true);
+  // }, [requestType, setIsOvernightTrip]);
 
   console.log(new Date(tripDates[0]));
   return (
@@ -358,11 +367,11 @@ export default function Trip({
               <div className="flex items-center">
                 <input
                   id="yesAccomodation"
-                  name="notification-method"
+                  name="overnight"
                   type="radio"
-                  defaultChecked={true}
+                  defaultChecked={false}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                  onChange={(e) => setIsOvernightTrip(true)}
+                  onChange={(e) => setIsOvernightTrip && setIsOvernightTrip(true)}
                 />
                 <label
                   htmlFor="yesAccomodation"
@@ -374,11 +383,11 @@ export default function Trip({
               <div className="flex items-center">
                 <input
                   id="noAccomodation"
-                  name="notification-method"
+                  name="overnight"
                   type="radio"
                   defaultChecked={false}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                  onChange={(e) => setIsOvernightTrip(false)}
+                  onChange={(e) => setIsOvernightTrip && setIsOvernightTrip(false)}
                 />
                 <label
                   htmlFor="noAccomodation"
@@ -404,7 +413,7 @@ export default function Trip({
               <div className="flex items-center">
                 <input
                   id="yesOut"
-                  name="notification-method"
+                  name="out-of-town"
                   type="radio"
                   defaultChecked={false}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
@@ -420,7 +429,7 @@ export default function Trip({
               <div className="flex items-center">
                 <input
                   id="noOut"
-                  name="notification-method"
+                  name="out-of-town"
                   type="radio"
                   defaultChecked={false}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"

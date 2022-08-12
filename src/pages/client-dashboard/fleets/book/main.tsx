@@ -59,8 +59,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<IGroupType[]>([]);
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
   const [durationTypeSelected, setDurationTypeSelected] = useState<string>("");
-  const [isOvernightTrip, setIsOvernightTrip] = useState<boolean>(false);
-  const [isOutOfTown, setIsOutOfTown] = useState<boolean>(false)
+  const [isOvernightTrip, setIsOvernightTrip] = useState<boolean>();
+  const [isOutOfTown, setIsOutOfTown] = useState<boolean>()
   const [duration, setDuration] = useState<string>("");
   const [requestType, setRequesType] = useState<string>("");
   const [tripStartDate, setTripStartDate] = useState<any>("");
@@ -73,6 +73,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [dropOffLat, setDropOffLat] = useState<string>("");
   const [dropOffLng, setDropOffLng] = useState<string>("");
   const [dropOffAddress, setDropOffAddress] = useState<string>("");
+  const [dropOffLocations, setDropOffLocations] = useState<string[]>([]);
 
   // states for check list
   //const [valuableItems] = useState<string[]>([]);
@@ -304,6 +305,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setLat={setDropOffLat}
                     setLng={setDropOffLng}
                     setAddress={setDropOffAddress}
+                    dropOffLocations={dropOffLocations}
+                    setDropOffLocations={setDropOffLocations}
                   />
                 </Fragment>
               )}

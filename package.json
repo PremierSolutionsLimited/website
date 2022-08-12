@@ -5,7 +5,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.19",
     "@craco/craco": "^6.1.2",
-    "@headlessui/react": "^1.2.0",
+    "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.1",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
