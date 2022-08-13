@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { TripComponentProp } from "./types";
 // import {
 //   getFinalDateWithDurationInput,
@@ -32,6 +32,22 @@ export default function Trip({
   setIsOvernightTrip,
   isOutOfTown,
   setIsOutOfTown,
+  tripDates,
+  setTripDates,
+  enabledStart,
+  enabledDuration,
+  setEnabledStart,
+  setEnabledDuration,
+  duration,
+  setDuration,
+  startTimes,
+  setStartTimes,
+  endTimes,
+  setEndTimes,
+  durations,
+  setDurations,
+  startTime,
+  setStartTime,
   tripStartDate,
   setTripStartDate,
   setEndTime,
@@ -44,15 +60,6 @@ export default function Trip({
   const { data, loading } = useQuery<GetTypesOutput, GetTypesInput>(
     GET_TRIP_TYPE
   );
-
-  const [tripDates, setTripDates] = useState<any>([]);
-  const [enabledStart, setEnabledStart] = useState(false);
-  const [enabledDuration, setEnabledDuration] = useState(false);
-  const [startTimes, setStartTimes] = useState<Date[]>([]);
-  const [durations, setDurations] = useState<string[]>([]);
-  const [endTimes, setEndTimes] = useState<Date[]>([]);
-  const [startTime, setStartTime] = useState<Date>(new Date());
-  const [duration, setDuration] = useState<string>("");
 
   const handleNext = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -96,7 +103,6 @@ export default function Trip({
   //   } else setIsOvernightTrip(true);
   // }, [requestType, setIsOvernightTrip]);
 
-  console.log(new Date(tripDates[0]));
   return (
     <Fragment>
       <div className="grid grid-cols-12 gap-3 pb-2 h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto">
@@ -369,7 +375,7 @@ export default function Trip({
                   id="yesAccomodation"
                   name="overnight"
                   type="radio"
-                  defaultChecked={false}
+                  checked={isOvernightTrip}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                   onChange={(e) => setIsOvernightTrip && setIsOvernightTrip(true)}
                 />
@@ -385,7 +391,7 @@ export default function Trip({
                   id="noAccomodation"
                   name="overnight"
                   type="radio"
-                  defaultChecked={false}
+                  checked={isOvernightTrip}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                   onChange={(e) => setIsOvernightTrip && setIsOvernightTrip(false)}
                 />
@@ -415,7 +421,7 @@ export default function Trip({
                   id="yesOut"
                   name="out-of-town"
                   type="radio"
-                  defaultChecked={false}
+                  checked={isOutOfTown}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                   onChange={(e) => setIsOutOfTown(true)}
                 />
@@ -431,7 +437,7 @@ export default function Trip({
                   id="noOut"
                   name="out-of-town"
                   type="radio"
-                  defaultChecked={false}
+                  checked={isOutOfTown}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                   onChange={(e) => setIsOutOfTown(false)}
                 />

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import {
   BookTripComponentProp,
   BookTripInputProp,
@@ -44,6 +44,11 @@ export const getPassengers = (selectedAgeGroup: IGroupType[]) => {
   );
 };
 
+export type TTimeLogs = {
+  startTime: Date;
+  endTime: Date;
+}[];
+
 const MainComponent: React.FC<BookTripComponentProp> = ({
   show,
   setShow,
@@ -60,11 +65,21 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
   const [durationTypeSelected, setDurationTypeSelected] = useState<string>("");
   const [isOvernightTrip, setIsOvernightTrip] = useState<boolean>();
-  const [isOutOfTown, setIsOutOfTown] = useState<boolean>()
-  const [duration, setDuration] = useState<string>("");
+  const [isOutOfTown, setIsOutOfTown] = useState<boolean>();
   const [requestType, setRequesType] = useState<string>("");
   const [tripStartDate, setTripStartDate] = useState<any>("");
   const [endTime, setEndTime] = useState<Date | undefined>();
+
+  //trip dates and times
+  const [tripDates, setTripDates] = useState<any>([]);
+  const [enabledStart, setEnabledStart] = useState(false);
+  const [enabledDuration, setEnabledDuration] = useState(false);
+  const [startTimes, setStartTimes] = useState<Date[]>([]);
+  const [durations, setDurations] = useState<string[]>([]);
+  const [endTimes, setEndTimes] = useState<Date[]>([]);
+  const [startTime, setStartTime] = useState<Date>(new Date());
+  const [duration, setDuration] = useState<string>("");
+  const [timeLogs, setTimeLogs] = useState<TTimeLogs>();
 
   const [pickupLat, setPickupLat] = useState<string>("");
   const [pickupLng, setPickupLng] = useState<string>("");
@@ -89,7 +104,21 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   const [totalTripCost, setTotalTripCost] = useState<string>("");
 
-  console.log(durationType)
+  //set timelogs from startTimes and endTimes
+  useEffect(() => {
+    setTimeLogs(
+      startTimes.map((startTime, index) => {
+        return {
+          startTime: new Date(startTime),
+          endTime: endTimes[index],
+        };
+      }).filter((timeLog) => {
+        return timeLog.endTime !== undefined;
+      })
+    );
+  } , [startTimes, endTimes]);
+  console.log("TIME LOGS: ",timeLogs)
+
   // get trip quote
   const [getTripQuote, { loading: loadingTripQuoteData }] = useMutation<any>(
     GET_TRIP_COST_SUMMARY
@@ -275,16 +304,33 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setIsOvernightTrip={setIsOvernightTrip}
                     isOutOfTown={isOutOfTown}
                     setIsOutOfTown={setIsOutOfTown}
+                    tripDates={tripDates}
+                    setTripDates={setTripDates}
+                    enabledStart={enabledStart}
+                    setEnabledStart={setEnabledStart}
+                    enabledDuration={enabledDuration}
+                    setEnabledDuration={setEnabledDuration}
                     duration={duration}
                     setDuration={setDuration}
+                    startTimes={startTimes}
+                    setStartTimes={setStartTimes}
+                    durations={durations}
+                    setDurations={setDurations}
+                    endTimes={endTimes}
+                    setEndTimes={setEndTimes}
+                    startTime={startTime}
+                    setStartTime={setStartTime}
                     tripStartDate={tripStartDate}
                     setTripStartDate={setTripStartDate}
                     setEndTime={setEndTime}
                     endTime={endTime}
+                    //timeLogs={timeLogs}
+                    //setTimeLogs={setTimeLogs}
                     requestType={requestType}
                     setRequestType={setRequesType}
                     setShow={setShow}
                     setTab={setTab}
+                    
                   />
                 </Fragment>
               )}

@@ -135,7 +135,7 @@ export default function Destination({
                         {location}
                       </p>
                       <p className="text-sm text-gray-500 truncate">
-                        {"DropOff Destination " + (locationIdx + 1)}
+                        {"Dropoff Destination " + (locationIdx + 1)}
                       </p>
                     </div>
                     <div>
