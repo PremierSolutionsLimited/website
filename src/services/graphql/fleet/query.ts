@@ -70,3 +70,12 @@ export const getTripType = gql`
     tripTypesLength
   }
 `;
+
+export const getLocations = gql`
+  query Locations($search: SearchOperator) {
+    locations(search: $search) {
+      _id
+      name
+    }
+  }
+`;
