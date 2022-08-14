@@ -156,7 +156,7 @@ export default function Trip({
                     <span className="text-sm font-medium text-gray-900">
                       Fixed Start Time{" "}
                     </span>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-xs text-gray-500">
                       (Trips Will Start at the Same Time)
                     </span>
                   </Switch.Label>
@@ -184,7 +184,7 @@ export default function Trip({
                     <span className="text-sm font-medium text-gray-900">
                       Fixed Durations{" "}
                     </span>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-xs text-gray-500">
                       (Trips Will Have The Same Durations)
                     </span>
                   </Switch.Label>
@@ -375,7 +375,7 @@ export default function Trip({
                   id="yesAccomodation"
                   name="overnight"
                   type="radio"
-                  checked={isOvernightTrip}
+                  checked={isOvernightTrip === true}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                   onChange={(e) => setIsOvernightTrip && setIsOvernightTrip(true)}
                 />
@@ -391,7 +391,7 @@ export default function Trip({
                   id="noAccomodation"
                   name="overnight"
                   type="radio"
-                  checked={isOvernightTrip}
+                  checked={isOvernightTrip === false}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                   onChange={(e) => setIsOvernightTrip && setIsOvernightTrip(false)}
                 />
@@ -421,7 +421,7 @@ export default function Trip({
                   id="yesOut"
                   name="out-of-town"
                   type="radio"
-                  checked={isOutOfTown}
+                  checked={isOutOfTown === true}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                   onChange={(e) => setIsOutOfTown(true)}
                 />
@@ -437,7 +437,7 @@ export default function Trip({
                   id="noOut"
                   name="out-of-town"
                   type="radio"
-                  checked={isOutOfTown}
+                  checked={isOutOfTown === false}
                   className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                   onChange={(e) => setIsOutOfTown(false)}
                 />

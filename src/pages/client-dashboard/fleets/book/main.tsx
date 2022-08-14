@@ -77,7 +77,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [startTimes, setStartTimes] = useState<Date[]>([]);
   const [durations, setDurations] = useState<string[]>([]);
   const [endTimes, setEndTimes] = useState<Date[]>([]);
-  const [startTime, setStartTime] = useState<Date>(new Date());
+  const [startTime, setStartTime] = useState<any>("");
   const [duration, setDuration] = useState<string>("");
   const [timeLogs, setTimeLogs] = useState<TTimeLogs>();
 

@@ -1,4 +1,4 @@
-import React, { Fragment, Dispatch, SetStateAction, useState } from "react";
+import React, { Fragment, Dispatch, SetStateAction } from "react";
 import { TimePicker, InputNumber } from "antd";
 import type { Moment } from "moment";
 import moment from "moment";
@@ -18,10 +18,10 @@ interface IProps {
   setDurations: Dispatch<SetStateAction<string[]>>;
   endTimes: Date[];
   setEndTimes: Dispatch<SetStateAction<Date[]>>;
-  startTime?: Date;
-  setStartTime: Dispatch<SetStateAction<Date>>;
-  duration?: string;
-  setDuration: Dispatch<SetStateAction<string>>;
+  startTime?: any;
+  setStartTime: Dispatch<SetStateAction<any>>;
+  duration?: any;
+  setDuration: Dispatch<SetStateAction<any>>;
 }
 
 const TimeAndDuration = ({
@@ -42,9 +42,6 @@ const TimeAndDuration = ({
 }: IProps) => {
 
   console.log("DURATIONS: ", durations)
-
-  const [displayFixedTime, setDisplayFixedTime] = useState<any>("");
-  const [displayFixedDuration, setDisplayFixedDuration] = useState<any>("");
 
   const onChangeStartTime = (
     time: Moment | null,
@@ -103,7 +100,7 @@ const TimeAndDuration = ({
   const setFixedStartTime = (time: Moment | null, _timeString: string) => {
     //set the same time for all the start times
     console.log("Before: ", startTimes);
-    setDisplayFixedTime(time)
+    setStartTime(time)
     setStartTimes((prev) => {
       const newStartTimes: any = [...prev];
       if (time) {
@@ -150,7 +147,7 @@ const TimeAndDuration = ({
 
   const setFixedDuration = (value: number) => {
     //set the same duration for all the 
-    setDisplayFixedDuration(value)
+    setDuration(value)
     setDurations((prev) => {
       const newDurations: any = [...prev];
       if (value) {
@@ -211,6 +208,7 @@ const TimeAndDuration = ({
                       placeholder="Select Time"
                       onChange={setFixedStartTime}
                       defaultOpenValue={moment("00:00", "h:mm")}
+                      value={startTime}
                     />
                   </div>
                 </div>
@@ -232,6 +230,8 @@ const TimeAndDuration = ({
                       formatter={(value) => `${value} hour(s)`}
                       parser={(value: any) => value!.replace("hour(s)", "")}
                       onChange={setFixedDuration}
+                      value={duration}
+                      placeholder="Select Duration"
                     />
                   </div>
                 </div>
@@ -264,7 +264,7 @@ const TimeAndDuration = ({
                               onChangeStartTime(value, dateString, index)
                             }
                             defaultOpenValue={moment("00:00", "h:mm A")}
-                            value={(fixedStart && displayFixedTime)? displayFixedTime : startTimes[index]? moment(startTimes[index]) : null}
+                            value={(fixedStart && startTime)? startTime : startTimes[index]? moment(startTimes[index]) : null}
                             disabled={fixedStart}
                           />
                         </div>
@@ -287,7 +287,7 @@ const TimeAndDuration = ({
                               value!.replace("hour(s)", "")
                             }
                             onChange={(value) => onChangeDuration(value, index)}
-                            value={(fixedDuration && displayFixedDuration)? displayFixedDuration : durations[index]}
+                            value={(fixedDuration && duration)? duration : durations[index]}
                             disabled={fixedDuration}
                           />
                         </div>
