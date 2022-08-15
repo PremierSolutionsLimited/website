@@ -5,7 +5,7 @@ export const tripRequests = gql`
     tripRequests(
       filter: $filter
       pagination: $pagination
-      populate: ["vehicle", "dropOffLocation", "pickUpLocation", "tripType"]
+      populate: ["vehicle", "pickUpLocation", "tripType"]
     ) {
       _id
       code
@@ -22,24 +22,23 @@ export const tripRequests = gql`
         name
         description
       }
-      expectedEndTime
+      timeLogs {
+        startTime
+        endTime
+      }
       pickUpLocation {
         _id
         type
         coordinates
       }
-      dropOffLocation {
-        _id
-        type
-        coordinates
-      }
-      dropOffLocationName
+      dropOffLocations
       pickUpLocationName
       passengerAges
       extraPassenger
       status
       notes
       expectedStartTime
+      expectedEndTime
       vehicle {
         _id
         code
