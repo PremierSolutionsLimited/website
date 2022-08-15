@@ -1,5 +1,6 @@
 import React from "react";
 import { IDurationType, IGroupType } from "../data/types";
+import { TTimeLogs } from "../../main";
 
 export interface TripComponentProp {
   selectedAgeGroup: IGroupType[];
@@ -10,8 +11,10 @@ export interface TripComponentProp {
   >;
   durationTypeSelected: string;
   setDurationTypeSelected: React.Dispatch<React.SetStateAction<string>>;
-  isOvernightTrip: boolean;
-  setIsOvernightTrip: React.Dispatch<React.SetStateAction<boolean>>;
+  isOvernightTrip?: boolean;
+  setIsOvernightTrip?: React.Dispatch<React.SetStateAction<boolean | undefined>>;
+  isOutOfTown?: boolean,
+  setIsOutOfTown: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   duration: string;
   setDuration: React.Dispatch<React.SetStateAction<string>>;
   requestType: string;
@@ -21,7 +24,25 @@ export interface TripComponentProp {
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   setTab: React.Dispatch<React.SetStateAction<string>>;
   setEndTime: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  tripDates: any;
+  setTripDates: React.Dispatch<React.SetStateAction<any>>;
+  enabledStart: boolean;
+  setEnabledStart: React.Dispatch<React.SetStateAction<boolean>>;
+  enabledDuration: boolean;
+  setEnabledDuration: React.Dispatch<React.SetStateAction<boolean>>;
+  startTimes: Date[];
+  setStartTimes: React.Dispatch<React.SetStateAction<Date[]>>;
+  durations: string[];
+  setDurations: React.Dispatch<React.SetStateAction<string[]>>;
+  endTimes: Date[];
+  setEndTimes: React.Dispatch<React.SetStateAction<Date[]>>;
+  startTime: Date;
+  setStartTime: React.Dispatch<React.SetStateAction<Date>>;
+  duration: string
+  setDuration: React.Dispatch<React.SetStateAction<string>>;
   endTime: Date | undefined;
+  // timeLogs: TTimeLogs | undefined;
+  // setTimeLogs: React.Dispatch<React.SetStateAction<TTimeLogs | undefined>>;
 }
 
 export interface GetTypesInput {
@@ -85,10 +106,12 @@ export interface PreviewComponentProp {
   durationTypeSelected: string;
   duration: string;
   requestType: string;
+  timeLogs: TTimeLogs | undefined;
   tripStartDate: string;
   tripEndDate?: Date;
   originAddress: string;
   destinationAddress: string;
+  destinationNames: string[]
   registeredVehicle: boolean;
   dvlaRoadWorthy: boolean;
   insurance: boolean;

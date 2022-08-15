@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import {
   BookTripComponentProp,
   BookTripInputProp,
@@ -44,6 +44,11 @@ export const getPassengers = (selectedAgeGroup: IGroupType[]) => {
   );
 };
 
+export type TTimeLogs = {
+  startTime: Date;
+  endTime: Date;
+}[];
+
 const MainComponent: React.FC<BookTripComponentProp> = ({
   show,
   setShow,
@@ -59,19 +64,31 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<IGroupType[]>([]);
   const [durationType, setDurationType] = useState<IDurationType | undefined>();
   const [durationTypeSelected, setDurationTypeSelected] = useState<string>("");
-  const [isOvernightTrip, setIsOvernightTrip] = useState<boolean>(false);
-  const [duration, setDuration] = useState<string>("");
+  const [isOvernightTrip, setIsOvernightTrip] = useState<boolean>();
+  const [isOutOfTown, setIsOutOfTown] = useState<boolean>();
   const [requestType, setRequesType] = useState<string>("");
   const [tripStartDate, setTripStartDate] = useState<any>("");
   const [endTime, setEndTime] = useState<Date | undefined>();
+
+  //trip dates and times
+  const [tripDates, setTripDates] = useState<any>([]);
+  const [enabledStart, setEnabledStart] = useState(false);
+  const [enabledDuration, setEnabledDuration] = useState(false);
+  const [startTimes, setStartTimes] = useState<Date[]>([]);
+  const [durations, setDurations] = useState<string[]>([]);
+  const [endTimes, setEndTimes] = useState<Date[]>([]);
+  const [startTime, setStartTime] = useState<any>("");
+  const [duration, setDuration] = useState<string>("");
+  const [timeLogs, setTimeLogs] = useState<TTimeLogs>();
 
   const [pickupLat, setPickupLat] = useState<string>("");
   const [pickupLng, setPickupLng] = useState<string>("");
   const [pickupAddress, setPickupAddress] = useState<string>("");
 
-  const [dropOffLat, setDropOffLat] = useState<string>("");
-  const [dropOffLng, setDropOffLng] = useState<string>("");
+  const [, setDropOffLat] = useState<string>("");
+  const [, setDropOffLng] = useState<string>("");
   const [dropOffAddress, setDropOffAddress] = useState<string>("");
+  const [dropOffLocations, setDropOffLocations] = useState<string[]>([]);
 
   // states for check list
   //const [valuableItems] = useState<string[]>([]);
@@ -87,7 +104,23 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   const [totalTripCost, setTotalTripCost] = useState<string>("");
 
-  console.log(durationType)
+  //set timelogs from startTimes and endTimes
+  useEffect(() => {
+    setTimeLogs(
+      startTimes
+        .map((startTime, index) => {
+          return {
+            startTime: new Date(startTime),
+            endTime: endTimes[index],
+          };
+        })
+        .filter((timeLog) => {
+          return timeLog.endTime !== undefined;
+        })
+    );
+  }, [startTimes, endTimes]);
+  console.log("TIME LOGS: ", timeLogs);
+
   // get trip quote
   const [getTripQuote, { loading: loadingTripQuoteData }] = useMutation<any>(
     GET_TRIP_COST_SUMMARY
@@ -118,9 +151,9 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
     getTripQuote({
       variables: {
         input: {
-          expectedStartTime: new Date(tripStartDate),
-          expectedEndTime: endTime as Date,
+          timeLogs: timeLogs,
           overnightTrip: isOvernightTrip,
+          outOfTownTrip: isOutOfTown,
         },
       },
     })
@@ -180,33 +213,39 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
     invokeBookTripRequest({
       variables: {
-        client: currentClient?._id as string,
-        vehicle: selectedCar?._id as string,
-        tripType: requestType,
-        expectedStartTime: new Date(tripStartDate),
-        expectedEndTime: endTime as Date,
-        durationType: durationType?.type,
-        pickUpLocation: {
-          type: "Point",
-          coordinates: [+pickupLng, +pickupLat],
+        input: {
+          client: currentClient?._id as string,
+          vehicle: selectedCar?._id as string,
+          tripType: requestType,
+          // expectedStartTime: new Date(tripStartDate),
+          // expectedEndTime: endTime as Date,
+          // durationType: durationType?.type,
+          timeLogs: timeLogs,
+          pickUpLocation: {
+            type: "Point",
+            coordinates: [+pickupLng, +pickupLat],
+          },
+          pickUpLocationName: pickupAddress,
+          // dropOffLocation: {
+          //   type: "Point",
+          //   coordinates: [+dropOffLng, +dropOffLat],
+          // },
+          dropOffLocations: dropOffLocations,
+          checklist: {
+            registeredVehicle: registeredVehicle,
+            validRoadWorthySticker: dvlaRoadWorthy,
+            validInsurance: insurance,
+            emergencyTriangle: emergencyTriangle,
+            fireExtinguisher: fireExtinguisher,
+            spareTyre: spareTyre,
+            clientComments: clientComments,
+            damagesOnVehicle: damageOnVehicle,
+          },
+          //dropOffLocationName: dropOffAddress,
+          passengerAges: passengerAges,
+          overnightTrip: isOvernightTrip,
+          outOfTownTrip: isOutOfTown,
         },
-        pickUpLocationName: pickupAddress,
-        dropOffLocation: {
-          type: "Point",
-          coordinates: [+dropOffLng, +dropOffLat],
-        },
-        checklist: {
-          registeredVehicle: registeredVehicle,
-          validRoadWorthySticker: dvlaRoadWorthy,
-          validInsurance: insurance,
-          emergencyTriangle: emergencyTriangle,
-          fireExtinguisher: fireExtinguisher,
-          spareTyre: spareTyre,
-          clientComments: clientComments,
-          damagesOnVehicle: damageOnVehicle,
-        },
-        dropOffLocationName: dropOffAddress,
-        passengerAges: passengerAges,
       },
     })
       .then(({ data }) => {
@@ -271,12 +310,30 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setDurationTypeSelected={setDurationTypeSelected}
                     isOvernightTrip={isOvernightTrip}
                     setIsOvernightTrip={setIsOvernightTrip}
+                    isOutOfTown={isOutOfTown}
+                    setIsOutOfTown={setIsOutOfTown}
+                    tripDates={tripDates}
+                    setTripDates={setTripDates}
+                    enabledStart={enabledStart}
+                    setEnabledStart={setEnabledStart}
+                    enabledDuration={enabledDuration}
+                    setEnabledDuration={setEnabledDuration}
                     duration={duration}
                     setDuration={setDuration}
+                    startTimes={startTimes}
+                    setStartTimes={setStartTimes}
+                    durations={durations}
+                    setDurations={setDurations}
+                    endTimes={endTimes}
+                    setEndTimes={setEndTimes}
+                    startTime={startTime}
+                    setStartTime={setStartTime}
                     tripStartDate={tripStartDate}
                     setTripStartDate={setTripStartDate}
                     setEndTime={setEndTime}
                     endTime={endTime}
+                    //timeLogs={timeLogs}
+                    //setTimeLogs={setTimeLogs}
                     requestType={requestType}
                     setRequestType={setRequesType}
                     setShow={setShow}
@@ -301,6 +358,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setLat={setDropOffLat}
                     setLng={setDropOffLng}
                     setAddress={setDropOffAddress}
+                    dropOffLocations={dropOffLocations}
+                    setDropOffLocations={setDropOffLocations}
                   />
                 </Fragment>
               )}
@@ -358,6 +417,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     totalTripCost={totalTripCost}
                     loading={loading}
                     setTab={setTab}
+                    timeLogs={timeLogs}
+                    destinationNames={dropOffLocations}
                     tripEndDate={endTime}
                     selectedAgeGroup={selectedAgeGroup}
                     selectedDuration={durationType}

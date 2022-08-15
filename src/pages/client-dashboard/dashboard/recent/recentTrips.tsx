@@ -40,8 +40,8 @@ interface ITripProps {
 
 const RecentTrips: FC<ITripProps> = ({ data }) => {
   const { push } = useHistory();
-  const [, setPickup] = React.useState(null);
-  const [, setDropoff] = React.useState("");
+  const [pickup, setPickup] = React.useState(null);
+  const [dropOff, setDropoff] = React.useState("");
   const { loading: loadPickup, fetchLocationName: fetchPickup } =
     useLocationName();
   const { loading: loadDropoff, fetchLocationName: fetchDropoff } =
@@ -149,13 +149,13 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
               <div className={"col-span-2"}>
                 <h1 className={"font-light ml-4"}>From</h1>
                 <span className={"font-medium ml-4"}>
-                  {loadPickup ? "loading..." : data?.pickUpLocationName}
+                  {loadPickup ? "loading..." : pickup || data?.pickUpLocationName}
                 </span>
               </div>
               <div className={"col-span-2"}>
                 <h1 className={"font-light ml-4"}>To</h1>
                 <span className={"font-medium ml-4"}>
-                  {loadDropoff ? "loading..." :  data?.dropOffLocationName}
+                  {loadDropoff ? "loading..." : dropOff || data?.dropOffLocationName}
                 </span>
               </div>
             </div>

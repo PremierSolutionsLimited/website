@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { CircleSpinner } from "react-spinners-kit";
 import { PreviewComponentProp } from "./types";
 import { IGroupType } from "../data/types";
-import { TDamageType} from "../damage/main";
+import { TDamageType } from "../damage/main";
 import { TValuableType } from "../valuables/main";
 import { getMoney } from "../../../../../../shared/ui-modules/broker";
 import moment from "moment";
@@ -11,6 +11,7 @@ const PreviewComponent = ({
   handleSubmit,
   setTab,
   loading,
+  timeLogs,
   tripEndDate,
   tripStartDate,
   selectedAgeGroup,
@@ -19,6 +20,7 @@ const PreviewComponent = ({
   duration,
   requestType,
   originAddress,
+  destinationNames,
   destinationAddress,
   dvlaRoadWorthy,
   insurance,
@@ -33,35 +35,45 @@ const PreviewComponent = ({
 }: PreviewComponentProp) => {
   return (
     <Fragment>
-      <dl className="pb-5 grid grid-cols-1 h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto gap-x-4 gap-y-8 sm:grid-cols-3">
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-light text-gray-700">Trip Cost</dt>
+      <dl className="pb-5 grid grid-cols-12 h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto gap-x-8 gap-y-8">
+        <div className="sm:col-span-12">
+          <dt className="text-sm font-light text-gray-700">
+            Trip Cost Estimate
+          </dt>
           <dd className="mt-1 text-sm text-gray-900">
             GH₵ {getMoney(totalTripCost)}
           </dd>
         </div>
-        <div className="sm:col-span-2">
-          <dt className="text-sm font-light text-gray-700">Trip Start Date</dt>
-
-          <dd className="mt-1 text-sm text-gray-900">
-            {" "}
-            {moment(tripStartDate).format("MMMM Do, YYYY")}
-          </dd>
-        </div>
-        <div className="sm:col-span-2">
-          <dt className="text-sm font-light text-gray-700">Trip End Date</dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {" "}
-            {moment(tripEndDate).format("MMMM Do, YYYY  hh:mm A")}
-          </dd>
-        </div>
-        <div className="sm:col-span-1">
+        {/* <div className="sm:col-span-1">
           <dt className="text-sm font-light text-gray-700">Duration Type</dt>
           <dd className="mt-1 text-sm text-gray-900">
             {selectedDuration?.name}
           </dd>
+        </div> */}
+        <div className="sm:col-span-6">
+          <div className="text-sm font-light text-gray-700">Trip Time Logs</div>
+          <div>
+            {timeLogs?.map((timeLog, index) => {
+              return (
+                <div
+                  key={index}
+                  className="inline-flex justify-between space-x-2 items-center"
+                >
+                  <div className="text-sm font-light text-gold-2">
+                    {moment(timeLog.startTime).format("MMMM Do YYYY")}
+                  </div>
+                  {" : "}
+                  <div className="mt-1 text-sm text-gray-900">
+                    {`${moment(timeLog.startTime).format("h:mm a")} - ${moment(
+                      timeLog.endTime
+                    ).format("h:mm a")}`}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-        <div className="sm:col-span-3">
+        <div className="sm:col-span-6">
           <dt className="text-sm font-light text-gray-700"> Age Groups</dt>
           <div className="flex flex-row flex-wrap items-center">
             {selectedAgeGroup?.map((item: IGroupType, itemIdx: number) => (
@@ -78,23 +90,20 @@ const PreviewComponent = ({
           <dt className="text-sm font-light text-gray-700">Request Type</dt>
           <dd className="mt-1 text-sm text-gray-900">{0}</dd>
         </div> */}
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-light text-gray-700">
-            {" "}
-            Number of {selectedDuration?.name}
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">{duration}</dd>
-        </div>
-        <div className="sm:col-span-2">
+        <div className="sm:col-span-12">
           <dt className="text-sm font-light text-gray-700">Origin</dt>
           <dd className="mt-1 text-sm text-gray-900">{originAddress}</dd>
         </div>
-        <div className="sm:col-span-2">
-          <dt className="text-sm font-light text-gray-700">Destination</dt>
-          <dd className="mt-1 text-sm text-gray-900">{destinationAddress}</dd>
+        <div className="sm:col-span-12">
+          <dt className="text-sm font-light text-gray-700">Destinations</dt>
+          {destinationNames.map((item: string, itemIdx: number) => (
+            <Fragment key={itemIdx}>
+              <dd className="mt-1 text-sm text-gray-900">{item}</dd>
+            </Fragment>
+          ))}
         </div>
 
-        <div className="sm:col-span-1">
+        <div className="col-span-6 md:col-span-4">
           <dt className="text-sm font-light text-gray-700">
             Registered Vehicle
           </dt>
@@ -102,7 +111,7 @@ const PreviewComponent = ({
             {registeredVehicle ? "Yes" : "No"}{" "}
           </dd>
         </div>
-        <div className="sm:col-span-1">
+        <div className="col-span-6 md:col-span-4">
           <dt className="text-sm font-light text-gray-700">
             Road Worthy Sticker
           </dt>
@@ -110,13 +119,13 @@ const PreviewComponent = ({
             {dvlaRoadWorthy ? "Yes" : "No"}{" "}
           </dd>
         </div>
-        <div className="sm:col-span-1">
+        <div className="col-span-6 md:col-span-4">
           <dt className="text-sm font-light text-gray-700">Valid Insurance</dt>
           <dd className="mt-1 text-sm text-gray-900">
             {insurance ? "Yes" : "No"}
           </dd>
         </div>
-        <div className="sm:col-span-1">
+        <div className="col-span-6 md:col-span-4">
           <dt className="text-sm font-light text-gray-700">
             {" "}
             Emergency Triangle
@@ -125,7 +134,7 @@ const PreviewComponent = ({
             {emergencyTriangle ? "Yes" : "No"}
           </dd>
         </div>
-        <div className="sm:col-span-1">
+        <div className="col-span-6 md:col-span-4">
           <dt className="text-sm font-light text-gray-700">
             {" "}
             Fire Extinguisher
@@ -135,66 +144,70 @@ const PreviewComponent = ({
           </dd>
         </div>
 
-        <div className="sm:col-span-1">
+        <div className="col-span-6 md:col-span-4">
           <dt className="text-sm font-light text-gray-700">Spare Tyre</dt>
           <dd className="mt-1 text-sm text-gray-900">
             {spareTyre ? "Yes" : "No"}
           </dd>
         </div>
-        <div className="sm:col-span-1" />
-        <div className="sm:col-span-3">
-          <dt className="text-sm font-light text-gray-700">
-            Damage on Vehicle?
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {damageOnVehicle?.length > 0 ? "Yes" : "No"}
-          </dd>
-        </div>
-        {damageOnVehicle?.length > 0 && (
-          <div className="sm:col-span-3">
+        {/* <div className="sm:col-span-3" /> */}
+        <div className="col-span-12">
+          <div className="col-span-12 md:col-span-6">
             <dt className="text-sm font-light text-gray-700">
-              {" "}
-              Damage Description
+              Damage on Vehicle?
             </dt>
             <dd className="mt-1 text-sm text-gray-900">
-              {damageOnVehicle?.map((item: TDamageType, itemIdx: number) => (
-                <Fragment key={itemIdx}>
-                  <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
-                    {item?.description}
-                  </dd>
-                </Fragment>
-              ))}
+              {damageOnVehicle?.length > 0 ? "Yes" : "No"}
             </dd>
           </div>
-        )}
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-light text-gray-700">
-            Valuables In Vehicle?
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {valuableItems?.length > 0 ? "Yes" : "No"}
-          </dd>
+          {damageOnVehicle?.length > 0 && (
+            <div className="sm:col-span-6">
+              <dt className="text-sm font-light text-gray-700">
+                {" "}
+                Damage Description
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900">
+                {damageOnVehicle?.map((item: TDamageType, itemIdx: number) => (
+                  <Fragment key={itemIdx}>
+                    <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+                      {item?.description}
+                    </dd>
+                  </Fragment>
+                ))}
+              </dd>
+            </div>
+          )}
         </div>
-        {valuableItems?.length > 0 && (
-          <div className="sm:col-span-3">
+        <div className="col-span-12">
+          <div className="col-span-12 md:col-span-6">
             <dt className="text-sm font-light text-gray-700">
-              {" "}
-              Item Name/Description
+              Valuables In Vehicle?
             </dt>
             <dd className="mt-1 text-sm text-gray-900">
-              {valuableItems?.map((item: TValuableType, itemIdx: number) => (
-                <Fragment key={itemIdx}>
-                  <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
-                    {item?.description}
-                  </dd>
-                </Fragment>
-              ))}
+              {valuableItems?.length > 0 ? "Yes" : "No"}
             </dd>
           </div>
-        )}
+          {valuableItems?.length > 0 && (
+            <div className="sm:col-span-6">
+              <dt className="text-sm font-light text-gray-700">
+                {" "}
+                Item Name/Description
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900">
+                {valuableItems?.map((item: TValuableType, itemIdx: number) => (
+                  <Fragment key={itemIdx}>
+                    <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+                      {item?.description}
+                    </dd>
+                  </Fragment>
+                ))}
+              </dd>
+            </div>
+          )}
+        </div>
         {clientComments && (
           <Fragment>
-            <div className="sm:col-span-3">
+            <div className="sm:col-span-6">
               <dt className="text-sm font-light text-gray-700"> Comments</dt>
               <dd className="mt-1 text-sm text-gray-900">{clientComments}</dd>
             </div>

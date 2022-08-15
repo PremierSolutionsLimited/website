@@ -1,5 +1,6 @@
 import React from "react";
 import { MyFleet } from "../main/types";
+import { TTimeLogs } from "../../main";
 
 export interface BookTripComponentProp {
   show: boolean;
@@ -8,26 +9,32 @@ export interface BookTripComponentProp {
 }
 
 export interface BookTripInputProp {
-  client: string;
-  vehicle: string;
-  tripType: string;
-  expectedStartTime: Date;
-  expectedEndTime?: Date;
-  durationType?: string;
-  pickUpLocation?: {
-    type: string;
-    coordinates: number[];
+  input: {
+    client: string;
+    vehicle: string;
+    tripType: string;
+    // expectedStartTime: Date;
+    // expectedEndTime?: Date;
+    // durationType?: string;
+    timeLogs?: TTimeLogs;
+    pickUpLocation?: {
+      type: string;
+      coordinates: number[];
+    };
+    pickUpLocationName: string;
+    // dropOffLocation?: {
+    //   type: string;
+    //   coordinates: number[];
+    // };
+    dropOffLocations: string[];
+    checklist: Checklist;
+    //dropOffLocationName: string;
+    passengerAges: string[];
+    notes?: string;
+    extraPassenger?: boolean;
+    overnightTrip?: boolean;
+    outOfTownTrip?: boolean;
   };
-  pickUpLocationName: string;
-  dropOffLocation?: {
-    type: string;
-    coordinates: number[];
-  };
-  checklist: Checklist;
-  dropOffLocationName: string;
-  passengerAges: string[];
-  notes?: string;
-  extraPassenger?: boolean;
 }
 
 export interface BookTripOutputProp {
