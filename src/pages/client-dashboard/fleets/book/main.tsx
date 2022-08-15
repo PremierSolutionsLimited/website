@@ -85,8 +85,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [pickupLng, setPickupLng] = useState<string>("");
   const [pickupAddress, setPickupAddress] = useState<string>("");
 
-  const [dropOffLat, setDropOffLat] = useState<string>("");
-  const [dropOffLng, setDropOffLng] = useState<string>("");
+  const [, setDropOffLat] = useState<string>("");
+  const [, setDropOffLng] = useState<string>("");
   const [dropOffAddress, setDropOffAddress] = useState<string>("");
   const [dropOffLocations, setDropOffLocations] = useState<string[]>([]);
 
@@ -107,17 +107,19 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   //set timelogs from startTimes and endTimes
   useEffect(() => {
     setTimeLogs(
-      startTimes.map((startTime, index) => {
-        return {
-          startTime: new Date(startTime),
-          endTime: endTimes[index],
-        };
-      }).filter((timeLog) => {
-        return timeLog.endTime !== undefined;
-      })
+      startTimes
+        .map((startTime, index) => {
+          return {
+            startTime: new Date(startTime),
+            endTime: endTimes[index],
+          };
+        })
+        .filter((timeLog) => {
+          return timeLog.endTime !== undefined;
+        })
     );
-  } , [startTimes, endTimes]);
-  console.log("TIME LOGS: ",timeLogs)
+  }, [startTimes, endTimes]);
+  console.log("TIME LOGS: ", timeLogs);
 
   // get trip quote
   const [getTripQuote, { loading: loadingTripQuoteData }] = useMutation<any>(
@@ -211,33 +213,39 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
     invokeBookTripRequest({
       variables: {
-        client: currentClient?._id as string,
-        vehicle: selectedCar?._id as string,
-        tripType: requestType,
-        expectedStartTime: new Date(tripStartDate),
-        expectedEndTime: endTime as Date,
-        durationType: durationType?.type,
-        pickUpLocation: {
-          type: "Point",
-          coordinates: [+pickupLng, +pickupLat],
+        input: {
+          client: currentClient?._id as string,
+          vehicle: selectedCar?._id as string,
+          tripType: requestType,
+          // expectedStartTime: new Date(tripStartDate),
+          // expectedEndTime: endTime as Date,
+          // durationType: durationType?.type,
+          timeLogs: timeLogs,
+          pickUpLocation: {
+            type: "Point",
+            coordinates: [+pickupLng, +pickupLat],
+          },
+          pickUpLocationName: pickupAddress,
+          // dropOffLocation: {
+          //   type: "Point",
+          //   coordinates: [+dropOffLng, +dropOffLat],
+          // },
+          dropOffLocations: dropOffLocations,
+          checklist: {
+            registeredVehicle: registeredVehicle,
+            validRoadWorthySticker: dvlaRoadWorthy,
+            validInsurance: insurance,
+            emergencyTriangle: emergencyTriangle,
+            fireExtinguisher: fireExtinguisher,
+            spareTyre: spareTyre,
+            clientComments: clientComments,
+            damagesOnVehicle: damageOnVehicle,
+          },
+          //dropOffLocationName: dropOffAddress,
+          passengerAges: passengerAges,
+          overnightTrip: isOvernightTrip,
+          outOfTownTrip: isOutOfTown,
         },
-        pickUpLocationName: pickupAddress,
-        dropOffLocation: {
-          type: "Point",
-          coordinates: [+dropOffLng, +dropOffLat],
-        },
-        checklist: {
-          registeredVehicle: registeredVehicle,
-          validRoadWorthySticker: dvlaRoadWorthy,
-          validInsurance: insurance,
-          emergencyTriangle: emergencyTriangle,
-          fireExtinguisher: fireExtinguisher,
-          spareTyre: spareTyre,
-          clientComments: clientComments,
-          damagesOnVehicle: damageOnVehicle,
-        },
-        dropOffLocationName: dropOffAddress,
-        passengerAges: passengerAges,
       },
     })
       .then(({ data }) => {
@@ -330,7 +338,6 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     setRequestType={setRequesType}
                     setShow={setShow}
                     setTab={setTab}
-                    
                   />
                 </Fragment>
               )}

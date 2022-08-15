@@ -37,7 +37,9 @@ const PreviewComponent = ({
     <Fragment>
       <dl className="pb-5 grid grid-cols-12 h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto gap-x-8 gap-y-8">
         <div className="sm:col-span-12">
-          <dt className="text-sm font-light text-gray-700">Trip Cost Estimate</dt>
+          <dt className="text-sm font-light text-gray-700">
+            Trip Cost Estimate
+          </dt>
           <dd className="mt-1 text-sm text-gray-900">
             GH₵ {getMoney(totalTripCost)}
           </dd>
@@ -53,7 +55,10 @@ const PreviewComponent = ({
           <div>
             {timeLogs?.map((timeLog, index) => {
               return (
-                <div key={index} className="inline-flex justify-between space-x-2 items-center">
+                <div
+                  key={index}
+                  className="inline-flex justify-between space-x-2 items-center"
+                >
                   <div className="text-sm font-light text-gold-2">
                     {moment(timeLog.startTime).format("MMMM Do YYYY")}
                   </div>
@@ -146,56 +151,60 @@ const PreviewComponent = ({
           </dd>
         </div>
         {/* <div className="sm:col-span-3" /> */}
-        <div className="col-span-12 md:col-span-6">
-          <dt className="text-sm font-light text-gray-700">
-            Damage on Vehicle?
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {damageOnVehicle?.length > 0 ? "Yes" : "No"}
-          </dd>
-        </div>
-        {damageOnVehicle?.length > 0 && (
-          <div className="sm:col-span-12">
+        <div className="col-span-12">
+          <div className="col-span-12 md:col-span-6">
             <dt className="text-sm font-light text-gray-700">
-              {" "}
-              Damage Description
+              Damage on Vehicle?
             </dt>
             <dd className="mt-1 text-sm text-gray-900">
-              {damageOnVehicle?.map((item: TDamageType, itemIdx: number) => (
-                <Fragment key={itemIdx}>
-                  <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
-                    {item?.description}
-                  </dd>
-                </Fragment>
-              ))}
+              {damageOnVehicle?.length > 0 ? "Yes" : "No"}
             </dd>
           </div>
-        )}
-        <div className="col-span-12 md:col-span-6">
-          <dt className="text-sm font-light text-gray-700">
-            Valuables In Vehicle?
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {valuableItems?.length > 0 ? "Yes" : "No"}
-          </dd>
+          {damageOnVehicle?.length > 0 && (
+            <div className="sm:col-span-6">
+              <dt className="text-sm font-light text-gray-700">
+                {" "}
+                Damage Description
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900">
+                {damageOnVehicle?.map((item: TDamageType, itemIdx: number) => (
+                  <Fragment key={itemIdx}>
+                    <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+                      {item?.description}
+                    </dd>
+                  </Fragment>
+                ))}
+              </dd>
+            </div>
+          )}
         </div>
-        {valuableItems?.length > 0 && (
-          <div className="sm:col-span-12">
+        <div className="col-span-12">
+          <div className="col-span-12 md:col-span-6">
             <dt className="text-sm font-light text-gray-700">
-              {" "}
-              Item Name/Description
+              Valuables In Vehicle?
             </dt>
             <dd className="mt-1 text-sm text-gray-900">
-              {valuableItems?.map((item: TValuableType, itemIdx: number) => (
-                <Fragment key={itemIdx}>
-                  <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
-                    {item?.description}
-                  </dd>
-                </Fragment>
-              ))}
+              {valuableItems?.length > 0 ? "Yes" : "No"}
             </dd>
           </div>
-        )}
+          {valuableItems?.length > 0 && (
+            <div className="sm:col-span-6">
+              <dt className="text-sm font-light text-gray-700">
+                {" "}
+                Item Name/Description
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900">
+                {valuableItems?.map((item: TValuableType, itemIdx: number) => (
+                  <Fragment key={itemIdx}>
+                    <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+                      {item?.description}
+                    </dd>
+                  </Fragment>
+                ))}
+              </dd>
+            </div>
+          )}
+        </div>
         {clientComments && (
           <Fragment>
             <div className="sm:col-span-6">
