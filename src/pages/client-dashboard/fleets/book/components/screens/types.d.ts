@@ -1,6 +1,6 @@
 import React from "react";
 import { IDurationType, IGroupType } from "../data/types";
-//import { TTimeLogs } from "../../main";
+import { TTimeLogs } from "../../main";
 
 export interface TripComponentProp {
   selectedAgeGroup: IGroupType[];
@@ -106,10 +106,12 @@ export interface PreviewComponentProp {
   durationTypeSelected: string;
   duration: string;
   requestType: string;
+  timeLogs: TTimeLogs | undefined;
   tripStartDate: string;
   tripEndDate?: Date;
   originAddress: string;
   destinationAddress: string;
+  destinationNames: string[]
   registeredVehicle: boolean;
   dvlaRoadWorthy: boolean;
   insurance: boolean;

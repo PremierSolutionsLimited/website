@@ -149,9 +149,9 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
     getTripQuote({
       variables: {
         input: {
-          expectedStartTime: new Date(tripStartDate),
-          expectedEndTime: endTime as Date,
+          timeLogs: timeLogs,
           overnightTrip: isOvernightTrip,
+          outOfTownTrip: isOutOfTown,
         },
       },
     })
@@ -410,6 +410,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                     totalTripCost={totalTripCost}
                     loading={loading}
                     setTab={setTab}
+                    timeLogs={timeLogs}
+                    destinationNames={dropOffLocations}
                     tripEndDate={endTime}
                     selectedAgeGroup={selectedAgeGroup}
                     selectedDuration={durationType}
