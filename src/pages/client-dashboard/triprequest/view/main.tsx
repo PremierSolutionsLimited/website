@@ -69,9 +69,18 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   </div>
                   <div className={"col-span-2 ml-5"}>
                     <h1 className={"font-light ml-4"}>To</h1>
-                    <span className={"font-medium ml-4"}>
-                      {trip?.dropOffLocationName}
-                    </span>
+                    <div className="flex justfiy-start space-x-2 flex-wrap ml-4">
+                      {trip?.dropOffLocations?.map(
+                        (location: any, locationIdx: any) => (
+                          <div
+                            className="p-1 border border-gray-700 rounded-md"
+                            key={locationIdx}
+                          >
+                            {location}
+                          </div>
+                        )
+                      )}
+                    </div>
                   </div>
                   <div
                     className={
@@ -90,7 +99,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                   </div>
                   <dd className="-mt-10 hidden sm:hidden md:block text-sm text-gray-900 sm:-mt-10 sm:col-span-1">
                     <img
-                      className="h-24 object-cover rounded-lg w-36 rounded-none"
+                      className="h-24 object-cover rounded-lg w-36"
                       src={trip?.vehicle?.images[0] || CarImage}
                       alt=""
                     />
@@ -112,27 +121,32 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
-                    Expected Start Time
+                    Time Logs
                   </dt>
 
-                  {trip?.expectedStartTime ? (
-                    <Fragment>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {moment(trip?.expectedStartTime).format(
-                          "MMMM Do YYYY, h:mm a"
-                        )}
-                      </dd>
-                    </Fragment>
-                  ) : (
-                    <Fragment>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        Trip is yet to start
-                      </dd>
-                    </Fragment>
-                  )}
+                  <dd className="sm:col-span-2 flex flex-col">
+                    {trip?.timeLogs?.map((timeLog, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="inline-flex justify-start space-x-2 items-center"
+                        >
+                          <div className="text-sm font-light text-gold-2">
+                            {moment(timeLog.startTime).format("MMMM Do YYYY")}
+                          </div>
+                          {" : "}
+                          <div className="mt-1 text-sm text-gray-900">
+                            {`${moment(timeLog.startTime).format(
+                              "h:mm a"
+                            )} - ${moment(timeLog.endTime).format("h:mm a")}`}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </dd>
                 </div>
 
-                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                {/* <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
                     Expected End Time
                   </dt>
@@ -151,7 +165,7 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                       </dd>
                     </Fragment>
                   )}
-                </div>
+                </div> */}
 
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
@@ -264,28 +278,32 @@ const MainComponent: React.FC<ViewTripComponentProp> = ({
                             Valuables In Vehicle?
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900">
-                            {trip?.checklist?.valuablesInVehicle && trip?.checklist?.valuablesInVehicle?.length > 0 ? "Yes" : "No"}
+                            {trip?.checklist?.valuablesInVehicle &&
+                            trip?.checklist?.valuablesInVehicle?.length > 0
+                              ? "Yes"
+                              : "No"}
                           </dd>
                         </div>
-                        {trip?.checklist?.valuablesInVehicle && trip?.checklist?.valuablesInVehicle?.length > 0 && (
-                          <div className="sm:col-span-3">
-                            <dt className="text-sm font-light text-gray-700">
-                              {" "}
-                              Item Name/Description
-                            </dt>
-                            <dd className="mt-1 text-sm text-gray-900">
-                              {trip?.checklist?.valuablesInVehicle?.map(
-                                (item: TValuableType, itemIdx: number) => (
-                                  <Fragment key={itemIdx}>
-                                    <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
-                                      {item?.description}
-                                    </dd>
-                                  </Fragment>
-                                )
-                              )}
-                            </dd>
-                          </div>
-                        )}
+                        {trip?.checklist?.valuablesInVehicle &&
+                          trip?.checklist?.valuablesInVehicle?.length > 0 && (
+                            <div className="sm:col-span-3">
+                              <dt className="text-sm font-light text-gray-700">
+                                {" "}
+                                Item Name/Description
+                              </dt>
+                              <dd className="mt-1 text-sm text-gray-900">
+                                {trip?.checklist?.valuablesInVehicle?.map(
+                                  (item: TValuableType, itemIdx: number) => (
+                                    <Fragment key={itemIdx}>
+                                      <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+                                        {item?.description}
+                                      </dd>
+                                    </Fragment>
+                                  )
+                                )}
+                              </dd>
+                            </div>
+                          )}
                       </div>
                     </dd>
                   </Fragment>

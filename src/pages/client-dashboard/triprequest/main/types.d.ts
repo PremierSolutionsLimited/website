@@ -1,6 +1,7 @@
 import { MyFleet } from "../../fleets/main/types";
 import { TDamageType } from "../../fleets/book/components/damage/main";
 import { TValuableType } from "../../fleets/book/components/valuables/main";
+import { TTimeLogs } from "../../fleets/book/main";
 export interface TripHistoryInputProp {
   filter?: {
     client?: {
@@ -27,6 +28,7 @@ export interface TripHistory {
   code: string;
   vehicle: MyFleet;
   tripType: TripType;
+  timeLogs: TTimeLogs;
   startTime: Date;
   expectedStartTime: Date;
   expectedEndTime: Date;
@@ -35,6 +37,7 @@ export interface TripHistory {
   dropOffLocationName: string;
   pickUpLocation: Location;
   dropOffLocation: Location;
+  dropOffLocations: string[];
   status: string;
   notes: string;
   driverRated: boolean;
