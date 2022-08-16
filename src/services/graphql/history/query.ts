@@ -25,11 +25,6 @@ export const getTripHistory = gql`
           name
         }
       }
-      tripType {
-        name
-        _id
-        description
-      }
       startTime
       endTime
       pickUpLocation {
@@ -56,14 +51,6 @@ export const getTripHistory = gql`
       cancelledBecause
       createdAt
       updatedAt
-      finalCost {
-        finalCost
-        items {
-          title
-          quantity
-          cost
-        }
-      }
       checklistMismatch
       checklist {
         valuablesInVehicle {
