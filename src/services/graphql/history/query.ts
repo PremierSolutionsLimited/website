@@ -100,9 +100,6 @@ export const getTripHistoryLite = gql`
           name
         }
       }
-      tripType {
-        name
-      }
       startTime
       endTime
       pickUpLocation {
@@ -118,9 +115,6 @@ export const getTripHistoryLite = gql`
       pickUpLocationName
       dropOffLocationName
       status
-      finalCost {
-        finalCost
-      }
       createdAt
     }
     tripsLength(filter: $filter)
