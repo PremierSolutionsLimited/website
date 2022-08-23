@@ -33,7 +33,7 @@ const MainComponent = () => {
       pagination: {
         limit: 3,
       },
-      populate: ["vehicle", "class", "tripType"],
+      populate: ["vehicle"],
     },
   });
 
