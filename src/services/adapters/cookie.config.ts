@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 
-export const BASE_URL = process.env.REACT_APP_SERVER_URL;
+export const BASE_URL = process.env.NODE_ENV === "development"? process.env.REACT_APP_DEVELOPMENT_SERVER_URL : process.env.REACT_APP_PRODUCTION_SERVER_URL
 
 class Auth {
   getCipher(): string | null {
