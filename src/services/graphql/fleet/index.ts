@@ -6,3 +6,4 @@ export { updateVehicle as UPDATE_VEHICLE } from "./mutation";
 export { createTripRequest as CREATE_TRIP } from "./mutation";
 export { getTripQuote as GET_TRIP_QUOTE } from "./mutation";
 export { getTripCostSummary as GET_TRIP_COST_SUMMARY } from "./mutation";
+export { getLocations as GET_LOCATIONS } from "./query";

@@ -1,4 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
+import {GET_LOCATIONS} from "../../../../../../services/graphql/fleet"
+import { useQuery } from "@apollo/client";
 //import { DestinationComponentProp } from "./types";
 //import GoogleMap from "../dropoff-map";
 import {
@@ -8,14 +10,14 @@ import {
 } from "@heroicons/react/solid";
 import { Combobox } from "@headlessui/react";
 
-const locations = [
-  "Achimota",
-  "Haatso",
-  "University of Ghana Legon",
-  "37 Military Hospital",
-  "Kotoka Airport",
-  "Accra Mall",
-];
+// const locations = [
+//   "Achimota",
+//   "Haatso",
+//   "University of Ghana Legon",
+//   "37 Military Hospital",
+//   "Kotoka Airport",
+//   "Accra Mall",
+// ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -32,12 +34,21 @@ export default function Destination({
   const [query, setQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState();
 
-  const filteredLocations =
-    query === ""
-      ? locations
-      : locations.filter((location) => {
-          return location.toLowerCase().includes(query.toLowerCase());
-        });
+  const {data:locations, loading, error} = useQuery(GET_LOCATIONS, {
+    variables: {
+      search: {
+          query: query,
+          fields: ["name"]
+      }
+      }
+    })
+
+  // const filteredLocations =
+  //   query === ""
+  //     ? locations
+  //     : locations.filter((location) => {
+  //         return location.toLowerCase().includes(query.toLowerCase());
+  //       });
 
   const addToDropOffLocations = (location) => {
     setDropOffLocations([...dropOffLocations, location]);
@@ -79,12 +90,12 @@ export default function Destination({
               />
             </Combobox.Button>
 
-            {filteredLocations.length > 0 && (
+            {locations?.locations?.length > 0 && (
               <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {filteredLocations.map((location) => (
+                {locations?.locations?.map((location) => (
                   <Combobox.Option
-                    key={location}
-                    value={location}
+                    key={location?._id}
+                    value={location?.name}
                     className={({ active }) =>
                       classNames(
                         "relative cursor-default select-none py-2 pl-3 pr-9",
@@ -100,7 +111,7 @@ export default function Destination({
                             selected && "font-semibold"
                           )}
                         >
-                          {location}
+                          {location?.name}
                         </span>
 
                         {selected && (
