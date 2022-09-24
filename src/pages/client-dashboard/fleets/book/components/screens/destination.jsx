@@ -1,4 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { GET_LOCATIONS } from "../../../../../../services/graphql/fleet";
+import { useQuery } from "@apollo/client";
 //import { DestinationComponentProp } from "./types";
 //import GoogleMap from "../dropoff-map";
 import {
@@ -8,14 +10,14 @@ import {
 } from "@heroicons/react/solid";
 import { Combobox } from "@headlessui/react";
 
-const locations = [
-  "Achimota",
-  "Haatso",
-  "University of Ghana Legon",
-  "37 Military Hospital",
-  "Kotoka Airport",
-  "Accra Mall",
-];
+// const locations = [
+//   "Achimota",
+//   "Haatso",
+//   "University of Ghana Legon",
+//   "37 Military Hospital",
+//   "Kotoka Airport",
+//   "Accra Mall",
+// ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -32,12 +34,25 @@ export default function Destination({
   const [query, setQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState();
 
-  const filteredLocations =
-    query === ""
-      ? locations
-      : locations.filter((location) => {
-          return location.toLowerCase().includes(query.toLowerCase());
-        });
+  const {
+    data: locations,
+    loading,
+    error,
+  } = useQuery(GET_LOCATIONS, {
+    variables: {
+      search: {
+        query: query,
+        fields: ["name"],
+      },
+    },
+  });
+
+  // const filteredLocations =
+  //   query === ""
+  //     ? locations
+  //     : locations.filter((location) => {
+  //         return location.toLowerCase().includes(query.toLowerCase());
+  //       });
 
   const addToDropOffLocations = (location) => {
     setDropOffLocations([...dropOffLocations, location]);
@@ -79,45 +94,70 @@ export default function Destination({
               />
             </Combobox.Button>
 
-            {filteredLocations.length > 0 && (
+            {loading ? (
               <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {filteredLocations.map((location) => (
-                  <Combobox.Option
-                    key={location}
-                    value={location}
-                    className={({ active }) =>
-                      classNames(
-                        "relative cursor-default select-none py-2 pl-3 pr-9",
-                        active ? "bg-indigo-600 text-white" : "text-gray-900"
-                      )
-                    }
-                  >
-                    {({ active, selected }) => (
-                      <>
-                        <span
-                          className={classNames(
-                            "block truncate",
-                            selected && "font-semibold"
-                          )}
-                        >
-                          {location}
-                        </span>
-
-                        {selected && (
+                <Combobox.Option
+                  className={
+                    "relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
+                  }
+                >
+                  Loading Locations...
+                </Combobox.Option>
+              </Combobox.Options>
+            ) : error ? (
+              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                <Combobox.Option
+                  className={
+                    "relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
+                  }
+                >
+                  Error Loading Locations...
+                </Combobox.Option>
+              </Combobox.Options>
+            ) : (
+              locations?.locations?.length > 0 && (
+                <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                  {locations?.locations?.map((location) => (
+                    <Combobox.Option
+                      key={location?._id}
+                      value={location?.name}
+                      className={({ active }) =>
+                        classNames(
+                          "relative cursor-default select-none py-2 pl-3 pr-9",
+                          active ? "bg-indigo-600 text-white" : "text-gray-900"
+                        )
+                      }
+                    >
+                      {({ active, selected }) => (
+                        <>
                           <span
                             className={classNames(
-                              "absolute inset-y-0 right-0 flex items-center pr-4",
-                              active ? "text-white" : "text-indigo-600"
+                              "block truncate",
+                              selected && "font-semibold"
                             )}
                           >
-                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                            {location?.name}
                           </span>
-                        )}
-                      </>
-                    )}
-                  </Combobox.Option>
-                ))}
-              </Combobox.Options>
+
+                          {selected && (
+                            <span
+                              className={classNames(
+                                "absolute inset-y-0 right-0 flex items-center pr-4",
+                                active ? "text-white" : "text-indigo-600"
+                              )}
+                            >
+                              <CheckIcon
+                                className="h-5 w-5"
+                                aria-hidden="true"
+                              />
+                            </span>
+                          )}
+                        </>
+                      )}
+                    </Combobox.Option>
+                  ))}
+                </Combobox.Options>
+              )
             )}
           </div>
         </Combobox>
