@@ -206,7 +206,7 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
               </svg>
             </button>
           </div>
-          <span className={"font-medium text-md mt-5"}>Add New Car</span>
+          <span className={"font-medium text-md mt-5"}>Edit Car</span>
           <div className="mt-5 grid grid-cols-12 gap-3">
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
               <label
@@ -278,7 +278,7 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
                     "bg-white mt-1 rounded-md border border-gray-300 flex py-2 cursor-pointer justify-center"
                   }
                 >
-                  <span className={"text-gray-600 text-sm"}>
+                  <span className={"text-gold-2 text-sm"}>
                     Click Here To Change Color
                   </span>
                 </div>

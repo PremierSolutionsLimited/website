@@ -155,7 +155,7 @@ const RecentTrips: FC<ITripProps> = ({ data }) => {
               <div className={"col-span-2"}>
                 <h1 className={"font-light ml-4"}>To</h1>
                 <span className={"font-medium ml-4"}>
-                  {loadDropoff ? "loading..." : dropOff || data?.dropOffLocationName}
+                  {loadDropoff ? "loading..." : dropOff || data?.dropOffLocationName || "Not Specified Yet"}
                 </span>
               </div>
             </div>

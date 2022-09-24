@@ -50,7 +50,7 @@ const PreviewComponent = ({
             {selectedDuration?.name}
           </dd>
         </div> */}
-        <div className="sm:col-span-6">
+        <div className="sm:col-span-8">
           <div className="text-sm font-light text-gray-700">Trip Time Logs</div>
           <div>
             {timeLogs?.map((timeLog, index) => {
@@ -73,7 +73,7 @@ const PreviewComponent = ({
             })}
           </div>
         </div>
-        <div className="sm:col-span-6">
+        <div className="sm:col-span-4">
           <dt className="text-sm font-light text-gray-700"> Age Groups</dt>
           <div className="flex flex-row flex-wrap items-center">
             {selectedAgeGroup?.map((item: IGroupType, itemIdx: number) => (
