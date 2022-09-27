@@ -72,6 +72,23 @@ const Login = () => {
           : "Notifications not allowed in your browser, Kindly allow for notifications in your browser..."
       );
       console.log("An error occurred while retrieving token. ", e);
+      loginInvoker({
+        variables: {
+          email,
+          password,
+          notificationToken: ""
+        },
+      })
+        .then(async ({ data }) => {
+          await signIn(data?.loginClient);
+          push("/app/");
+          toast.success(`Welcome Back ${data?.loginClient?.client?.firstName}!`);
+        })
+        .catch((e: ApolloError) => {
+          toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)), {
+            id: "loginError",
+          });
+        });
       // toast.success(`Welcome Back ${data?.loginClient?.client?.firstName}!`);
     });   
   };
