@@ -1,15 +1,17 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { GET_LOCATIONS } from "../../../../../../services/graphql/fleet";
-import { useQuery } from "@apollo/client";
+//import { GET_LOCATIONS } from "../../../../../../services/graphql/fleet";
+//import { useQuery } from "@apollo/client";
 //import { DestinationComponentProp } from "./types";
 //import GoogleMap from "../dropoff-map";
-import {
-  CheckIcon,
-  SelectorIcon,
-  LocationMarkerIcon,
-} from "@heroicons/react/solid";
 import { Combobox } from "@headlessui/react";
-
+import {
+  SearchIcon,
+  ExclamationCircleIcon,
+  LocationMarkerIcon
+} from "@heroicons/react/outline";
+import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
+import { useLoadScript } from "@react-google-maps/api";
+import {DataLoader} from "../../../../../../shared/loaders"
 // const locations = [
 //   "Achimota",
 //   "Haatso",
@@ -23,6 +25,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const libraries = ["places"];
+const options = {
+  componentRestrictions: { country: "gh" },
+};
+
 export default function Destination({
   setTab,
   setAddress,
@@ -34,18 +41,24 @@ export default function Destination({
   const [query, setQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState();
 
-  const {
-    data: locations,
-    loading,
-    error,
-  } = useQuery(GET_LOCATIONS, {
-    variables: {
-      search: {
-        query: query,
-        fields: ["name"],
-      },
-    },
+   const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries,
+    region: "gh",
   });
+
+  // const {
+  //   data: locations,
+  //   loading,
+  //   error,
+  // } = useQuery(GET_LOCATIONS, {
+  //   variables: {
+  //     search: {
+  //       query: query,
+  //       fields: ["name"],
+  //     },
+  //   },
+  // });
 
   // const filteredLocations =
   //   query === ""
@@ -54,8 +67,8 @@ export default function Destination({
   //         return location.toLowerCase().includes(query.toLowerCase());
   //       });
 
-  const addToDropOffLocations = (location) => {
-    setDropOffLocations([...dropOffLocations, location]);
+  const addToDropOffLocations = (query) => {
+    setDropOffLocations([...dropOffLocations, query]);
   };
 
   const removeFromDropOffLocations = (location) => {
@@ -73,7 +86,7 @@ export default function Destination({
     <Fragment>
       <div className="mt-0  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto scrollContainer ">
         {/* <GoogleMap setLng={setLng} setLat={setLat} setAddress={setAddress} /> */}
-        <Combobox
+        {/* <Combobox
           as="div"
           value={selectedLocation}
           onChange={setSelectedLocation}
@@ -160,7 +173,25 @@ export default function Destination({
               )
             )}
           </div>
-        </Combobox>
+        </Combobox> */}
+        {isLoaded ? (
+          <PlacesAutomcomplete
+            location={query}
+            setLocation={setQuery}
+            handleCreateLocation={addToDropOffLocations}
+            //loading={loading}
+            //error={error}
+          />
+        ) : (
+          <div className="flex justify-center items-center h-full">
+            <div className="flex flex-col items-center">
+              <ExclamationCircleIcon className="h-10 w-10 text-red-400" />
+              <span className="text-red-400">
+                Google Maps API is not loaded
+              </span>
+            </div>
+          </div>
+        )}
         <div>
           <div className="flow-root mt-6">
             <ul className="-my-5 divide-y divide-gray-200">
@@ -217,3 +248,130 @@ export default function Destination({
     </Fragment>
   );
 }
+
+const PlacesAutomcomplete = ({ location, setLocation, handleCreateLocation, loading }) => {
+  const {
+    ready,
+    value,
+    setValue,
+    suggestions: { status, data },
+    clearSuggestions,
+  } = usePlacesAutocomplete();
+
+  const [typing, setTyping] = useState(false);
+
+  const handleSelect = async (address) => {
+    console.log(address);
+    setValue(address, false);
+    //setQuery(address);
+    clearSuggestions();
+    setTyping(false);
+
+    const results = await getGeocode({ address });
+    console.log(results);
+    //const { lat, lng } = await getLatLng(results[0]);
+    setLocation(address);
+  };
+
+  useEffect(() => {
+    setLocation(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
+  return (
+    <Fragment>
+      <div className="mt-5">
+        <Combobox onChange={(item) => handleSelect(item)} value={value}>
+          <div className="flex flex-row justify-between items-center">
+            <div className="relative flex-grow">
+              <SearchIcon
+                className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+              <Combobox.Input
+                className="h-12 w-full border-1 border-gray-300 bg-gray-50 pl-11 pr-4 rounded-md shadow-sm text-gray-800 placeholder-gray-400 focus:ring-1 focus:ring-gray-100 sm:text-sm"
+                placeholder="Search for location or enter location name..."
+                onChange={(event) => {
+                  setValue(event.target.value);
+                  setTyping(true);
+                }}
+                displayValue={value}
+                disabled={!ready}
+              />
+            </div>
+            <div className="sm:ml-4 sm:flex-shrink-0 sm:flex sm:items-center">
+              <button
+                type="button"
+                className="inline-flex items-center px-4 py-3 border border-transparent shadow-sm font-medium rounded-md text-white bg-customBlack-2 hover:text-gold-2 hover:border hover:border-gold-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                onClick={() => handleCreateLocation(location)}
+                disabled={loading || !value}
+              >
+                {loading ? (
+                    <DataLoader color={"white"} size={5} />
+                    ) : (
+                    "Add Location"
+                    )}
+              </button>
+            </div>
+          </div>
+
+          <div className="overflow-y-scroll">
+            {status === "OK" && (
+              <Combobox.Options static className="max-h-96 scroll-py-3 p-3">
+                {data?.map(({ place_id, description }) => (
+                  <Combobox.Option
+                    key={place_id}
+                    value={description}
+                    className={({ active }) =>
+                      classNames(
+                        "flex cursor-pointer select-none rounded-xl p-3",
+                        active && "bg-gray-200"
+                      )
+                    }
+                  >
+                    {({ active }) => (
+                      <>
+                        <div
+                          className={classNames(
+                            "flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-gold-2"
+                          )}
+                        >
+                          <LocationMarkerIcon
+                            className="h-6 w-6 text-white"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <div className="ml-4 flex-auto">
+                          <p
+                            className={classNames(
+                              "text-sm font-medium",
+                              active ? "text-gray-900" : "text-gray-700"
+                            )}
+                          >
+                            {description}
+                          </p>
+                        </div>
+                      </>
+                    )}
+                  </Combobox.Option>
+                ))}
+              </Combobox.Options>
+            )}
+          </div>
+          {value !== "" && data?.length === 0 && typing && (
+            <div className="py-14 px-6 text-center text-sm sm:px-14">
+              <ExclamationCircleIcon
+                type="outline"
+                name="exclamation-circle"
+                className="mx-auto h-6 w-6 text-gray-400"
+              />
+              <p className="mt-4 font-semibold text-gray-900">
+                No locations found
+              </p>
+            </div>
+          )}
+        </Combobox>
+      </div>
+    </Fragment>
+  );
+};
