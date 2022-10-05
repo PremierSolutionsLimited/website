@@ -26,9 +26,9 @@ function classNames(...classes) {
 }
 
 const libraries = ["places"];
-const options = {
-  componentRestrictions: { country: "gh" },
-};
+// const options = {
+//   componentRestrictions: { country: "gh" },
+// };
 
 export default function Destination({
   setTab,
