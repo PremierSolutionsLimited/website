@@ -52,12 +52,12 @@ const PreviewComponent = ({
         </div> */}
         <div className="sm:col-span-8">
           <div className="text-sm font-light text-gray-700">Trip Time Logs</div>
-          <div>
+          <div className="flex flex-col space-y-1">
             {timeLogs?.map((timeLog, index) => {
               return (
                 <div
                   key={index}
-                  className="inline-flex justify-between space-x-2 items-center"
+                  className="inline-flex justify-start space-x-2 items-center"
                 >
                   <div className="text-sm font-light text-gold-2">
                     {moment(timeLog.startTime).format("MMMM Do YYYY")}
