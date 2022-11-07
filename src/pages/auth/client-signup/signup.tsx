@@ -28,6 +28,7 @@ const Signup = () => {
   const [title, setTitle] = useState("");
   const [dob, setDob] = useState<any>(moment()?.subtract(18, "years"));
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
   const [isOther, setIsOther] = useState(false);
   const { push } = useHistory();
@@ -80,6 +81,7 @@ const Signup = () => {
         lastName,
         dob: new Date(dob),
         email,
+        phone,
         gender,
         title,
         otherNames,
@@ -95,6 +97,7 @@ const Signup = () => {
     isTaken,
     dob,
     email,
+    phone,
     firstName,
     title,
     otherNames,
@@ -275,6 +278,7 @@ const Signup = () => {
                           <select
                             id="title"
                             name="title"
+                            title="title"
                             value={title}
                             required={true}
                             onChange={(
@@ -288,7 +292,7 @@ const Signup = () => {
                             <option value="MISS">Miss</option>
                             <option value="DR">Dr</option>
                             <option value="PROF">Prof</option>
-                            <option value="REV">Rev</option>
+                            {/*<option value="REV">Rev</option>*/}
                             <option value="OTHER">Other</option>
                           </select>
                         )}
@@ -329,13 +333,13 @@ const Signup = () => {
                           htmlFor="password"
                           className="block text-sm pb-1 font-medium text-gray-700"
                         >
-                          Gender <span className="text-red-500">*</span>
+                          Gender
                         </label>
                         <select
                           id="gender"
                           name="gender"
                           autoComplete="gender"
-                          required={true}
+                          title="gender"
                           value={gender}
                           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                             setGender(e.target.value)
@@ -367,6 +371,29 @@ const Signup = () => {
                           value={email}
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             setEmail(e.target.value)
+                          }
+                          required
+                          className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1 px-2 w-1/2 overflow-hidden">
+                      <label
+                        htmlFor="password"
+                        className="block text-sm pb-1 font-medium text-gray-700"
+                      >
+                        Phone number <span className="text-red-500">*</span>
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          id="phone"
+                          name="phone"
+                          type="phone"
+                          autoComplete="phone"
+                          placeholder="Eg. 020001000"
+                          value={phone}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            setPhone(e.target.value)
                           }
                           required
                           className="appearance-none block bg-gray-100 w-full px-3 py-3 border-none rounded-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-white focus:border-white sm:text-sm"

@@ -21,8 +21,6 @@ export interface OtherInfoComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
   digitalAddress: string;
   setDigitalAddress: React.Dispatch<React.SetStateAction<string>>;
-  phone: string;
-  setPhone: React.Dispatch<React.SetStateAction<string>>;
   idType: string;
   setIdType: React.Dispatch<React.SetStateAction<string>>;
   idNumber: string;
