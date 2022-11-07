@@ -19,8 +19,6 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
   setIdNumber,
   digitalAddress,
   setDigitalAddress,
-  phone,
-  setPhone,
 }) => {
   function handleGoToNextPage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -66,7 +64,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
             </div>
-            <div className="col-span-12 sm:col-span-6">
+            {/* <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="url"
                 className="block text-sm pb-3  font-medium text-gray-700"
@@ -91,7 +89,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 }}
                 className="mt-1 block w-full border-none rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white bg-gray-100 focus:border-white sm:text-sm"
               />
-            </div>
+            </div> */}
             <div className="col-span-12 sm:col-span-6">
               <label
                 htmlFor="company"
@@ -100,10 +98,10 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 ID Type
               </label>
               <select
-                id="location"
-                name="location"
+                id="idType"
+                name="idType"
+                title="ID Type"
                 value={idType}
-                placeholder="Eg. 0541879515"
                 required
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setIdType(e.target.value)
@@ -131,7 +129,7 @@ const CarInfoComponent: React.FC<OtherInfoComponentProp> = ({
                 name="company"
                 id="company"
                 required
-                placeholder="Eg. 909879086"
+                placeholder="Eg. Enter your ID number"
                 value={idNumber}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setIdNumber(e.target.value)

@@ -47,15 +47,15 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     type="text"
-                    name="last_name"
-                    id="last_name"
+                    name="username"
+                    id="username"
                     value={username}
                     placeholder={"Eg. Micheal"}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setUsername(e.target.value)
                     }
                     required
-                    autoComplete="family-name"
+                    autoComplete="username"
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
                 </div>
@@ -71,15 +71,14 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     type="text"
-                    name="last_name"
-                    id="last_name"
+                    name="nationality"
+                    id="nationality"
                     value={nationality}
                     placeholder={"Eg. Ghanaian"}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setNationality(e.target.value)
                     }
-                    required
-                    autoComplete="family-name"
+                    autoComplete="user-nationality"
                     className="mt-1 block w-full border-none bg-gray-100 rounded-none shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white sm:text-sm"
                   />
                 </div>
@@ -162,8 +161,8 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
               </label>
               <input
                 type="text"
-                name="residence"
-                id="residence"
+                name="address"
+                id="address"
                 required
                 placeholder={"Eg. Adenta - Accra"}
                 value={placeOfResidence}  
@@ -184,7 +183,7 @@ const PersonalComponent: React.FC<PersonalComponentProp> = ({
                 type="password"
                 name="password"
                 id="password"
-                placeholder="*********"
+                placeholder="Create a strong password"
                 value={password}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPassword(e.target.value)

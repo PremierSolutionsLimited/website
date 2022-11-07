@@ -45,7 +45,6 @@ const MainComponent = () => {
   console.log(placeOfResdience)
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  console.log(password, ' ', confirmPassword)
 
   // for clients's image
   const [clientFile, setClientFile] = useState<any>(null);
@@ -54,7 +53,6 @@ const MainComponent = () => {
 
   // states for other components
   const [digitalAddress, setDigitalAddress] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
   const [idType, setIdType] = useState<string>("");
   const [idNumber, setIdNumber] = useState<string>("");
   const [idIssueDate, setIdIssueDate] = useState<string>("");
@@ -89,6 +87,10 @@ const MainComponent = () => {
   ) => {
     e.preventDefault();
 
+    if (emergencyContact.length < 1) {
+      return toast.error("Please add at least one emergency contact");
+    }
+
     if (clientFile) {
       setUploadingToFirebase(true);
       let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
@@ -113,6 +115,7 @@ const MainComponent = () => {
                   gender: registrationState?.status?.gender,
                   dob: new Date(registrationState?.status?.dob),
                   email: registrationState?.status?.email,
+                  phone: registrationState?.status?.phone,
                   nationality,
                   residence: placeOfResdience,
                   ghanaPostGps: digitalAddress,
@@ -124,7 +127,6 @@ const MainComponent = () => {
                   emergencyContacts: emergencyContact,
                   photograph: fireBaseUrl,
                   username,
-                  phone,
                   password,
                 },
               })
@@ -160,6 +162,7 @@ const MainComponent = () => {
           gender: registrationState?.status?.gender,
           dob: new Date(registrationState?.status?.dob),
           email: registrationState?.status?.email,
+          phone: registrationState?.status?.phone,
           nationality,
           residence: placeOfResdience,
           ghanaPostGps: digitalAddress,
@@ -170,7 +173,6 @@ const MainComponent = () => {
           idExpiryDate: new Date(idExpiryDate),
           emergencyContacts: emergencyContact,
           username,
-          phone,
           password,
         },
       })
@@ -313,8 +315,6 @@ const MainComponent = () => {
                       setTab={setTab}
                       digitalAddress={digitalAddress}
                       setDigitalAddress={setDigitalAddress}
-                      phone={phone}
-                      setPhone={setPhone}
                       idType={idType}
                       setIdType={setIdType}
                       idNumber={idNumber}

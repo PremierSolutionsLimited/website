@@ -66,6 +66,9 @@ const SelectGenderPreferenceComponent: FC<SelectGenderPreferenceComponentProp> =
               "bg-gray-100 rounded-sm px-2 h-9 flex flex-row items-center flex-wrap"
             }
           >
+            {genderPreference.length === 0 && (
+              <div className="text-xs flex items-start px-2 text-gray-400">Select one or more</div>
+            )}
             {genderPreference?.map((list: IGenderPreference, i: number) => (
               <Fragment key={i}>
                 <div
