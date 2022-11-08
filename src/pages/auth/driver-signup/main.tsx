@@ -7,8 +7,7 @@ import { DatePicker } from "antd";
 import Logo from "../../../assets/PC_logo_no_bg.png";
 import BgImage from "../../../assets/images/004.jpg";
 import { useLazyQuery } from "@apollo/client";
-import { checkDriverMail } from "../../../services/graphql/checkmail/query";
-import { checkDriverPhone } from "../../../services/graphql/checkmail/query";
+import { checkDriverMail, checkDriverPhone } from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";
 import moment from "moment";
 // @ts-ignore
@@ -38,7 +37,7 @@ const DriverSignup = () => {
   const [usersAge, setUsersAge] = useState<string>("");
   const [isDriverBelowAge, setIsDriverBelowAge] = useState<boolean>(false);
 
-  const [checkIfTaken, { data: isTaken, loading: checking }] =
+  const [checkIfEmailTaken, { data: isTaken, loading: checking }] =
     useLazyQuery(checkDriverMail);
 
   const [checkIfPhoneTaken, { data: isPhoneTaken, loading: checkingPhone }] =
@@ -75,7 +74,7 @@ const DriverSignup = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log("submitting");
     e.preventDefault();
-    checkIfTaken({ variables: { filter: { email } } });
+    checkIfEmailTaken({ variables: { filter: { email } } });
     checkIfPhoneTaken({ variables: { filter: { phone } } });
   };
 
@@ -86,7 +85,7 @@ const DriverSignup = () => {
   };
 
   useEffect(() => {
-    if (!email === undefined) {
+    if (email === undefined) {
       console.log("here")
       return;
     } else if (isTaken?.checkDriverMail) {
@@ -111,7 +110,6 @@ const DriverSignup = () => {
         typeOfRegistration: "Driver",
         age: usersAge,
       };
-      console.log(data)
       setLoading(true);
       wait(2000).then(async () => {
         setLoading(false);
@@ -140,6 +138,7 @@ const DriverSignup = () => {
       <div className="min-h-screen bg-white flex">
         <button
           type="button"
+          title="Back to main website"
           onClick={() => push("/")}
           className="hidden sm:hidden md:flex lg:block relative w-0 flex-1 focus:outline-none"
         >
@@ -262,6 +261,7 @@ const DriverSignup = () => {
                         <select
                           id="title"
                           name="title"
+                          title="title"
                           autoComplete="title"
                           required={true}
                           value={title}
@@ -276,7 +276,7 @@ const DriverSignup = () => {
                           <option value="MISS">Miss</option>
                           <option value="DR">Dr</option>
                           <option value="PROF">Prof</option>
-                          <option value="REV">Rev</option>
+                          {/* <option value="REV">Rev</option> */}
                           <option value="OTHER">Other</option>
                         </select>
                       </div>
@@ -321,6 +321,7 @@ const DriverSignup = () => {
                         <select
                           id="gender"
                           name="gender"
+                          title="gender"
                           autoComplete="gender"
                           value={gender}
                           required={true}

@@ -7,7 +7,10 @@ import { DatePicker } from "antd";
 import Logo from "../../../assets/PC_logo_no_bg.png";
 import BgImage from "../../../assets/images/009.jpg";
 import { useLazyQuery } from "@apollo/client";
-import { checkClientMail } from "../../../services/graphql/checkmail/query";
+import {
+  checkClientMail,
+  checkClientPhone,
+} from "../../../services/graphql/checkmail/query";
 import toast from "react-hot-toast";
 import moment from "moment";
 import { RefreshIcon } from "@heroicons/react/outline";
@@ -35,8 +38,10 @@ const Signup = () => {
   const [{ startRegistration }] = useRegistrationProvider();
 
   const [isClientBelowAge, setIsClientBelowAge] = useState<boolean>(false);
-  const [checkIfTaken, { data: isTaken, loading: checking }] =
+  const [checkIfEmailTaken, { data: isEmailTaken, loading: checkingEmail }] =
     useLazyQuery(checkClientMail);
+  const [checkIfPhoneTaken, { data: isPhoneTaken, loading: checkingPhone }] =
+    useLazyQuery(checkClientPhone);
   const [loading, setLoading] = useState<boolean>(false);
 
   // wait function
@@ -69,12 +74,27 @@ const Signup = () => {
     return current > start;
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log("submitting");
+    e.preventDefault();
+    checkIfEmailTaken({ variables: { filter: { email } } });
+    checkIfPhoneTaken({ variables: { filter: { phone } } });
+  };
+
   useEffect(() => {
-    if (isTaken === undefined) {
+    if (email === undefined) {
+      console.log("here");
       return;
-    } else if (isTaken?.checkClientMail) {
+    } else if (isEmailTaken?.checkClientMail) {
       toast?.error("This email is already taken", { id: "emailTaken" });
-    } else if (isTaken?.checkClientMail === false) {
+    } else if (isPhoneTaken?.checkClientPhone) {
+      toast?.error("This phone number is already taken", {
+        id: "phoneTaken",
+      });
+    } else if (
+      isEmailTaken?.checkClientMail === false &&
+      isPhoneTaken?.checkClientPhone === false
+    ) {
       setLoading(true);
       let data = {
         firstName,
@@ -94,7 +114,8 @@ const Signup = () => {
       });
     }
   }, [
-    isTaken,
+    isEmailTaken,
+    isPhoneTaken,
     dob,
     email,
     phone,
@@ -106,13 +127,6 @@ const Signup = () => {
     startRegistration,
     gender,
   ]);
-
-  useEffect(() => {
-    if (title === "OTHER") {
-      setTitle("");
-      setIsOther(true);
-    }
-  }, [title]);
 
   return (
     <Fragment>
@@ -163,7 +177,7 @@ const Signup = () => {
 
             <div className="mt-8">
               <div className="mt-6">
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="flex flex-wrap -mx-2 overflow-hidden">
                     <div className="my-1 px-2 w-1/2 overflow-hidden">
                       <div>
@@ -333,7 +347,7 @@ const Signup = () => {
                           htmlFor="password"
                           className="block text-sm pb-1 font-medium text-gray-700"
                         >
-                          Gender
+                          Gender <span className="text-red-500">*</span>
                         </label>
                         <select
                           id="gender"
@@ -341,6 +355,7 @@ const Signup = () => {
                           autoComplete="gender"
                           title="gender"
                           value={gender}
+                          required
                           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                             setGender(e.target.value)
                           }
@@ -424,15 +439,15 @@ const Signup = () => {
                       .
                     </div>
                     <button
-                      type="button"
-                      onClick={(e) => {
-                        e?.preventDefault();
-                        checkIfTaken({ variables: { filter: { email } } });
-                      }}
+                      type="submit"
+                      // onClick={(e) => {
+                      //   e?.preventDefault();
+                      //   checkIfTaken({ variables: { filter: { email } } });
+                      // }}
                       disabled={isClientBelowAge}
                       className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gold-2 hover:bg-gold-1 focus:outline-none  focus:ring-offset-2 focus:ring-gold-2"
                     >
-                      {loading || checking ? (
+                      {loading || checkingEmail || checkingPhone ? (
                         <Fragment>
                           <StageSpinner color="#fff" loading size={20} />
                         </Fragment>
