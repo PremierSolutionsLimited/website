@@ -93,8 +93,8 @@ const DriverSignup = () => {
     } else if (isPhoneTaken?.checkDriverPhone) {
       toast?.error("This phone number is already taken", { id: "phoneTaken" });
     } else if (
-      !isTaken?.checkDriverMail &&
-      !isPhoneTaken?.checkDriverPhone
+      isTaken?.checkDriverMail === false &&
+      isPhoneTaken?.checkDriverPhone === false
     ) {
       setLoading(true);
       console.log("Starting")

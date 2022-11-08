@@ -92,8 +92,8 @@ const Signup = () => {
         id: "phoneTaken",
       });
     } else if (
-      !isEmailTaken?.checkClientMail &&
-      !isPhoneTaken?.checkClientPhone
+      isEmailTaken?.checkClientMail === false &&
+      isPhoneTaken?.checkClientPhone === false
     ) {
       setLoading(true);
       let data = {
