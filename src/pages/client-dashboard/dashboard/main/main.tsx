@@ -280,7 +280,7 @@ const MainComponent = () => {
                             // buttonMessage="Add Vehicle"
                             emptyMessage={"You have not had any trips yet"}
                             onClickButton={() => {}}
-                            hideButton
+                            
                           />
                         </Fragment>
                       ) : (
