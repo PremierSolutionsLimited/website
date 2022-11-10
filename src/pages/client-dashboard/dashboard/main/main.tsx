@@ -14,9 +14,12 @@ import { useCurrentClient } from "../../../../services/context/currentClient";
 import { DataLoader } from "../../../../shared/loaders";
 import { ErrorAlert } from "../../../../components/alert/error";
 import { EmptyAlert } from "../../../../components/alert/empty";
+import { useHistory } from "react-router-dom";
+import { MY_FLEET } from "../../../../shared/layout/client-layout/navigation/constants";
 
 const MainComponent = () => {
   const { currentUser } = useCurrentClient();
+  const { push } = useHistory();
 
   const { data, loading } = useQuery(GET_SUMMARY);
   const {
@@ -279,8 +282,8 @@ const MainComponent = () => {
                             page="trip history"
                             // buttonMessage="Add Vehicle"
                             emptyMessage={"You have not had any trips yet"}
-                            onClickButton={() => {}}
-                            
+                            onClickButton={() => {push(MY_FLEET)}}
+                            buttonMessage="Select a car to book a trip"
                           />
                         </Fragment>
                       ) : (
