@@ -34,7 +34,7 @@ const MainComponent = () => {
   }, []);
 
   const [, registrationState] = useRegistrationProvider();
-  console.log(registrationState)
+  console.log(registrationState);
   // toggle tab
   const [tab, setTab] = useState<string>("personal");
 
@@ -42,7 +42,7 @@ const MainComponent = () => {
   const [username, setUsername] = useState<string>("");
   const [nationality, setNationality] = useState<string>("");
   const [placeOfResdience, setPlaceOfResidence] = useState<string>("");
-  console.log(placeOfResdience)
+  console.log(placeOfResdience);
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
@@ -91,10 +91,22 @@ const MainComponent = () => {
       return toast.error("Please add at least one emergency contact");
     }
 
+    //check if any emergency contact has null values
+    const checkEmergencyContact = emergencyContact.filter(
+      (contact) =>
+        contact.name === "" ||
+        contact.phone === "" ||
+        contact.relationship === ""
+    );
+
+    if (checkEmergencyContact.length > 0) {
+      return toast.error("Please fill all emergency contact fields");
+    }
+
     if (clientFile) {
       setUploadingToFirebase(true);
       let fileName = `${v4()}.${clientFile.type.split("/")[1]}`;
-      const storeRef = ref(storage,`/clients/${fileName}`);
+      const storeRef = ref(storage, `/clients/${fileName}`);
       const uploadTask = uploadBytesResumable(storeRef, clientFile);
       uploadTask.on(
         "state_changed",
@@ -104,8 +116,8 @@ const MainComponent = () => {
           return toast.error(err?.message);
         },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref)
-            .then((fireBaseUrl: string) => {
+          getDownloadURL(uploadTask.snapshot.ref).then(
+            (fireBaseUrl: string) => {
               invokeCreateClient({
                 variables: {
                   title: registrationState?.status?.title,
@@ -149,7 +161,8 @@ const MainComponent = () => {
                   });
                   // return toast.error(e.graphQLErrors[0].message);
                 });
-            });
+            }
+          );
         }
       );
     } else {

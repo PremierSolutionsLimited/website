@@ -17,6 +17,9 @@ import {
 import { TRIP_REQUESTS } from "../../../../services/graphql/triprequests";
 import { useCurrentClient } from "../../../../services/context/currentClient";
 import DataView from "../data-view";
+import { useHistory } from "react-router-dom";
+import { MY_FLEET } from "../../../../shared/layout/client-layout/navigation/constants";
+
 
 const ViewTripComponent = lazy(() => import("../view"));
 const UpdateChecklistComponent = lazy(() => import("../update-checklist"));
@@ -28,6 +31,8 @@ const MainComponent = () => {
   const [updateChecklist, setUpdateChecklist] = useState<boolean>(false);
   const [selectedTrip, setSelectedTrip] = useState<TripHistory>();
   const { end, setEnd, limit, setLimit, skip, setSkip } = usePagination(5);
+
+  const { push } = useHistory();
 
   const { currentUser } = useCurrentClient();
   const { data, loading, refetch } = useQuery<
@@ -76,8 +81,8 @@ const MainComponent = () => {
                         page="trip requests"
                         // buttonMessage="Add Vehicle"
                         emptyMessage={"You have not requested for trips yet"}
-                        onClickButton={() => {}}
-                        hideButton
+                        onClickButton={() => {push(MY_FLEET)}}
+                        buttonMessage="Select a car to book a trip"
                       />
                     </Fragment>
                   ) : (

@@ -20,10 +20,10 @@ const App = () => {
             zIndex: 1,
             // width: "28vh",
           },
-          duration: 5000,
+          duration: 4000,
           // Default options for specific types
           success: {
-            duration: 8000,
+            duration: 4000,
             style: {
               textAlign: "center",
             },
@@ -37,8 +37,9 @@ const App = () => {
               textAlign: "center",
               background: "#f44336",
             },
-            duration: 8000,
+            duration: 4000,
           },
+          
         }}
       />
       <AppNavigator />

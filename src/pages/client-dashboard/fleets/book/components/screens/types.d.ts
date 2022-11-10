@@ -96,11 +96,20 @@ export interface ChecklistComponentProp {
   setClientComments: React.Dispatch<React.SetStateAction<string>>;
 }
 
+export type TTripCostItems = {
+  cost: string,
+  quantity: number,
+  rate: string,
+  title: string
+  unit: string
+}
+
 export interface PreviewComponentProp {
   setTab: React.Dispatch<React.SetStateAction<string>>;
   loading: boolean;
   handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
   totalTripCost: string;
+  tripCostItems: TTripCostItems[]
   selectedAgeGroup: IGroupType[];
   selectedDuration: IDurationType | undefined;
   durationTypeSelected: string;

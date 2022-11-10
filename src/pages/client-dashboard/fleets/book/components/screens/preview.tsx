@@ -31,17 +31,51 @@ const PreviewComponent = ({
   valuableItems,
   clientComments,
   totalTripCost,
+  tripCostItems,
   registeredVehicle,
 }: PreviewComponentProp) => {
   return (
     <Fragment>
       <dl className="pb-5 grid grid-cols-12 h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto gap-x-8 gap-y-8">
-        <div className="sm:col-span-12">
+        <div className="sm:col-span-6">
           <dt className="text-sm font-light text-gray-700">
-            Trip Cost Estimate
+            Total Trip Cost Estimate
           </dt>
           <dd className="mt-1 text-sm text-gray-900">
             GH₵ {getMoney(totalTripCost)}
+          </dd>
+        </div>
+        <div className="sm:col-span-8">
+          <dt className="text-sm font-light text-gray-700">
+            Breakdown of Trip Cost Estimate
+          </dt>
+          <dd className="mt-1 flex flex-col space-y-1 text-sm text-gray-900">
+            {tripCostItems.map((item, index) => {
+              return (
+                <div className="flex flex-col p-2 mr-2 border border-gray-600 rounded-md">
+                  <div className="inline-flex justify-start space-x-1 items-center">
+                    <div className="font-light text-gold-2">Unit</div>
+                    {" : "}
+                    <div className="">{item?.unit}</div>
+                  </div>
+                  <div className="inline-flex justify-start space-x-1 items-center">
+                    <div className="font-light text-gold-2">Title</div>
+                    {" : "}
+                    <div className="">{item?.title}</div>
+                  </div>
+                  <div className="inline-flex justify-start space-x-1 items-center">
+                    <div className="font-light text-gold-2">Rate</div>
+                    {" : "}
+                    <div className="">{item?.rate}</div>
+                  </div>
+                  <div className="inline-flex justify-start space-x-1 items-center">
+                    <div className="font-light text-gold-2">Cost</div>
+                    {" : "}
+                    <div className="">{item?.cost}</div>
+                  </div>
+                </div>
+              );
+            })}
           </dd>
         </div>
         {/* <div className="sm:col-span-1">
