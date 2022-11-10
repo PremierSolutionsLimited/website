@@ -103,6 +103,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
   const [clientComments, setClientComments] = useState<string>("");
 
   const [totalTripCost, setTotalTripCost] = useState<string>("");
+  const [tripCostItems, setTripCostItems] = useState<any>([])
 
   //set timelogs from startTimes and endTimes
   useEffect(() => {
@@ -192,6 +193,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
       .then(({ data }) => {
         if (data) {
           setTotalTripCost(data?.getTripQuote?.totalCost);
+          setTripCostItems(data?.getTripQuote?.items)
           return setTab("preview");
         }
       })
@@ -415,6 +417,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
                   <PreviewComponent
                     handleSubmit={handleSubmit}
                     totalTripCost={totalTripCost}
+                    tripCostItems={tripCostItems}
                     loading={loading}
                     setTab={setTab}
                     timeLogs={timeLogs}
