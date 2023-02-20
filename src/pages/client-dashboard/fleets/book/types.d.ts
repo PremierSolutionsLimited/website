@@ -82,6 +82,7 @@ interface Checklist {
   spareTyre: boolean;
   clientComments: string;
   damagesOnVehicle: DamagesInput[];
+  valuablesInVehicle: ValuablesInput[];
 }
 export interface DamagesInput {
   description?: string;
