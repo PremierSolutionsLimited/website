@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Toaster } from "react-hot-toast";
 import AppNavigator from "./services/context";
 
+console.log("Application Loaded")
 const App = () => {
   return (
     <Fragment>
