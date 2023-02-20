@@ -242,6 +242,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
             spareTyre: spareTyre,
             clientComments: clientComments,
             damagesOnVehicle: damageOnVehicle,
+            valuablesInVehicle: valuableItems
           },
           //dropOffLocationName: dropOffAddress,
           passengerAges: passengerAges,
