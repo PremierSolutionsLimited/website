@@ -5,6 +5,7 @@ import React, {
   Suspense,
   lazy,
   useCallback,
+  useRef
 } from "react";
 import { CreateClientInputProp, CreateClientOutputProp } from "./types";
 import { EmergencyInputProp, IGenderPreference } from "../bones/types";
@@ -22,6 +23,15 @@ import StepComponent from "../../../shared/client-steps";
 import getCroppedImg from "../../driver-registration/components/utils/getCroppedImage";
 import Cropper from "react-easy-crop";
 import { duplicateCheck } from "../../../components/utils/duplicateCheck";
+
+import ReactCrop, {
+  centerCrop,
+  makeAspectCrop,
+  Crop,
+  PixelCrop,
+} from 'react-image-crop'
+
+import 'react-image-crop/dist/ReactCrop.css'
 
 const PersonalComponent = lazy(() => import("../components/personal"));
 const OtherInformationComponent = lazy(() => import("../components/otherInfo"));
@@ -223,6 +233,33 @@ const MainComponent = () => {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
   const [croppedImage, setCroppedImage] = useState<any>(null);
 
+  //using react-image-crop
+  const [imgSrc, setImgSrc] = useState('')
+  const imgRef = useRef<HTMLImageElement>(null)
+  const [crop1, setCrop1] = useState<Crop>()
+  const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
+  const [scale, setScale] = useState(1)
+  const [rotate, setRotate] = useState(0)
+  const [aspect, setAspect] = useState<number | undefined>(16 / 9)
+
+  function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.files && e.target.files.length > 0) {
+      setCrop1(undefined) // Makes crop preview update between images.
+      const reader = new FileReader()
+      reader.addEventListener('load', () =>
+        setImgSrc(reader.result?.toString() || ''),
+      )
+      reader.readAsDataURL(e.target.files[0])
+    }
+  }
+
+  function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
+    if (aspect) {
+      const { width, height } = e.currentTarget
+      setCrop(centerAspectCrop(width, height, aspect))
+    }
+  }
+
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
@@ -258,12 +295,32 @@ const MainComponent = () => {
     return setShowCropper(true);
   };
 
+  function centerAspectCrop(
+    mediaWidth: number,
+    mediaHeight: number,
+    aspect: number,
+  ) {
+    return centerCrop(
+      makeAspectCrop(
+        {
+          unit: '%',
+          width: 90,
+        },
+        aspect,
+        mediaWidth,
+        mediaHeight,
+      ),
+      mediaWidth,
+      mediaHeight,
+    )
+  }
+
   return (
     <Fragment>
       <Header />
       <div className=" bg-white ">
-        <div className="max-w-7xl mx-auto pt-12 pb-0 px-4 sm:px-6 lg:px-8">
-          <div className={``}>
+        <div className="max-w-7xl mx-auto pt-12 pb-0 mb-20 px-4 sm:px-6 lg:px-8">
+          <div>
             {showCropper && (
               <Fragment>
                 <div>
@@ -277,18 +334,33 @@ const MainComponent = () => {
                     onRotationChange={setRotation}
                     onCropComplete={onCropComplete}
                     onZoomChange={setZoom}
+                    
                   />
                   <span className="flex absolute bottom-0 right-0 mb-4 rounded-none shadow-sm mr-2 ">
                     <button
                       type="button"
                       onClick={showCroppedImage}
-                      className="inline-flex rounded-none items-center w-20 flex justify-center px-13 py-3 border border-gold-1 text-sm leading-5 font-light text-white hover:text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
+                      className="rounded-none items-center w-20 flex justify-center px-13 py-3 border border-gold-1 text-sm leading-5 font-light text-white hover:text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-blue focus:border-purple-700 active:bg-purple-700 transition duration-150 ease-in-out"
                     >
                       {imageCropLoad ? "One sec..." : "Done"}
                     </button>
                   </span>
                 </div>
               </Fragment>
+              // <ReactCrop
+              //   crop={crop1}
+              //   onChange={(_, percentCrop) => setCrop(percentCrop)}
+              //   onComplete={(c) => setCompletedCrop(c)}
+              //   aspect={aspect}
+              // >
+              //   <img
+              //     ref={imgRef}
+              //     alt="Crop me"
+              //     src={imgSrc}
+              //     style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
+              //     onLoad={onImageLoad}
+              //   />
+              // </ReactCrop>
             )}
           </div>
           <div className=" grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-5">

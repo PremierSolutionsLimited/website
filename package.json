@@ -34,6 +34,7 @@
     "react-easy-crop": "^3.5.3",
     "react-hot-toast": "^2.0.0",
     "react-icons": "^4.3.1",
+    "react-image-crop": "^10.0.9",
     "react-intersection-observer": "^8.32.1",
     "react-multi-date-picker": "^3.3.0",
     "react-rating-stars-component": "^2.2.0",
