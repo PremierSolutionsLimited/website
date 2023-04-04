@@ -22,7 +22,7 @@ const actions = [
     icon: CalendarIcon,
     description:
       "Do you need to make a long-distance trip but too tired to drive?",
-    price: "@ GHS 235",
+    price: "@ GHS 245",
     iconForeground: "text-purple-700",
     iconBackground: "bg-purple-50",
   },
@@ -32,14 +32,14 @@ const actions = [
     icon: GlobeIcon,
     description:
       "Plan your vacations with our trusted Chauffeurs in the comfort of your vehicle",
-    price: "@ GHS 795",
+    price: "@ GHS 895",
     iconForeground: "text-sky-700",
     iconBackground: "bg-sky-50",
   },
   {
     title: "Monthly (4 weeks)",
     href: "#",
-    price: "@ GHS1,195",
+    price: "@ GHS1,595",
     description:
       "You relax and get to enjoy the comfort of your vehicle whilst a professionally trained chauffeur drives you. You can be productive whilst in traffic sitting in the comfort of your vehicle. And many more ... ",
     icon: UserGroupIcon,
