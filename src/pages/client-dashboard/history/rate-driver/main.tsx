@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, Fragment, useEffect, useState } from "react";
 import {
   RateDriverComponentProp,
   RateDriverInputProp,
@@ -8,10 +8,14 @@ import { BasicModal } from "../../../../components/modal";
 import { CircleSpinner } from "react-spinners-kit";
 import { useMediaQuery } from "react-responsive";
 import { ApolloError, useMutation } from "@apollo/client";
-import { RATE_DRIVER } from "../../../../services/graphql/history";
+import {
+  RATE_DRIVER,
+  REPORT_INCIDENT,
+} from "../../../../services/graphql/history";
 import ReactStars from "react-rating-stars-component";
 import toast from "react-hot-toast";
 import _ from "lodash";
+import { ChevronDownIcon } from "@heroicons/react/outline";
 
 const MainComponent: FC<RateDriverComponentProp> = ({
   show,
@@ -21,14 +25,28 @@ const MainComponent: FC<RateDriverComponentProp> = ({
 }) => {
   const [tripRating, setTripRating] = useState<string>("");
   const [review, setReview] = useState<string>("");
+  const [incidentTitle, setIncidentTitle] = useState<string>("");
+  const [incidentDescription, setIncidentDescription] = useState<string>("");
+  const [showIncidentReporting, setShowIncidentReporting] =
+    useState<boolean>(false);
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
+
+  useEffect(() => {
+    if (trip?.clientRated) {
+      setTripRating(trip?.clientRating?.toString() as string);
+      setReview(trip?.clientReview as string);
+    }
+  }, [trip]);
 
   const [invokeRateDriver, { loading }] = useMutation<
     RateDriverOutputProp,
     RateDriverInputProp
   >(RATE_DRIVER);
+
+  const [invokeReportIncident, { loading: loadingReporting }] =
+    useMutation(REPORT_INCIDENT);
 
   const ratingChanged = (newRating: any) => {
     setTripRating(newRating);
@@ -39,29 +57,70 @@ const MainComponent: FC<RateDriverComponentProp> = ({
     setReview("");
   };
 
+  const resetIncident = () => {
+    setIncidentTitle("");
+    setIncidentDescription("");
+  };
+
+  //reset incident if new trip is selected
+  useEffect(() => {
+    resetIncident();
+  }, [trip]);
+
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!tripRating) {
       return toast.error("Please choose rating");
     }
-    invokeRateDriver({
-      variables: {
-        tripId: trip?._id as string,
-        rating: parseFloat(tripRating),
-        review: review,
-      },
-    })
-      .then(() => {
-        refetch();
-        setShow(false);
-        reset();
-        toast.success("Driver rated successfully");
+    if (!trip?.clientRated) {
+      invokeRateDriver({
+        variables: {
+          tripId: trip?._id as string,
+          rating: parseFloat(tripRating),
+          review: review,
+        },
       })
-      .catch((e: ApolloError) => {
-        return toast.error(
-          _.startCase(_.lowerCase(e.graphQLErrors[0]?.message))
-        );
-      });
+        .then(() => {
+          refetch();
+          setShow(false);
+          reset();
+          toast.success("Driver rated successfully");
+        })
+        .catch((e: ApolloError) => {
+          return toast.error(
+            _.startCase(_.lowerCase(e.graphQLErrors[0]?.message))
+          );
+        });
+    }
+    if (showIncidentReporting) {
+      if (!incidentTitle) {
+        return toast.error("Please enter incident title");
+      }
+      if (!incidentDescription) {
+        return toast.error("Please enter incident description");
+      }
+      invokeReportIncident({
+        variables: {
+          input: {
+            tripId: trip?._id as string,
+            title: incidentTitle,
+            content: incidentDescription,
+            type: "GENERAL"
+          },
+        },
+      })
+        .then(() => {
+          refetch();
+          setShow(false);
+          resetIncident();
+          toast.success("Incident reported successfully");
+        })
+        .catch((e: ApolloError) => {
+          return toast.error(
+            _.startCase(_.lowerCase(e.graphQLErrors[0]?.message))
+          );
+        });
+    }
   };
   return (
     <Fragment>
@@ -94,50 +153,107 @@ const MainComponent: FC<RateDriverComponentProp> = ({
             </button>
           </div>
           <div className="mt-0 grid grid-cols-1 overflow-y-scroll scrollContainer gap-y-4 gap-x-2 sm:grid-cols-6">
-            <div className="sm:col-span-2" />
-
-            <div className="sm:col-span-3">
-              {/* <label
-                htmlFor="first_name"
-                className="block text-sm pb-0 font-medium leading-5 text-gray-700"
-              >
-                Ratings
-              </label> */}
+            <div className="sm:col-span-6 flex flex-col justify-center items-center">
+              <div className="block text-sm pb-0 font-medium leading-5 text-gray-700">
+                Rate Driver
+              </div>
               <div className="mt-1 rounded-none shadow-none">
                 <ReactStars
                   size={30}
                   value={tripRating}
                   onChange={ratingChanged}
                   count={5}
+                  disabled={trip?.clientRated}
                 />
               </div>
             </div>
-            <div className="sm:col-span-1" />
-
             <div className="sm:col-span-6">
               <label
                 htmlFor="first_name"
-                className="block text-sm pb-1 font-medium leading-5 text-gray-700"
+                className="block text-sm pb-1 font-medium leading-5 text-gray-500"
               >
-                Review Driver
+                Review
               </label>
               <div className="mt-1 rounded-none shadow-none">
                 <textarea
                   name=""
                   id=""
                   rows={3}
-                  required
                   value={review}
+                  disabled={trip?.clientRated}
                   onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                     setReview(e.target.value)
                   }
-                  placeholder={"Review"}
+                  placeholder={"Your review of the driver..."}
                   className={
-                    "rounded-md focus:outline-none border border-gray-300 h-full font-light w-full p-3 bg-white focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
+                    "rounded-md focus:outline-none border border-gray-300 h-full font-light w-full p-3 bg-white focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-100"
                   }
                 ></textarea>
               </div>
             </div>
+            <div className="sm:col-span-6 text-center">
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() =>
+                    setShowIncidentReporting(!showIncidentReporting)
+                  }
+                  className="text-sm text-gold-2 underline flex items-center focus:outline-none"
+                >
+                  Click Here To Report an Incident
+                  <ChevronDownIcon className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+            {showIncidentReporting && (
+              <>
+                <div className="sm:col-span-6">
+                  <label
+                    htmlFor="first_name"
+                    className="block text-sm pb-1 font-medium leading-5 text-gray-500"
+                  >
+                    Title
+                  </label>
+                  <div className="mt-1 rounded-none shadow-none">
+                    <input
+                      type="text"
+                      required
+                      value={incidentTitle}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setIncidentTitle(e.target.value)
+                      }
+                      placeholder={"Title of incident"}
+                      className={
+                        "rounded-md focus:outline-none border border-gray-300 h-full font-light w-full p-3 bg-white focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
+                      }
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-6">
+                  <label
+                    htmlFor="first_name"
+                    className="block text-sm pb-1 font-medium leading-5 text-gray-500"
+                  >
+                    Details of incident
+                  </label>
+                  <div className="mt-1 rounded-none shadow-none">
+                    <textarea
+                      name=""
+                      id=""
+                      rows={3}
+                      required
+                      value={incidentDescription}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                        setIncidentDescription(e.target.value)
+                      }
+                      placeholder={"Enter details here..."}
+                      className={
+                        "rounded-md focus:outline-none border border-gray-300 h-full font-light w-full p-3 bg-white focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
+                      }
+                    ></textarea>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">
@@ -163,7 +279,7 @@ const MainComponent: FC<RateDriverComponentProp> = ({
                   </Fragment>
                 ) : (
                   <Fragment>
-                    <span className="mx-1">Rate Driver</span>
+                    <span className="mx-1">Submit</span>
                   </Fragment>
                 )}
               </button>

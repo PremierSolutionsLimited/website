@@ -9,3 +9,14 @@ export const rateDriver = gql`
     }
   }
 `;
+
+
+export const reportIncident = gql`
+  mutation CreateIncident($input: CreateIncidentInput!) {
+    createIncident(input: $input) {
+      _id
+      code
+      createdAt
+    }
+  }
+`;

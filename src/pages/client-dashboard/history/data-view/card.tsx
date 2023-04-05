@@ -7,7 +7,7 @@ const CardComponent = ({
   history,
   onView,
   onRateDriver,
-  onUpdateChecklist
+  onUpdateChecklist,
 }: HistoryCardComponentProp) => {
   return (
     <tr>
@@ -96,7 +96,9 @@ const CardComponent = ({
         <Fragment>
           <td className="px-6 py-4 whitespace-nowrap">
             <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-              {history?.checklistMismatch === true? "Checklist Mismatch" : "Prepared" }
+              {history?.checklistMismatch === true
+                ? "Checklist Mismatch"
+                : "Prepared"}
             </span>
           </td>
         </Fragment>
@@ -149,17 +151,13 @@ const CardComponent = ({
         </button>
         {history?.status === "COMPLETED" && (
           <Fragment>
-            {!history?.clientRated && (
-              <Fragment>
-                <button
-                  onClick={onRateDriver}
-                  type="button"
-                  className="text-gold-1 ml-3 hover:text-gold-2 hover:underline cursor-pointer focus:outline-none "
-                >
-                  Rate Driver
-                </button>
-              </Fragment>
-            )}
+            <button
+              onClick={onRateDriver}
+              type="button"
+              className="text-gold-1 ml-3 hover:text-gold-2 hover:underline cursor-pointer focus:outline-none "
+            >
+              Review Trip
+            </button>
           </Fragment>
         )}
         {history?.status === "PREPARED" && (
