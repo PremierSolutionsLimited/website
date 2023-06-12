@@ -18,10 +18,10 @@ const MainComponent: React.FC<ViewFleetComponentProp> = ({
       <BasicModal
         show={show}
         setShow={setShow}
-        size={isTabletOrMobile ? 100 : 55}
+        size={isTabletOrMobile ? 92 : 55}
       >
         <div className="p-0  ">
-          <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
+          <div className="sm:block absolute top-0 right-0 pt-4 pr-4">
             <button
               onClick={() => setShow(false)}
               type="button"
@@ -44,8 +44,8 @@ const MainComponent: React.FC<ViewFleetComponentProp> = ({
             </button>
           </div>
           <div
-            style={{ maxHeight: "90vh" }}
-            className="bg-white shadow overflow-scroll scrollContainer sm:rounded-lg"
+            //style={{ maxHeight: "90vh" }}
+            className="h-book-trip-height overflow-y-auto scrollContainer sm:rounded-lg"
           >
             <div className="px-4 py-5 sm:px-6">
               <h3 className="text-lg leading-6 font-medium text-gray-900">
