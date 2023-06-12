@@ -58,7 +58,7 @@ const Basic: FC<BasicModalComponentProp> = ({
                 <div
                   ref={ref}
                   style={{ width: `${size}vw`, height: `${height}vh` }}
-                  className="inline-block align-bottom bg-white rounded-lg  text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle"
+                  className="inline-block align-bottom bg-white rounded-lg overflow-y-scroll text-left shadow-xl transform transition-all sm:my-8 sm:align-middle"
                   role="dialog"
                   aria-modal="true"
                   aria-labelledby="modal-headline"

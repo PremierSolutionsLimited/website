@@ -133,7 +133,7 @@ export default function Trip({
         </div>
         <div className="col-span-12 mt-3">
           <div className="flex flex-col">
-            <div className="grid grid-cols-12 gap-4 ml-2 divide-x">
+            <div className="grid grid-cols-12 gap-4 ml-2 sm:divide-x">
               <div className="col-span-12 md:col-span-6 inline-flex items-center justify-start">
                 <Switch.Group as="div" className="flex items-center">
                   <Switch
@@ -162,7 +162,7 @@ export default function Trip({
                   </Switch.Label>
                 </Switch.Group>
               </div>
-              <div className="pl-4 col-span-12 md:col-span-6 inline-flex items-center justify-start">
+              <div className="sm:pl-4 col-span-12 md:col-span-6 inline-flex items-center justify-start">
                 <Switch.Group as="div" className="flex items-center">
                   <Switch
                     checked={enabledDuration}

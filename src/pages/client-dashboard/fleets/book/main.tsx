@@ -267,9 +267,8 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
         show={show}
         setShow={setShow}
         size={isTabletOrMobile ? 100 : 70}
-        canClose={false}
       >
-        <div className="p-2 ">
+        <div className="p-4 sm:p-8">
           <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
             <button
               onClick={() => setShow(false)}

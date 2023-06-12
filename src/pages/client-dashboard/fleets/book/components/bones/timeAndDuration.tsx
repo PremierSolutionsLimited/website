@@ -4,7 +4,7 @@ import type { Moment } from "moment";
 import moment from "moment";
 import {
   getFinalTimeFromStartTimeAndDuration,
-  getDurationFromStartTimeAndEndTime
+  getDurationFromStartTimeAndEndTime,
 } from "../utils/switch";
 
 interface IProps {
@@ -40,8 +40,7 @@ const TimeAndDuration = ({
   durations,
   setDurations,
 }: IProps) => {
-
-  console.log("DURATIONS: ", durations)
+  console.log("DURATIONS: ", durations);
 
   const onChangeStartTime = (
     time: Moment | null,
@@ -80,10 +79,10 @@ const TimeAndDuration = ({
       return newEndTimes;
     });
     setDurations((prev) => {
-      const newDurations:any = [...prev];
+      const newDurations: any = [...prev];
       if (time && startTimes[index]) {
-        console.info(time)
-        console.info(typeof(time.format("HH:mm")))
+        console.info(time);
+        console.info(typeof time.format("HH:mm"));
         const duration = getDurationFromStartTimeAndEndTime(
           startTimes[index],
           new Date(time.toDate())
@@ -100,7 +99,7 @@ const TimeAndDuration = ({
   const setFixedStartTime = (time: Moment | null, _timeString: string) => {
     //set the same time for all the start times
     console.log("Before: ", startTimes);
-    setStartTime(time)
+    setStartTime(time);
     setStartTimes((prev) => {
       const newStartTimes: any = [...prev];
       if (time) {
@@ -112,8 +111,7 @@ const TimeAndDuration = ({
               new Date(dates[index]).setHours(hours, minutes)
             );
           });
-        }
-        else {
+        } else {
           for (let i = 0; i < dates?.length; i++) {
             newStartTimes[i] = new Date(dates[i]).setHours(hours, minutes);
           }
@@ -131,23 +129,22 @@ const TimeAndDuration = ({
         newDurations[index] = value.toString();
         setEndTimes((prev) => {
           const newEndTimes = [...prev];
-          console.log("working")
+          console.log("working");
           newEndTimes[index] = getFinalTimeFromStartTimeAndDuration(
             startTimes[index],
             value
           );
-          console.log(newEndTimes)
+          console.log(newEndTimes);
           return newEndTimes;
-        }
-        );
+        });
       }
       return newDurations;
     });
   };
 
   const setFixedDuration = (value: number) => {
-    //set the same duration for all the 
-    setDuration(value)
+    //set the same duration for all the
+    setDuration(value);
     setDurations((prev) => {
       const newDurations: any = [...prev];
       if (value) {
@@ -155,8 +152,7 @@ const TimeAndDuration = ({
           newDurations.forEach((_startTime: any, index: number) => {
             newDurations[index] = value.toString();
           });
-        }
-        else {
+        } else {
           for (let i = 0; i < dates?.length; i++) {
             newDurations[i] = value.toString();
           }
@@ -174,8 +170,7 @@ const TimeAndDuration = ({
               value
             );
           });
-        }
-        else {
+        } else {
           for (let i = 0; i < dates?.length; i++) {
             newEndTimes[i] = getFinalTimeFromStartTimeAndDuration(
               startTimes[i],
@@ -191,128 +186,128 @@ const TimeAndDuration = ({
   return (
     <Fragment>
       {(fixedStart || fixedDuration) && (
-        <div className="flex justify-center">
-          <div className="grid grid-cols-12 gap-4">
-            {fixedStart && (
-              <div className="col-span-6">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <span className="mr-2 text-sm font-medium leading-5 text-gray-900">
-                      Start Time
-                    </span>
-                  </div>
-                  <div className="flex-grow">
-                    <TimePicker
-                      use12Hours
-                      format="h:mm A"
-                      placeholder="Select Time"
-                      onChange={setFixedStartTime}
-                      defaultOpenValue={moment("00:00", "h:mm")}
-                      value={startTime}
-                    />
-                  </div>
-                </div>
+        <div className="flex-col space-y-2 sm:flex sm:flex-row sm:justify-center sm:space-x-4">
+          {fixedStart && (
+            <div className="sm:flex sm:items-center grid grid-cols-12">
+              <div className="col-span-4 sm:flex-shrink-0">
+                <span className="mr-2 text-sm font-medium leading-5 text-gray-900">
+                  Start Time
+                </span>
               </div>
-            )}
-            {fixedDuration && (
-              <div className="col-span-6">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <span className="mr-2 text-sm font-medium leading-5 text-gray-900">
-                      Duration
-                    </span>
-                  </div>
-                  <div className="flex-grow">
-                    <InputNumber
-                      min={1}
-                      max={24}
-                      defaultValue={1}
-                      formatter={(value) => `${value} hour(s)`}
-                      parser={(value: any) => value!.replace("hour(s)", "")}
-                      onChange={setFixedDuration}
-                      value={duration}
-                      placeholder="Select Duration"
-                    />
-                  </div>
-                </div>
+              <div className="col-span-8 sm:flex-grow">
+                <TimePicker
+                  use12Hours
+                  format="h:mm A"
+                  placeholder="Select Time"
+                  onChange={setFixedStartTime}
+                  defaultOpenValue={moment("00:00", "h:mm")}
+                  value={startTime}
+                />
               </div>
-            )}
-          </div>
+            </div>
+          )}
+          {fixedDuration && (
+            <div className="sm:flex sm:items-center grid grid-cols-12">
+              <div className="col-span-4 sm:flex-shrink-0">
+                <span className="text-sm font-medium leading-5 text-gray-900">
+                  Duration
+                </span>
+              </div>
+              <div className="col-span-8 sm:flex-grow">
+                <InputNumber
+                  min={1}
+                  max={24}
+                  defaultValue={1}
+                  formatter={(value) => `${value} hour(s)`}
+                  parser={(value: any) => value!.replace("hour(s)", "")}
+                  onChange={setFixedDuration}
+                  value={duration}
+                  placeholder="Select Duration"
+                />
+              </div>
+            </div>
+          )}
         </div>
       )}
-      <div className="p-3">
+      <div className="pt-3 -ml-4 sm:mx-0 sm:p-3">
         {dates?.map((date, index) => {
           return (
             <Fragment key={index}>
-              <div className="flex flex-col mb-4 border rounded-md p-4">
+              <div className="flex flex-col mb-4 border rounded-md p-4 overflow-x-scroll">
                 <div className="flex-grow text-gold-2">
                   {new Date(date).toDateString()}
                 </div>
                 <div className="grid grid-cols-12 gap-2">
                   <div className="col-span-4">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0">
-                        <span className="text-sm font-medium leading-5 text-gray-900">
-                          Start Time
-                        </span>
-                        <div className="flex-grow">
-                          <TimePicker
-                            use12Hours
-                            format="h:mm A"
-                            placeholder="Select Time"
-                            onChange={(value, dateString) =>
-                              onChangeStartTime(value, dateString, index)
-                            }
-                            defaultOpenValue={moment("00:00", "h:mm A")}
-                            value={(fixedStart && startTime)? startTime : startTimes[index]? moment(startTimes[index]) : null}
-                            disabled={fixedStart}
-                          />
-                        </div>
+                    <div className="flex-shrink-0">
+                      <span className="text-sm font-medium leading-5 text-gray-900">
+                        Start Time
+                      </span>
+                      <div className="flex-grow">
+                        <TimePicker
+                          use12Hours
+                          format="h:mm A"
+                          placeholder="Select Time"
+                          onChange={(value, dateString) =>
+                            onChangeStartTime(value, dateString, index)
+                          }
+                          defaultOpenValue={moment("00:00", "h:mm A")}
+                          value={
+                            fixedStart && startTime
+                              ? startTime
+                              : startTimes[index]
+                              ? moment(startTimes[index])
+                              : null
+                          }
+                          disabled={fixedStart}
+                          className="flex-grow w-full"
+                        />
                       </div>
                     </div>
                   </div>
                   <div className="col-span-4">
-                    <div className="flex items-center">
-                      <div className="">
-                        <span className="text-sm font-medium leading-5 text-gray-900">
-                          Duration
-                        </span>
-                        <div className="flex-grow">
-                          <InputNumber
-                            min={1}
-                            max={24}
-                            defaultValue={1}
-                            formatter={(value) => `${value} hour(s)`}
-                            parser={(value: any) =>
-                              value!.replace("hour(s)", "")
-                            }
-                            onChange={(value) => onChangeDuration(value, index)}
-                            value={(fixedDuration && duration)? duration : durations[index]}
-                            disabled={fixedDuration}
-                          />
-                        </div>
+                    <div className="flex-shrink-1">
+                      <span className="text-sm font-medium leading-5 text-gray-900">
+                        Duration
+                      </span>
+                      <div className="flex-grow">
+                        <InputNumber
+                          min={1}
+                          max={24}
+                          defaultValue={1}
+                          formatter={(value) => `${value} hour(s)`}
+                          parser={(value: any) => value!.replace("hour(s)", "")}
+                          onChange={(value) => onChangeDuration(value, index)}
+                          value={
+                            fixedDuration && duration
+                              ? duration
+                              : durations[index]
+                          }
+                          disabled={fixedDuration}
+                          className="w-full"
+                        />
                       </div>
                     </div>
                   </div>
                   <div className="col-span-4">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0">
-                        <span className="text-sm font-medium leading-5 text-gray-900">
-                          End Time
-                        </span>
-                        <div className="flex-grow">
-                          <TimePicker
-                            //use12Hours
-                            format="h:mm A"
-                            placeholder="Select Time"
-                            onChange={(value, dateString) =>
-                              onChangeEndTime(value, dateString, index)
-                            }
-                            defaultOpenValue={moment("00:00", "h:mm A")}
-                            disabled={!startTimes[index] || fixedDuration}
-                            value={endTimes[index]? moment(endTimes[index]) : null}
-                          />
-                        </div>
+                    <div className="flex-shrink-0">
+                      <span className="text-sm font-medium leading-5 text-gray-900">
+                        End Time
+                      </span>
+                      <div className="flex-grow">
+                        <TimePicker
+                          //use12Hours
+                          format="h:mm A"
+                          placeholder="Select Time"
+                          onChange={(value, dateString) =>
+                            onChangeEndTime(value, dateString, index)
+                          }
+                          defaultOpenValue={moment("00:00", "h:mm A")}
+                          disabled={!startTimes[index] || fixedDuration}
+                          value={
+                            endTimes[index] ? moment(endTimes[index]) : null
+                          }
+                        />
                       </div>
                     </div>
                   </div>
