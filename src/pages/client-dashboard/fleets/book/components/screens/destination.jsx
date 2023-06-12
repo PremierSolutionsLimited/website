@@ -282,7 +282,7 @@ const PlacesAutomcomplete = ({ location, setLocation, handleCreateLocation, load
     <Fragment>
       <div className="mt-5">
         <Combobox onChange={(item) => handleSelect(item)} value={value}>
-          <div className="flex flex-row justify-between items-center">
+          <div className="flex sm:flex-row sm:justify-between sm:items-center flex-col space-y-2">
             <div className="relative flex-grow">
               <SearchIcon
                 className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400"
