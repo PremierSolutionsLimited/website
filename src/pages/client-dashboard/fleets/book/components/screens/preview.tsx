@@ -36,157 +36,138 @@ const PreviewComponent = ({
 }: PreviewComponentProp) => {
   return (
     <Fragment>
-      <dl className="pb-5 grid grid-cols-12 h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto gap-x-8 gap-y-8">
-        <div className="sm:col-span-6">
-          <dt className="text-sm font-light text-gray-700">
-            Total Trip Cost Estimate
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            GH₵ {getMoney(totalTripCost)}
-          </dd>
-        </div>
-        <div className="sm:col-span-8">
-          <dt className="text-sm font-light text-gray-700">
-            Breakdown of Trip Cost Estimate
-          </dt>
-          <dd className="mt-1 flex flex-col space-y-1 text-sm text-gray-900">
-            {tripCostItems.map((item, index) => {
-              return (
-                <div className="flex flex-col p-2 mr-2 border border-gray-600 rounded-md">
-                  <div className="inline-flex justify-start space-x-1 items-center">
-                    <div className="font-light text-gold-2">Unit</div>
-                    {" : "}
-                    <div className="">{item?.unit}</div>
-                  </div>
-                  <div className="inline-flex justify-start space-x-1 items-center">
-                    <div className="font-light text-gold-2">Title</div>
-                    {" : "}
-                    <div className="">{item?.title}</div>
-                  </div>
-                  <div className="inline-flex justify-start space-x-1 items-center">
-                    <div className="font-light text-gold-2">Rate</div>
-                    {" : "}
-                    <div className="">{item?.rate}</div>
-                  </div>
-                  <div className="inline-flex justify-start space-x-1 items-center">
-                    <div className="font-light text-gold-2">Cost</div>
-                    {" : "}
-                    <div className="">{item?.cost}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </dd>
-        </div>
-        {/* <div className="sm:col-span-1">
-          <dt className="text-sm font-light text-gray-700">Duration Type</dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {selectedDuration?.name}
-          </dd>
-        </div> */}
-        <div className="sm:col-span-8">
-          <div className="text-sm font-light text-gray-700">Trip Time Logs</div>
-          <div className="flex flex-col space-y-1">
-            {timeLogs?.map((timeLog, index) => {
-              return (
+      <div className="h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">
+              Total Trip Cost Estimate
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900">
+              GH₵ {getMoney(totalTripCost)}
+            </dd>
+          </div>
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">
+              Breakdown of Trip Cost Estimate
+            </dt>
+            <dd className="mt-1 space-y-1 text-sm text-gray-900">
+              {tripCostItems.map((item, index) => (
                 <div
                   key={index}
-                  className="inline-flex justify-start space-x-2 items-center"
+                  className="border border-gray-600 rounded-md p-2"
                 >
-                  <div className="text-sm font-light text-gold-2">
-                    {moment(timeLog.startTime).format("MMMM Do YYYY")}
+                  <div className="flex justify-start space-x-1 items-center">
+                    <div className="font-light text-gold-2">
+                      Unit: {item?.unit}
+                    </div>
                   </div>
-                  {" : "}
-                  <div className="mt-1 text-sm text-gray-900">
-                    {`${moment(timeLog.startTime).format("h:mm a")} - ${moment(
-                      timeLog.endTime
-                    ).format("h:mm a")}`}
+                  <div className="flex justify-start space-x-1 items-center">
+                    <div className="font-light text-gold-2">
+                      Title: {item?.title}
+                    </div>
+                  </div>
+                  <div className="flex justify-start space-x-1 items-center">
+                    <div className="font-light text-gold-2">
+                      Rate: {item?.rate}
+                    </div>
+                  </div>
+                  <div className="flex justify-start space-x-1 items-center">
+                    <div className="font-light text-gold-2">
+                      Cost: {item?.cost}
+                    </div>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </dd>
           </div>
-        </div>
-        <div className="sm:col-span-4">
-          <dt className="text-sm font-light text-gray-700"> Age Groups</dt>
-          <div className="flex flex-row flex-wrap items-center">
-            {selectedAgeGroup?.map((item: IGroupType, itemIdx: number) => (
-              <Fragment key={itemIdx}>
-                <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">Trip Time Logs</dt>
+            <div className="mt-1 space-y-1">
+              {timeLogs?.map((timeLog, index) => (
+                <div key={index} className="flex items-center">
+                  <div className="font-light text-gold-2">
+                    {moment(timeLog.startTime).format("MMMM Do YYYY")}
+                  </div>
+                  <div className="mx-1">:</div>
+                  <div>{`${moment(timeLog.startTime).format(
+                    "h:mm a"
+                  )} - ${moment(timeLog.endTime).format("h:mm a")}`}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">Age Groups</dt>
+            <div className="flex flex-wrap mt-1 space-x-2">
+              {selectedAgeGroup?.map((item: IGroupType, itemIdx: number) => (
+                <dd
+                  key={itemIdx}
+                  className="border rounded-md border-gray-200 p-2 text-sm text-gray-900"
+                >
                   {item?.name}
                 </dd>
-              </Fragment>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">Origin</dt>
+            <dd className="mt-1 text-sm text-gray-900">{originAddress}</dd>
+          </div>
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">Destinations</dt>
+            {destinationNames.map((item: string, itemIdx: number) => (
+              <dd key={itemIdx} className="mt-1 text-sm text-gray-900">
+                {item}
+              </dd>
             ))}
           </div>
-        </div>
-
-        {/* <div className="sm:col-span-1">
-          <dt className="text-sm font-light text-gray-700">Request Type</dt>
-          <dd className="mt-1 text-sm text-gray-900">{0}</dd>
-        </div> */}
-        <div className="sm:col-span-12">
-          <dt className="text-sm font-light text-gray-700">Origin</dt>
-          <dd className="mt-1 text-sm text-gray-900">{originAddress}</dd>
-        </div>
-        <div className="sm:col-span-12">
-          <dt className="text-sm font-light text-gray-700">Destinations</dt>
-          {destinationNames.map((item: string, itemIdx: number) => (
-            <Fragment key={itemIdx}>
-              <dd className="mt-1 text-sm text-gray-900">{item}</dd>
-            </Fragment>
-          ))}
-        </div>
-
-        <div className="col-span-6 md:col-span-4">
-          <dt className="text-sm font-light text-gray-700">
-            Registered Vehicle
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {registeredVehicle ? "Yes" : "No"}{" "}
-          </dd>
-        </div>
-        <div className="col-span-6 md:col-span-4">
-          <dt className="text-sm font-light text-gray-700">
-            Road Worthy Sticker
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {dvlaRoadWorthy ? "Yes" : "No"}{" "}
-          </dd>
-        </div>
-        <div className="col-span-6 md:col-span-4">
-          <dt className="text-sm font-light text-gray-700">Valid Insurance</dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {insurance ? "Yes" : "No"}
-          </dd>
-        </div>
-        <div className="col-span-6 md:col-span-4">
-          <dt className="text-sm font-light text-gray-700">
-            {" "}
-            Emergency Triangle
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {emergencyTriangle ? "Yes" : "No"}
-          </dd>
-        </div>
-        <div className="col-span-6 md:col-span-4">
-          <dt className="text-sm font-light text-gray-700">
-            {" "}
-            Fire Extinguisher
-          </dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {fireExtinguisher ? "Yes" : "No"}
-          </dd>
-        </div>
-
-        <div className="col-span-6 md:col-span-4">
-          <dt className="text-sm font-light text-gray-700">Spare Tyre</dt>
-          <dd className="mt-1 text-sm text-gray-900">
-            {spareTyre ? "Yes" : "No"}
-          </dd>
-        </div>
-        {/* <div className="sm:col-span-3" /> */}
-        <div className="col-span-12">
-          <div className="col-span-12 md:col-span-6">
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">
+              Registered Vehicle
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900">
+              {registeredVehicle ? "Yes" : "No"}
+            </dd>
+          </div>
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">
+              Road Worthy Sticker
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900">
+              {dvlaRoadWorthy ? "Yes" : "No"}
+            </dd>
+          </div>
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">
+              Valid Insurance
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900">
+              {insurance ? "Yes" : "No"}
+            </dd>
+          </div>
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">
+              Emergency Triangle
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900">
+              {emergencyTriangle ? "Yes" : "No"}
+            </dd>
+          </div>
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">
+              Fire Extinguisher
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900">
+              {fireExtinguisher ? "Yes" : "No"}
+            </dd>
+          </div>
+          <div className="col-span-1">
+            <dt className="text-sm font-light text-gray-700">Spare Tyre</dt>
+            <dd className="mt-1 text-sm text-gray-900">
+              {spareTyre ? "Yes" : "No"}
+            </dd>
+          </div>
+          <div className="col-span-1">
             <dt className="text-sm font-light text-gray-700">
               Damage on Vehicle?
             </dt>
@@ -195,25 +176,23 @@ const PreviewComponent = ({
             </dd>
           </div>
           {damageOnVehicle?.length > 0 && (
-            <div className="sm:col-span-6">
+            <div className="col-span-1">
               <dt className="text-sm font-light text-gray-700">
-                {" "}
                 Damage Description
               </dt>
-              <dd className="mt-1 text-sm text-gray-900">
+              <dd className="mt-1 space-y-2 text-sm text-gray-900">
                 {damageOnVehicle?.map((item: TDamageType, itemIdx: number) => (
-                  <Fragment key={itemIdx}>
-                    <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
-                      {item?.description}
-                    </dd>
-                  </Fragment>
+                  <div
+                    key={itemIdx}
+                    className="border rounded-md border-gray-200 p-2"
+                  >
+                    {item?.description}
+                  </div>
                 ))}
               </dd>
             </div>
           )}
-        </div>
-        <div className="col-span-12">
-          <div className="col-span-12 md:col-span-6">
+          <div className="col-span-1">
             <dt className="text-sm font-light text-gray-700">
               Valuables In Vehicle?
             </dt>
@@ -222,35 +201,33 @@ const PreviewComponent = ({
             </dd>
           </div>
           {valuableItems?.length > 0 && (
-            <div className="sm:col-span-6">
+            <div className="col-span-1">
               <dt className="text-sm font-light text-gray-700">
-                {" "}
                 Item Name/Description
               </dt>
-              <dd className="mt-1 text-sm text-gray-900">
+              <dd className="mt-1 space-y-2 text-sm text-gray-900">
                 {valuableItems?.map((item: TValuableType, itemIdx: number) => (
-                  <Fragment key={itemIdx}>
-                    <dd className="mt-2 mr-2 border rounded-md border-gray-200 p-2 text-sm text-gray-900">
-                      {item?.description}
-                    </dd>
-                  </Fragment>
+                  <div
+                    key={itemIdx}
+                    className="border rounded-md border-gray-200 p-2"
+                  >
+                    {item?.description}
+                  </div>
                 ))}
               </dd>
             </div>
           )}
-        </div>
-        {clientComments && (
-          <Fragment>
-            <div className="sm:col-span-6">
-              <dt className="text-sm font-light text-gray-700"> Comments</dt>
+          {clientComments && (
+            <div className="col-span-1">
+              <dt className="text-sm font-light text-gray-700">Comments</dt>
               <dd className="mt-1 text-sm text-gray-900">{clientComments}</dd>
             </div>
-          </Fragment>
-        )}
-      </dl>
+          )}
+        </div>
+      </div>
 
-      <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">
-        <span className="inline-flex rounded-none shadow-sm mr-2 ">
+      <div className="pt-2 border-t border-gray-200 mt-5 flex justify-end">
+        <span className="inline-flex rounded-none shadow-sm mr-2">
           <button
             type="button"
             onClick={() => setTab("damage")}
@@ -259,7 +236,7 @@ const PreviewComponent = ({
             <span className="mx-1">Back</span>
           </button>
         </span>
-        <span className="inline-flex rounded-none shadow-sm ">
+        <span className="inline-flex rounded-none shadow-sm">
           <button
             type="button"
             disabled={loading}

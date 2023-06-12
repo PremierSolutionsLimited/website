@@ -20,7 +20,7 @@ const Valuables: FC<IValuablesProps> = ({
     console.log(damage)
   return (
     <Fragment>
-      <div className="pt-0  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
+      <div className="pt-4 sm:pt-0  h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
         <DamageComponent
           damage={damage}
           setDamage={setDamage}
