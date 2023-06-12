@@ -40,7 +40,6 @@ const TimeAndDuration = ({
   durations,
   setDurations,
 }: IProps) => {
-  console.log("DURATIONS: ", durations);
 
   const onChangeStartTime = (
     time: Moment | null,
@@ -94,11 +93,8 @@ const TimeAndDuration = ({
     });
   };
 
-  console.log("Dates: ", dates);
-
   const setFixedStartTime = (time: Moment | null, _timeString: string) => {
     //set the same time for all the start times
-    console.log("Before: ", startTimes);
     setStartTime(time);
     setStartTimes((prev) => {
       const newStartTimes: any = [...prev];
@@ -119,7 +115,6 @@ const TimeAndDuration = ({
       }
       return newStartTimes;
     });
-    console.log("After: ", startTimes);
   };
 
   const onChangeDuration = (value: number, index: number) => {
@@ -186,7 +181,7 @@ const TimeAndDuration = ({
   return (
     <Fragment>
       {(fixedStart || fixedDuration) && (
-        <div className="flex-col space-y-2 sm:flex sm:flex-row sm:justify-center sm:space-x-4">
+        <div className="flex-col space-y-2 sm:flex sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0">
           {fixedStart && (
             <div className="sm:flex sm:items-center grid grid-cols-12">
               <div className="col-span-4 sm:flex-shrink-0">
@@ -200,7 +195,7 @@ const TimeAndDuration = ({
                   format="h:mm A"
                   placeholder="Select Time"
                   onChange={setFixedStartTime}
-                  defaultOpenValue={moment("00:00", "h:mm")}
+                  defaultValue={moment("00:00", "h:mm")}
                   value={startTime}
                 />
               </div>
@@ -251,7 +246,7 @@ const TimeAndDuration = ({
                           onChange={(value, dateString) =>
                             onChangeStartTime(value, dateString, index)
                           }
-                          defaultOpenValue={moment("00:00", "h:mm A")}
+                          defaultValue={moment("00:00", "h:mm A")}
                           value={
                             fixedStart && startTime
                               ? startTime

@@ -55,7 +55,7 @@ const Modal = ({ show, setShow, size, children, canClose, height }) => {
 
 Modal.defaultProps = {
   size: 35,
-  canClose: true,
+  canClose: false,
 };
 
 Modal.propTypes = {
