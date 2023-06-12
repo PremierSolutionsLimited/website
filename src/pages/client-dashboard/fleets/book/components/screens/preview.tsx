@@ -36,8 +36,13 @@ const PreviewComponent = ({
 }: PreviewComponentProp) => {
   return (
     <Fragment>
-      <div className="h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto divide-y divide-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="h-book-trip-height overflow-y-auto divide-y divide-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:pt-0 pt-4">
+          <div className="col-span-1 sm:hidden">
+            <h3 className="text-lg leading-6 font-medium text-gray-900">
+              Preview your trip details
+            </h3>
+          </div>
           <div className="col-span-1">
             <dt className="text-sm font-light text-gray-700">
               Total Trip Cost Estimate

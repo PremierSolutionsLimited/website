@@ -207,7 +207,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
             }}
           >
             <span className={"font-medium text-md mt-5"}>Add New Car</span>
-            <div className="mt-5 grid grid-cols-12 gap-3">
+            <div className="mt-5 grid grid-cols-12 gap-3 h-book-trip-height overflow-y-auto">
               <div className="col-span-12 sm:col-span-12 md:col-span-6">
                 <label
                   htmlFor="url"
