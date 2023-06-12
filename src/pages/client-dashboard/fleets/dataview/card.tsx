@@ -46,7 +46,7 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
             )}
 
             <div className="flex-auto ml-3 justify-evenly py-2 relative">
-              <div className="hidden sm:block absolute top-0 right-0 pt-2 pr-4">
+              <div className="sm:block absolute top-0 right-0 pt-2 pr-4">
                 <button
                   type="button"
                   data-tip

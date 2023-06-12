@@ -7,7 +7,7 @@ import {
   //GetTripQuotepOutputProp,
   //DamagesInput,
 } from "./types";
-import { Modal } from "../../../../components/modal/custom";
+import { BasicModal } from "../../../../components/modal/";
 import { useMediaQuery } from "react-responsive";
 import { IDurationType, IGroupType } from "./components/data/types";
 import { ApolloError, useMutation } from "@apollo/client";
@@ -263,14 +263,14 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
 
   return (
     <Fragment>
-      <Modal
+      <BasicModal
         show={show}
         setShow={setShow}
-        size={isTabletOrMobile ? 100 : 70}
+        size={isTabletOrMobile ? 95 : 70}
         canClose={false}
       >
-        <div className="p-2 ">
-          <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
+        <div className="p-4 sm:p-8">
+          <div className="sm:block absolute top-0 right-0 pt-4 pr-4">
             <button
               onClick={() => setShow(false)}
               type="button"
@@ -447,7 +447,7 @@ const MainComponent: React.FC<BookTripComponentProp> = ({
             </div>
           </div>
         </div>
-      </Modal>
+      </BasicModal>
     </Fragment>
   );
 };

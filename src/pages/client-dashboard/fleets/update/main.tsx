@@ -181,10 +181,10 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
       <BasicModal
         show={show}
         setShow={setShow}
-        size={isTabletOrMobile ? 100 : 55}
+        size={isTabletOrMobile ? 92 : 55}
       >
-        <div className="p-8 ">
-          <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
+        <div className="p-4">
+          <div className="sm:block absolute top-0 right-0 pt-4 pr-4">
             <button
               onClick={() => setShow(false)}
               type="button"
@@ -206,8 +206,9 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
               </svg>
             </button>
           </div>
+          <div className="">
           <span className={"font-medium text-md mt-5"}>Edit Car</span>
-          <div className="mt-5 grid grid-cols-12 gap-3">
+          <div className="mt-5 grid grid-cols-12 gap-3 h-book-trip-height overflow-y-auto scrollContainer">
             <div className="col-span-12 sm:col-span-12 md:col-span-6">
               <label
                 htmlFor="url"
@@ -413,6 +414,7 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
                 )}
               </button>
             </span>
+          </div>
           </div>
         </div>
       </BasicModal>
