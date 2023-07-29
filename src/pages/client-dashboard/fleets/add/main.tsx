@@ -22,6 +22,7 @@ import { useMultipleImageUpload } from "../../../../components/hooks";
 import SketchPickerComponent from "./components";
 import toast from "react-hot-toast";
 import _ from "lodash";
+import { InformationCircleIcon } from "@heroicons/react/outline";
 
 const MainComponent: React.FC<AddCarComponentProp> = ({
   show,
@@ -213,7 +214,7 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                   htmlFor="url"
                   className="block text-sm pb-1 font-medium text-gray-700"
                 >
-                  Class of Vehicle <span className={"text-red-600"}>*</span>
+                  Class of Vehicle <span className={"text-red-600"}>*</span><span className={"text-xs text-gray-500 ml-1"}> <InformationCircleIcon className={"h-4 w-4 inline-block"}/> </span>
                 </label>
                 <div className="mt-1 rounded-none shadow-none">
                   <select
