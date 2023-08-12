@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface ToolTipWithIconProp {
-  message: string;
+  message: object | string;
 }
 
 export interface ToolTipWithoutIconProp {

@@ -24,6 +24,8 @@ import SketchPickerComponent from "./components";
 import toast from "react-hot-toast";
 import _ from "lodash";
 import { InformationCircleIcon } from "@heroicons/react/outline";
+import ReactTooltip from "react-tooltip";
+import VehicleTypesComponent from "../add/components/vehicletypes";
 
 const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
   show,
@@ -210,23 +212,42 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
           <div className="">
             <span className={"font-medium text-md mt-5"}>Edit Car</span>
             <div className="mt-5 grid grid-cols-12 gap-3 h-book-trip-height overflow-y-auto scrollContainer">
-              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+              <div className="col-span-12 sm:col-span-12 md:col-span-6 relative">
                 <label
                   htmlFor="url"
                   className="block text-sm pb-1 font-medium text-gray-700 flex items-center"
                 >
-                  Class of Vehicle <span className={"text-red-600 ml-0.5"}>*</span>
-                  <span className={"text-xs text-gray-500 ml-1"}>
+                  Class of Vehicle
+                  <span className={"text-red-600 ml-0.5"}>*</span>
+                  <span
+                    className={
+                      "text-xs text-gray-500 ml-1 space-x-2 hover:text-gold-1"
+                    }
+                    data-tip
+                    data-for="showVehicleTypes"
+                    aria-label="Show Vehicle Type Descriptions"
+                  >
                     {" "}
                     <InformationCircleIcon
-                      className={"h-4 w-4 inline-block hover:text-gold-1"}
+                      className={"h-3.5 w-3.5 inline-block"}
                     />{" "}
+                    Show description of classes
                   </span>
+                  <ReactTooltip
+                    id="showVehicleTypes"
+                    place="bottom"
+                    effect="solid"
+                    type="dark"
+                    offset={{ bottom: 10, right: 70 }}
+                  >
+                    <VehicleTypesComponent />
+                  </ReactTooltip>
                 </label>
+
                 <div className="mt-1 rounded-none shadow-none">
                   <select
-                    id="location"
-                    name="location"
+                    id="vehicleClass"
+                    name="vehicleClass"
                     required
                     value={vehicleClass}
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {

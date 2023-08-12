@@ -23,6 +23,8 @@ import SketchPickerComponent from "./components";
 import toast from "react-hot-toast";
 import _ from "lodash";
 import { InformationCircleIcon } from "@heroicons/react/outline";
+import ReactTooltip from "react-tooltip";
+import VehicleTypesComponent from "../add/components/vehicletypes";
 
 const MainComponent: React.FC<AddCarComponentProp> = ({
   show,
@@ -214,7 +216,30 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                   htmlFor="url"
                   className="block text-sm pb-1 font-medium text-gray-700"
                 >
-                  Class of Vehicle <span className={"text-red-600"}>*</span><span className={"text-xs text-gray-500 ml-1"}> <InformationCircleIcon className={"h-4 w-4 inline-block"}/> </span>
+                  Class of Vehicle <span className={"text-red-600 ml-0.5"}>*</span>
+                  <span
+                    className={
+                      "text-xs text-gray-500 ml-1 space-x-2 hover:text-gold-1"
+                    }
+                    data-tip
+                    data-for="showVehicleTypes"
+                    aria-label="Show Vehicle Type Descriptions"
+                  >
+                    {" "}
+                    <InformationCircleIcon
+                      className={"h-3.5 w-3.5 inline-block"}
+                    />{" "}
+                    Show description of classes
+                  </span>
+                  <ReactTooltip
+                    id="showVehicleTypes"
+                    place="bottom"
+                    effect="solid"
+                    type="dark"
+                    offset={{ bottom: 10, right: 70 }}
+                  >
+                    <VehicleTypesComponent />
+                  </ReactTooltip>
                 </label>
                 <div className="mt-1 rounded-none shadow-none">
                   <select
