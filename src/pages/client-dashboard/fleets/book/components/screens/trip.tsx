@@ -106,7 +106,66 @@ export default function Trip({
   return (
     <Fragment>
       <div className="grid grid-cols-12 gap-3 pb-2 h-book-trip-height sm:h-book-trip-height md:h-book-trip-height overflow-y-auto">
-        <div className="col-span-12 sm:col-span-12 md:col-span-12">
+      <div className="col-span-12">
+          <label
+            htmlFor="url"
+            className="block text-base pb-0 font-medium text-gray-700"
+          >
+            Request Type <span className={"text-red-600"}>*</span>
+          </label>
+          <div className="mt-1 rounded-none shadow-none">
+            <select
+              id="location"
+              name="location"
+              required
+              title={"Select request type"}
+              value={requestType}
+              onChange={(e) => setRequestType(e.target.value)}
+              className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
+              defaultValue="Canada"
+            >
+              <option>Please Choose</option>
+              {loading ? (
+                <Fragment>
+                  <option>Loading ...</option>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  {data ? (
+                    <Fragment>
+                      {data?.tripTypesLength === 0 ? (
+                        <Fragment>
+                          <option>No request type found</option>
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          {data?.tripTypes?.map(
+                            (
+                              item: {
+                                name: string;
+                                _id: string;
+                              },
+                              itemIdx: number
+                            ) => (
+                              <Fragment key={itemIdx}>
+                                <option value={item?._id}>{item?.name}</option>
+                              </Fragment>
+                            )
+                          )}
+                        </Fragment>
+                      )}
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <option>An error occured</option>
+                    </Fragment>
+                  )}
+                </Fragment>
+              )}
+            </select>
+          </div>
+        </div>
+        <div className="col-span-12 sm:col-span-12 md:col-span-12 mt-2">
           <label
             htmlFor="url"
             className="block text-base pb-1 font-medium text-gray-700"
@@ -258,65 +317,6 @@ export default function Trip({
             placeholder={`Eg. 3 ${durationTypeSelected}`}
           />
         </div> */}
-        <div className="col-span-12">
-          <label
-            htmlFor="url"
-            className="block text-base pb-0 font-medium text-gray-700"
-          >
-            Request Type <span className={"text-red-600"}>*</span>
-          </label>
-          <div className="mt-1 rounded-none shadow-none">
-            <select
-              id="location"
-              name="location"
-              required
-              title={"Select request type"}
-              value={requestType}
-              onChange={(e) => setRequestType(e.target.value)}
-              className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
-              defaultValue="Canada"
-            >
-              <option>Please Choose</option>
-              {loading ? (
-                <Fragment>
-                  <option>Loading ...</option>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  {data ? (
-                    <Fragment>
-                      {data?.tripTypesLength === 0 ? (
-                        <Fragment>
-                          <option>No request type found</option>
-                        </Fragment>
-                      ) : (
-                        <Fragment>
-                          {data?.tripTypes?.map(
-                            (
-                              item: {
-                                name: string;
-                                _id: string;
-                              },
-                              itemIdx: number
-                            ) => (
-                              <Fragment key={itemIdx}>
-                                <option value={item?._id}>{item?.name}</option>
-                              </Fragment>
-                            )
-                          )}
-                        </Fragment>
-                      )}
-                    </Fragment>
-                  ) : (
-                    <Fragment>
-                      <option>An error occured</option>
-                    </Fragment>
-                  )}
-                </Fragment>
-              )}
-            </select>
-          </div>
-        </div>
 
         {endTime && (
           <Fragment>

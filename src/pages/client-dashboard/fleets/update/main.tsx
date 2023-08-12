@@ -23,6 +23,9 @@ import { useMultipleImageUpload } from "../../../../components/hooks";
 import SketchPickerComponent from "./components";
 import toast from "react-hot-toast";
 import _ from "lodash";
+import { InformationCircleIcon } from "@heroicons/react/outline";
+import ReactTooltip from "react-tooltip";
+import VehicleTypesComponent from "../add/components/vehicletypes";
 
 const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
   show,
@@ -207,214 +210,239 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
             </button>
           </div>
           <div className="">
-          <span className={"font-medium text-md mt-5"}>Edit Car</span>
-          <div className="mt-5 grid grid-cols-12 gap-3 h-book-trip-height overflow-y-auto scrollContainer">
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Class of Vehicle <span className={"text-red-600"}>*</span>
-              </label>
-              <div className="mt-1 rounded-none shadow-none">
-                <select
-                  id="location"
-                  name="location"
-                  required
-                  value={vehicleClass}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                    setVehicleClass(e.target.value);
-                  }}
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
-                  defaultValue="Canada"
+            <span className={"font-medium text-md mt-5"}>Edit Car</span>
+            <div className="mt-5 grid grid-cols-12 gap-3 h-book-trip-height overflow-y-auto scrollContainer">
+              <div className="col-span-12 sm:col-span-12 md:col-span-6 relative">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700 flex items-center"
                 >
-                  <option>Please Choose</option>
-                  {loadingVehicleClasses ? (
-                    <Fragment>
-                      <option>Loading...</option>
-                    </Fragment>
-                  ) : (
-                    <Fragment>
-                      {vehicleClasses ? (
-                        <Fragment>
-                          {vehicleClasses?.vehicleClassesLength === 0 ? (
-                            <Fragment>
-                              <option>No vehicle classes found</option>
-                            </Fragment>
-                          ) : (
-                            <Fragment>
-                              {vehicleClasses?.vehicleClasses?.map(
-                                (item: VehicleClasses, itemIdx: number) => (
-                                  <Fragment key={itemIdx}>
-                                    <option value={item?._id}>
-                                      {item?.name}
-                                    </option>
-                                  </Fragment>
-                                )
-                              )}
-                            </Fragment>
-                          )}
-                        </Fragment>
-                      ) : (
-                        <Fragment>
-                          <option>
-                            An error occured trying to load the data
-                          </option>
-                        </Fragment>
-                      )}
-                    </Fragment>
-                  )}
-                </select>
-              </div>
-            </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <div className={"relative"}>
-                <label htmlFor="email" className="">
-                  Color <span className={"text-red-600"}>*</span>
-                </label>
-                <div
-                  onClick={() => setShowColorPicker(true)}
-                  style={{ backgroundColor: color || "#fff" }}
-                  className={
-                    "bg-white mt-1 rounded-md border border-gray-300 flex py-2 cursor-pointer justify-center"
-                  }
-                >
-                  <span className={"text-gold-2 text-sm"}>
-                    Click Here To Change Color
+                  Class of Vehicle
+                  <span className={"text-red-600 ml-0.5"}>*</span>
+                  <span
+                    className={
+                      "text-xs text-gray-500 ml-1 space-x-2 hover:text-gold-1"
+                    }
+                    data-tip
+                    data-for="showVehicleTypes"
+                    aria-label="Show Vehicle Type Descriptions"
+                  >
+                    {" "}
+                    <InformationCircleIcon
+                      className={"h-3.5 w-3.5 inline-block"}
+                    />{" "}
+                    Show description of classes
                   </span>
+                  <ReactTooltip
+                    id="showVehicleTypes"
+                    place="bottom"
+                    effect="solid"
+                    type="dark"
+                    offset={{ bottom: 10, right: 70 }}
+                  >
+                    <VehicleTypesComponent />
+                  </ReactTooltip>
+                </label>
+
+                <div className="mt-1 rounded-none shadow-none">
+                  <select
+                    id="vehicleClass"
+                    name="vehicleClass"
+                    required
+                    value={vehicleClass}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      setVehicleClass(e.target.value);
+                    }}
+                    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
+                    defaultValue="Canada"
+                  >
+                    <option>Please Choose</option>
+                    {loadingVehicleClasses ? (
+                      <Fragment>
+                        <option>Loading...</option>
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        {vehicleClasses ? (
+                          <Fragment>
+                            {vehicleClasses?.vehicleClassesLength === 0 ? (
+                              <Fragment>
+                                <option>No vehicle classes found</option>
+                              </Fragment>
+                            ) : (
+                              <Fragment>
+                                {vehicleClasses?.vehicleClasses?.map(
+                                  (item: VehicleClasses, itemIdx: number) => (
+                                    <Fragment key={itemIdx}>
+                                      <option value={item?._id}>
+                                        {item?.name}
+                                      </option>
+                                    </Fragment>
+                                  )
+                                )}
+                              </Fragment>
+                            )}
+                          </Fragment>
+                        ) : (
+                          <Fragment>
+                            <option>
+                              An error occured trying to load the data
+                            </option>
+                          </Fragment>
+                        )}
+                      </Fragment>
+                    )}
+                  </select>
                 </div>
-                <SketchPickerComponent
-                  show={showColorPicker}
-                  setShow={setShowColorPicker}
-                  color={color}
-                  setColor={setColor}
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <div className={"relative"}>
+                  <label htmlFor="email" className="">
+                    Color <span className={"text-red-600"}>*</span>
+                  </label>
+                  <div
+                    onClick={() => setShowColorPicker(true)}
+                    style={{ backgroundColor: color || "#fff" }}
+                    className={
+                      "bg-white mt-1 rounded-md border border-gray-300 flex py-2 cursor-pointer justify-center"
+                    }
+                  >
+                    <span className={"text-gold-2 text-sm"}>
+                      Click Here To Change Color
+                    </span>
+                  </div>
+                  <SketchPickerComponent
+                    show={showColorPicker}
+                    setShow={setShowColorPicker}
+                    color={color}
+                    setColor={setColor}
+                  />
+                </div>
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700"
+                >
+                  Transmission Type <span className={"text-red-600"}>*</span>
+                </label>
+                <div className="mt-1 rounded-none shadow-none">
+                  <select
+                    id="location"
+                    name="location"
+                    required
+                    value={transmissionType}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      setTransmissionType(e.target.value);
+                    }}
+                    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
+                    defaultValue="Canada"
+                  >
+                    <option>Please Choose</option>
+                    <option value="MANUAL">Manual</option>
+                    <option value="AUTOMATIC">Automatic</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700"
+                >
+                  Car Make <span className={"text-red-600"}>*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={make}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setMake(e.target.value);
+                  }}
+                  className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
+                  placeholder="Eg. Toyota"
+                />
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700"
+                >
+                  Car Model
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={model}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setModel(e.target.value);
+                  }}
+                  className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
+                  placeholder="Eg. Camry"
+                />
+              </div>
+              <div className="col-span-12 sm:col-span-12 md:col-span-6">
+                <label
+                  htmlFor="url"
+                  className="block text-sm pb-1 font-medium text-gray-700"
+                >
+                  Registration Number <span className={"text-red-600"}>*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={registrationNumber}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setRegistrationNumber(e.target.value);
+                  }}
+                  className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
+                  placeholder="Eg. GE-320-20"
+                />
+              </div>
+
+              {/* upload cars */}
+              <div
+                style={{ height: "25vh" }}
+                className="col-span-12 sm:col-span-12 md:col-span-12 overflow-scroll scrollContainer"
+              >
+                <UploadCarsComponent
+                  imageUrl1={imageUrl1}
+                  handleUploadImage1={handleUploadImage1}
+                  imageUrl2={imageUrl2}
+                  handleUploadImage2={handleUploadImage2}
+                  imageUrl3={imageUrl3}
+                  handleUploadImage3={handleUploadImage3}
                 />
               </div>
             </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Transmission Type <span className={"text-red-600"}>*</span>
-              </label>
-              <div className="mt-1 rounded-none shadow-none">
-                <select
-                  id="location"
-                  name="location"
-                  required
-                  value={transmissionType}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                    setTransmissionType(e.target.value);
-                  }}
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
-                  defaultValue="Canada"
+            <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">
+              <span className="inline-flex rounded-none shadow-sm mr-2 ">
+                <button
+                  type="button"
+                  onClick={() => setShow(false)}
+                  className="inline-flex rounded-lg items-center px-6 py-2 border border-gold-1 text-sm leading-5 font-light text-gold-1 hover:text-gold-1 bg-white hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
                 >
-                  <option>Please Choose</option>
-                  <option value="MANUAL">Manual</option>
-                  <option value="AUTOMATIC">Automatic</option>
-                </select>
-              </div>
+                  <span className="mx-1">Close</span>
+                </button>
+              </span>
+              <span className="inline-flex rounded-none shadow-sm ">
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={uploadLoadings || loading}
+                  className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-gray focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
+                >
+                  {uploadLoadings || loading ? (
+                    <Fragment>
+                      <CircleSpinner loading color="#fff" size={13} />
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <span className="mx-1">Save</span>
+                    </Fragment>
+                  )}
+                </button>
+              </span>
             </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Car Make <span className={"text-red-600"}>*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={make}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setMake(e.target.value);
-                }}
-                className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
-                placeholder="Eg. Toyota"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Car Model
-              </label>
-              <input
-                type="text"
-                required
-                value={model}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setModel(e.target.value);
-                }}
-                className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
-                placeholder="Eg. Camry"
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-6">
-              <label
-                htmlFor="url"
-                className="block text-sm pb-1 font-medium text-gray-700"
-              >
-                Registration Number <span className={"text-red-600"}>*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={registrationNumber}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setRegistrationNumber(e.target.value);
-                }}
-                className="shadow-none font-light py-2 px-2 bg-white border focus:outline-none block w-full sm:text-sm border-gray-300 rounded-md focus:ring-gold-1  focus:shadow-outline-purple focus:border-gold-1"
-                placeholder="Eg. GE-320-20"
-              />
-            </div>
-
-            {/* upload cars */}
-            <div
-              style={{ height: "25vh" }}
-              className="col-span-12 sm:col-span-12 md:col-span-12 overflow-scroll scrollContainer"
-            >
-              <UploadCarsComponent
-                imageUrl1={imageUrl1}
-                handleUploadImage1={handleUploadImage1}
-                imageUrl2={imageUrl2}
-                handleUploadImage2={handleUploadImage2}
-                imageUrl3={imageUrl3}
-                handleUploadImage3={handleUploadImage3}
-              />
-            </div>
-          </div>
-          <div className="pt-2 border-t border-gray-200 mt-5  flex justify-end">
-            <span className="inline-flex rounded-none shadow-sm mr-2 ">
-              <button
-                type="button"
-                onClick={() => setShow(false)}
-                className="inline-flex rounded-lg items-center px-6 py-2 border border-gold-1 text-sm leading-5 font-light text-gold-1 hover:text-gold-1 bg-white hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
-              >
-                <span className="mx-1">Close</span>
-              </button>
-            </span>
-            <span className="inline-flex rounded-none shadow-sm ">
-              <button
-                type="button"
-                onClick={handleSubmit}
-                disabled={uploadLoadings || loading}
-                className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-gold-1 hover:bg-gold-2 focus:outline-none focus:shadow-outline-gray focus:border-gold-1 active:bg-gold-1 transition duration-150 ease-in-out"
-              >
-                {uploadLoadings || loading ? (
-                  <Fragment>
-                    <CircleSpinner loading color="#fff" size={13} />
-                  </Fragment>
-                ) : (
-                  <Fragment>
-                    <span className="mx-1">Save</span>
-                  </Fragment>
-                )}
-              </button>
-            </span>
-          </div>
           </div>
         </div>
       </BasicModal>
