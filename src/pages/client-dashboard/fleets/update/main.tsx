@@ -240,7 +240,7 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
                     type="dark"
                     offset={{ bottom: 10, right: 70 }}
                   >
-                    <VehicleTypesComponent />
+                    This is a tooltip
                   </ReactTooltip>
                 </label>
 

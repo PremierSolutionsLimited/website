@@ -90,13 +90,13 @@ const Nofications = () => {
                 aria-labelledby="primary-heading"
                 className="min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-last"
               >
-                <h1 id="primary-heading" className="sr-only">
+                <h3 id="primary-heading" className="sr-only">
                   Notifications Details
-                </h1>
+                </h3>
                 {/* Your content */}
-                <h2 className="text-2xl font-bold p-3 bg-white text-gray-600 mb-3 border-b border-gray-200">
+                <h3 className="text-xl font-medium p-3 bg-white text-gray-800 mb-3 border-b border-gray-200">
                   Notification Details
-                </h2>
+                </h3>
                 <ul className="py-4 space-y-2 sm:px-3 sm:space-y-4 lg:px-4">
                   {loadingReadNotification ? (
                     <li className="bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6 flex justify-center items-center">
@@ -108,7 +108,7 @@ const Nofications = () => {
                     <li className="bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6">
                       <div className="sm:flex sm:justify-between sm:items-baseline">
                         <h3 className="text-base font-medium">
-                          <span className="text-gold-2 text-xl">
+                          <span className="text-gold-2 text-lg">
                             {selectedNotification?.title}
                           </span>{" "}
                         </h3>
@@ -120,7 +120,7 @@ const Nofications = () => {
                                 ).toDateString()
                               : ""}
                           </div>
-                          <div className="text-gray-900">
+                          <div className="text-gold-2">
                             {selectedNotification?.createdAt
                               ? new Date(
                                   selectedNotification?.createdAt
@@ -129,7 +129,7 @@ const Nofications = () => {
                           </div>
                         </p>
                       </div>
-                      <div className="mt-4 space-y-6 text-lg text-gray-800 whitespace-pre-wrap">
+                      <div className="mt-4 space-y-6 text-base text-gray-800 whitespace-pre-wrap">
                         {selectedNotification?.body}
                       </div>
                     </li>
@@ -141,7 +141,7 @@ const Nofications = () => {
               <aside className="hidden xl:block xl:order-first">
                 <div className="h-full relative overflow-auto flex flex-col min-w-1/3 border-r border-gray-200">
                   {/* Your content */}
-                  <h2 className="text-2xl font-bold p-3 bg-white text-gray-600  border-b border-gray-200">
+                  <h2 className="text-xl font-medium p-3 bg-white text-gray-800  border-b border-gray-200">
                     Notifications Summary
                   </h2>
                   <div className="">
@@ -238,10 +238,10 @@ const Nofications = () => {
                                           )}
                                         </div>
                                       </div>
-                                      <div className="min-w-0 mt-2 flex-1">
+                                      <div className="min-w-0 mt-2 flex-1 pl-2">
                                         <div>
                                           <div className="text-sm">
-                                            <div className="font-medium text-gray-900 text-lg">
+                                            <div className="font-medium text-gray-900 text-base">
                                               {notification?.title}
                                             </div>
                                           </div>
