@@ -25,6 +25,7 @@ import _ from "lodash";
 import { InformationCircleIcon } from "@heroicons/react/outline";
 import ReactTooltip from "react-tooltip";
 import VehicleTypesComponent from "../add/components/vehicletypes";
+import { TooltipWithoutIcon } from "../../../../shared/ui-modules/tooltips/withoutIcon";
 
 const MainComponent: React.FC<AddCarComponentProp> = ({
   show,
@@ -214,32 +215,35 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
               <div className="col-span-12 sm:col-span-12 md:col-span-6">
                 <label
                   htmlFor="url"
-                  className="block text-sm pb-1 font-medium text-gray-700"
+                  className="relative text-sm pb-1 font-medium text-gray-700 flex items-center"
                 >
-                  Class of Vehicle <span className={"text-red-600 ml-0.5"}>*</span>
-                  <span
-                    className={
-                      "text-xs text-gray-500 ml-1 space-x-2 hover:text-gold-1"
-                    }
-                    data-tip
-                    data-for="showVehicleTypes"
-                    aria-label="Show Vehicle Type Descriptions"
-                  >
-                    {" "}
-                    <InformationCircleIcon
-                      className={"h-3.5 w-3.5 inline-block"}
-                    />{" "}
-                    Show description of classes
-                  </span>
-                  <ReactTooltip
+                  Class of Vehicle
+                  <span className={"text-red-600 ml-0.5"}>*</span>
+                  <div className="ml-2">
+                    <TooltipWithoutIcon
+                      //className="flex text-xs text-gray-500 ml-1 space-x-2 hover:text-gold-1 transition ease-in-out duration-150"
+                      aria-label="Show Vehicle Type Descriptions"
+                      message={<VehicleTypesComponent />}
+                      messageClassName={`absolute w-64 top-3 ${
+                        isTabletOrMobile ? "-left-10" : "-left-1"
+                      } mt-2 bg-customBlack-1 p-2 rounded-md z-50`}
+                      childrenClassName="flex text-xs text-gray-500 ml-1 space-x-2 hover:text-gold-1 transition ease-in-out duration-150"
+                    >
+                      {" "}
+                      <InformationCircleIcon
+                        className={"h-3.5 w-3.5 inline-block"}
+                      />{" "}
+                      Show description of classes
+                    </TooltipWithoutIcon>
+                  </div>
+                  {/* <ReactTooltip
                     id="showVehicleTypes"
                     place="bottom"
                     effect="solid"
-                    type="dark"
                     offset={{ bottom: 10, right: 70 }}
                   >
-                    <VehicleTypesComponent />
-                  </ReactTooltip>
+                    This is a tooltip
+                  </ReactTooltip>    */}
                 </label>
                 <div className="mt-1 rounded-none shadow-none">
                   <select
