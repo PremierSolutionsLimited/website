@@ -45,13 +45,13 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
               </Fragment>
             )}
 
-            <div className="flex-auto ml-3 justify-evenly py-2 relative">
-              <div className="hidden sm:block absolute top-0 right-0 pt-2 pr-4">
+            <div className="flex-auto ml-3 justify-evenly py-2 sm:mt-0 mt-2 relative">
+              <div className="sm:block absolute top-0 right-0 pt-2 pr-4">
                 <button
                   type="button"
-                  data-tip
+                  //data-tip
                   onClick={onBook}
-                  data-for="registerTip"
+                  //data-for="registerTip"
                   className=" flex items-center justify-between space-x-1 p-2 text-white hover:text-gold-2 hover:bg-customBlack-2 bg-gold-2 rounded-full focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
                   aria-label="Close"
                 >
@@ -71,9 +71,9 @@ const Card = ({ data, onView, onUpdate, onBook }: FleetCardComponentProp) => {
                     />
                   </svg>
                 </button>
-                <ReactTooltip id="registerTip" place="top" effect="solid">
+                {/* <ReactTooltip id="registerTip" place="top" effect="solid">
                   Book a trip
-                </ReactTooltip>
+                </ReactTooltip> */}
               </div>
               <div className="flex flex-wrap ">
                 <div className="w-full flex-none text-xs text-blue-700 font-medium ">
