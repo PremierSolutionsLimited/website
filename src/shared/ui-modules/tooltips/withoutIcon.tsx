@@ -6,6 +6,7 @@ export const TooltipWithoutIcon = ({
   message,
   children,
   messageClassName,
+  childrenClassName,
 }: ToolTipWithoutIconProp) => {
   const [showTooltip, setShowTooltip] = React.useState(false);
 
@@ -15,6 +16,7 @@ export const TooltipWithoutIcon = ({
         <div
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
+          className={childrenClassName}
         >
           {children}
         </div>

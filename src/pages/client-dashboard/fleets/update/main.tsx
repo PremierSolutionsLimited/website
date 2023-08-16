@@ -26,6 +26,7 @@ import _ from "lodash";
 import { InformationCircleIcon } from "@heroicons/react/outline";
 import ReactTooltip from "react-tooltip";
 import VehicleTypesComponent from "../add/components/vehicletypes";
+import { TooltipWithoutIcon } from "../../../../shared/ui-modules/tooltips/withoutIcon";
 
 const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
   show,
@@ -215,33 +216,33 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
               <div className="col-span-12 sm:col-span-12 md:col-span-6 relative">
                 <label
                   htmlFor="url"
-                  className="block text-sm pb-1 font-medium text-gray-700 flex items-center"
+                  className="relative text-sm pb-1 font-medium text-gray-700 flex items-center"
                 >
                   Class of Vehicle
                   <span className={"text-red-600 ml-0.5"}>*</span>
-                  <span
-                    className={
-                      "text-xs text-gray-500 ml-1 space-x-2 hover:text-gold-1"
-                    }
-                    data-tip
-                    data-for="showVehicleTypes"
-                    aria-label="Show Vehicle Type Descriptions"
-                  >
-                    {" "}
-                    <InformationCircleIcon
-                      className={"h-3.5 w-3.5 inline-block"}
-                    />{" "}
-                    Show description of classes
-                  </span>
-                  <ReactTooltip
+                  <div className="ml-2">
+                    <TooltipWithoutIcon
+                      //className="flex text-xs text-gray-500 ml-1 space-x-2 hover:text-gold-1 transition ease-in-out duration-150"
+                      aria-label="Show Vehicle Type Descriptions"
+                      message={<VehicleTypesComponent />}
+                      messageClassName={`absolute w-64 top-3 ${isTabletOrMobile? "-left-10" : "-left-1"} mt-2 bg-customBlack-1 p-2 rounded-md z-50`}
+                      childrenClassName="flex text-xs text-gray-500 ml-1 space-x-2 hover:text-gold-1 transition ease-in-out duration-150"
+                    >
+                      {" "}
+                      <InformationCircleIcon
+                        className={"h-3.5 w-3.5 inline-block"}
+                      />{" "}
+                      Show description of classes
+                    </TooltipWithoutIcon>
+                  </div>
+                  {/* <ReactTooltip
                     id="showVehicleTypes"
                     place="bottom"
                     effect="solid"
-                    type="dark"
                     offset={{ bottom: 10, right: 70 }}
                   >
                     This is a tooltip
-                  </ReactTooltip>
+                  </ReactTooltip>    */}
                 </label>
 
                 <div className="mt-1 rounded-none shadow-none">
@@ -254,7 +255,6 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
                       setVehicleClass(e.target.value);
                     }}
                     className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
-                    defaultValue="Canada"
                   >
                     <option>Please Choose</option>
                     {loadingVehicleClasses ? (
@@ -336,7 +336,6 @@ const MainComponent: React.FC<UpdateVehicleComponentProp> = ({
                       setTransmissionType(e.target.value);
                     }}
                     className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
-                    defaultValue="Canada"
                   >
                     <option>Please Choose</option>
                     <option value="MANUAL">Manual</option>

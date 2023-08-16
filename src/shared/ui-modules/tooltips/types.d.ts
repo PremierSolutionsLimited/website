@@ -5,7 +5,8 @@ export interface ToolTipWithIconProp {
 }
 
 export interface ToolTipWithoutIconProp {
-  message: string;
-  children: ReactNode;
-  messageClassName: string;
+  message: any;
+  children?: ReactNode;
+  messageClassName?: string;
+  childrenClassName?: string;
 }

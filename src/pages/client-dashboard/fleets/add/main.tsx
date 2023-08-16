@@ -251,7 +251,6 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                       setVehicleClass(e.target.value);
                     }}
                     className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
-                    defaultValue="Canada"
                   >
                     <option>Please Choose</option>
                     {loadingVehicleClasses ? (
@@ -336,7 +335,6 @@ const MainComponent: React.FC<AddCarComponentProp> = ({
                       setTransmissionType(e.target.value);
                     }}
                     className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gold-1 focus:border-gold-1 sm:text-sm rounded-md"
-                    defaultValue="Canada"
                   >
                     <option>Please Choose</option>
                     <option value="MANUAL">Manual</option>
